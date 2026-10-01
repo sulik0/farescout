@@ -2,10 +2,10 @@
 
 ## P1 进展
 
-本文保留原 POC 实现说明。2026-10-01 的日期探索、实时研究轨迹、可编辑约束、证据标签与典型价基础判断已在原链路上增量实现，最新完整链路与选型见 [P1 实现说明](p1-implementation.md)，真实验收见 [P1 记录](p1-acceptance.md)。下文关于单样本日期、尚无 UI 或典型价的描述是 POC 阶段历史状态。
+本文保留原 POC 实现说明。2026-10-01 的日期探索、实时研究轨迹、可编辑约束、证据标签与典型价基础判断已在原链路上增量实现，最新完整链路与选型见 [当前实现说明](implementation.md)，真实验收见 [当前验收记录](acceptance.md)。下文关于单样本日期、尚无 UI 或典型价的描述是 POC 阶段历史状态。
 
 
-本文描述截至 **2026-09-30** 已实现并实测的 POC，不把后续设想写成现有能力。产品需求与完成标准以[原始需求文档](product-requirements.md)为准；实际运行证据见[验收记录](acceptance.md)和[独立运行报告](../reports/05-standalone-discovery.md)。
+本文描述截至 **2026-09-30** 已实现并实测的 POC，不把后续设想写成现有能力。产品需求与完成标准以[原始需求文档](product-requirements.md)为准；实际运行证据见[POC 验收记录](../history/p0-acceptance.md)和[独立运行报告](../../reports/05-standalone-discovery.md)。
 
 ## 1. FareScout 想解决什么问题
 
@@ -39,14 +39,14 @@ flowchart LR
 
 | 阶段 | 当前实现 | 产物与判断边界 |
 |---|---|---|
-| 理解需求 | [`evolve_goal` 与 `Brain.patch`](../src/farescout/research.py)把输入转成出发机场、地区、日期窗、单程/往返、红眼限制；默认假设写入报告 | `Goal`。追问只改本轮明确条件，继续保留原研究范围 |
-| 宽搜索 | [`Brain.plan`](../src/farescout/research.py)产生不同的社区搜索词；模型失败时用基于目标的保底查询 | 搜索词，不是预设的“便宜航线榜” |
-| 社区研究 | [`Socai.search`](../src/farescout/providers.py)调用现成 `xhs search`，打开帖子读取正文与评论；v0.6.1 的 `notes[].entity`、`top_comments` 被归一化为 `Evidence` | 有来源 URL、查询词、原文、发布时间原文和读取时间；只有标题卡片不计入证据 |
-| 发现与扩展 | [`Brain.discover`](../src/farescout/research.py)从已读证据提取航线、逐字摘录、晒价、航司及新的查询词；扩展后再次提取 | `Candidate`、`Signal`、`Expansion`。新查询必须引用证据 ID，其关键线索必须出现在已读正文/评论里 |
-| 筛选 | [`grounded`](../src/farescout/research.py)核对引用、机场/国家、地区约束、日期提示，去重后按发帖新近程度和证据多样性排序 | 最多 5 条有来源的候选；词表只辅助地名归一化，不提供价格或预设低价路线 |
-| 实时验价 | [`FlyAI` 与 `SerpAPI`](../src/farescout/providers.py)按候选机场、样本日期、1 成人经济舱发只读请求，逐个尝试 | `Fare`；检查返回航段、机场、出发日、单程/往返和红眼要求。某来源失败时继续另一来源 |
-| 证据综合 | [`synthesize` 与 `render_report`](../src/farescout/report.py)由代码生成价格摘要、出处、限制和事件表 | 社区晒价与当前报价分栏；不同税费口径不合并成一个价差；每个渠道只展示代表性最低报价，完整匹配报价留在会话 JSON |
-| 持久化与续跑 | [`Researcher`、`Store`](../src/farescout/engine.py)保存目标、原文、候选、报价与失败事件；可从已有会话继续 | 多轮追问重筛候选并重新验价，不把旧报价假装成当前报价；宿主桥接模式可收取匹配的迟到回执 |
+| 理解需求 | [`evolve_goal` 与 `Brain.patch`](../../src/farescout/research.py)把输入转成出发机场、地区、日期窗、单程/往返、红眼限制；默认假设写入报告 | `Goal`。追问只改本轮明确条件，继续保留原研究范围 |
+| 宽搜索 | [`Brain.plan`](../../src/farescout/research.py)产生不同的社区搜索词；模型失败时用基于目标的保底查询 | 搜索词，不是预设的“便宜航线榜” |
+| 社区研究 | [`Socai.search`](../../src/farescout/providers.py)调用现成 `xhs search`，打开帖子读取正文与评论；v0.6.1 的 `notes[].entity`、`top_comments` 被归一化为 `Evidence` | 有来源 URL、查询词、原文、发布时间原文和读取时间；只有标题卡片不计入证据 |
+| 发现与扩展 | [`Brain.discover`](../../src/farescout/research.py)从已读证据提取航线、逐字摘录、晒价、航司及新的查询词；扩展后再次提取 | `Candidate`、`Signal`、`Expansion`。新查询必须引用证据 ID，其关键线索必须出现在已读正文/评论里 |
+| 筛选 | [`grounded`](../../src/farescout/research.py)核对引用、机场/国家、地区约束、日期提示，去重后按发帖新近程度和证据多样性排序 | 最多 5 条有来源的候选；词表只辅助地名归一化，不提供价格或预设低价路线 |
+| 实时验价 | [`FlyAI` 与 `SerpAPI`](../../src/farescout/providers.py)按候选机场、样本日期、1 成人经济舱发只读请求，逐个尝试 | `Fare`；检查返回航段、机场、出发日、单程/往返和红眼要求。某来源失败时继续另一来源 |
+| 证据综合 | [`synthesize` 与 `render_report`](../../src/farescout/report.py)由代码生成价格摘要、出处、限制和事件表 | 社区晒价与当前报价分栏；不同税费口径不合并成一个价差；每个渠道只展示代表性最低报价，完整匹配报价留在会话 JSON |
+| 持久化与续跑 | [`Researcher`、`Store`](../../src/farescout/engine.py)保存目标、原文、候选、报价与失败事件；可从已有会话继续 | 多轮追问重筛候选并重新验价，不把旧报价假装成当前报价；宿主桥接模式可收取匹配的迟到回执 |
 
 日期没有精确信息时，程序会在声明的窗口内选**一个样本日**做验证。它没有扫描全月价格日历，因此报告只能说“这天查到”，不能说“最近最低”。城市级社区线索映射到具体机场时，报告也标明这是验证样本，不声称帖子原本指定了该机场。
 
@@ -73,7 +73,7 @@ FareScout 是一个会在预设步骤和调用范围内开展研究的 Agent（�
 | [socai](https://github.com/socai-io/socai) | 实际使用 v0.6.1 的只读小红书搜索、正文和评论读取，复用用户已登录的 Chrome | 社区页面、登录态及内容读取最难稳定自研。只接收真正读到正文的记录；不搬运 Cookie 或重建社媒抓取器 |
 | [FlyAI](https://github.com/alibaba-flyai/flyai-skill) | 官方 CLI 的结构化航班查询；本机实测体验模式 | 以少量精确路线和日期直接获取真实航班；适配器兼容实测 `ticketPrice` 和示例 `adultPrice`，但将其税费标为未知 |
 | [SerpAPI Google Flights](https://serpapi.com/google-flights-api) | `google_flights` 查询，带机场、日期、CNY、1 成人、经济舱、`no_cache` | 为候选提供另一真实验价渠道；此次单程响应作为含税总价展示。往返尚未完成 `departure_token` 回程确认，因而不把首段价伪称完整往返价 |
-| [宿主 Browser Harness 桥接](browser-bridge.md) | 早期作为可选宿主浏览器回执路径；独立成功运行不依赖它 | 登录后的侧边栏浏览器无法直接供 socai CLI 使用时，借用已有浏览器能力完成只读验证；文件回执只传研究结果，不传登录态 |
+| [宿主浏览器桥接说明](../reference/browser-bridge.md) | 早期作为可选宿主浏览器回执路径；独立成功运行不依赖它 | 登录后的侧边栏浏览器无法直接供 socai CLI 使用时，借用已有浏览器能力完成只读验证；文件回执只传研究结果，不传登录态 |
 | [OpenCLI](https://github.com/jackwener/opencli)、[Prism travel-agent](https://github.com/Prism-Shadow/travel-agent) | 仅参考 Chrome 集成、浏览器可见操作、观察后验证和标签页边界 | P0 的 socai + 两个票价来源已足以验证链路，未再引入第二套浏览器基础设施，也未 fork 预订流程 |
 | [DeepSeek Harness](https://www.deepseek.com/harness/en/)、[huahuanao travel-agent](https://github.com/huahuanao/travel-agent) | 分别参考 Agent 执行设计和“社区线索 × 当前价格 × 出行现实”的不同来源各自提供社区线索、当前价格或出行信息 | 保留研究方法，避免把更广的平台、预订或旅行规划功能一起搬入 POC |
 
@@ -87,7 +87,7 @@ FareScout 自己编写的代码负责把这些组件连起来，并判断哪些�
 - **失败继续，但不虚构**：socai 失败可尝试配置的公共社区备用来源；FlyAI 对某条路线失败会继续试 SerpAPI。本次巴厘岛 HKG→DPS 就发生了这一情况。来源都失败时保留已有证据并标记未验证；验证码、登录障碍或访问限制不绕过。
 - **限制权限与预算**：只开放研究命令、只读 API，模型没有 shell 或交易工具；子进程不继承无关 API Key。URL 去掉查询参数及可能的访问 token；`.env` 和运行时 `data/` 不进入交付包。每轮有来源超时、总时限和精确验价次数上限，不进入乘机人填写、锁座或支付。
 
-完整记录以本地 JSON 保留每个来源的结果与错误事件，Markdown 报告只呈现能说明机会和限制的内容。早期宿主浏览器路径由[`bridge.py`](../src/farescout/bridge.py)实现读回执与超时续跑；主路径使用 socai。运行命令和登录方式见[README](../README.md)。
+完整记录以本地 JSON 保留每个来源的结果与错误事件，Markdown 报告只呈现能说明机会和限制的内容。早期宿主浏览器路径由[`bridge.py`](../../src/farescout/bridge.py)实现读回执与超时续跑；主路径使用 socai。运行命令和登录方式见[README](../../README.md)。
 
 ## 6. FareScout 的价值和仍待验证的问题
 

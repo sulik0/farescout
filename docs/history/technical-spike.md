@@ -27,6 +27,6 @@
 
 用户在本机连接 Chrome 并配置 SerpAPI 后，最初 doctor 仍显示 socai daemon 不可用；首次只读查询启动 daemon，随后 `socai status --json` 显示 `browser_connected=true`。接着发现 **适配器仍按旧字段 `note` 解析**，发布版 v0.6.1 实际返回 `notes[].entity` 和 `top_comments`。修正并加入回归测试后，单次 `Socai.search` 成功取得 5 篇正文及 6 条评论。
 
-SerpAPI 实际以 HKG→OKA、2026-10-14 返回 3 条含税机票报价。之后重新独立运行整个模糊输入，不使用宿主回执：2 次宽查询 + 1 次根据已读证据扩展查询，12 篇正文，5 条候选全部获得当前报价，4 条由 FlyAI 与 SerpAPI 双渠道支持。完整细节与逐轮追问见 [最新验收](acceptance.md) 和 [最新首轮报告](../reports/05-standalone-discovery.md)。前表是首次 spike 的历史状态，以此处重测为准。
+SerpAPI 实际以 HKG→OKA、2026-10-14 返回 3 条含税机票报价。之后重新独立运行整个模糊输入，不使用宿主回执：2 次宽查询 + 1 次根据已读证据扩展查询，12 篇正文，5 条候选全部获得当前报价，4 条由 FlyAI 与 SerpAPI 双渠道支持。完整细节与逐轮追问见 [最新验收](p0-acceptance.md) 和 [最新首轮报告](../../reports/05-standalone-discovery.md)。前表是首次 spike 的历史状态，以此处重测为准。
 
 独立研究完成后，空闲时 `doctor` 曾再次显示 `DAEMON_UNAVAILABLE`，单独的 socai `status` 也曾显示浏览器端点不可达；随后同一只读搜索重试成功取得 5 篇正文和 4 条评论，再查 `status` 为 `browser_connected=true`。这说明本机连接可按需恢复，但状态快照不是长期稳定性证明。

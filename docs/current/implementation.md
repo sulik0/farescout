@@ -1,6 +1,6 @@
 # FareScout P1：系统怎样完成一次研究
 
-更新：2026-10-01。P1 按用户最新授权实现；原始产品需求仍是 `product-requirements.md`，`p1-direction-research.md` 是开发前的调研快照。未迁移 Runtime，未引入 Multi-Agent。
+更新：2026-10-01。P1 按用户最新授权实现；原始产品需求仍是 `product-requirements.md`，`../history/p1-direction-research.md` 是开发前的调研快照。未迁移 Runtime，未引入 Multi-Agent。
 
 ## 从用户提问到研究结论
 
@@ -65,6 +65,6 @@ FareScout 帮用户发现原本不知道该搜索的路线，再把社区里的�
 
 ## 验证与暂缓
 
-先真实测试核心流程并保存原始 Session（会话）和审计记录，再开启质量与 Deal 判断功能；完整版本更新后另行进行真实测试。具体日期、调用数、失败和逐项 PASS / FAIL 见 [P1 验收](p1-acceptance.md)。
+先真实测试核心流程并保存原始 Session（会话）和审计记录，再开启质量与 Deal 判断功能；完整版本更新后另行进行真实测试。具体日期、调用数、失败和逐项 PASS / FAIL 见 [当前验收记录](acceptance.md)。
 
 目前暂不做 Runtime 迁移、Multi-Agent、接入更多 OTA、全面接入抖音或公众号、复杂 Deal Score、统一计算交通和行李成本、自建历史价格库，以及预订和交易功能。主要风险是小红书读取耗时或没有正文、FlyAI 体验服务覆盖有限、不同来源税费口径不一致，以及抽查日期较少而漏掉其他机会。

@@ -1,10 +1,10 @@
 # POC Definition of Done 验收
 
-唯一产品基准：[需求原文第 33 节](product-requirements.md)。**本机独立命令行版本已真实完成一次“社区发现 → 自主调查 → 当前验价 → 两类来源与双票价渠道交叉核查 → 可解释结论”。** 15 项 MUST 在本次样本内均为 PASS。完整运行后再次单独执行 socai 搜索，之后仍成功读到 5 篇帖子正文和 4 条评论；不过，这不足以证明系统连续多天都稳定、任意日期的供应覆盖，或机会质量始终优于人工研究。
+唯一产品基准：[需求原文第 33 节](../current/product-requirements.md)。**本机独立命令行版本已真实完成一次“社区发现 → 自主调查 → 当前验价 → 两类来源与双票价渠道交叉核查 → 可解释结论”。** 15 项 MUST 在本次样本内均为 PASS。完整运行后再次单独执行 socai 搜索，之后仍成功读到 5 篇帖子正文和 4 条评论；不过，这不足以证明系统连续多天都稳定、任意日期的供应覆盖，或机会质量始终优于人工研究。
 
 ## 最新真实运行
 
-2026-09-30（Asia/Shanghai），输入“帮我研究深圳香港最近有什么便宜国际机票。”；完整记录为 [独立会话 JSON](../reports/standalone-session.json)，易读版为 [首轮报告](../reports/05-standalone-discovery.md)。全程只读，未使用宿主浏览器回执。
+2026-09-30（Asia/Shanghai），输入“帮我研究深圳香港最近有什么便宜国际机票。”；完整记录为 [独立会话 JSON](../../reports/standalone-session.json)，易读版为 [首轮报告](../../reports/05-standalone-discovery.md)。全程只读，未使用宿主浏览器回执。
 
 - socai v0.6.1 连接已登录 Chrome，先后搜索“深圳香港出发国际机票”和“深圳香港飞国外便宜机票”，读取 7 篇不同正文；模型根据已经读到的帖子提出“香港快运 亚庇 10月 单程 特价 日期”并实际执行，累计读到 12 篇帖子正文。
 - 模型抽取的每条候选都必须附上证据编号和帖子正文或评论中的原文摘录；程序核对城市、机场、日期和价格原文后，选出 5 条路线。FlyAI 与 SerpAPI Google Flights 各自按 **2026-10-14、1 成人、经济舱、单程、CNY** 查询；程序还逐一核对返回结果中的机场、日期、行程类型和航段。
@@ -46,11 +46,11 @@
 
 | 本轮输入 | 延续条件 | 已验价机会 | 报告 |
 |---|---|---:|---|
-| 日本呢？ | SZX/HKG + 日本 + 原日期窗 | 3 | [日本](../reports/06-standalone-japan.md) |
-| 11 月呢？ | 上述 + 2026-11 | 4 | [11 月](../reports/07-standalone-november.md) |
-| 不要红眼 | 上述 + 每段当地夜间与跨夜排除 | 4 | [排除红眼](../reports/08-standalone-no-red-eye.md) |
+| 日本呢？ | SZX/HKG + 日本 + 原日期窗 | 3 | [日本](../../reports/06-standalone-japan.md) |
+| 11 月呢？ | 上述 + 2026-11 | 4 | [11 月](../../reports/07-standalone-november.md) |
+| 不要红眼 | 上述 + 每段当地夜间与跨夜排除 | 4 | [排除红眼](../../reports/08-standalone-no-red-eye.md) |
 
-例如 HKG→HND 2026-11-01 样本在加入“不坐红眼”后，渠道内可用的最低报价由 FlyAI CNY 856 / Google Flights CNY 995 变为 CNY 3243 / CNY 4624。这是**条件改变后的不同航班样本**，不是同一航班涨价。详细航段与时间见两个报告。[逐轮摘要](../reports/standalone-multiturn-summary.json) 有程序状态和约束；历史宿主协作运行保存在 `reports/01`–`04` 以供追溯。
+例如 HKG→HND 2026-11-01 样本在加入“不坐红眼”后，渠道内可用的最低报价由 FlyAI CNY 856 / Google Flights CNY 995 变为 CNY 3243 / CNY 4624。这是**条件改变后的不同航班样本**，不是同一航班涨价。详细航段与时间见两个报告。[逐轮摘要](../../reports/standalone-multiturn-summary.json) 有程序状态和约束；历史宿主协作运行保存在 `reports/01`–`04` 以供追溯。
 
 ## 工程验证、风险与下一步
 
