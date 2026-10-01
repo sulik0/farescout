@@ -1,0 +1,154 @@
+[
+  {
+    "input": "帮我研究深圳香港最近有什么便宜国际机票。",
+    "status": "complete",
+    "origins": [
+      "SZX",
+      "HKG"
+    ],
+    "region": null,
+    "date_from": "2026-10-01",
+    "red_eye_excluded": false,
+    "routes": [
+      {
+        "route": "HKG-OKA",
+        "fares": 3,
+        "min": 706.0
+      },
+      {
+        "route": "HKG-KIX",
+        "fares": 3,
+        "min": 914.0
+      },
+      {
+        "route": "HKG-NRT",
+        "fares": 3,
+        "min": 831.0
+      },
+      {
+        "route": "HKG-FUK",
+        "fares": 3,
+        "min": 855.0
+      },
+      {
+        "route": "HKG-CTS",
+        "fares": 3,
+        "min": 1099.0
+      }
+    ]
+  },
+  {
+    "input": "日本呢？",
+    "status": "complete",
+    "origins": [
+      "SZX",
+      "HKG"
+    ],
+    "region": "JP",
+    "date_from": "2026-10-01",
+    "red_eye_excluded": false,
+    "routes": [
+      {
+        "route": "HKG-OKA",
+        "fares": 3,
+        "min": 706.0
+      },
+      {
+        "route": "HKG-KIX",
+        "fares": 3,
+        "min": 914.0
+      },
+      {
+        "route": "HKG-NRT",
+        "fares": 3,
+        "min": 831.0
+      },
+      {
+        "route": "HKG-FUK",
+        "fares": 3,
+        "min": 855.0
+      },
+      {
+        "route": "HKG-CTS",
+        "fares": 3,
+        "min": 1099.0
+      }
+    ]
+  },
+  {
+    "input": "11 月呢？",
+    "status": "partial",
+    "origins": [
+      "SZX",
+      "HKG"
+    ],
+    "region": "JP",
+    "date_from": "2026-11-01",
+    "red_eye_excluded": false,
+    "routes": [
+      {
+        "route": "HKG-KIX",
+        "fares": 3,
+        "min": 1024.0
+      },
+      {
+        "route": "HKG-NRT",
+        "fares": 3,
+        "min": 860.0
+      },
+      {
+        "route": "HKG-OKA",
+        "fares": 0,
+        "min": null
+      },
+      {
+        "route": "HKG-FUK",
+        "fares": 0,
+        "min": null
+      },
+      {
+        "route": "HKG-CTS",
+        "fares": 0,
+        "min": null
+      }
+    ]
+  },
+  {
+    "input": "不要红眼",
+    "status": "partial",
+    "origins": [
+      "SZX",
+      "HKG"
+    ],
+    "region": "JP",
+    "date_from": "2026-11-01",
+    "red_eye_excluded": true,
+    "routes": [
+      {
+        "route": "HKG-KIX",
+        "fares": 3,
+        "min": 1024.0
+      },
+      {
+        "route": "HKG-NRT",
+        "fares": 3,
+        "min": 860.0
+      },
+      {
+        "route": "HKG-OKA",
+        "fares": 0,
+        "min": null
+      },
+      {
+        "route": "HKG-FUK",
+        "fares": 0,
+        "min": null
+      },
+      {
+        "route": "HKG-CTS",
+        "fares": 0,
+        "min": null
+      }
+    ]
+  }
+]

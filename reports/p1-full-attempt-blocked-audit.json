@@ -1,0 +1,146 @@
+{
+  "kind": "recorded_live_research_audit",
+  "session_id": "web-1790821240551",
+  "turn_id": "02059b133ad17d03",
+  "input": "香港 11 月飞日本哪里便宜？",
+  "started_at": "2026-10-01T02:20:40.648335+00:00",
+  "finished_at": "2026-10-01T02:25:50.866949+00:00",
+  "status": "blocked",
+  "stop_reason": "未取得任何可读取的社区正文，不能凭模型知识生成候选航线",
+  "metrics": {
+    "model_operations": 2,
+    "community_calls": 3,
+    "socai_commands": 4,
+    "elapsed_seconds": 310.219,
+    "evidence_count": 0,
+    "verified_routes": 0,
+    "model_requests": 2,
+    "model_input_tokens": 2306,
+    "model_output_tokens": 207
+  },
+  "call_count_definition": "community_calls=provider search invocations; socai_commands=actual CLI search attempts; date_calls=range/coarse/fine provider invocations; verification_calls=final exact provider invocations; model_requests=Pydantic AI recorded requests (including retries), not model_operations",
+  "expansions": [],
+  "failures": [
+    {
+      "time": "2026-10-01T02:21:23.215479Z",
+      "stage": "source_retry",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "前次未取得可读正文；有界重试：香港 日本 机票",
+      "id": "85955ba25942e712",
+      "turn_id": "02059b133ad17d03",
+      "action_id": "",
+      "parent_action_id": "02059b133ad17d03",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "original_query": "香港飞日本 机票 便宜",
+        "retry_query": "香港 日本 机票"
+      }
+    },
+    {
+      "time": "2026-10-01T02:22:01.572812Z",
+      "stage": "community_search",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "NO_READABLE_POSTS: 未取得可阅读的帖子正文；可能需要登录、人工验证或站点适配更新",
+      "id": "71e0cca42c07ebf8",
+      "turn_id": "02059b133ad17d03",
+      "action_id": "f83cb4333d23170a",
+      "parent_action_id": "02059b133ad17d03",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 79010,
+      "data": {
+        "query": "香港飞日本 机票 便宜"
+      }
+    },
+    {
+      "time": "2026-10-01T02:23:16.616667Z",
+      "stage": "community_search",
+      "source": "Reddit public",
+      "status": "failed",
+      "detail": "ConnectError: 来源调用失败；未保存可能含凭证的原始异常",
+      "id": "11eb6d97426d53ec",
+      "turn_id": "02059b133ad17d03",
+      "action_id": "63c406858f9459a3",
+      "parent_action_id": "02059b133ad17d03",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 75040,
+      "data": {
+        "query": "香港飞日本 机票 便宜"
+      }
+    },
+    {
+      "time": "2026-10-01T02:24:20.844729Z",
+      "stage": "source_retry",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "前次未取得可读正文；有界重试：香港 日本 机票 11月",
+      "id": "cda982f646a8047e",
+      "turn_id": "02059b133ad17d03",
+      "action_id": "",
+      "parent_action_id": "02059b133ad17d03",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "original_query": "香港 日本 特价机票 11月",
+        "retry_query": "香港 日本 机票 11月"
+      }
+    },
+    {
+      "time": "2026-10-01T02:25:50.856180Z",
+      "stage": "community_search",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "TimeoutError: 来源调用失败；未保存可能含凭证的原始异常",
+      "id": "14e2422d57b242ef",
+      "turn_id": "02059b133ad17d03",
+      "action_id": "8a414b77574afbcf",
+      "parent_action_id": "02059b133ad17d03",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 154235,
+      "data": {
+        "query": "香港 日本 特价机票 11月"
+      }
+    },
+    {
+      "time": "2026-10-01T02:25:50.867300Z",
+      "stage": "conclusion",
+      "source": null,
+      "status": "failed",
+      "detail": "未取得任何可读取的社区正文，不能凭模型知识生成候选航线",
+      "id": "306258bbeda5241b",
+      "turn_id": "02059b133ad17d03",
+      "action_id": "",
+      "parent_action_id": "02059b133ad17d03",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "status": "blocked",
+        "metrics": {
+          "model_operations": 2,
+          "community_calls": 3,
+          "socai_commands": 4,
+          "elapsed_seconds": 310.219,
+          "evidence_count": 0,
+          "verified_routes": 0,
+          "model_requests": 2,
+          "model_input_tokens": 2306,
+          "model_output_tokens": 207
+        }
+      }
+    }
+  ],
+  "sources": [
+    "Reddit public",
+    "小红书 / socai"
+  ],
+  "routes": [],
+  "not_a_month_minimum": true
+}

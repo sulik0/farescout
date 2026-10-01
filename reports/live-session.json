@@ -1,0 +1,3294 @@
+{
+  "schema_version": 1,
+  "id": "live-20260930",
+  "goal": {
+    "origins": [
+      "SZX",
+      "HKG"
+    ],
+    "region": "JP",
+    "date_from": "2026-11-01",
+    "date_to": "2026-11-30",
+    "trip_type": "one_way",
+    "stay_days": 5,
+    "no_red_eye": true,
+    "assumptions": [
+      "未指定行程：先比较 1 成人、经济舱、单程；不同口径不混比",
+      "日期窗口已收窄到 2026 年 11 月，精确报价仍按样本日期",
+      "日期窗口已收窄到 2026 年 11 月，精确报价仍按样本日期"
+    ]
+  },
+  "evidence": {
+    "55a04272847f0258": {
+      "id": "55a04272847f0258",
+      "source": "小红书 / Host Browser Harness",
+      "kind": "community",
+      "url": "https://www.xiaohongshu.com/explore/6ab28a7b000000003301075f",
+      "query": "深圳香港出发国际机票",
+      "title": "大湾区航空｜香港来回日本跨国庆最低1.5k",
+      "body": "大湾区航空没有优惠时最有优惠？冲绳还有好价，香港来回冲绳1.5k，还有行李，但需要请两日假。\n香港冲绳来回 10.3-10.9 2005HKD-200HKD=1805HKD ，约等于1.5k\n香港大阪来回 10.4-10.9 2470HKD-200HKD=2270HKD，约等于1.9k\n国庆还没有机票就不要错过了，冲绳划算的，但不确定10月能不能下水。",
+      "comments": [],
+      "published_at": "7天前 广东",
+      "observed_at": "2026-09-29T21:12:15.875801Z",
+      "warnings": [
+        "发布时间为页面原文；相对时间以抓取时间为参照",
+        "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+      ]
+    },
+    "c4540328c4795b75": {
+      "id": "c4540328c4795b75",
+      "source": "小红书 / Host Browser Harness",
+      "kind": "community",
+      "url": "https://www.xiaohongshu.com/explore/6a901e49000000002103320e",
+      "query": "深圳香港飞国外便宜机票",
+      "title": "十一出境✈️大湾区多地往返低价汇总",
+      "body": "图一  香港往返蒙古(乌兰巴托)\n图二  香港往返塔吉克斯坦(杜尚别)\n图三  香港往返马来西亚(吉隆坡)\n图四  香港往返日本(冲绳)\n图五  深圳往返哈萨克斯坦(阿斯塔纳)\n图六  香港往返斯里兰卡(科伦坡)\n图七  广州往返格鲁吉亚(第比利斯)\n#旅行小抄howto #特价机票 #国庆机票 #出境游 #国庆出行 #国庆旅游 #国庆出游 #特价机票 #国庆节旅游 #全世界旅游",
+      "comments": [
+        {
+          "text": "请问香港往返蒙古的是什么软件？网站？有没有6号回来的？",
+          "published_at": "08-27广东"
+        },
+        {
+          "text": "iwofly",
+          "published_at": "08-27广东"
+        },
+        {
+          "text": "有没有东南亚的",
+          "published_at": "08-29广东"
+        }
+      ],
+      "published_at": "编辑于 08-27",
+      "observed_at": "2026-09-29T21:17:40.048977Z",
+      "warnings": [
+        "发布时间为页面原文；相对时间以抓取时间为参照",
+        "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+      ]
+    },
+    "bf4642fbdfd085ca": {
+      "id": "bf4642fbdfd085ca",
+      "source": "小红书 / Host Browser Harness",
+      "kind": "community",
+      "url": "https://www.xiaohongshu.com/explore/6abc6f1e0000000018029233",
+      "query": "大湾区航空 香港 冲绳 10月 单程 机票 是否仍可订",
+      "title": "大湾区日本航点77折！冲绳东京大阪等都有！",
+      "body": "大湾区促销日本航点！\n📅 优惠日期 2026年9月30日至2026年10月11日\n🛫 适用出行日期 2026年10月3日至2027年1月21日\n⚠️ 不适用出行日期 2026年12月18日至2027年1月4日\n往返冲绳退税后1.3k 往返大阪东京福冈退税后1.6k\n往返札幌退税后1.8k\n以上价格均携带托运23kg 这个价格还是很不错的\n有需要的uu可以去看看\n官网促销还有其他航点如昆明乌鲁木齐/马累/曼谷等等\n有兴趣的uu也可以自行查看\n#机票怎么买便宜 #特价机票 #机票 #机票价格波动 #航空 #东京 #大阪 #冲绳 #札幌 #福冈",
+      "comments": [
+        {
+          "text": "没有便宜啊",
+          "published_at": null
+        },
+        {
+          "text": "券嘛不可用，搜索结果不匹配",
+          "published_at": null
+        },
+        {
+          "text": "香港官网吗",
+          "published_at": null
+        },
+        {
+          "text": "感谢分享，按照博主的时间（10.28-11.3）可以搜出来优惠价格，貌似11月底搜不出来优惠价格",
+          "published_at": null
+        },
+        {
+          "text": "好像11.29-12.2的搜不出来了",
+          "published_at": null
+        }
+      ],
+      "published_at": "5小时前 广东",
+      "observed_at": "2026-09-30T07:52:12.907905Z",
+      "warnings": [
+        "发布时间为页面原文；相对时间以抓取时间为参照",
+        "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+      ]
+    }
+  },
+  "turns": [
+    {
+      "id": "909473b5ad3a65bd",
+      "user_input": "帮我研究深圳香港最近有什么便宜国际机票。",
+      "started_at": "2026-09-29T21:07:51.185095Z",
+      "finished_at": "2026-09-30T07:52:34.818737Z",
+      "goal": {
+        "origins": [
+          "SZX",
+          "HKG"
+        ],
+        "region": null,
+        "date_from": "2026-10-01",
+        "date_to": "2026-11-29",
+        "trip_type": "one_way",
+        "stay_days": 5,
+        "no_red_eye": false,
+        "assumptions": [
+          "未指定日期：先研究未来 60 天；仅验证少量样本日期，不声称全月最低",
+          "未指定行程：先比较 1 成人、经济舱、单程；不同口径不混比"
+        ]
+      },
+      "events": [
+        {
+          "time": "2026-09-29T21:07:51.185252Z",
+          "stage": "discovery",
+          "source": null,
+          "status": "ok",
+          "detail": "已直接开始探索，无需先填写目的地或完整日期"
+        },
+        {
+          "time": "2026-09-29T21:07:52.229971Z",
+          "stage": "goal",
+          "source": null,
+          "status": "ok",
+          "detail": "保留上下文：['SZX', 'HKG']；地区 不限；2026-10-01～2026-11-29；排除红眼 False"
+        },
+        {
+          "time": "2026-09-29T21:07:52.891688Z",
+          "stage": "community_search",
+          "source": "小红书 / Host Browser Harness",
+          "status": "info",
+          "detail": "只读搜索：深圳香港出发国际机票"
+        },
+        {
+          "time": "2026-09-29T21:12:15.877096Z",
+          "stage": "community_search",
+          "source": "小红书 / Host Browser Harness",
+          "status": "ok",
+          "detail": "查询 深圳香港出发国际机票；已阅读 1 篇正文/评论"
+        },
+        {
+          "time": "2026-09-29T21:12:15.877273Z",
+          "stage": "community_search",
+          "source": "小红书 / Host Browser Harness",
+          "status": "info",
+          "detail": "只读搜索：深圳香港飞国外便宜机票"
+        },
+        {
+          "time": "2026-09-29T21:17:15.877745Z",
+          "stage": "community_search",
+          "source": "小红书 / Host Browser Harness",
+          "status": "failed",
+          "detail": "TimeoutError: 来源调用失败；未保存可能含凭证的原始异常"
+        },
+        {
+          "time": "2026-09-29T21:17:15.878875Z",
+          "stage": "community_search",
+          "source": "Reddit public",
+          "status": "info",
+          "detail": "只读搜索：深圳香港飞国外便宜机票"
+        },
+        {
+          "time": "2026-09-29T21:18:15.941649Z",
+          "stage": "community_search",
+          "source": "Reddit public",
+          "status": "failed",
+          "detail": "ConnectTimeout: 来源调用失败；未保存可能含凭证的原始异常"
+        },
+        {
+          "time": "2026-09-29T21:18:15.941990Z",
+          "stage": "community_search",
+          "source": null,
+          "status": "info",
+          "detail": "所有本轮社区来源失败；保留并尝试使用已有社区证据"
+        },
+        {
+          "time": "2026-09-29T21:18:18.741522Z",
+          "stage": "extract",
+          "source": null,
+          "status": "ok",
+          "detail": "从 1 篇已读内容筛选 2 个有引用的候选"
+        },
+        {
+          "time": "2026-09-29T21:18:18.741593Z",
+          "stage": "query_expansion",
+          "source": "小红书 / Host Browser Harness",
+          "status": "info",
+          "detail": "只读搜索：大湾区航空 香港 冲绳 单程 2026年10月 价格"
+        },
+        {
+          "time": "2026-09-29T21:40:40.509646Z",
+          "stage": "stop",
+          "source": null,
+          "status": "info",
+          "detail": "达到研究时间预算，保留已取得的证据和报价"
+        },
+        {
+          "time": "2026-09-30T07:48:31.996728Z",
+          "stage": "community_search",
+          "source": "小红书 / Host Browser Harness",
+          "status": "ok",
+          "detail": "续跑接收迟到回执：深圳香港飞国外便宜机票；1 篇，保留原读取时间"
+        },
+        {
+          "time": "2026-09-30T07:48:35.780077Z",
+          "stage": "resume",
+          "source": null,
+          "status": "info",
+          "detail": "从已有证据继续；历史失败记录保留，本段重新计时"
+        },
+        {
+          "time": "2026-09-30T07:48:36.820281Z",
+          "stage": "goal",
+          "source": null,
+          "status": "ok",
+          "detail": "保留上下文：['SZX', 'HKG']；地区 不限；2026-10-01～2026-11-29；排除红眼 False"
+        },
+        {
+          "time": "2026-09-30T07:48:36.820306Z",
+          "stage": "context",
+          "source": null,
+          "status": "ok",
+          "detail": "沿用 2 篇原始社区证据；按本轮约束重新筛选并重新验价"
+        },
+        {
+          "time": "2026-09-30T07:48:42.718159Z",
+          "stage": "extract",
+          "source": null,
+          "status": "ok",
+          "detail": "从 2 篇已读内容筛选 3 个有引用的候选"
+        },
+        {
+          "time": "2026-09-30T07:48:42.718289Z",
+          "stage": "query_expansion",
+          "source": "小红书 / Host Browser Harness",
+          "status": "info",
+          "detail": "只读搜索：大湾区航空 香港 冲绳 10月 单程 机票 是否仍可订"
+        },
+        {
+          "time": "2026-09-30T07:52:13.030365Z",
+          "stage": "query_expansion",
+          "source": "小红书 / Host Browser Harness",
+          "status": "ok",
+          "detail": "查询 大湾区航空 香港 冲绳 10月 单程 机票 是否仍可订；已阅读 1 篇正文/评论"
+        },
+        {
+          "time": "2026-09-30T07:52:20.432676Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-OKA，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:52:27.726589Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "ok",
+          "detail": "HKG-OKA 返回 3 条符合条件的当前报价"
+        },
+        {
+          "time": "2026-09-30T07:52:27.726660Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-OKA，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:52:27.726805Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        },
+        {
+          "time": "2026-09-30T07:52:27.726914Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-KIX，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:52:29.599222Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "ok",
+          "detail": "HKG-KIX 返回 3 条符合条件的当前报价"
+        },
+        {
+          "time": "2026-09-30T07:52:29.599261Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-KIX，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:52:29.599305Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        },
+        {
+          "time": "2026-09-30T07:52:29.599349Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-NRT，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:52:31.340698Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "ok",
+          "detail": "HKG-NRT 返回 3 条符合条件的当前报价"
+        },
+        {
+          "time": "2026-09-30T07:52:31.340762Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-NRT，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:52:31.341127Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        },
+        {
+          "time": "2026-09-30T07:52:31.341261Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-FUK，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:52:32.934802Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "ok",
+          "detail": "HKG-FUK 返回 3 条符合条件的当前报价"
+        },
+        {
+          "time": "2026-09-30T07:52:32.934841Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-FUK，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:52:32.934883Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        },
+        {
+          "time": "2026-09-30T07:52:32.934924Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-CTS，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:52:34.818635Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "ok",
+          "detail": "HKG-CTS 返回 3 条符合条件的当前报价"
+        },
+        {
+          "time": "2026-09-30T07:52:34.818665Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-CTS，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:52:34.818699Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        }
+      ],
+      "evidence_ids": [
+        "55a04272847f0258",
+        "c4540328c4795b75",
+        "bf4642fbdfd085ca"
+      ],
+      "expansions": [
+        {
+          "query": "大湾区航空 香港 冲绳 单程 2026年10月 价格",
+          "evidence_id": "55a04272847f0258",
+          "discovered_term": "大湾区航空",
+          "reason": "帖中晒价来自大湾区航空且为往返口径，需确认该航司香港—冲绳单程在 10 月的可用日期与是否仍有效。"
+        },
+        {
+          "query": "大湾区航空 香港 冲绳 10月 单程 机票 是否仍可订",
+          "evidence_id": "55a04272847f0258",
+          "discovered_term": "大湾区航空",
+          "reason": "该帖给出的大湾区航空冲绳/大阪往返日期已临近，需确认这些日期是否仍可订、是否已失效，以及单程口径下是否同样有票。"
+        }
+      ],
+      "opportunities": [
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "OKA",
+            "destination_name": "冲绳",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "55a04272847f0258",
+                "excerpt": "香港冲绳来回 10.3-10.9 2005HKD-200HKD=1805HKD ，约等于1.5k",
+                "seen_price_text": "1805HKD",
+                "airline": "大湾区航空",
+                "promotion": null
+              },
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返冲绳退税后1.3k 往返大阪东京福冈退税后1.6k",
+                "seen_price_text": "1.3k",
+                "airline": null,
+                "promotion": "大湾区日本航点77折"
+              }
+            ],
+            "why": "两篇独立社区帖都指向香港—冲绳，一篇给出国庆具体往返日期与含行李价格，另一篇为仍在有效期内的官方促销（出行期覆盖 10 月），且评论提到 10.28-11.3 可搜出优惠、11 月底搜不出，正好落在本次 10-11 月窗口，值得优先核实单程可用日期。",
+            "date_hint": null
+          },
+          "fares": [
+            {
+              "id": "137a5f055280acf4",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "OKA",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 706.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:52:27.726253Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "OKA",
+                  "departure": "2026-10-14 15:50:00",
+                  "arrival": "2026-10-14 19:30:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO824"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "e4bca5e597619274",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "OKA",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 706.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:52:27.726339Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "OKA",
+                  "departure": "2026-10-14 14:25:00",
+                  "arrival": "2026-10-14 18:05:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO844"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "3e74db3fe2be7c13",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "OKA",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 836.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:52:27.726363Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "OKA",
+                  "departure": "2026-10-14 07:00:00",
+                  "arrival": "2026-10-14 10:40:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO842"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            }
+          ],
+          "comparison": [
+            "社区与实时票价两类来源已连接；只有一个实时渠道成功，缺少第二渠道验价。",
+            "社区晒价与本次航班的日期、行李、税费或单程/往返条件未全部对齐；未认定复现社区低价。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        },
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "KIX",
+            "destination_name": "大阪关西",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "55a04272847f0258",
+                "excerpt": "香港大阪来回 10.4-10.9 2470HKD-200HKD=2270HKD，约等于1.9k",
+                "seen_price_text": "2270HKD",
+                "airline": "大湾区航空",
+                "promotion": null
+              },
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返冲绳退税后1.3k 往返大阪东京福冈退税后1.6k",
+                "seen_price_text": "1.6k",
+                "airline": null,
+                "promotion": "大湾区日本航点77折"
+              }
+            ],
+            "why": "同一促销覆盖大阪，社区给出国庆往返含税价与促销价两个口径，评论显示 11 月底可能搜不出优惠，需要确认 10-11 月单程是否仍有折扣舱位。",
+            "date_hint": null
+          },
+          "fares": [
+            {
+              "id": "d3823faf1cfb7f72",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "KIX",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 914.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:52:29.598981Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "KIX",
+                  "departure": "2026-10-14 14:55:00",
+                  "arrival": "2026-10-14 19:40:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO688"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "a9b65f3f667884b9",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "KIX",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 914.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:52:29.599043Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "KIX",
+                  "departure": "2026-10-14 15:50:00",
+                  "arrival": "2026-10-14 20:35:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO862"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "243897cea36c5430",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "KIX",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 914.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:52:29.599062Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "KIX",
+                  "departure": "2026-10-14 11:20:00",
+                  "arrival": "2026-10-14 16:05:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO898"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            }
+          ],
+          "comparison": [
+            "社区与实时票价两类来源已连接；只有一个实时渠道成功，缺少第二渠道验价。",
+            "社区晒价与本次航班的日期、行李、税费或单程/往返条件未全部对齐；未认定复现社区低价。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        },
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "NRT",
+            "destination_name": "东京成田",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返冲绳退税后1.3k 往返大阪东京福冈退税后1.6k",
+                "seen_price_text": "1.6k",
+                "airline": null,
+                "promotion": "大湾区日本航点77折"
+              }
+            ],
+            "why": "促销正文明确列出东京航点，出行期覆盖 10 月至次年 1 月，属于本次窗口内可调查的香港出发日本航线；社区未指定成田或羽田，成田仅作待验证样本。",
+            "date_hint": null
+          },
+          "fares": [
+            {
+              "id": "e2a51c7dda8f3cb9",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "NRT",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 831.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:52:31.340422Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-10-14 13:00:00",
+                  "arrival": "2026-10-14 18:25:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO646"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "2b3aa50cba4cf888",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "NRT",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 831.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:52:31.340483Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-10-14 14:15:00",
+                  "arrival": "2026-10-14 19:45:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO650"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "c5496cff0e2d523a",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "NRT",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 831.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:52:31.340501Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-10-14 15:10:00",
+                  "arrival": "2026-10-14 20:40:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO652"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            }
+          ],
+          "comparison": [
+            "社区与实时票价两类来源已连接；只有一个实时渠道成功，缺少第二渠道验价。",
+            "社区晒价与本次航班的日期、行李、税费或单程/往返条件未全部对齐；未认定复现社区低价。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        },
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "FUK",
+            "destination_name": "福冈",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返冲绳退税后1.3k 往返大阪东京福冈退税后1.6k",
+                "seen_price_text": "1.6k",
+                "airline": null,
+                "promotion": "大湾区日本航点77折"
+              }
+            ],
+            "why": "促销正文点名福冈，属香港出发日本二线航点，社区讨论较少但条件明确，可作为补充样本核实单程可用性。",
+            "date_hint": null
+          },
+          "fares": [
+            {
+              "id": "06182d166a1c0949",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "FUK",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 855.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:52:32.934566Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "FUK",
+                  "departure": "2026-10-14 12:35:00",
+                  "arrival": "2026-10-14 17:00:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO638"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "c001a41d03eadbf5",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "FUK",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 855.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:52:32.934619Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "FUK",
+                  "departure": "2026-10-14 15:15:00",
+                  "arrival": "2026-10-14 19:40:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO694"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "228d7dc7e6d16cde",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "FUK",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 955.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:52:32.934654Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "FUK",
+                  "departure": "2026-10-14 10:55:00",
+                  "arrival": "2026-10-14 15:20:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO668"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            }
+          ],
+          "comparison": [
+            "社区与实时票价两类来源已连接；只有一个实时渠道成功，缺少第二渠道验价。",
+            "社区晒价与本次航班的日期、行李、税费或单程/往返条件未全部对齐；未认定复现社区低价。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        },
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "CTS",
+            "destination_name": "札幌新千岁",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返札幌退税后1.8k",
+                "seen_price_text": "1.8k",
+                "airline": null,
+                "promotion": "大湾区日本航点77折"
+              }
+            ],
+            "why": "促销正文列出札幌且注明不适用日期为 12 月中至 1 月初，意味着 10-11 月理论上在适用期内，值得核实是否真有折扣舱位。",
+            "date_hint": null
+          },
+          "fares": [
+            {
+              "id": "3de3fc58078dd4c2",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "CTS",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 1099.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:52:34.818531Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-10-14 15:10:00",
+                  "arrival": "2026-10-14 20:40:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO652"
+                },
+                {
+                  "origin": "NRT",
+                  "destination": "CTS",
+                  "departure": "2026-10-15 15:10:00",
+                  "arrival": "2026-10-15 17:00:00",
+                  "airline": "乐桃航空",
+                  "flight_number": "MM573"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "615d24c238abace7",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "CTS",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 1099.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:52:34.818556Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-10-14 14:15:00",
+                  "arrival": "2026-10-14 19:45:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO650"
+                },
+                {
+                  "origin": "NRT",
+                  "destination": "CTS",
+                  "departure": "2026-10-15 15:10:00",
+                  "arrival": "2026-10-15 17:00:00",
+                  "airline": "乐桃航空",
+                  "flight_number": "MM573"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "dd28c97b628cce37",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "CTS",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 1099.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:52:34.818579Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-10-14 13:00:00",
+                  "arrival": "2026-10-14 18:25:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO646"
+                },
+                {
+                  "origin": "NRT",
+                  "destination": "CTS",
+                  "departure": "2026-10-15 15:10:00",
+                  "arrival": "2026-10-15 17:00:00",
+                  "airline": "乐桃航空",
+                  "flight_number": "MM573"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            }
+          ],
+          "comparison": [
+            "社区与实时票价两类来源已连接；只有一个实时渠道成功，缺少第二渠道验价。",
+            "社区晒价与本次航班的日期、行李、税费或单程/往返条件未全部对齐；未认定复现社区低价。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        }
+      ],
+      "status": "complete",
+      "stop_reason": "已完成候选抽样验证，达到本轮停止条件"
+    },
+    {
+      "id": "fb16e276528657fd",
+      "user_input": "日本呢？",
+      "started_at": "2026-09-30T07:54:16.688609Z",
+      "finished_at": "2026-09-30T07:54:32.702137Z",
+      "goal": {
+        "origins": [
+          "SZX",
+          "HKG"
+        ],
+        "region": "JP",
+        "date_from": "2026-10-01",
+        "date_to": "2026-11-29",
+        "trip_type": "one_way",
+        "stay_days": 5,
+        "no_red_eye": false,
+        "assumptions": [
+          "未指定日期：先研究未来 60 天；仅验证少量样本日期，不声称全月最低",
+          "未指定行程：先比较 1 成人、经济舱、单程；不同口径不混比"
+        ]
+      },
+      "events": [
+        {
+          "time": "2026-09-30T07:54:16.688990Z",
+          "stage": "discovery",
+          "source": null,
+          "status": "ok",
+          "detail": "已直接开始探索，无需先填写目的地或完整日期"
+        },
+        {
+          "time": "2026-09-30T07:54:17.914411Z",
+          "stage": "goal",
+          "source": null,
+          "status": "ok",
+          "detail": "保留上下文：['SZX', 'HKG']；地区 JP；2026-10-01～2026-11-29；排除红眼 False"
+        },
+        {
+          "time": "2026-09-30T07:54:17.914442Z",
+          "stage": "context",
+          "source": null,
+          "status": "ok",
+          "detail": "沿用 3 篇原始社区证据；按本轮约束重新筛选并重新验价"
+        },
+        {
+          "time": "2026-09-30T07:54:22.877258Z",
+          "stage": "extract",
+          "source": null,
+          "status": "ok",
+          "detail": "从 3 篇已读内容筛选 5 个有引用的候选"
+        },
+        {
+          "time": "2026-09-30T07:54:22.877542Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-OKA，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:24.712595Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "ok",
+          "detail": "HKG-OKA 返回 3 条符合条件的当前报价"
+        },
+        {
+          "time": "2026-09-30T07:54:24.712639Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-OKA，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:24.712695Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        },
+        {
+          "time": "2026-09-30T07:54:24.712735Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-KIX，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:26.860210Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "ok",
+          "detail": "HKG-KIX 返回 3 条符合条件的当前报价"
+        },
+        {
+          "time": "2026-09-30T07:54:26.860240Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-KIX，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:26.860290Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        },
+        {
+          "time": "2026-09-30T07:54:26.860332Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-NRT，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:28.905324Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "ok",
+          "detail": "HKG-NRT 返回 3 条符合条件的当前报价"
+        },
+        {
+          "time": "2026-09-30T07:54:28.905358Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-NRT，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:28.905401Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        },
+        {
+          "time": "2026-09-30T07:54:28.905436Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-FUK，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:31.029098Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "ok",
+          "detail": "HKG-FUK 返回 3 条符合条件的当前报价"
+        },
+        {
+          "time": "2026-09-30T07:54:31.029124Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-FUK，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:31.029160Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        },
+        {
+          "time": "2026-09-30T07:54:31.029199Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-CTS，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:32.702034Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "ok",
+          "detail": "HKG-CTS 返回 3 条符合条件的当前报价"
+        },
+        {
+          "time": "2026-09-30T07:54:32.702060Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-CTS，2026-10-14，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:32.702096Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        }
+      ],
+      "evidence_ids": [],
+      "expansions": [],
+      "opportunities": [
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "OKA",
+            "destination_name": "冲绳",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "55a04272847f0258",
+                "excerpt": "香港冲绳来回 10.3-10.9 2005HKD-200HKD=1805HKD ，约等于1.5k",
+                "seen_price_text": "1805HKD",
+                "airline": "大湾区航空",
+                "promotion": null
+              },
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返冲绳退税后1.3k 往返大阪东京福冈退税后1.6k",
+                "seen_price_text": "1.3k",
+                "airline": null,
+                "promotion": "大湾区日本航点77折"
+              }
+            ],
+            "why": "两篇独立社区帖都指向香港-冲绳的往返低价，且第二篇给出促销适用出行日期至2027年1月21日，与目标窗口（10-11月）重叠；评论提到10.28-11.3可搜出优惠、11月底搜不出，需验证单程与具体日期可用性。",
+            "date_hint": null
+          },
+          "fares": [
+            {
+              "id": "137a5f055280acf4",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "OKA",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 706.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:24.712315Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "OKA",
+                  "departure": "2026-10-14 15:50:00",
+                  "arrival": "2026-10-14 19:30:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO824"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "e4bca5e597619274",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "OKA",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 706.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:24.712380Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "OKA",
+                  "departure": "2026-10-14 14:25:00",
+                  "arrival": "2026-10-14 18:05:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO844"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "3e74db3fe2be7c13",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "OKA",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 836.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:24.712401Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "OKA",
+                  "departure": "2026-10-14 07:00:00",
+                  "arrival": "2026-10-14 10:40:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO842"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            }
+          ],
+          "comparison": [
+            "社区与实时票价两类来源已连接；只有一个实时渠道成功，缺少第二渠道验价。",
+            "社区晒价与本次航班的日期、行李、税费或单程/往返条件未全部对齐；未认定复现社区低价。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        },
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "KIX",
+            "destination_name": "大阪关西",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "55a04272847f0258",
+                "excerpt": "香港大阪来回 10.4-10.9 2470HKD-200HKD=2270HKD，约等于1.9k",
+                "seen_price_text": "2270HKD",
+                "airline": "大湾区航空",
+                "promotion": null
+              },
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返冲绳退税后1.3k 往返大阪东京福冈退税后1.6k",
+                "seen_price_text": "1.6k",
+                "airline": null,
+                "promotion": "大湾区日本航点77折"
+              }
+            ],
+            "why": "同一促销覆盖大阪航点，两篇帖子分别给出国庆往返与促销退税后价格线索，出行日期范围覆盖目标窗口，值得核实单程口径与10-11月具体日期。",
+            "date_hint": null
+          },
+          "fares": [
+            {
+              "id": "d3823faf1cfb7f72",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "KIX",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 914.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:26.859983Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "KIX",
+                  "departure": "2026-10-14 14:55:00",
+                  "arrival": "2026-10-14 19:40:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO688"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "a9b65f3f667884b9",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "KIX",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 914.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:26.860034Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "KIX",
+                  "departure": "2026-10-14 15:50:00",
+                  "arrival": "2026-10-14 20:35:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO862"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "243897cea36c5430",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "KIX",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 914.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:26.860056Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "KIX",
+                  "departure": "2026-10-14 11:20:00",
+                  "arrival": "2026-10-14 16:05:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO898"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            }
+          ],
+          "comparison": [
+            "社区与实时票价两类来源已连接；只有一个实时渠道成功，缺少第二渠道验价。",
+            "社区晒价与本次航班的日期、行李、税费或单程/往返条件未全部对齐；未认定复现社区低价。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        },
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "NRT",
+            "destination_name": "东京成田",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返冲绳退税后1.3k 往返大阪东京福冈退税后1.6k",
+                "seen_price_text": "1.6k",
+                "airline": null,
+                "promotion": "大湾区日本航点77折"
+              }
+            ],
+            "why": "促销帖明确列出东京航点退税后价格，适用出行日期覆盖10月至次年1月，与目标窗口重叠；仅城市级线索，成田/羽田需作为待验证样本。",
+            "date_hint": null
+          },
+          "fares": [
+            {
+              "id": "e2a51c7dda8f3cb9",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "NRT",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 831.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:28.905117Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-10-14 13:00:00",
+                  "arrival": "2026-10-14 18:25:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO646"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "2b3aa50cba4cf888",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "NRT",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 831.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:28.905170Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-10-14 14:15:00",
+                  "arrival": "2026-10-14 19:45:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO650"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "c5496cff0e2d523a",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "NRT",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 831.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:28.905188Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-10-14 15:10:00",
+                  "arrival": "2026-10-14 20:40:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO652"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            }
+          ],
+          "comparison": [
+            "社区与实时票价两类来源已连接；只有一个实时渠道成功，缺少第二渠道验价。",
+            "社区晒价与本次航班的日期、行李、税费或单程/往返条件未全部对齐；未认定复现社区低价。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        },
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "FUK",
+            "destination_name": "福冈",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返冲绳退税后1.3k 往返大阪东京福冈退税后1.6k",
+                "seen_price_text": "1.6k",
+                "airline": null,
+                "promotion": "大湾区日本航点77折"
+              }
+            ],
+            "why": "促销帖将福冈与大阪东京并列同一价位档，适用出行日期覆盖目标窗口，属于可调查的日本航点线索。",
+            "date_hint": null
+          },
+          "fares": [
+            {
+              "id": "06182d166a1c0949",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "FUK",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 855.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:31.028891Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "FUK",
+                  "departure": "2026-10-14 12:35:00",
+                  "arrival": "2026-10-14 17:00:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO638"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "c001a41d03eadbf5",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "FUK",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 855.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:31.028936Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "FUK",
+                  "departure": "2026-10-14 15:15:00",
+                  "arrival": "2026-10-14 19:40:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO694"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "228d7dc7e6d16cde",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "FUK",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 955.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:31.028969Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "FUK",
+                  "departure": "2026-10-14 10:55:00",
+                  "arrival": "2026-10-14 15:20:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO668"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            }
+          ],
+          "comparison": [
+            "社区与实时票价两类来源已连接；只有一个实时渠道成功，缺少第二渠道验价。",
+            "社区晒价与本次航班的日期、行李、税费或单程/往返条件未全部对齐；未认定复现社区低价。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        },
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "CTS",
+            "destination_name": "札幌新千岁",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返札幌退税后1.8k",
+                "seen_price_text": "1.8k",
+                "airline": null,
+                "promotion": "大湾区日本航点77折"
+              }
+            ],
+            "why": "促销帖单列札幌价位，适用出行日期覆盖10-11月，可作为日本航线候选进一步核实单程与日期可用性。",
+            "date_hint": null
+          },
+          "fares": [
+            {
+              "id": "3de3fc58078dd4c2",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "CTS",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 1099.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:32.701927Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-10-14 15:10:00",
+                  "arrival": "2026-10-14 20:40:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO652"
+                },
+                {
+                  "origin": "NRT",
+                  "destination": "CTS",
+                  "departure": "2026-10-15 15:10:00",
+                  "arrival": "2026-10-15 17:00:00",
+                  "airline": "乐桃航空",
+                  "flight_number": "MM573"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "615d24c238abace7",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "CTS",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 1099.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:32.701951Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-10-14 14:15:00",
+                  "arrival": "2026-10-14 19:45:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO650"
+                },
+                {
+                  "origin": "NRT",
+                  "destination": "CTS",
+                  "departure": "2026-10-15 15:10:00",
+                  "arrival": "2026-10-15 17:00:00",
+                  "airline": "乐桃航空",
+                  "flight_number": "MM573"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "dd28c97b628cce37",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "CTS",
+                "outbound_date": "2026-10-14",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 1099.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:32.701975Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-10-14 13:00:00",
+                  "arrival": "2026-10-14 18:25:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO646"
+                },
+                {
+                  "origin": "NRT",
+                  "destination": "CTS",
+                  "departure": "2026-10-15 15:10:00",
+                  "arrival": "2026-10-15 17:00:00",
+                  "airline": "乐桃航空",
+                  "flight_number": "MM573"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            }
+          ],
+          "comparison": [
+            "社区与实时票价两类来源已连接；只有一个实时渠道成功，缺少第二渠道验价。",
+            "社区晒价与本次航班的日期、行李、税费或单程/往返条件未全部对齐；未认定复现社区低价。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        }
+      ],
+      "status": "complete",
+      "stop_reason": "已完成候选抽样验证，达到本轮停止条件"
+    },
+    {
+      "id": "2e6382cd06124f3b",
+      "user_input": "11 月呢？",
+      "started_at": "2026-09-30T07:54:32.719993Z",
+      "finished_at": "2026-09-30T07:54:44.080302Z",
+      "goal": {
+        "origins": [
+          "SZX",
+          "HKG"
+        ],
+        "region": "JP",
+        "date_from": "2026-11-01",
+        "date_to": "2026-11-30",
+        "trip_type": "one_way",
+        "stay_days": 5,
+        "no_red_eye": false,
+        "assumptions": [
+          "未指定行程：先比较 1 成人、经济舱、单程；不同口径不混比",
+          "日期窗口已收窄到 2026 年 11 月，精确报价仍按样本日期",
+          "日期窗口已收窄到 2026 年 11 月，精确报价仍按样本日期"
+        ]
+      },
+      "events": [
+        {
+          "time": "2026-09-30T07:54:32.720009Z",
+          "stage": "discovery",
+          "source": null,
+          "status": "ok",
+          "detail": "已直接开始探索，无需先填写目的地或完整日期"
+        },
+        {
+          "time": "2026-09-30T07:54:33.557000Z",
+          "stage": "goal",
+          "source": null,
+          "status": "ok",
+          "detail": "保留上下文：['SZX', 'HKG']；地区 JP；2026-11-01～2026-11-30；排除红眼 False"
+        },
+        {
+          "time": "2026-09-30T07:54:33.557040Z",
+          "stage": "context",
+          "source": null,
+          "status": "ok",
+          "detail": "沿用 3 篇原始社区证据；按本轮约束重新筛选并重新验价"
+        },
+        {
+          "time": "2026-09-30T07:54:38.265363Z",
+          "stage": "extract",
+          "source": null,
+          "status": "ok",
+          "detail": "从 3 篇已读内容筛选 5 个有引用的候选"
+        },
+        {
+          "time": "2026-09-30T07:54:38.265569Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-OKA，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:39.162031Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "failed",
+          "detail": "API_ERROR: FlyAI 未返回成功状态"
+        },
+        {
+          "time": "2026-09-30T07:54:39.162085Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-OKA，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:39.162118Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        },
+        {
+          "time": "2026-09-30T07:54:39.162184Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-KIX，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:40.559991Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "ok",
+          "detail": "HKG-KIX 返回 3 条符合条件的当前报价"
+        },
+        {
+          "time": "2026-09-30T07:54:40.560017Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-KIX，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:40.560053Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        },
+        {
+          "time": "2026-09-30T07:54:40.560085Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-NRT，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:42.196700Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "ok",
+          "detail": "HKG-NRT 返回 3 条符合条件的当前报价"
+        },
+        {
+          "time": "2026-09-30T07:54:42.196737Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-NRT，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:42.196790Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        },
+        {
+          "time": "2026-09-30T07:54:42.196835Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-FUK，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:43.112371Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "failed",
+          "detail": "API_ERROR: FlyAI 未返回成功状态"
+        },
+        {
+          "time": "2026-09-30T07:54:43.112442Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-FUK，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:43.112474Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        },
+        {
+          "time": "2026-09-30T07:54:43.112529Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-CTS，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:44.080181Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "failed",
+          "detail": "API_ERROR: FlyAI 未返回成功状态"
+        },
+        {
+          "time": "2026-09-30T07:54:44.080230Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-CTS，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:44.080255Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        }
+      ],
+      "evidence_ids": [],
+      "expansions": [],
+      "opportunities": [
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "KIX",
+            "destination_name": "大阪关西",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返冲绳退税后1.3k 往返大阪东京福冈退税后1.6k",
+                "seen_price_text": "1.6k",
+                "airline": null,
+                "promotion": null
+              },
+              {
+                "evidence_id": "55a04272847f0258",
+                "excerpt": "香港大阪来回 10.4-10.9 2470HKD-200HKD=2270HKD，约等于1.9k",
+                "seen_price_text": "2270HKD",
+                "airline": "大湾区航空",
+                "promotion": null
+              }
+            ],
+            "why": "大阪在促销航点名单内且被两篇帖子分别提及，11 月出行窗口落在适用期内，需确认单程口径与可订日期。",
+            "date_hint": null
+          },
+          "fares": [
+            {
+              "id": "83797dc895e9a741",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "KIX",
+                "outbound_date": "2026-11-01",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 1024.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:40.559775Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "KIX",
+                  "departure": "2026-11-01 08:05:00",
+                  "arrival": "2026-11-01 12:35:00",
+                  "airline": "大湾区航空",
+                  "flight_number": "HB352"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "0bb62724134c434b",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "KIX",
+                "outbound_date": "2026-11-01",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 1026.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:40.559825Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "KIX",
+                  "departure": "2026-11-01 14:35:00",
+                  "arrival": "2026-11-01 19:05:00",
+                  "airline": "大湾区航空",
+                  "flight_number": "HB2356"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "f5a5ad1fcfcbc491",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "KIX",
+                "outbound_date": "2026-11-01",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 1064.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:40.559848Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "KIX",
+                  "departure": "2026-11-01 01:45:00",
+                  "arrival": "2026-11-01 06:10:00",
+                  "airline": "乐桃航空",
+                  "flight_number": "MM068"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            }
+          ],
+          "comparison": [
+            "社区与实时票价两类来源已连接；只有一个实时渠道成功，缺少第二渠道验价。",
+            "社区晒价与本次航班的日期、行李、税费或单程/往返条件未全部对齐；未认定复现社区低价。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        },
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "NRT",
+            "destination_name": "东京成田",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返冲绳退税后1.3k 往返大阪东京福冈退税后1.6k",
+                "seen_price_text": "1.6k",
+                "airline": null,
+                "promotion": null
+              }
+            ],
+            "why": "东京与大阪同价档出现在同一促销帖中，属 11 月窗口内可调查的日本航点；社区未指明成田或羽田，先以成田为待验证样本。",
+            "date_hint": null
+          },
+          "fares": [
+            {
+              "id": "da344d42551175f8",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "NRT",
+                "outbound_date": "2026-11-01",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 860.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:42.196445Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-11-01 14:00:00",
+                  "arrival": "2026-11-01 19:05:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO650"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "81d698e86e86d769",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "NRT",
+                "outbound_date": "2026-11-01",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 860.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:42.196499Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-11-01 14:55:00",
+                  "arrival": "2026-11-01 20:00:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO652"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "f5b2676d00c61a10",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "NRT",
+                "outbound_date": "2026-11-01",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": false
+              },
+              "amount": 877.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:42.196517Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-11-01 13:00:00",
+                  "arrival": "2026-11-01 18:05:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO646"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            }
+          ],
+          "comparison": [
+            "社区与实时票价两类来源已连接；只有一个实时渠道成功，缺少第二渠道验价。",
+            "社区晒价与本次航班的日期、行李、税费或单程/往返条件未全部对齐；未认定复现社区低价。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        },
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "OKA",
+            "destination_name": "冲绳",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返冲绳退税后1.3k 往返大阪东京福冈退税后1.6k",
+                "seen_price_text": "1.3k",
+                "airline": null,
+                "promotion": null
+              },
+              {
+                "evidence_id": "55a04272847f0258",
+                "excerpt": "香港冲绳来回 10.3-10.9 2005HKD-200HKD=1805HKD ，约等于1.5k",
+                "seen_price_text": "1805HKD",
+                "airline": "大湾区航空",
+                "promotion": null
+              }
+            ],
+            "why": "两篇独立社区帖都提到香港—冲绳的大湾区航空低价，且促销适用出行日期覆盖 2026 年 11 月（排除 12/18 起），值得核实 11 月单程是否仍有票与价格。",
+            "date_hint": null
+          },
+          "fares": [],
+          "comparison": [
+            "当前价格尚未验证；这只是社区线索，不能据此判断现在仍便宜。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        },
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "FUK",
+            "destination_name": "福冈",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返冲绳退税后1.3k 往返大阪东京福冈退税后1.6k",
+                "seen_price_text": "1.6k",
+                "airline": null,
+                "promotion": null
+              }
+            ],
+            "why": "福冈被列入同一促销的 1.6k 档航点，且适用出行日期覆盖 11 月，值得核实单程可订性。",
+            "date_hint": null
+          },
+          "fares": [],
+          "comparison": [
+            "当前价格尚未验证；这只是社区线索，不能据此判断现在仍便宜。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        },
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "CTS",
+            "destination_name": "札幌新千岁",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返札幌退税后1.8k",
+                "seen_price_text": "1.8k",
+                "airline": null,
+                "promotion": null
+              }
+            ],
+            "why": "札幌是促销帖中明确列出的日本航点，11 月属适用出行期，可作为日本方向的补充调查对象。",
+            "date_hint": null
+          },
+          "fares": [],
+          "comparison": [
+            "当前价格尚未验证；这只是社区线索，不能据此判断现在仍便宜。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        }
+      ],
+      "status": "partial",
+      "stop_reason": "证据或报价不足，报告保留未验证项和失败原因"
+    },
+    {
+      "id": "dc01df8ba8aca2cc",
+      "user_input": "不要红眼",
+      "started_at": "2026-09-30T07:54:44.084131Z",
+      "finished_at": "2026-09-30T07:54:55.592274Z",
+      "goal": {
+        "origins": [
+          "SZX",
+          "HKG"
+        ],
+        "region": "JP",
+        "date_from": "2026-11-01",
+        "date_to": "2026-11-30",
+        "trip_type": "one_way",
+        "stay_days": 5,
+        "no_red_eye": true,
+        "assumptions": [
+          "未指定行程：先比较 1 成人、经济舱、单程；不同口径不混比",
+          "日期窗口已收窄到 2026 年 11 月，精确报价仍按样本日期",
+          "日期窗口已收窄到 2026 年 11 月，精确报价仍按样本日期"
+        ]
+      },
+      "events": [
+        {
+          "time": "2026-09-30T07:54:44.084157Z",
+          "stage": "discovery",
+          "source": null,
+          "status": "ok",
+          "detail": "已直接开始探索，无需先填写目的地或完整日期"
+        },
+        {
+          "time": "2026-09-30T07:54:44.483361Z",
+          "stage": "goal",
+          "source": null,
+          "status": "ok",
+          "detail": "保留上下文：['SZX', 'HKG']；地区 JP；2026-11-01～2026-11-30；排除红眼 True"
+        },
+        {
+          "time": "2026-09-30T07:54:44.483381Z",
+          "stage": "context",
+          "source": null,
+          "status": "ok",
+          "detail": "沿用 3 篇原始社区证据；按本轮约束重新筛选并重新验价"
+        },
+        {
+          "time": "2026-09-30T07:54:49.032170Z",
+          "stage": "extract",
+          "source": null,
+          "status": "ok",
+          "detail": "从 3 篇已读内容筛选 5 个有引用的候选"
+        },
+        {
+          "time": "2026-09-30T07:54:49.032310Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-OKA，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:49.797988Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "failed",
+          "detail": "API_ERROR: FlyAI 未返回成功状态"
+        },
+        {
+          "time": "2026-09-30T07:54:49.798035Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-OKA，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:49.798066Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        },
+        {
+          "time": "2026-09-30T07:54:49.798106Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-KIX，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:51.500265Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "ok",
+          "detail": "HKG-KIX 返回 3 条符合条件的当前报价"
+        },
+        {
+          "time": "2026-09-30T07:54:51.500293Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-KIX，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:51.500330Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        },
+        {
+          "time": "2026-09-30T07:54:51.500363Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-NRT，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:53.548199Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "ok",
+          "detail": "HKG-NRT 返回 3 条符合条件的当前报价"
+        },
+        {
+          "time": "2026-09-30T07:54:53.548226Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-NRT，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:53.548261Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        },
+        {
+          "time": "2026-09-30T07:54:53.548296Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-FUK，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:54.727627Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "failed",
+          "detail": "API_ERROR: FlyAI 未返回成功状态"
+        },
+        {
+          "time": "2026-09-30T07:54:54.727691Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-FUK，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:54.727727Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        },
+        {
+          "time": "2026-09-30T07:54:54.727781Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "info",
+          "detail": "验证 HKG-CTS，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:55.592126Z",
+          "stage": "fare",
+          "source": "FlyAI",
+          "status": "failed",
+          "detail": "API_ERROR: FlyAI 未返回成功状态"
+        },
+        {
+          "time": "2026-09-30T07:54:55.592194Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "info",
+          "detail": "验证 HKG-CTS，2026-11-01，单程；只读查询"
+        },
+        {
+          "time": "2026-09-30T07:54:55.592223Z",
+          "stage": "fare",
+          "source": "SerpAPI",
+          "status": "failed",
+          "detail": "MISSING_KEY: 尚未配置 SERPAPI_API_KEY"
+        }
+      ],
+      "evidence_ids": [],
+      "expansions": [],
+      "opportunities": [
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "KIX",
+            "destination_name": "大阪关西",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返冲绳退税后1.3k 往返大阪东京福冈退税后1.6k",
+                "seen_price_text": "1.6k",
+                "airline": null,
+                "promotion": "大湾区日本航点77折"
+              },
+              {
+                "evidence_id": "55a04272847f0258",
+                "excerpt": "香港大阪来回 10.4-10.9 2470HKD-200HKD=2270HKD，约等于1.9k",
+                "seen_price_text": "2270HKD",
+                "airline": "大湾区航空",
+                "promotion": null
+              }
+            ],
+            "why": "同一促销覆盖大阪，两篇独立讨论都提到香港-大阪价格，11 月出行日期是否适用需外部适配器核实。",
+            "date_hint": null
+          },
+          "fares": [
+            {
+              "id": "6c68410f5a93ed94",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "KIX",
+                "outbound_date": "2026-11-01",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": true
+              },
+              "amount": 1024.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:51.500000Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "KIX",
+                  "departure": "2026-11-01 08:05:00",
+                  "arrival": "2026-11-01 12:35:00",
+                  "airline": "大湾区航空",
+                  "flight_number": "HB352"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "0403839f34900bfc",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "KIX",
+                "outbound_date": "2026-11-01",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": true
+              },
+              "amount": 1026.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:51.500056Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "KIX",
+                  "departure": "2026-11-01 14:35:00",
+                  "arrival": "2026-11-01 19:05:00",
+                  "airline": "大湾区航空",
+                  "flight_number": "HB2356"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "744953c4dff16450",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "KIX",
+                "outbound_date": "2026-11-01",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": true
+              },
+              "amount": 1096.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:51.500075Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "KIX",
+                  "departure": "2026-11-01 14:45:00",
+                  "arrival": "2026-11-01 19:20:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO688"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            }
+          ],
+          "comparison": [
+            "社区与实时票价两类来源已连接；只有一个实时渠道成功，缺少第二渠道验价。",
+            "社区晒价与本次航班的日期、行李、税费或单程/往返条件未全部对齐；未认定复现社区低价。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        },
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "NRT",
+            "destination_name": "东京成田",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返冲绳退税后1.3k 往返大阪东京福冈退税后1.6k",
+                "seen_price_text": "1.6k",
+                "airline": null,
+                "promotion": "大湾区日本航点77折"
+              }
+            ],
+            "why": "促销明确列出东京航点，属于 11 月窗口内可调查的日本目的地，需确认具体机场与可用日期。",
+            "date_hint": null
+          },
+          "fares": [
+            {
+              "id": "7d455d8fcd85fd45",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "NRT",
+                "outbound_date": "2026-11-01",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": true
+              },
+              "amount": 860.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:53.547959Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-11-01 14:00:00",
+                  "arrival": "2026-11-01 19:05:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO650"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "64f4b8ea720460fe",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "NRT",
+                "outbound_date": "2026-11-01",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": true
+              },
+              "amount": 860.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:53.548010Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-11-01 14:55:00",
+                  "arrival": "2026-11-01 20:00:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO652"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            },
+            {
+              "id": "62a8f583c0e3ad4c",
+              "source": "FlyAI / 飞猪",
+              "kind": "current_verified",
+              "request": {
+                "origin": "HKG",
+                "destination": "NRT",
+                "outbound_date": "2026-11-01",
+                "return_date": null,
+                "currency": "CNY",
+                "adults": 1,
+                "cabin": "economy",
+                "no_red_eye": true
+              },
+              "amount": 877.0,
+              "currency": "CNY",
+              "observed_at": "2026-09-30T07:54:53.548028Z",
+              "source_url": "https://flyai.open.fliggy.com/",
+              "segments": [
+                {
+                  "origin": "HKG",
+                  "destination": "NRT",
+                  "departure": "2026-11-01 13:00:00",
+                  "arrival": "2026-11-01 18:05:00",
+                  "airline": "香港快运",
+                  "flight_number": "UO646"
+                }
+              ],
+              "price_basis": "adult_fare_tax_unknown",
+              "baggage": "未确认，不能假定包含托运行李",
+              "restrictions": [
+                "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+                "未访问 jumpUrl 或任何预订页",
+                "FlyAI 体验模式：部分结果受限"
+              ]
+            }
+          ],
+          "comparison": [
+            "社区与实时票价两类来源已连接；只有一个实时渠道成功，缺少第二渠道验价。",
+            "社区晒价与本次航班的日期、行李、税费或单程/往返条件未全部对齐；未认定复现社区低价。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        },
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "OKA",
+            "destination_name": "冲绳",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返冲绳退税后1.3k 往返大阪东京福冈退税后1.6k",
+                "seen_price_text": "1.3k",
+                "airline": null,
+                "promotion": "大湾区日本航点77折"
+              },
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "📅 优惠日期 2026年9月30日至2026年10月11日\n🛫 适用出行日期 2026年10月3日至2027年1月21日\n⚠️ 不适用出行日期 2026年12月18日至2027年1月4日",
+                "seen_price_text": null,
+                "airline": null,
+                "promotion": "适用出行日期 2026年10月3日至2027年1月21日"
+              },
+              {
+                "evidence_id": "55a04272847f0258",
+                "excerpt": "香港冲绳来回 10.3-10.9 2005HKD-200HKD=1805HKD ，约等于1.5k",
+                "seen_price_text": "1805HKD",
+                "airline": "大湾区航空",
+                "promotion": null
+              }
+            ],
+            "why": "大湾区航空日本航点促销覆盖 2026 年 10 月至 2027 年 1 月出行，冲绳是其中价格最低的航点，且评论提到 11 月底搜不出优惠价，需要核实 11 月窗口是否仍可订。",
+            "date_hint": null
+          },
+          "fares": [],
+          "comparison": [
+            "当前价格尚未验证；这只是社区线索，不能据此判断现在仍便宜。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        },
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "FUK",
+            "destination_name": "福冈",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返冲绳退税后1.3k 往返大阪东京福冈退税后1.6k",
+                "seen_price_text": "1.6k",
+                "airline": null,
+                "promotion": "大湾区日本航点77折"
+              }
+            ],
+            "why": "促销航点之一，福冈在 11 月窗口内值得作为日本二线目的地样本调查。",
+            "date_hint": null
+          },
+          "fares": [],
+          "comparison": [
+            "当前价格尚未验证；这只是社区线索，不能据此判断现在仍便宜。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        },
+        {
+          "candidate": {
+            "origin": "HKG",
+            "destination": "CTS",
+            "destination_name": "札幌新千岁",
+            "country": "JP",
+            "signals": [
+              {
+                "evidence_id": "bf4642fbdfd085ca",
+                "excerpt": "往返札幌退税后1.8k",
+                "seen_price_text": "1.8k",
+                "airline": null,
+                "promotion": "大湾区日本航点77折"
+              }
+            ],
+            "why": "促销中唯一单独列价的北海道航点，11 月为札幌淡旺季交界，需核实是否仍在适用出行日期内。",
+            "date_hint": null
+          },
+          "fares": [],
+          "comparison": [
+            "当前价格尚未验证；这只是社区线索，不能据此判断现在仍便宜。"
+          ],
+          "limitations": [
+            "仅核查列出的具体日期；不是整个日期窗口的最低价保证。",
+            "没有可靠典型价格，不声称历史低点或折扣幅度。",
+            "社区可能只提到城市；机场是本次验证样本，不能把城市线索误当成机场已确认。",
+            "从深圳跨境前往机场还需交通与时间成本，可能涉及住宿；此处未计入机票报价。",
+            "发布时间为页面原文；相对时间以抓取时间为参照",
+            "浏览器读取由宿主工具执行；非 socai 独立运行路径"
+          ]
+        }
+      ],
+      "status": "partial",
+      "stop_reason": "证据或报价不足，报告保留未验证项和失败原因"
+    }
+  ]
+}

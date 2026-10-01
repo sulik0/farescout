@@ -1,0 +1,154 @@
+{
+  "reviewed_at": "2026-10-01",
+  "kind": "manual review of already-read public evidence; no new collection",
+  "count": 6,
+  "limitations": [
+    "样本仅6篇，不代表分类准确率",
+    "规则可识别赞助/图片/缺年份，但不同文案的同一促销未自动关联",
+    "无账号身份、官方促销或图片OCR核查"
+  ],
+  "items": [
+    {
+      "id": "1992bd8fe3675a19",
+      "title": "捡漏：2400拿下北海道东京大阪机票",
+      "url": "https://www.xiaohongshu.com/explore/6ab54ad7000000001801a7da",
+      "manual_review": [
+        "多段旅行晒价，不能视为香港直飞札幌的社区原价",
+        "非当前报价；退税后口径不同"
+      ],
+      "automated_quality": {
+        "method": "text_rules_v1",
+        "body_read": true,
+        "commercial_signals": [],
+        "image_dependent": false,
+        "independence_group": "a0e878a0d9247b1a",
+        "duplicate_of": "",
+        "independence": "不同正文，作者/活动来源独立性未确认",
+        "has_price_text": false,
+        "has_date_text": false,
+        "sales_end": "未确认",
+        "flags": []
+      }
+    },
+    {
+      "id": "be96e3c0e2a479a6",
+      "title": "香港往返东京/大阪机票¥685",
+      "url": "https://www.xiaohongshu.com/explore/6ab4d8a0000000001a032e79",
+      "manual_review": [
+        "明示赞助商，应标商业线索",
+        "往返且退税后，不能与当前单程直接比较"
+      ],
+      "automated_quality": {
+        "method": "text_rules_v1",
+        "body_read": true,
+        "commercial_signals": [
+          "赞助商"
+        ],
+        "image_dependent": false,
+        "independence_group": "f9a28882cac8f00e",
+        "duplicate_of": "",
+        "independence": "不同正文，作者/活动来源独立性未确认",
+        "has_price_text": false,
+        "has_date_text": false,
+        "sales_end": "未确认",
+        "flags": [
+          "出现商业/导流关键词；不等于虚假"
+        ]
+      }
+    },
+    {
+      "id": "c5ffe1f86addd196",
+      "title": "快运｜香港大阪9折最低来回1.5K，跨国庆也有",
+      "url": "https://www.xiaohongshu.com/explore/6ab4a8860000000015008f93",
+      "manual_review": [
+        "细则看图3，图片信息尚未分析",
+        "有11月出行线索，价格为往返退税后口径"
+      ],
+      "automated_quality": {
+        "method": "text_rules_v1",
+        "body_read": true,
+        "commercial_signals": [],
+        "image_dependent": true,
+        "independence_group": "17c18946da046710",
+        "duplicate_of": "",
+        "independence": "不同正文，作者/活动来源独立性未确认",
+        "has_price_text": true,
+        "has_date_text": true,
+        "sales_end": "未确认",
+        "flags": [
+          "价格可能依赖未分析图片"
+        ]
+      }
+    },
+    {
+      "id": "ec586f50fb970681",
+      "title": "秋叶季香港大阪1.2 k",
+      "url": "https://www.xiaohongshu.com/explore/6a8f0007000000002c03f78f",
+      "manual_review": [
+        "11月底/12月出行线索",
+        "退税后且行李另计，不能直接比较"
+      ],
+      "automated_quality": {
+        "method": "text_rules_v1",
+        "body_read": true,
+        "commercial_signals": [],
+        "image_dependent": false,
+        "independence_group": "a94bfdb83bcc804b",
+        "duplicate_of": "",
+        "independence": "不同正文，作者/活动来源独立性未确认",
+        "has_price_text": true,
+        "has_date_text": true,
+        "sales_end": "未确认",
+        "flags": []
+      }
+    },
+    {
+      "id": "d581b73988c36452",
+      "title": "乐桃偷偷大促！枫叶季往返大阪1.1k起！",
+      "url": "https://www.xiaohongshu.com/explore/6aaa326300000000270179c2",
+      "manual_review": [
+        "抢票期缺年份，不能确定有效；近期发表语境下很可能已过",
+        "与a2cb06caa319df3c为同一Peach促销，不能认定独立活动"
+      ],
+      "automated_quality": {
+        "method": "text_rules_v1",
+        "body_read": true,
+        "commercial_signals": [],
+        "image_dependent": false,
+        "independence_group": "3daa13c06b7f7ab4",
+        "duplicate_of": "",
+        "independence": "不同正文，作者/活动来源独立性未确认",
+        "has_price_text": true,
+        "has_date_text": true,
+        "sales_end": "未确认",
+        "flags": [
+          "销售期日期/年份未完全确认；不能断言仍有效"
+        ]
+      }
+    },
+    {
+      "id": "a2cb06caa319df3c",
+      "title": "乐桃又大促！枫叶季往返大阪1.1k起！",
+      "url": "https://www.xiaohongshu.com/explore/6aaa34ba000000002700857a",
+      "manual_review": [
+        "抢票期缺年份，不能确定有效；近期发表语境下很可能已过",
+        "与d581b73988c36452为同一Peach促销，不能认定独立活动"
+      ],
+      "automated_quality": {
+        "method": "text_rules_v1",
+        "body_read": true,
+        "commercial_signals": [],
+        "image_dependent": false,
+        "independence_group": "643707fae8f3ce4f",
+        "duplicate_of": "",
+        "independence": "不同正文，作者/活动来源独立性未确认",
+        "has_price_text": true,
+        "has_date_text": true,
+        "sales_end": "未确认",
+        "flags": [
+          "销售期日期/年份未完全确认；不能断言仍有效"
+        ]
+      }
+    }
+  ]
+}
