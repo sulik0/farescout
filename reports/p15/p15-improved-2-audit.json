@@ -1,0 +1,121 @@
+{
+  "kind": "recorded_live_research_audit",
+  "session_id": "p15-improved-2",
+  "turn_id": "0b6734322021b6b9",
+  "input": "香港 11 月飞日本哪里便宜？",
+  "started_at": "2026-10-01T10:10:10.003904+00:00",
+  "finished_at": "2026-10-01T10:10:57.036474+00:00",
+  "status": "blocked",
+  "stop_reason": "未取得任何可读取的社区正文，不能凭模型知识生成候选航线",
+  "metrics": {
+    "model_operations": 2,
+    "community_calls": 2,
+    "socai_commands": 2,
+    "elapsed_seconds": 47.033,
+    "evidence_count": 0,
+    "verified_routes": 0,
+    "stage_community_search_seconds": 45.061,
+    "stage_social_preview_seconds": 30.037,
+    "stage_model_seconds": 1.958,
+    "independence_groups": 0,
+    "model_requests": 2,
+    "model_input_tokens": 2306,
+    "model_output_tokens": 204
+  },
+  "call_count_definition": "community_calls=provider search invocations; socai_commands=actual CLI commands (search/read/status/retries); date_calls=range/coarse/fine invocations; verification_calls=actual final exact provider invocations; quote_reuses=same-turn quote reuse without an API request; model_requests=Pydantic AI recorded requests including retries; stage_*_seconds=request duration sums, parent community stages include read children; date_phase=actual date-stage wall time",
+  "evidence_groups": [],
+  "expansions": [],
+  "failures": [
+    {
+      "time": "2026-10-01T10:10:42.007406Z",
+      "stage": "social_preview",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "浏览器连接未建立",
+      "id": "1c2d0b09e4b83f81",
+      "turn_id": "0b6734322021b6b9",
+      "action_id": "",
+      "parent_action_id": "0b6734322021b6b9",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 30037,
+      "data": {
+        "query": "香港 日本 机票",
+        "failure_code": "BROWSER_OR_LOGIN_REQUIRED"
+      }
+    },
+    {
+      "time": "2026-10-01T10:10:42.009704Z",
+      "stage": "community_search",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "BROWSER_OR_LOGIN_REQUIRED: 搜索超时后仍无法连接 Chrome；请重新连接浏览器",
+      "id": "d3f8339fc9b5e01d",
+      "turn_id": "0b6734322021b6b9",
+      "action_id": "4f39fcb8f69cfcfb",
+      "parent_action_id": "0b6734322021b6b9",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 30043,
+      "data": {
+        "query": "香港 日本 机票"
+      }
+    },
+    {
+      "time": "2026-10-01T10:10:57.028708Z",
+      "stage": "community_search",
+      "source": "Reddit public",
+      "status": "failed",
+      "detail": "ConnectTimeout: 来源调用失败；未保存可能含凭证的原始异常",
+      "id": "c11fa105c27fdaa5",
+      "turn_id": "0b6734322021b6b9",
+      "action_id": "b3c76367c26d06a6",
+      "parent_action_id": "0b6734322021b6b9",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 15018,
+      "data": {
+        "query": "香港 日本 机票"
+      }
+    },
+    {
+      "time": "2026-10-01T10:10:57.036616Z",
+      "stage": "conclusion",
+      "source": null,
+      "status": "failed",
+      "detail": "未取得任何可读取的社区正文，不能凭模型知识生成候选航线",
+      "id": "3e1ea94df6758934",
+      "turn_id": "0b6734322021b6b9",
+      "action_id": "",
+      "parent_action_id": "0b6734322021b6b9",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "status": "blocked",
+        "metrics": {
+          "model_operations": 2,
+          "community_calls": 2,
+          "socai_commands": 2,
+          "elapsed_seconds": 47.033,
+          "evidence_count": 0,
+          "verified_routes": 0,
+          "stage_community_search_seconds": 45.061,
+          "stage_social_preview_seconds": 30.037,
+          "stage_model_seconds": 1.958,
+          "independence_groups": 0,
+          "model_requests": 2,
+          "model_input_tokens": 2306,
+          "model_output_tokens": 204
+        }
+      }
+    }
+  ],
+  "sources": [
+    "Reddit public",
+    "model",
+    "小红书 / socai"
+  ],
+  "routes": [],
+  "not_a_month_minimum": true
+}

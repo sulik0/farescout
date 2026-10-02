@@ -54,8 +54,9 @@ async def test_bounded_dates_follow_prices_persist_trace_and_never_claim_month_m
     s = await r.run('香港11月日本', None, 'p1')
     t = s.turns[-1]
     c = t.opportunities[0].date_coverage
-    assert len(provider.calls) == 5
-    assert t.metrics['date_calls'] == 4 and t.metrics['verification_calls'] == 1
+    assert len(provider.calls) == 4
+    assert t.metrics['date_calls'] == 4 and t.metrics.get('verification_calls', 0) == 0
+    assert t.metrics['quote_reuses'] == 1
     assert len({v.date for v in c.samples if v.stage != 'verification'}) == 4
     assert c.selected_date.day in {15, 16}
     assert any(v.stage == 'fine' for v in c.samples)
@@ -97,15 +98,17 @@ async def test_socai_timeout_retries_once_and_counts_real_commands(tmp_path, mon
     attempts = []
     async def command(executable, args, settings, source):
         attempts.append(args)
-        if len(attempts) == 1:
+        if args[0] == 'status':
+            return {'browser_connected':True}
+        if sum(a[0] == 'xhs' for a in attempts) == 1:
             raise TimeoutError()
         return {'notes':[{'entity':{'note_id':'12345678','title':'香港日本机票','content':'香港飞日本机票活动，须确认日期。'}}]}
     monkeypatch.setattr('farescout.providers.command_json', command)
-    socai = Socai(Settings(data_dir=tmp_path))
+    socai = Socai(Settings(data_dir=tmp_path, socai_mode='scan'))
     retries = []
     socai.on_retry = retries.append
     records = await socai.search('香港 日本 机票 11月 便宜')
-    assert socai.command_calls == 2 and len(attempts) == 2
+    assert socai.command_calls == 4 and sum(a[0] == 'xhs' for a in attempts) == 2
     assert retries == ['香港 日本 机票']
     assert records[0].query == retries[0]
 

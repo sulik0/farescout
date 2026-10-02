@@ -1,0 +1,20 @@
+{
+  "version": "0.3.0",
+  "purpose": "Final-check cold runs use these implementation files; docs/audit scripts may be edited afterwards",
+  "files": {
+    "src/farescout/__init__.py": "fb021c3a0c321c2dbf62a2092aa551c86a1a67fc2e6aa101dff81e40971f2c2c",
+    "src/farescout/bridge.py": "e804d8af27c4c0ddd904d5e2e1b78f439d13d9c051d3c1dd73a52da9ef4482c5",
+    "src/farescout/cli.py": "bf8c44a19c2748efc4e5b9e37a08e8896d3a3c274dd54367b0665f6472cbc395",
+    "src/farescout/config.py": "98b00d995635398ee6832f98305db88aef31b5ea6db76d96c6f64561e28e2f91",
+    "src/farescout/dates.py": "d34bd1d545819a64c98703ca19e9561db83fc27ec260af4091e3dfb2e02e6711",
+    "src/farescout/engine.py": "3a7747e12f21012b3c330e1c154f0348d65a6819db864775770b1f9e2a1b37e3",
+    "src/farescout/models.py": "c0493a405d8c1652dd32da25d6157b34ddb75018eba7afeeac7e5ef0484b89d4",
+    "src/farescout/providers.py": "b9b9f5d44a49e2fbee598865b8505b79152cc7c1c50a6918dca172df6b2cfcfc",
+    "src/farescout/quality.py": "e73559d89a373f44d7b7f99e25ec964d184caaf0100b08a87f79751ad10de163",
+    "src/farescout/report.py": "72edd853f40c295586d0bfa14e0820c03f416c4e3c574ac094d295c175809915",
+    "src/farescout/research.py": "2b23861072841843130172c85c9ad9d0acff2c8c073c29d07b15f63bc6656bed",
+    "src/farescout/safety.py": "650dfe8d57cc55b1c9a44d107c276af84b19569d4c8e3e4dd61812d73d5cee74",
+    "src/farescout/ui.html": "375680c043ca9f603387c6c2e8e7aa969cc0d6b3549919b5e4b26e61273da4df",
+    "src/farescout/web.py": "16fa71058d538c918aeb32883d378feda28d745b0c788c745ca8ef79880c1d3d"
+  }
+}

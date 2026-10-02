@@ -1,0 +1,1631 @@
+{
+  "kind": "recorded_live_research_audit",
+  "session_id": "p15-release-3",
+  "turn_id": "a56ec8d672eb1b44",
+  "input": "香港 11 月飞日本哪里便宜？",
+  "started_at": "2026-10-02T02:07:57.317659+00:00",
+  "finished_at": "2026-10-02T02:15:57.311011+00:00",
+  "status": "partial",
+  "stop_reason": "达到研究时间预算，保留已取得的证据和报价",
+  "metrics": {
+    "model_operations": 3,
+    "community_calls": 5,
+    "socai_commands": 18,
+    "date_calls": 13,
+    "elapsed_seconds": 479.993,
+    "execution_seconds": 480.025,
+    "evidence_count": 3,
+    "verified_routes": 4,
+    "stage_date_exploration_seconds": 36.172,
+    "stage_browser_connection_seconds": 0.0,
+    "stage_query_expansion_seconds": 89.346,
+    "stage_date_phase_seconds": 31.248,
+    "stage_social_scan_seconds": 216.875,
+    "stage_community_search_seconds": 351.662,
+    "stage_social_preview_seconds": 208.911,
+    "stage_model_seconds": 7.716,
+    "unattributed_seconds": 0.053,
+    "independence_groups": 2,
+    "model_requests": 3,
+    "model_input_tokens": 6363,
+    "model_output_tokens": 1691
+  },
+  "grounding_evidence_count": 2,
+  "dual_current_source_routes": 0,
+  "call_count_definition": "community_calls=provider search invocations; socai_commands=actual CLI commands (search/read/status/retries); date_calls=range/coarse/fine invocations; verification_calls=actual final exact provider invocations; quote_reuses=same-turn quote reuse without an API request; model_requests=Pydantic AI recorded requests including retries; stage_*_seconds=request duration sums, parent community stages include read children; date_phase=actual date-stage wall time",
+  "evidence_groups": [
+    {
+      "id": "0af7b0122901b3c6",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6abc7c77000000001c00eb8e",
+      "title": "大湾区航空｜77折，香港往返日本国庆最低1.4k",
+      "observed_at": "2026-10-02T02:09:27.941874+00:00",
+      "group": "0e351e93c781edce",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "",
+      "match_basis": []
+    },
+    {
+      "id": "6170786cb1a31ca1",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6abc6f1e0000000018029233",
+      "title": "大湾区日本航点77折！冲绳东京大阪等都有！",
+      "observed_at": "2026-10-02T02:09:27.941954+00:00",
+      "group": "cb970d4cfcaa65bf",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "",
+      "match_basis": []
+    },
+    {
+      "id": "f9b1e730d4514712",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6abb38f20000000014039915",
+      "title": "香港出发｜大湾区航空来回机票77折优惠",
+      "observed_at": "2026-10-02T02:09:27.942028+00:00",
+      "group": "cb970d4cfcaa65bf",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "6170786cb1a31ca1",
+      "match_basis": [
+        "airline:greaterbay",
+        "sale:2026-9-30|2026-10-11",
+        "travel:2026-10-3|2027-1-21",
+        "travel:2026-12-18|2027-1-4"
+      ]
+    }
+  ],
+  "expansions": [
+    {
+      "query": "大湾区航空 香港 札幌 11月",
+      "evidence_id": "0af7b0122901b3c6",
+      "discovered_term": "大湾区航空",
+      "reason": "社区正文把 11 月札幌列为好价样本，但未说明该促销在 11 月的可用日期与是否仍有效；用航司名加目的地与月份检索，可确认 11 月可订日期与失效情况。"
+    }
+  ],
+  "failures": [
+    {
+      "time": "2026-10-02T02:08:50.513550Z",
+      "stage": "source_retry",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "前次未取得可读正文；有界重试：香港 日本 机票",
+      "id": "7680d7996a69a9c5",
+      "turn_id": "a56ec8d672eb1b44",
+      "action_id": "",
+      "parent_action_id": "a56ec8d672eb1b44",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "original_query": "香港 日本 机票",
+        "retry_query": "香港 日本 机票"
+      }
+    },
+    {
+      "time": "2026-10-02T02:10:27.984681Z",
+      "stage": "social_preview",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "命令超时",
+      "id": "b2f7f74b7fc9b05b",
+      "turn_id": "a56ec8d672eb1b44",
+      "action_id": "",
+      "parent_action_id": "a56ec8d672eb1b44",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 60013,
+      "data": {
+        "query": "香港 日本 十一月 机票 便宜",
+        "failure_code": "TimeoutError"
+      }
+    },
+    {
+      "time": "2026-10-02T02:10:27.986639Z",
+      "stage": "source_retry",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "逐篇读取未成功；仅回退一次socai完整扫描；有界重试：香港 日本 十一月 机票",
+      "id": "1fff014c2f819178",
+      "turn_id": "a56ec8d672eb1b44",
+      "action_id": "",
+      "parent_action_id": "a56ec8d672eb1b44",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "original_query": "香港飞日本 十一月 机票 便宜",
+        "retry_query": "香港 日本 十一月 机票"
+      }
+    },
+    {
+      "time": "2026-10-02T02:11:46.578362Z",
+      "stage": "community_search",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "NO_READABLE_POSTS: 逐篇读取和完整扫描均未取得正文",
+      "id": "dd64ef9622f9d62c",
+      "turn_id": "a56ec8d672eb1b44",
+      "action_id": "f4e3494b47cef4fe",
+      "parent_action_id": "a56ec8d672eb1b44",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 138634,
+      "data": {
+        "query": "香港飞日本 十一月 机票 便宜"
+      }
+    },
+    {
+      "time": "2026-10-02T02:12:01.603176Z",
+      "stage": "community_search",
+      "source": "Reddit public",
+      "status": "failed",
+      "detail": "ConnectTimeout: 来源调用失败；未保存可能含凭证的原始异常",
+      "id": "7499ecabe1bb921e",
+      "turn_id": "a56ec8d672eb1b44",
+      "action_id": "2168c081575fa94e",
+      "parent_action_id": "a56ec8d672eb1b44",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 15024,
+      "data": {
+        "query": "香港飞日本 十一月 机票 便宜"
+      }
+    },
+    {
+      "time": "2026-10-02T02:13:01.639775Z",
+      "stage": "social_preview",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "命令超时",
+      "id": "801ef563de8a8f89",
+      "turn_id": "a56ec8d672eb1b44",
+      "action_id": "",
+      "parent_action_id": "a56ec8d672eb1b44",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 60014,
+      "data": {
+        "query": "香港 日本 机票 捡漏",
+        "failure_code": "TimeoutError"
+      }
+    },
+    {
+      "time": "2026-10-02T02:13:01.641173Z",
+      "stage": "source_retry",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "逐篇读取未成功；仅回退一次socai完整扫描；有界重试：香港 日本 机票 捡漏",
+      "id": "301bedc677d2a94a",
+      "turn_id": "a56ec8d672eb1b44",
+      "action_id": "",
+      "parent_action_id": "a56ec8d672eb1b44",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "original_query": "香港 日本 机票 捡漏",
+        "retry_query": "香港 日本 机票 捡漏"
+      }
+    },
+    {
+      "time": "2026-10-02T02:13:51.166422Z",
+      "stage": "community_search",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "NO_READABLE_POSTS: 逐篇读取和完整扫描均未取得正文",
+      "id": "a44c6a9ba7ad0ec8",
+      "turn_id": "a56ec8d672eb1b44",
+      "action_id": "f08c17cd76aa0130",
+      "parent_action_id": "a56ec8d672eb1b44",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 109563,
+      "data": {
+        "query": "香港 日本 机票 捡漏"
+      }
+    },
+    {
+      "time": "2026-10-02T02:14:34.632144Z",
+      "stage": "source_retry",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "前次未取得可读正文；有界重试：大湾区 航空 香港 札幌",
+      "id": "297db7938e7a4b64",
+      "turn_id": "a56ec8d672eb1b44",
+      "action_id": "",
+      "parent_action_id": "a56ec8d672eb1b44",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "original_query": "大湾区航空 香港 札幌 11月",
+        "retry_query": "大湾区 航空 香港 札幌"
+      }
+    },
+    {
+      "time": "2026-10-02T02:15:26.046072Z",
+      "stage": "query_expansion",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "NO_READABLE_POSTS: 逐篇读取和完整扫描均未取得正文",
+      "id": "a65ea6d51cedbdfd",
+      "turn_id": "a56ec8d672eb1b44",
+      "action_id": "95dfd04ce10742e5",
+      "parent_action_id": "a56ec8d672eb1b44",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 89346,
+      "data": {
+        "query": "大湾区航空 香港 札幌 11月"
+      }
+    }
+  ],
+  "sources": [
+    "Reddit public",
+    "SerpAPI",
+    "model",
+    "小红书 / socai"
+  ],
+  "routes": [
+    {
+      "route": "HKG-OKA",
+      "evidence_ids": [
+        "0af7b0122901b3c6"
+      ],
+      "window": [
+        "2026-11-01",
+        "2026-11-30"
+      ],
+      "precise_requested_dates": [
+        "2026-11-04",
+        "2026-11-30"
+      ],
+      "precise_successful_dates": [
+        "2026-11-04",
+        "2026-11-30"
+      ],
+      "range_returned_dates": [
+        "2026-11-04"
+      ],
+      "selected_date": "None",
+      "fares": [
+        {
+          "id": "615c6598ffec5042",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "OKA",
+            "outbound_date": "2026-11-04",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 739.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:31.474745Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "OKA",
+              "departure": "2026-11-04 15:50",
+              "arrival": "2026-11-04 19:20",
+              "airline": "Hong Kong Express",
+              "flight_number": "UO 824"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              520,
+              740
+            ],
+            "lowest_price": 739,
+            "price_level": "typical",
+            "comparable": true,
+            "reason": "同一查询最低含税价格",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "63facb6e2b8aac4e",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "OKA",
+            "outbound_date": "2026-11-04",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 935.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:31.474855Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "OKA",
+              "departure": "2026-11-04 07:30",
+              "arrival": "2026-11-04 11:00",
+              "airline": "Hong Kong Express",
+              "flight_number": "UO 820"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              520,
+              740
+            ],
+            "lowest_price": 739,
+            "price_level": "typical",
+            "comparable": false,
+            "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "9102d7c0a1bdba6e",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "OKA",
+            "outbound_date": "2026-11-04",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 1157.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:31.474812Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "OKA",
+              "departure": "2026-11-04 09:45",
+              "arrival": "2026-11-04 13:10",
+              "airline": "Greater Bay Airlines",
+              "flight_number": "HB 336"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              520,
+              740
+            ],
+            "lowest_price": 739,
+            "price_level": "typical",
+            "comparable": false,
+            "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "bd1ba33fd794176a",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "OKA",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 739.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:31.907100Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "OKA",
+              "departure": "2026-11-30 07:30",
+              "arrival": "2026-11-30 11:00",
+              "airline": "Hong Kong Express",
+              "flight_number": "UO 820"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              520,
+              740
+            ],
+            "lowest_price": 739,
+            "price_level": "typical",
+            "comparable": true,
+            "reason": "同一查询最低含税价格",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "62817d77c68edd03",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "OKA",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 739.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:31.907166Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "OKA",
+              "departure": "2026-11-30 15:50",
+              "arrival": "2026-11-30 19:20",
+              "airline": "Hong Kong Express",
+              "flight_number": "UO 824"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              520,
+              740
+            ],
+            "lowest_price": 739,
+            "price_level": "typical",
+            "comparable": true,
+            "reason": "同一查询最低含税价格",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "8d21d3a5b10464d5",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "OKA",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 1068.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:31.907130Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "OKA",
+              "departure": "2026-11-30 11:50",
+              "arrival": "2026-11-30 15:20",
+              "airline": "Hong Kong Airlines",
+              "flight_number": "HX 658"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              520,
+              740
+            ],
+            "lowest_price": 739,
+            "price_level": "typical",
+            "comparable": false,
+            "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        }
+      ],
+      "deal": {
+        "level": "typical",
+        "label": "处于 Google 典型区间",
+        "fare_id": "615c6598ffec5042",
+        "source": "Google Flights / SerpAPI",
+        "current_price": 739.0,
+        "typical_price_range": [
+          520,
+          740
+        ],
+        "observed_at": "2026-10-02T02:15:31.474745+00:00",
+        "request": {
+          "origin": "HKG",
+          "destination": "OKA",
+          "outbound_date": "2026-11-04",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "reason": "同一搜索条件的 Google 价格洞察；不是 FareScout 自建历史库或可售承诺。"
+      }
+    },
+    {
+      "route": "HKG-FUK",
+      "evidence_ids": [
+        "0af7b0122901b3c6"
+      ],
+      "window": [
+        "2026-11-01",
+        "2026-11-30"
+      ],
+      "precise_requested_dates": [
+        "2026-11-04",
+        "2026-11-30"
+      ],
+      "precise_successful_dates": [
+        "2026-11-04",
+        "2026-11-30"
+      ],
+      "range_returned_dates": [
+        "2026-11-04"
+      ],
+      "selected_date": "None",
+      "fares": [
+        {
+          "id": "fe620e0d1720d8ac",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "FUK",
+            "outbound_date": "2026-11-04",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 850.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:37.544860Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "FUK",
+              "departure": "2026-11-04 12:55",
+              "arrival": "2026-11-04 17:00",
+              "airline": "Hong Kong Express",
+              "flight_number": "UO 638"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              820,
+              1050
+            ],
+            "lowest_price": 850,
+            "price_level": "typical",
+            "comparable": true,
+            "reason": "同一查询最低含税价格",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "f7d9c522f261864d",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "FUK",
+            "outbound_date": "2026-11-04",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 995.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:37.544952Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "FUK",
+              "departure": "2026-11-04 07:50",
+              "arrival": "2026-11-04 11:55",
+              "airline": "Hong Kong Express",
+              "flight_number": "UO 600"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              820,
+              1050
+            ],
+            "lowest_price": 850,
+            "price_level": "typical",
+            "comparable": false,
+            "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "31b16bc8cc9423bd",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "FUK",
+            "outbound_date": "2026-11-04",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 995.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:37.544968Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "FUK",
+              "departure": "2026-11-04 11:05",
+              "arrival": "2026-11-04 15:10",
+              "airline": "Hong Kong Express",
+              "flight_number": "UO 668"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              820,
+              1050
+            ],
+            "lowest_price": 850,
+            "price_level": "typical",
+            "comparable": false,
+            "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "d863239a9864e0d3",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "FUK",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 1115.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:38.761456Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "FUK",
+              "departure": "2026-11-30 07:50",
+              "arrival": "2026-11-30 11:55",
+              "airline": "Hong Kong Express",
+              "flight_number": "UO 600"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              820,
+              1050
+            ],
+            "lowest_price": 1115,
+            "price_level": "high",
+            "comparable": true,
+            "reason": "同一查询最低含税价格",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "cd974d0e674a9819",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "FUK",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 1115.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:38.761487Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "FUK",
+              "departure": "2026-11-30 11:05",
+              "arrival": "2026-11-30 15:10",
+              "airline": "Hong Kong Express",
+              "flight_number": "UO 668"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              820,
+              1050
+            ],
+            "lowest_price": 1115,
+            "price_level": "high",
+            "comparable": true,
+            "reason": "同一查询最低含税价格",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "72a4c13a50369a65",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "FUK",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 1115.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:38.761506Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "FUK",
+              "departure": "2026-11-30 12:55",
+              "arrival": "2026-11-30 17:00",
+              "airline": "Hong Kong Express",
+              "flight_number": "UO 638"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              820,
+              1050
+            ],
+            "lowest_price": 1115,
+            "price_level": "high",
+            "comparable": true,
+            "reason": "同一查询最低含税价格",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        }
+      ],
+      "deal": {
+        "level": "typical",
+        "label": "处于 Google 典型区间",
+        "fare_id": "fe620e0d1720d8ac",
+        "source": "Google Flights / SerpAPI",
+        "current_price": 850.0,
+        "typical_price_range": [
+          820,
+          1050
+        ],
+        "observed_at": "2026-10-02T02:15:37.544860+00:00",
+        "request": {
+          "origin": "HKG",
+          "destination": "FUK",
+          "outbound_date": "2026-11-04",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "reason": "同一搜索条件的 Google 价格洞察；不是 FareScout 自建历史库或可售承诺。"
+      }
+    },
+    {
+      "route": "HKG-NRT",
+      "evidence_ids": [
+        "0af7b0122901b3c6"
+      ],
+      "window": [
+        "2026-11-01",
+        "2026-11-30"
+      ],
+      "precise_requested_dates": [
+        "2026-11-14",
+        "2026-11-30"
+      ],
+      "precise_successful_dates": [
+        "2026-11-14",
+        "2026-11-30"
+      ],
+      "range_returned_dates": [
+        "2026-11-14"
+      ],
+      "selected_date": "None",
+      "fares": [
+        {
+          "id": "a36c325912e9b4e1",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "NRT",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 846.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:47.514134Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "NRT",
+              "departure": "2026-11-30 01:10",
+              "arrival": "2026-11-30 06:20",
+              "airline": "Jetstar",
+              "flight_number": "GK 28"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              670,
+              1150
+            ],
+            "lowest_price": 846,
+            "price_level": "typical",
+            "comparable": true,
+            "reason": "同一查询最低含税价格",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "3ec8a7403e8d7eaf",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "NRT",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 995.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:47.514192Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "NRT",
+              "departure": "2026-11-30 10:50",
+              "arrival": "2026-11-30 15:55",
+              "airline": "Hong Kong Express",
+              "flight_number": "UO 870"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              670,
+              1150
+            ],
+            "lowest_price": 846,
+            "price_level": "typical",
+            "comparable": false,
+            "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "7fe36129c5f61216",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "NRT",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 995.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:47.514253Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "NRT",
+              "departure": "2026-11-30 13:00",
+              "arrival": "2026-11-30 18:05",
+              "airline": "Hong Kong Express",
+              "flight_number": "UO 646"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              670,
+              1150
+            ],
+            "lowest_price": 846,
+            "price_level": "typical",
+            "comparable": false,
+            "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "0dd8e9b1028e6701",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "NRT",
+            "outbound_date": "2026-11-14",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 846.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:47.600661Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "NRT",
+              "departure": "2026-11-14 01:10",
+              "arrival": "2026-11-14 06:20",
+              "airline": "Jetstar",
+              "flight_number": "GK 28"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              670,
+              1150
+            ],
+            "lowest_price": 846,
+            "price_level": "typical",
+            "comparable": true,
+            "reason": "同一查询最低含税价格",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "28476129351120ba",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "NRT",
+            "outbound_date": "2026-11-14",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 1183.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:47.600691Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "NRT",
+              "departure": "2026-11-14 10:50",
+              "arrival": "2026-11-14 15:55",
+              "airline": "Hong Kong Express",
+              "flight_number": "UO 870"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              670,
+              1150
+            ],
+            "lowest_price": 846,
+            "price_level": "typical",
+            "comparable": false,
+            "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "53c7f4917b7decdd",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "NRT",
+            "outbound_date": "2026-11-14",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 1183.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:47.600727Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "NRT",
+              "departure": "2026-11-14 02:00",
+              "arrival": "2026-11-14 07:05",
+              "airline": "Hong Kong Express",
+              "flight_number": "UO 854"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              670,
+              1150
+            ],
+            "lowest_price": 846,
+            "price_level": "typical",
+            "comparable": false,
+            "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        }
+      ],
+      "deal": {
+        "level": "typical",
+        "label": "处于 Google 典型区间",
+        "fare_id": "a36c325912e9b4e1",
+        "source": "Google Flights / SerpAPI",
+        "current_price": 846.0,
+        "typical_price_range": [
+          670,
+          1150
+        ],
+        "observed_at": "2026-10-02T02:15:47.514134+00:00",
+        "request": {
+          "origin": "HKG",
+          "destination": "NRT",
+          "outbound_date": "2026-11-30",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "reason": "同一搜索条件的 Google 价格洞察；不是 FareScout 自建历史库或可售承诺。"
+      }
+    },
+    {
+      "route": "HKG-CTS",
+      "evidence_ids": [
+        "0af7b0122901b3c6"
+      ],
+      "window": [
+        "2026-11-01",
+        "2026-11-30"
+      ],
+      "precise_requested_dates": [
+        "2026-11-03",
+        "2026-11-30"
+      ],
+      "precise_successful_dates": [
+        "2026-11-03",
+        "2026-11-30"
+      ],
+      "range_returned_dates": [
+        "2026-11-03"
+      ],
+      "selected_date": "None",
+      "fares": [
+        {
+          "id": "fdebe8ca7198e52c",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "CTS",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 1218.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:53.932372Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "NRT",
+              "departure": "2026-11-30 01:10",
+              "arrival": "2026-11-30 06:20",
+              "airline": "Jetstar",
+              "flight_number": "GK 28"
+            },
+            {
+              "origin": "NRT",
+              "destination": "CTS",
+              "departure": "2026-11-30 08:35",
+              "arrival": "2026-11-30 10:15",
+              "airline": "Jetstar",
+              "flight_number": "GK 105"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              1050,
+              1600
+            ],
+            "lowest_price": 1218,
+            "price_level": "typical",
+            "comparable": true,
+            "reason": "同一查询最低含税价格",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "3a513dc5e7e9c83c",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "CTS",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 1614.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:53.932493Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "TPE",
+              "departure": "2026-11-30 21:10",
+              "arrival": "2026-11-30 22:50",
+              "airline": "EVA Air",
+              "flight_number": "BR 858"
+            },
+            {
+              "origin": "TPE",
+              "destination": "CTS",
+              "departure": "2026-12-01 06:15",
+              "arrival": "2026-12-01 11:00",
+              "airline": "EVA Air",
+              "flight_number": "BR 166"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              1050,
+              1600
+            ],
+            "lowest_price": 1218,
+            "price_level": "typical",
+            "comparable": false,
+            "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "dd2eaa4856173c27",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "CTS",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 1800.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:53.932518Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "NRT",
+              "departure": "2026-11-30 01:10",
+              "arrival": "2026-11-30 06:20",
+              "airline": "Jetstar",
+              "flight_number": "GK 28"
+            },
+            {
+              "origin": "NRT",
+              "destination": "CTS",
+              "departure": "2026-11-30 07:50",
+              "arrival": "2026-11-30 09:35",
+              "airline": "Jetstar",
+              "flight_number": "GK 121"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              1050,
+              1600
+            ],
+            "lowest_price": 1218,
+            "price_level": "typical",
+            "comparable": false,
+            "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "32c5809056ef51b1",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "CTS",
+            "outbound_date": "2026-11-03",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 1227.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:54.287260Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "NRT",
+              "departure": "2026-11-03 01:10",
+              "arrival": "2026-11-03 06:20",
+              "airline": "Jetstar",
+              "flight_number": "GK 28"
+            },
+            {
+              "origin": "NRT",
+              "destination": "CTS",
+              "departure": "2026-11-03 08:35",
+              "arrival": "2026-11-03 10:15",
+              "airline": "Jetstar",
+              "flight_number": "GK 105"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              1050,
+              1600
+            ],
+            "lowest_price": 1227,
+            "price_level": "typical",
+            "comparable": true,
+            "reason": "同一查询最低含税价格",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "ac4e44b1ab46e850",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "CTS",
+            "outbound_date": "2026-11-03",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 1541.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:54.287298Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "PUS",
+              "departure": "2026-11-03 02:00",
+              "arrival": "2026-11-03 06:20",
+              "airline": "Trinity Airways",
+              "flight_number": "TW 640"
+            },
+            {
+              "origin": "PUS",
+              "destination": "CTS",
+              "departure": "2026-11-03 09:10",
+              "arrival": "2026-11-03 11:30",
+              "airline": "Trinity Airways",
+              "flight_number": "TW 269"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              1050,
+              1600
+            ],
+            "lowest_price": 1227,
+            "price_level": "typical",
+            "comparable": false,
+            "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "5993386e5304b376",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "CTS",
+            "outbound_date": "2026-11-03",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 1541.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:15:54.287342Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "ICN",
+              "departure": "2026-11-03 13:45",
+              "arrival": "2026-11-03 18:35",
+              "airline": "Trinity Airways",
+              "flight_number": "TW 638"
+            },
+            {
+              "origin": "ICN",
+              "destination": "CTS",
+              "departure": "2026-11-04 10:20",
+              "arrival": "2026-11-04 13:10",
+              "airline": "Trinity Airways",
+              "flight_number": "TW 263"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              1050,
+              1600
+            ],
+            "lowest_price": 1227,
+            "price_level": "typical",
+            "comparable": false,
+            "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        }
+      ],
+      "deal": {
+        "level": "typical",
+        "label": "处于 Google 典型区间",
+        "fare_id": "fdebe8ca7198e52c",
+        "source": "Google Flights / SerpAPI",
+        "current_price": 1218.0,
+        "typical_price_range": [
+          1050,
+          1600
+        ],
+        "observed_at": "2026-10-02T02:15:53.932372+00:00",
+        "request": {
+          "origin": "HKG",
+          "destination": "CTS",
+          "outbound_date": "2026-11-30",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "reason": "同一搜索条件的 Google 价格洞察；不是 FareScout 自建历史库或可售承诺。"
+      }
+    },
+    {
+      "route": "HKG-KIX",
+      "evidence_ids": [
+        "f9b1e730d4514712"
+      ],
+      "window": [
+        "2026-11-01",
+        "2026-11-30"
+      ],
+      "precise_requested_dates": [],
+      "precise_successful_dates": [],
+      "range_returned_dates": [],
+      "selected_date": "None",
+      "fares": [],
+      "deal": {
+        "level": "unverified",
+        "label": "当前未验证",
+        "reason": "只有社区线索，不能判断当前Deal。"
+      }
+    }
+  ],
+  "not_a_month_minimum": true
+}

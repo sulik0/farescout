@@ -8,16 +8,64 @@ from .models import identity
 from .research import publication_time, today_local
 
 
+def campaign_anchors(text):
+    """Only explicit common campaign facts can link differently worded posts."""
+    airlines = {"peach": r"peach|乐桃|樂桃", "hkexpress": r"香港快运|香港快運|hk\s*express", "airasia": r"亚航|亞航|airasia",
+                "greaterbay": r"greater\s*bay\s*airlines|大湾区(?:航空|促销|日本航点)|大灣區航空",
+                "hongkongairlines": r"hong\s*kong\s*airlines|香港航空"}
+    found = [key for key, pattern in airlines.items() if re.search(pattern, text, re.I)]
+    if len(found) != 1:
+        return set()
+    anchors = {"airline:" + found[0]}
+    for label, words in [("sale", ["优惠日期", "销售期", "售票日期", "抢票时间", "搶票時間"]),
+                         ("travel", ["出行日期", "出发日期", "出發日期", "旅行日期"] )]:
+        lines = text.splitlines()
+        for index, line in enumerate(lines):
+            if not any(w in line for w in words):
+                continue
+            dates = re.findall(r"(?:(20\d{2})[年/.-])?(\d{1,2})[月/.-](\d{1,2})日?", line)
+            if len(dates) < 2:
+                dates = re.findall(r"(?:(20\d{2})[年/.-])?(\d{1,2})[月/.-](\d{1,2})日?", ' '.join(lines[index:index+3]))
+            if len(dates) >= 2:
+                anchors.add(label + ':' + '|'.join('-'.join(parts) for parts in dates[:2]))
+    for url in re.findall(r'https://[^\s<>]+', text):
+        from .safety import public_url
+        safe = public_url(url)
+        if re.search(r'https://(?:[^/]+\.)?(?:flypeach\.com|hkexpress\.com|airasia\.com)/.+', safe):
+            anchors.add('official:' + safe)
+    return anchors
+
+
 def assess_evidence(evidence, today=None):
     """Explainable text heuristics, not account credibility or a truth score."""
     today = today or today_local()
     groups = []
+    group_anchors = {}
     for item in evidence.values():
         text = item.body
         normalized = re.sub(r"\s+|#[^\s#]+", "", text).lower()
+        anchors = campaign_anchors(text)
+        def conflicts(previous):
+            return any({a for a in anchors if a.startswith(label)} and {a for a in previous if a.startswith(label)}
+                       and {a for a in anchors if a.startswith(label)} != {a for a in previous if a.startswith(label)}
+                       for label in ['airline:', 'sale:', 'travel:'])
         duplicate = next((other for other, body in groups if len(normalized) >= 50 and
+                          not conflicts(group_anchors[other.quality['independence_group']]) and
                           (normalized == body or SequenceMatcher(None, normalized, body).ratio() >= .9)), None)
-        group = duplicate.quality['independence_group'] if duplicate else identity(normalized)
+        campaign = None
+        match_basis = []
+        for other, body in groups:
+            previous = campaign_anchors(other.body)
+            shared = anchors & previous
+            conflict = conflicts(group_anchors[other.quality['independence_group']])
+            if not conflict and any(a.startswith('airline:') for a in shared) and (
+                    any(a.startswith('sale:') for a in shared) and any(a.startswith('travel:') for a in shared)
+                    or any(a.startswith('official:') for a in shared) and any(a.startswith('sale:') for a in shared)):
+                campaign, match_basis = other, sorted(shared)
+                break
+        related = duplicate or campaign
+        group = related.quality['independence_group'] if related else identity(normalized)
+        group_anchors.setdefault(group, set()).update(anchors)
         commercial = [w for w in ['私信我', '找我订', '代订', '加微信', '返佣', '代理售票', '联系出票', '赞助商', '付费推广', '广告合作'] if w in text]
         image = any(w in text for w in ['价格见图', '看截图', '看图', '图中价格', '图上价格'])
         pub = publication_time(item)
@@ -37,6 +85,8 @@ def assess_evidence(evidence, today=None):
             flags.append('出现商业/导流关键词；不等于虚假')
         if duplicate:
             flags.append('疑似同文转载；不重复计作独立佐证')
+        elif campaign:
+            flags.append('正文不同但活动线索相同；按同一促销计数，作者关系未知')
         if image:
             flags.append('价格可能依赖未分析图片')
         if age is not None and age > 90:
@@ -48,10 +98,11 @@ def assess_evidence(evidence, today=None):
         if not pub:
             flags.append('发帖时间未知')
         item.quality = {
-            'method': 'text_rules_v1', 'body_read': bool(text.strip()),
+            'method': 'text_rules_v3', 'body_read': bool(text.strip()),
             'commercial_signals': commercial, 'image_dependent': image,
             'independence_group': group, 'duplicate_of': duplicate.id if duplicate else '',
-            'independence': '同文关联' if duplicate else '不同正文，作者/活动来源独立性未确认',
+            'campaign_duplicate_of': campaign.id if campaign else '', 'campaign_match_basis': match_basis,
+            'independence': '同文关联' if duplicate else '同一活动线索' if campaign else '不同正文，作者/活动来源独立性未确认',
             'has_price_text': bool(re.search(r'[¥￥$]|\d+(?:\.\d+)?\s*(?:元|HKD|CNY|k)', text, re.I)),
             'has_date_text': bool(re.search(r'\d+[月/-]\d+|\d+月', text)),
             'sales_end': str(sales_end) if sales_end else '未确认',

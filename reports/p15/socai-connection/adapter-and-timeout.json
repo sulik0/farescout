@@ -1,0 +1,178 @@
+{
+  "kind": "read_only_connection_reuse_probe_not_end_to_end_research",
+  "socai_version": "0.6.1",
+  "records": [
+    {
+      "kind": "cancel_client_while_connected",
+      "before": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "existing",
+        "active_profile_mode": "existing",
+        "processes": [
+          {
+            "pid": 7976,
+            "ppid": 1,
+            "program": "socai"
+          },
+          {
+            "pid": 20626,
+            "ppid": 1,
+            "program": "Google Chrome"
+          }
+        ],
+        "cdp_tcp_connections": [
+          "socai   7976 fayefufu   12u  IPv4 0xb22924a2bb2db33c      0t0  TCP 127.0.0.1:61086->127.0.0.1:9222 (ESTABLISHED)"
+        ],
+        "endpoint_fingerprint": "ca9fa658a8d7ea43",
+        "endpoint_port": "9222"
+      },
+      "result": "expected client timeout",
+      "after": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "existing",
+        "active_profile_mode": "existing",
+        "processes": [
+          {
+            "pid": 7976,
+            "ppid": 1,
+            "program": "socai"
+          },
+          {
+            "pid": 20626,
+            "ppid": 1,
+            "program": "Google Chrome"
+          }
+        ],
+        "cdp_tcp_connections": [
+          "socai   7976 fayefufu   12u  IPv4 0xb22924a2bb2db33c      0t0  TCP 127.0.0.1:61086->127.0.0.1:9222 (ESTABLISHED)"
+        ],
+        "endpoint_fingerprint": "ca9fa658a8d7ea43",
+        "endpoint_port": "9222"
+      }
+    },
+    {
+      "call": 1,
+      "query": "香港 日本 机票",
+      "before": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "existing",
+        "active_profile_mode": "existing",
+        "processes": [
+          {
+            "pid": 7976,
+            "ppid": 1,
+            "program": "socai"
+          },
+          {
+            "pid": 20626,
+            "ppid": 1,
+            "program": "Google Chrome"
+          }
+        ],
+        "cdp_tcp_connections": [
+          "socai   7976 fayefufu   12u  IPv4 0xb22924a2bb2db33c      0t0  TCP 127.0.0.1:61086->127.0.0.1:9222 (ESTABLISHED)"
+        ],
+        "endpoint_fingerprint": "ca9fa658a8d7ea43",
+        "endpoint_port": "9222"
+      },
+      "result": "TimeoutError: 来源调用失败；未保存可能含凭证的原始异常",
+      "seconds": 60.083,
+      "after": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "existing",
+        "active_profile_mode": "existing",
+        "processes": [
+          {
+            "pid": 7976,
+            "ppid": 1,
+            "program": "socai"
+          },
+          {
+            "pid": 20626,
+            "ppid": 1,
+            "program": "Google Chrome"
+          }
+        ],
+        "cdp_tcp_connections": [
+          "socai   7976 fayefufu   12u  IPv4 0xb22924a2bb2db33c      0t0  TCP 127.0.0.1:61086->127.0.0.1:9222 (ESTABLISHED)"
+        ],
+        "endpoint_fingerprint": "ca9fa658a8d7ea43",
+        "endpoint_port": "9222"
+      }
+    },
+    {
+      "call": 2,
+      "query": "香港 大阪 机票",
+      "before": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "existing",
+        "active_profile_mode": "existing",
+        "processes": [
+          {
+            "pid": 7976,
+            "ppid": 1,
+            "program": "socai"
+          },
+          {
+            "pid": 20626,
+            "ppid": 1,
+            "program": "Google Chrome"
+          }
+        ],
+        "cdp_tcp_connections": [
+          "socai   7976 fayefufu   12u  IPv4 0xb22924a2bb2db33c      0t0  TCP 127.0.0.1:61086->127.0.0.1:9222 (ESTABLISHED)"
+        ],
+        "endpoint_fingerprint": "ca9fa658a8d7ea43",
+        "endpoint_port": "9222"
+      },
+      "result": "TimeoutError: 来源调用失败；未保存可能含凭证的原始异常",
+      "seconds": 60.072,
+      "after": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "existing",
+        "active_profile_mode": "existing",
+        "processes": [
+          {
+            "pid": 7976,
+            "ppid": 1,
+            "program": "socai"
+          },
+          {
+            "pid": 20626,
+            "ppid": 1,
+            "program": "Google Chrome"
+          }
+        ],
+        "cdp_tcp_connections": [
+          "socai   7976 fayefufu   12u  IPv4 0xb22924a2bb2db33c      0t0  TCP 127.0.0.1:61086->127.0.0.1:9222 (ESTABLISHED)"
+        ],
+        "endpoint_fingerprint": "ca9fa658a8d7ea43",
+        "endpoint_port": "9222"
+      }
+    }
+  ]
+}

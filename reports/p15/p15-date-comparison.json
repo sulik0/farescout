@@ -1,0 +1,733 @@
+[
+  {
+    "source": "FlyAI range",
+    "route": "HKG-KIX",
+    "calls": 1,
+    "hints": [
+      {
+        "date": "2026-11-03",
+        "amount": 910.0,
+        "basis": "adult_fare_tax_unknown"
+      },
+      {
+        "date": "2026-11-11",
+        "amount": 910.0,
+        "basis": "adult_fare_tax_unknown"
+      },
+      {
+        "date": "2026-11-17",
+        "amount": 910.0,
+        "basis": "adult_fare_tax_unknown"
+      },
+      {
+        "date": "2026-11-18",
+        "amount": 910.0,
+        "basis": "adult_fare_tax_unknown"
+      },
+      {
+        "date": "2026-11-24",
+        "amount": 910.0,
+        "basis": "adult_fare_tax_unknown"
+      }
+    ],
+    "status": "ok",
+    "seconds": 4.073
+  },
+  {
+    "source": "google_travel_explore",
+    "route": "HKG-KIX",
+    "calls": 1,
+    "hints": [
+      {
+        "price": 952
+      },
+      {
+        "price": 1148
+      },
+      {
+        "price": 1192
+      }
+    ],
+    "response_fields": [
+      "end_date",
+      "flights",
+      "google_flights_link",
+      "google_flights_serpapi_link",
+      "search_metadata",
+      "search_parameters",
+      "start_date"
+    ],
+    "search_status": "Success",
+    "provider_error": false,
+    "status": "ok",
+    "seconds": 4.43
+  },
+  {
+    "source": "google_flights_deals",
+    "route": "HKG-KIX",
+    "calls": 1,
+    "hints": [
+      {
+        "name": "Osaka",
+        "country": "Japan",
+        "departure_airport_code": "HKG",
+        "arrival_airport_code": "KIX",
+        "price": 1546,
+        "average_price": 1407
+      },
+      {
+        "name": "Osaka",
+        "country": "Japan",
+        "departure_airport_code": "HKG",
+        "arrival_airport_code": "KIX",
+        "price": 1546,
+        "average_price": 1537
+      },
+      {
+        "name": "Osaka",
+        "country": "Japan",
+        "departure_airport_code": "HKG",
+        "arrival_airport_code": "KIX",
+        "price": 1546,
+        "average_price": 1614,
+        "discount_percentage": 4
+      },
+      {
+        "name": "Osaka",
+        "country": "Japan",
+        "departure_airport_code": "HKG",
+        "arrival_airport_code": "KIX",
+        "price": 1615,
+        "average_price": 1574
+      },
+      {
+        "name": "Osaka",
+        "country": "Japan",
+        "departure_airport_code": "HKG",
+        "arrival_airport_code": "KIX",
+        "price": 1891,
+        "average_price": 1905,
+        "discount_percentage": 1
+      }
+    ],
+    "response_fields": [
+      "deals",
+      "departure_informations",
+      "search_metadata",
+      "search_parameters"
+    ],
+    "search_status": "Success",
+    "provider_error": false,
+    "status": "ok",
+    "seconds": 18.112
+  },
+  {
+    "source": "FlyAI range",
+    "route": "HKG-NRT",
+    "calls": 1,
+    "hints": [
+      {
+        "date": "2026-11-25",
+        "amount": 1049.0,
+        "basis": "adult_fare_tax_unknown"
+      },
+      {
+        "date": "2026-11-04",
+        "amount": 1085.0,
+        "basis": "adult_fare_tax_unknown"
+      }
+    ],
+    "status": "ok",
+    "seconds": 3.689
+  },
+  {
+    "source": "google_travel_explore",
+    "route": "HKG-NRT",
+    "calls": 1,
+    "hints": [],
+    "response_fields": [
+      "error",
+      "search_information",
+      "search_metadata",
+      "search_parameters"
+    ],
+    "search_status": "Success",
+    "provider_error": true,
+    "status": "empty",
+    "seconds": 2.059
+  },
+  {
+    "source": "google_flights_deals",
+    "route": "HKG-NRT",
+    "calls": 1,
+    "hints": [],
+    "response_fields": [
+      "error",
+      "search_information",
+      "search_metadata",
+      "search_parameters"
+    ],
+    "search_status": "Success",
+    "provider_error": true,
+    "status": "empty",
+    "seconds": 15.759
+  },
+  {
+    "source": "FlyAI range",
+    "route": "HKG-CTS",
+    "calls": 1,
+    "hints": [
+      {
+        "date": "2026-11-06",
+        "amount": 2786.0,
+        "basis": "adult_fare_tax_unknown"
+      },
+      {
+        "date": "2026-11-17",
+        "amount": 2786.0,
+        "basis": "adult_fare_tax_unknown"
+      },
+      {
+        "date": "2026-11-20",
+        "amount": 2786.0,
+        "basis": "adult_fare_tax_unknown"
+      }
+    ],
+    "status": "ok",
+    "seconds": 2.626
+  },
+  {
+    "source": "google_travel_explore",
+    "route": "HKG-CTS",
+    "calls": 1,
+    "hints": [
+      {
+        "price": 1227
+      },
+      {
+        "price": 1541
+      },
+      {
+        "price": 2943
+      }
+    ],
+    "response_fields": [
+      "end_date",
+      "flights",
+      "google_flights_link",
+      "google_flights_serpapi_link",
+      "search_metadata",
+      "search_parameters",
+      "start_date"
+    ],
+    "search_status": "Success",
+    "provider_error": false,
+    "status": "ok",
+    "seconds": 3.132
+  },
+  {
+    "source": "google_flights_deals",
+    "route": "HKG-CTS",
+    "calls": 1,
+    "hints": [
+      {
+        "name": "Sapporo",
+        "country": "Japan",
+        "departure_airport_code": "HKG",
+        "arrival_airport_code": "CTS",
+        "price": 2348,
+        "average_price": 2585,
+        "discount_percentage": 9
+      },
+      {
+        "name": "Sapporo",
+        "country": "Japan",
+        "departure_airport_code": "HKG",
+        "arrival_airport_code": "CTS",
+        "price": 2368,
+        "average_price": 2458,
+        "discount_percentage": 4
+      },
+      {
+        "name": "Sapporo",
+        "country": "Japan",
+        "departure_airport_code": "HKG",
+        "arrival_airport_code": "CTS",
+        "price": 2372,
+        "average_price": 2815,
+        "discount_percentage": 16
+      },
+      {
+        "name": "Sapporo",
+        "country": "Japan",
+        "departure_airport_code": "HKG",
+        "arrival_airport_code": "CTS",
+        "price": 2395,
+        "average_price": 2815,
+        "discount_percentage": 15
+      },
+      {
+        "name": "Sapporo",
+        "country": "Japan",
+        "departure_airport_code": "HKG",
+        "arrival_airport_code": "CTS",
+        "price": 2531,
+        "average_price": 2414
+      }
+    ],
+    "response_fields": [
+      "deals",
+      "departure_informations",
+      "search_metadata",
+      "search_parameters"
+    ],
+    "search_status": "Success",
+    "provider_error": false,
+    "status": "ok",
+    "seconds": 10.988
+  },
+  {
+    "source": "google_flights exact",
+    "route": "HKG-KIX",
+    "date": "2026-11-01",
+    "calls": 1,
+    "status": "ok",
+    "fares": [
+      {
+        "id": "88b45c31321133a7",
+        "source": "Google Flights / SerpAPI",
+        "kind": "current_verified",
+        "request": {
+          "origin": "HKG",
+          "destination": "KIX",
+          "outbound_date": "2026-11-01",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "amount": 952.0,
+        "currency": "CNY",
+        "observed_at": "2026-10-01T09:59:21.129293Z",
+        "source_url": "https://www.google.com/travel/flights",
+        "segments": [
+          {
+            "origin": "HKG",
+            "destination": "KIX",
+            "departure": "2026-11-01 11:50",
+            "arrival": "2026-11-01 16:25",
+            "airline": "Hong Kong Express",
+            "flight_number": "UO 898"
+          }
+        ],
+        "price_basis": "total_including_taxes",
+        "baggage": "未确认，不能假定包含托运行李",
+        "restrictions": [
+          "航班搜索报价；额外行李/支付方式等费用可能另计",
+          "只读搜索，未进入预订流程"
+        ],
+        "price_insights": {
+          "typical_price_range": [
+            640,
+            1000
+          ],
+          "lowest_price": 952,
+          "price_level": "typical",
+          "comparable": true,
+          "reason": "同一查询最低含税价格",
+          "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+        }
+      },
+      {
+        "id": "579684e061348269",
+        "source": "Google Flights / SerpAPI",
+        "kind": "current_verified",
+        "request": {
+          "origin": "HKG",
+          "destination": "KIX",
+          "outbound_date": "2026-11-01",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "amount": 952.0,
+        "currency": "CNY",
+        "observed_at": "2026-10-01T09:59:21.129948Z",
+        "source_url": "https://www.google.com/travel/flights",
+        "segments": [
+          {
+            "origin": "HKG",
+            "destination": "KIX",
+            "departure": "2026-11-01 08:30",
+            "arrival": "2026-11-01 13:05",
+            "airline": "Hong Kong Express",
+            "flight_number": "UO 686"
+          }
+        ],
+        "price_basis": "total_including_taxes",
+        "baggage": "未确认，不能假定包含托运行李",
+        "restrictions": [
+          "航班搜索报价；额外行李/支付方式等费用可能另计",
+          "只读搜索，未进入预订流程"
+        ],
+        "price_insights": {
+          "typical_price_range": [
+            640,
+            1000
+          ],
+          "lowest_price": 952,
+          "price_level": "typical",
+          "comparable": true,
+          "reason": "同一查询最低含税价格",
+          "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+        }
+      },
+      {
+        "id": "eb5c6a02167d4f99",
+        "source": "Google Flights / SerpAPI",
+        "kind": "current_verified",
+        "request": {
+          "origin": "HKG",
+          "destination": "KIX",
+          "outbound_date": "2026-11-01",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "amount": 952.0,
+        "currency": "CNY",
+        "observed_at": "2026-10-01T09:59:21.129997Z",
+        "source_url": "https://www.google.com/travel/flights",
+        "segments": [
+          {
+            "origin": "HKG",
+            "destination": "KIX",
+            "departure": "2026-11-01 09:45",
+            "arrival": "2026-11-01 14:20",
+            "airline": "Hong Kong Express",
+            "flight_number": "UO 850"
+          }
+        ],
+        "price_basis": "total_including_taxes",
+        "baggage": "未确认，不能假定包含托运行李",
+        "restrictions": [
+          "航班搜索报价；额外行李/支付方式等费用可能另计",
+          "只读搜索，未进入预订流程"
+        ],
+        "price_insights": {
+          "typical_price_range": [
+            640,
+            1000
+          ],
+          "lowest_price": 952,
+          "price_level": "typical",
+          "comparable": true,
+          "reason": "同一查询最低含税价格",
+          "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+        }
+      }
+    ],
+    "seconds": 8.419
+  },
+  {
+    "source": "google_flights exact",
+    "route": "HKG-KIX",
+    "date": "2026-11-15",
+    "calls": 1,
+    "status": "ok",
+    "fares": [
+      {
+        "id": "31b2580b001c5306",
+        "source": "Google Flights / SerpAPI",
+        "kind": "current_verified",
+        "request": {
+          "origin": "HKG",
+          "destination": "KIX",
+          "outbound_date": "2026-11-15",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "amount": 952.0,
+        "currency": "CNY",
+        "observed_at": "2026-10-01T09:59:23.495737Z",
+        "source_url": "https://www.google.com/travel/flights",
+        "segments": [
+          {
+            "origin": "HKG",
+            "destination": "KIX",
+            "departure": "2026-11-15 15:45",
+            "arrival": "2026-11-15 20:20",
+            "airline": "Hong Kong Express",
+            "flight_number": "UO 862"
+          }
+        ],
+        "price_basis": "total_including_taxes",
+        "baggage": "未确认，不能假定包含托运行李",
+        "restrictions": [
+          "航班搜索报价；额外行李/支付方式等费用可能另计",
+          "只读搜索，未进入预订流程"
+        ],
+        "price_insights": {
+          "typical_price_range": [
+            640,
+            1000
+          ],
+          "lowest_price": 952,
+          "price_level": "typical",
+          "comparable": true,
+          "reason": "同一查询最低含税价格",
+          "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+        }
+      },
+      {
+        "id": "27989a590550dc5a",
+        "source": "Google Flights / SerpAPI",
+        "kind": "current_verified",
+        "request": {
+          "origin": "HKG",
+          "destination": "KIX",
+          "outbound_date": "2026-11-15",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "amount": 1166.0,
+        "currency": "CNY",
+        "observed_at": "2026-10-01T09:59:23.495990Z",
+        "source_url": "https://www.google.com/travel/flights",
+        "segments": [
+          {
+            "origin": "HKG",
+            "destination": "KIX",
+            "departure": "2026-11-15 11:50",
+            "arrival": "2026-11-15 16:25",
+            "airline": "Hong Kong Express",
+            "flight_number": "UO 898"
+          }
+        ],
+        "price_basis": "total_including_taxes",
+        "baggage": "未确认，不能假定包含托运行李",
+        "restrictions": [
+          "航班搜索报价；额外行李/支付方式等费用可能另计",
+          "只读搜索，未进入预订流程"
+        ],
+        "price_insights": {
+          "typical_price_range": [
+            640,
+            1000
+          ],
+          "lowest_price": 952,
+          "price_level": "typical",
+          "comparable": false,
+          "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+          "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+        }
+      },
+      {
+        "id": "ac927277eba830a5",
+        "source": "Google Flights / SerpAPI",
+        "kind": "current_verified",
+        "request": {
+          "origin": "HKG",
+          "destination": "KIX",
+          "outbound_date": "2026-11-15",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "amount": 1166.0,
+        "currency": "CNY",
+        "observed_at": "2026-10-01T09:59:23.496033Z",
+        "source_url": "https://www.google.com/travel/flights",
+        "segments": [
+          {
+            "origin": "HKG",
+            "destination": "KIX",
+            "departure": "2026-11-15 14:45",
+            "arrival": "2026-11-15 19:20",
+            "airline": "Hong Kong Express",
+            "flight_number": "UO 688"
+          }
+        ],
+        "price_basis": "total_including_taxes",
+        "baggage": "未确认，不能假定包含托运行李",
+        "restrictions": [
+          "航班搜索报价；额外行李/支付方式等费用可能另计",
+          "只读搜索，未进入预订流程"
+        ],
+        "price_insights": {
+          "typical_price_range": [
+            640,
+            1000
+          ],
+          "lowest_price": 952,
+          "price_level": "typical",
+          "comparable": false,
+          "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+          "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+        }
+      }
+    ],
+    "seconds": 2.364
+  },
+  {
+    "source": "google_flights exact",
+    "route": "HKG-KIX",
+    "date": "2026-11-30",
+    "calls": 1,
+    "status": "ok",
+    "fares": [
+      {
+        "id": "bf137457fe7850ae",
+        "source": "Google Flights / SerpAPI",
+        "kind": "current_verified",
+        "request": {
+          "origin": "HKG",
+          "destination": "KIX",
+          "outbound_date": "2026-11-30",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "amount": 893.0,
+        "currency": "CNY",
+        "observed_at": "2026-10-01T09:59:25.350508Z",
+        "source_url": "https://www.google.com/travel/flights",
+        "segments": [
+          {
+            "origin": "HKG",
+            "destination": "KIX",
+            "departure": "2026-11-30 12:45",
+            "arrival": "2026-11-30 17:10",
+            "airline": "Peach Aviation",
+            "flight_number": "MM 64"
+          }
+        ],
+        "price_basis": "total_including_taxes",
+        "baggage": "未确认，不能假定包含托运行李",
+        "restrictions": [
+          "航班搜索报价；额外行李/支付方式等费用可能另计",
+          "只读搜索，未进入预订流程"
+        ],
+        "price_insights": {
+          "typical_price_range": [
+            640,
+            1000
+          ],
+          "lowest_price": 893,
+          "price_level": "typical",
+          "comparable": true,
+          "reason": "同一查询最低含税价格",
+          "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+        }
+      },
+      {
+        "id": "0662b1c07d3a6f70",
+        "source": "Google Flights / SerpAPI",
+        "kind": "current_verified",
+        "request": {
+          "origin": "HKG",
+          "destination": "KIX",
+          "outbound_date": "2026-11-30",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "amount": 952.0,
+        "currency": "CNY",
+        "observed_at": "2026-10-01T09:59:25.350606Z",
+        "source_url": "https://www.google.com/travel/flights",
+        "segments": [
+          {
+            "origin": "HKG",
+            "destination": "KIX",
+            "departure": "2026-11-30 11:50",
+            "arrival": "2026-11-30 16:25",
+            "airline": "Hong Kong Express",
+            "flight_number": "UO 898"
+          }
+        ],
+        "price_basis": "total_including_taxes",
+        "baggage": "未确认，不能假定包含托运行李",
+        "restrictions": [
+          "航班搜索报价；额外行李/支付方式等费用可能另计",
+          "只读搜索，未进入预订流程"
+        ],
+        "price_insights": {
+          "typical_price_range": [
+            640,
+            1000
+          ],
+          "lowest_price": 893,
+          "price_level": "typical",
+          "comparable": false,
+          "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+          "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+        }
+      },
+      {
+        "id": "10c61f353a617cb4",
+        "source": "Google Flights / SerpAPI",
+        "kind": "current_verified",
+        "request": {
+          "origin": "HKG",
+          "destination": "KIX",
+          "outbound_date": "2026-11-30",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "amount": 952.0,
+        "currency": "CNY",
+        "observed_at": "2026-10-01T09:59:25.350741Z",
+        "source_url": "https://www.google.com/travel/flights",
+        "segments": [
+          {
+            "origin": "HKG",
+            "destination": "KIX",
+            "departure": "2026-11-30 09:45",
+            "arrival": "2026-11-30 14:20",
+            "airline": "Hong Kong Express",
+            "flight_number": "UO 850"
+          }
+        ],
+        "price_basis": "total_including_taxes",
+        "baggage": "未确认，不能假定包含托运行李",
+        "restrictions": [
+          "航班搜索报价；额外行李/支付方式等费用可能另计",
+          "只读搜索，未进入预订流程"
+        ],
+        "price_insights": {
+          "typical_price_range": [
+            640,
+            1000
+          ],
+          "lowest_price": 893,
+          "price_level": "typical",
+          "comparable": false,
+          "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+          "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+        }
+      }
+    ],
+    "seconds": 1.852
+  }
+]

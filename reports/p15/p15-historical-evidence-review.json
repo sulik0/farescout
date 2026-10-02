@@ -1,0 +1,134 @@
+{
+  "kind": "historical_evidence_review_not_new_fetch",
+  "evidence": [
+    {
+      "id": "1992bd8fe3675a19",
+      "title": "捡漏：2400拿下北海道东京大阪机票",
+      "quality": {
+        "method": "text_rules_v2",
+        "body_read": true,
+        "commercial_signals": [],
+        "image_dependent": false,
+        "independence_group": "a0e878a0d9247b1a",
+        "duplicate_of": "",
+        "campaign_duplicate_of": "",
+        "campaign_match_basis": [],
+        "independence": "不同正文，作者/活动来源独立性未确认",
+        "has_price_text": false,
+        "has_date_text": false,
+        "sales_end": "未确认",
+        "flags": []
+      }
+    },
+    {
+      "id": "be96e3c0e2a479a6",
+      "title": "香港往返东京/大阪机票¥685",
+      "quality": {
+        "method": "text_rules_v2",
+        "body_read": true,
+        "commercial_signals": [
+          "赞助商"
+        ],
+        "image_dependent": false,
+        "independence_group": "f9a28882cac8f00e",
+        "duplicate_of": "",
+        "campaign_duplicate_of": "",
+        "campaign_match_basis": [],
+        "independence": "不同正文，作者/活动来源独立性未确认",
+        "has_price_text": false,
+        "has_date_text": false,
+        "sales_end": "未确认",
+        "flags": [
+          "出现商业/导流关键词；不等于虚假"
+        ]
+      }
+    },
+    {
+      "id": "c5ffe1f86addd196",
+      "title": "快运｜香港大阪9折最低来回1.5K，跨国庆也有",
+      "quality": {
+        "method": "text_rules_v2",
+        "body_read": true,
+        "commercial_signals": [],
+        "image_dependent": true,
+        "independence_group": "17c18946da046710",
+        "duplicate_of": "",
+        "campaign_duplicate_of": "",
+        "campaign_match_basis": [],
+        "independence": "不同正文，作者/活动来源独立性未确认",
+        "has_price_text": true,
+        "has_date_text": true,
+        "sales_end": "未确认",
+        "flags": [
+          "价格可能依赖未分析图片"
+        ]
+      }
+    },
+    {
+      "id": "ec586f50fb970681",
+      "title": "秋叶季香港大阪1.2 k",
+      "quality": {
+        "method": "text_rules_v2",
+        "body_read": true,
+        "commercial_signals": [],
+        "image_dependent": false,
+        "independence_group": "a94bfdb83bcc804b",
+        "duplicate_of": "",
+        "campaign_duplicate_of": "",
+        "campaign_match_basis": [],
+        "independence": "不同正文，作者/活动来源独立性未确认",
+        "has_price_text": true,
+        "has_date_text": true,
+        "sales_end": "未确认",
+        "flags": []
+      }
+    },
+    {
+      "id": "d581b73988c36452",
+      "title": "乐桃偷偷大促！枫叶季往返大阪1.1k起！",
+      "quality": {
+        "method": "text_rules_v2",
+        "body_read": true,
+        "commercial_signals": [],
+        "image_dependent": false,
+        "independence_group": "3daa13c06b7f7ab4",
+        "duplicate_of": "",
+        "campaign_duplicate_of": "",
+        "campaign_match_basis": [],
+        "independence": "不同正文，作者/活动来源独立性未确认",
+        "has_price_text": true,
+        "has_date_text": true,
+        "sales_end": "未确认",
+        "flags": [
+          "销售期日期/年份未完全确认；不能断言仍有效"
+        ]
+      }
+    },
+    {
+      "id": "a2cb06caa319df3c",
+      "title": "乐桃又大促！枫叶季往返大阪1.1k起！",
+      "quality": {
+        "method": "text_rules_v2",
+        "body_read": true,
+        "commercial_signals": [],
+        "image_dependent": false,
+        "independence_group": "3daa13c06b7f7ab4",
+        "duplicate_of": "",
+        "campaign_duplicate_of": "d581b73988c36452",
+        "campaign_match_basis": [
+          "airline:peach",
+          "sale:-9-17|-9-20",
+          "travel:2026-9-22|2027-1-31"
+        ],
+        "independence": "同一活动线索",
+        "has_price_text": true,
+        "has_date_text": true,
+        "sales_end": "未确认",
+        "flags": [
+          "正文不同但活动线索相同；按同一促销计数，作者关系未知",
+          "销售期日期/年份未完全确认；不能断言仍有效"
+        ]
+      }
+    }
+  ]
+}

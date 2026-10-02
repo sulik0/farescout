@@ -24,6 +24,12 @@ class Settings:
     coarse_dates: int = 3
     fine_dates: int = 1
     socai_notes: int = 3
+    socai_mode: str = "selective"
+    socai_comments: int = 1
+    socai_connect_timeout: int = 180
+    fare_concurrency: int = 2
+    quote_reuse_seconds: int = 120
+    date_hint_source: str = "explore"
     evidence_quality: bool = True
     deal_strength: bool = True
     web_fallback: bool = True
@@ -47,6 +53,12 @@ class Settings:
             coarse_dates=max(2, min(5, int(os.getenv("FARESCOUT_COARSE_DATES", "3")))),
             fine_dates=max(0, min(2, int(os.getenv("FARESCOUT_FINE_DATES", "1")))),
             socai_notes=max(2, min(5, int(os.getenv("FARESCOUT_SOCAI_NOTES", "3")))),
+            socai_mode=os.getenv("FARESCOUT_SOCAI_MODE", "selective"),
+            socai_comments=max(0, min(3, int(os.getenv("FARESCOUT_SOCAI_COMMENTS", "1")))),
+            socai_connect_timeout=max(60, min(300, int(os.getenv("FARESCOUT_SOCAI_CONNECT_TIMEOUT", "180")))),
+            fare_concurrency=max(1, min(3, int(os.getenv("FARESCOUT_FARE_CONCURRENCY", "2")))),
+            quote_reuse_seconds=max(0, min(180, int(os.getenv("FARESCOUT_QUOTE_REUSE_SECONDS", "120")))),
+            date_hint_source=os.getenv("FARESCOUT_DATE_HINT_SOURCE", "explore"),
             evidence_quality=os.getenv("FARESCOUT_EVIDENCE_QUALITY", "1") == "1",
             deal_strength=os.getenv("FARESCOUT_DEAL_STRENGTH", "1") == "1",
             web_fallback=os.getenv("FARESCOUT_WEB_FALLBACK", "1") == "1",

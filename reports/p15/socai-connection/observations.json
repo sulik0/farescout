@@ -1,0 +1,189 @@
+{
+  "kind": "read_only_connection_reuse_probe_not_end_to_end_research",
+  "socai_version": "0.6.1",
+  "records": [
+    {
+      "call": 1,
+      "query": "香港 日本 机票",
+      "before": {
+        "browser_connected": false,
+        "browser_state": "disconnected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": "BROWSER_ENDPOINT_UNREACHABLE",
+        "profile_mode": "existing",
+        "active_profile_mode": null,
+        "processes": [
+          {
+            "pid": 7976,
+            "ppid": 1,
+            "program": "socai"
+          },
+          {
+            "pid": 20626,
+            "ppid": 1,
+            "program": "Google Chrome"
+          }
+        ],
+        "endpoint_fingerprint": "ca9fa658a8d7ea43",
+        "endpoint_port": "9222"
+      },
+      "body_count": 1,
+      "payload_fields": [
+        "artifact",
+        "notes",
+        "query",
+        "run"
+      ],
+      "result": "ok",
+      "seconds": 35.921,
+      "after": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "existing",
+        "active_profile_mode": "existing",
+        "processes": [
+          {
+            "pid": 7976,
+            "ppid": 1,
+            "program": "socai"
+          },
+          {
+            "pid": 20626,
+            "ppid": 1,
+            "program": "Google Chrome"
+          }
+        ],
+        "endpoint_fingerprint": "ca9fa658a8d7ea43",
+        "endpoint_port": "9222"
+      }
+    },
+    {
+      "call": 2,
+      "query": "香港 大阪 机票",
+      "before": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "existing",
+        "active_profile_mode": "existing",
+        "processes": [
+          {
+            "pid": 7976,
+            "ppid": 1,
+            "program": "socai"
+          },
+          {
+            "pid": 20626,
+            "ppid": 1,
+            "program": "Google Chrome"
+          }
+        ],
+        "endpoint_fingerprint": "ca9fa658a8d7ea43",
+        "endpoint_port": "9222"
+      },
+      "body_count": 1,
+      "payload_fields": [
+        "artifact",
+        "notes",
+        "query",
+        "run"
+      ],
+      "result": "ok",
+      "seconds": 24.546,
+      "after": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "existing",
+        "active_profile_mode": "existing",
+        "processes": [
+          {
+            "pid": 7976,
+            "ppid": 1,
+            "program": "socai"
+          },
+          {
+            "pid": 20626,
+            "ppid": 1,
+            "program": "Google Chrome"
+          }
+        ],
+        "endpoint_fingerprint": "ca9fa658a8d7ea43",
+        "endpoint_port": "9222"
+      }
+    },
+    {
+      "call": 3,
+      "query": "香港 东京 机票",
+      "before": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "existing",
+        "active_profile_mode": "existing",
+        "processes": [
+          {
+            "pid": 7976,
+            "ppid": 1,
+            "program": "socai"
+          },
+          {
+            "pid": 20626,
+            "ppid": 1,
+            "program": "Google Chrome"
+          }
+        ],
+        "endpoint_fingerprint": "ca9fa658a8d7ea43",
+        "endpoint_port": "9222"
+      },
+      "body_count": 0,
+      "payload_fields": [
+        "notes",
+        "ok",
+        "page_error",
+        "page_ocr_region",
+        "page_ocr_text",
+        "page_ocr_truncated",
+        "page_url",
+        "query",
+        "reason",
+        "run"
+      ],
+      "result": "no_body",
+      "seconds": 29.197,
+      "after": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "existing",
+        "active_profile_mode": "existing",
+        "processes": [
+          {
+            "pid": 7976,
+            "ppid": 1,
+            "program": "socai"
+          },
+          {
+            "pid": 20626,
+            "ppid": 1,
+            "program": "Google Chrome"
+          }
+        ],
+        "endpoint_fingerprint": "ca9fa658a8d7ea43",
+        "endpoint_port": "9222"
+      }
+    }
+  ]
+}

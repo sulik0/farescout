@@ -75,52 +75,91 @@ class Researcher:
             self.store.save(self._session, report=False)
         self.on_event(event)
 
+    def ingest_evidence(self, evidence, turn, session):
+        added = []
+        for item in evidence:
+            session.evidence[item.id] = item
+            if item.id not in turn.evidence_ids:
+                turn.evidence_ids.append(item.id)
+                added.append(item)
+        if self.settings.evidence_quality:
+            assess_evidence(session.evidence)
+        for item in added:
+            self.emit(turn, "evidence", "ok", item.title or item.source, item.source,
+                      evidence_ids=[item.id], data={"url": item.url, "published_at": item.published_at})
+            if item.quality:
+                self.emit(turn, "quality", "info", "；".join(item.quality.get("flags", [])) or "已读取正文；暂无命中风险词，仍需验价",
+                          evidence_ids=[item.id], data=item.quality)
+
+    async def model_call(self, turn, operation, *args):
+        start = monotonic()
+        status = "ok"
+        try:
+            return await getattr(self.brain, operation)(*args)
+        except BaseException:
+            status = "failed"
+            raise
+        finally:
+            self.emit(turn, "model", status, f"模型操作：{operation}", "model", phase="completed",
+                      duration_ms=int((monotonic()-start)*1000), data={"operation": operation})
+
     async def search(self, query: str, turn: Turn, session: Session, stage="community_search"):
         for provider in self.social:
             if provider.name in self._blocked_social:
                 self.emit(turn, stage, "skipped", "本轮此备用来源已不可达，避免重复消耗等待预算", provider.name)
                 continue
+            reserve = min(120, self.settings.max_seconds / 4)
+            remaining = getattr(self, '_research_deadline', monotonic() + self.settings.max_seconds) - monotonic()
+            if remaining <= reserve:
+                self.emit(turn, 'budget', 'skipped', '社区阶段时间预算已用完；把剩余时间留给候选提取和验价',
+                          provider.name, data={'query':query, 'reserved_seconds':reserve})
+                return
+            search_timeout = min(getattr(provider, 'timeout_seconds', self.settings.source_timeout + 5), remaining-reserve)
             action = identity(turn.id, stage, query, provider.name)
             started = monotonic()
             turn.metrics["community_calls"] = turn.metrics.get("community_calls", 0) + 1
             before_commands = getattr(provider, "command_calls", 0)
             if isinstance(provider, Socai):
+                provider.on_evidence = lambda evidence: self.ingest_evidence(evidence, turn, session)
+                provider.on_trace = lambda substage, status, detail, duration, data: self.emit(
+                    turn, substage, status, detail, provider.name, phase="completed", duration_ms=duration, data=data)
                 provider.on_retry = lambda retry: self.emit(turn, "source_retry", "failed", f"{provider.retry_reason}；有界重试：{retry}",
                     provider.name, data={"original_query": query, "retry_query": retry})
                 provider.on_query = lambda actual: self.emit(turn, "source_query", "info", f"实际社区关键词：{actual}", provider.name,
-                    data={"planned_query": query, "actual_query": actual, "command_number": provider.command_calls + 1})
+                    data={"planned_query": query, "actual_query": actual})
             self.emit(turn, stage, "info", f"只读搜索：{query}", provider.name,
                       action_id=action, phase="started", data={"query": query})
             try:
-                async with asyncio.timeout(getattr(provider, "timeout_seconds", self.settings.source_timeout + 5)):
+                async with asyncio.timeout(search_timeout):
                     evidence = await provider.search(query)
-                for item in evidence:
-                    session.evidence[item.id] = item
-                    if item.id not in turn.evidence_ids:
-                        turn.evidence_ids.append(item.id)
-                if self.settings.evidence_quality:
-                    assess_evidence(session.evidence)
+                self.ingest_evidence(evidence, turn, session)
+                if getattr(provider, 'blocked_code', None):
+                    self._blocked_social.add(provider.name)
                 self.emit(turn, stage, "ok", f"查询 {query}；已阅读 {len(evidence)} 篇正文/评论", provider.name,
                           action_id=action, phase="completed", evidence_ids=[e.id for e in evidence],
                           duration_ms=int((monotonic()-started)*1000), data={"query": query, "count": len(evidence)})
-                for item in evidence:
-                    self.emit(turn, "evidence", "ok", item.title or item.source, provider.name,
-                              evidence_ids=[item.id], data={"url": item.url, "published_at": item.published_at})
-                    if item.quality:
-                        self.emit(turn, "quality", "info", "；".join(item.quality.get("flags", [])) or "已读取正文；暂无命中风险词，仍需验价",
-                                  evidence_ids=[item.id], data=item.quality)
                 if evidence:
-                    turn.metrics["socai_commands"] = turn.metrics.get("socai_commands", 0) + getattr(provider, "command_calls", 0)-before_commands
                     return
+            except asyncio.CancelledError:
+                self.emit(turn, stage, "failed", "研究预算到达；已读正文保留", provider.name,
+                    action_id=action, phase="completed", duration_ms=int((monotonic()-started)*1000), data={"query": query})
+                raise
             except Exception as error:
-                if isinstance(provider, RedditCommunity):
+                if isinstance(error, TimeoutError) and getattr(self, '_research_deadline', float('inf')) - monotonic() <= reserve + .1:
+                    self.emit(turn, 'budget', 'info', '社区阶段时间预算到达；已读正文保留，接着提取候选和验价',
+                              provider.name, data={'query':query, 'reserved_seconds':reserve})
+                failure = source_error(provider.name, error)
+                if isinstance(provider, RedditCommunity) or failure.code in {"ACCESS_BLOCKED", "BROWSER_OR_LOGIN_REQUIRED", "NOT_INSTALLED", "CONNECTION_APPROVAL_TIMEOUT", "DAEMON_IPC_PERMISSION_DENIED"}:
                     self._blocked_social.add(provider.name)
                 self.emit(turn, stage, "failed", str(source_error(provider.name, error)), provider.name,
                           action_id=action, phase="completed", duration_ms=int((monotonic()-started)*1000), data={"query": query})
-            turn.metrics["socai_commands"] = turn.metrics.get("socai_commands", 0) + getattr(provider, "command_calls", 0)-before_commands
+            finally:
+                turn.metrics["socai_commands"] = turn.metrics.get("socai_commands", 0) + getattr(provider, "command_calls", 0)-before_commands
         self.emit(turn, stage, "info", "所有本轮社区来源失败；保留并尝试使用已有社区证据")
 
     async def run(self, message: str, session: Session | None, session_id: str, *, resume: bool = False) -> Session:
+        execution_started = monotonic()
+        self._research_deadline = execution_started + self.settings.max_seconds
         self._session = session
         self._blocked_social = set()
         usage = getattr(self.brain, "usage", None)
@@ -190,10 +229,19 @@ class Researcher:
                     missing.append("成功宽社区查询不足2次")
                 if not date_ok:
                     missing.append("至少3条路线的多日期有效覆盖尚未满足")
+                if any(e.stage == 'budget' and '社区阶段时间预算' in e.detail for e in turn.events):
+                    missing.append('社区阶段时间预算已用完，已优先保留时间验价')
                 turn.stop_reason = "已完成有预算日期探索与候选验证；未覆盖日期保持未知" if turn.status == "complete" else "；".join(missing)
             turn.metrics["elapsed_seconds"] = round((turn.finished_at-turn.started_at).total_seconds(), 3)
+            turn.metrics["execution_seconds"] = round(monotonic()-execution_started, 3)
             turn.metrics["evidence_count"] = len(session.evidence)
             turn.metrics["verified_routes"] = verified
+            # Parent search events include child preview/read time; do not add both to stage totals.
+            for stage in {e.stage for e in turn.events if e.duration_ms is not None}:
+                turn.metrics[f"stage_{stage}_seconds"] = round(sum(e.duration_ms or 0 for e in turn.events if e.stage == stage) / 1000, 3)
+            accounted = sum(turn.metrics.get(f"stage_{stage}_seconds", 0) for stage in ["model", "community_search", "query_expansion", "date_phase"])
+            turn.metrics["unattributed_seconds"] = round(max(0, turn.metrics["execution_seconds"]-accounted), 3)
+            turn.metrics["independence_groups"] = len({e.quality.get("independence_group", e.id) for e in session.evidence.values()})
             if model_start:
                 turn.metrics.update(model_requests=usage.requests-model_start[0],
                                     model_input_tokens=usage.input_tokens-model_start[1],
@@ -212,7 +260,7 @@ class Researcher:
         try:
             turn.metrics["model_operations"] = turn.metrics.get("model_operations", 0) + 1
             initial_constraints = {c.field: c for c in goal.constraints}
-            goal = await self.brain.patch(message, goal)
+            goal = await self.model_call(turn, "patch", message, goal)
             goal = evolve_goal(message, goal)  # Preserve explicit example constraints.
             goal.constraints = [initial_constraints[c.field] if c.provenance == "context" and c.field in initial_constraints
                                 and initial_constraints[c.field].value == c.value else c for c in goal.constraints]
@@ -226,7 +274,7 @@ class Researcher:
         if not session.evidence:
             try:
                 turn.metrics["model_operations"] = turn.metrics.get("model_operations", 0) + 1
-                queries = await self.brain.plan(message, goal)
+                queries = await self.model_call(turn, "plan", message, goal)
             except Exception as error:
                 queries = default_queries(goal)
                 self.emit(turn, "plan", "failed", str(source_error("model", error)) + "；使用宽查询", "model")
@@ -247,7 +295,7 @@ class Researcher:
             return
         try:
             turn.metrics["model_operations"] = turn.metrics.get("model_operations", 0) + 1
-            discovery = await self.brain.discover(goal, session.evidence)
+            discovery = await self.model_call(turn, "discover", goal, session.evidence)
         except Exception as error:
             self.emit(turn, "extract", "failed", str(source_error("model", error)), "model")
             previous = [o.candidate for t in session.turns[:-1] for o in t.opportunities]
@@ -258,11 +306,12 @@ class Researcher:
             self.emit(turn, 'extract', 'info', '尚无可校验查询扩展；最多补一次基于原文的模型提议')
             try:
                 turn.metrics['model_operations'] = turn.metrics.get('model_operations', 0) + 1
-                discovery.expansions = await self.brain.expand(goal, session.evidence)
+                discovery.expansions = await self.model_call(turn, "expand", goal, session.evidence)
                 if not discovery.expansions:
                     self.emit(turn, 'expansion_plan', 'failed', '补充扩展仍未通过原文校验；不编造扩展')
             except Exception as error:
                 self.emit(turn, 'expansion_plan', 'failed', str(source_error('model', error)), 'model')
+        before_expansion = {(e.id, e.readable_text) for e in session.evidence.values()}
         for expansion in discovery.expansions[:1]:
             if (len(session.turns) > 1 and not resume) or expansion.query in queries:
                 continue
@@ -270,10 +319,10 @@ class Researcher:
             self.emit(turn, "expansion_plan", "info", expansion.reason, evidence_ids=[expansion.evidence_id],
                       data=expansion.model_dump(mode="json"))
             await self.search(expansion.query, turn, session, "query_expansion")
-        if turn.expansions:
+        if turn.expansions and before_expansion != {(e.id,e.readable_text) for e in session.evidence.values()}:
             try:
                 turn.metrics["model_operations"] = turn.metrics.get("model_operations", 0) + 1
-                second = await self.brain.discover(goal, session.evidence)
+                second = await self.model_call(turn, "discover", goal, session.evidence)
                 if second.candidates:
                     discovery = second
             except Exception as error:
@@ -282,6 +331,11 @@ class Researcher:
         for candidate in discovery.candidates[:5]:
             self.emit(turn, "candidate", "ok", candidate.why, evidence_ids=[s.evidence_id for s in candidate.signals],
                       data={"route": candidate.key, "destination_name": candidate.destination_name})
-        await DateExplorer(self, turn).run(turn.opportunities)
+        started = monotonic()
+        try:
+            await DateExplorer(self, turn).run(turn.opportunities)
+        finally:
+            self.emit(turn, "date_phase", "info", "日期探索与验价阶段实际用时（包含并发请求）",
+                      phase="completed", duration_ms=int((monotonic()-started)*1000))
         # Verified directions first; evidence ordering remains the tie-breaker.
         turn.opportunities.sort(key=lambda o: bool(o.fares), reverse=True)

@@ -1,0 +1,492 @@
+{
+  "kind": "recorded_live_research_audit",
+  "session_id": "p15-release-2",
+  "turn_id": "6ab2d6d1e791611a",
+  "input": "香港 11 月飞日本哪里便宜？",
+  "started_at": "2026-10-02T02:01:33.914081+00:00",
+  "finished_at": "2026-10-02T02:07:56.401385+00:00",
+  "status": "partial",
+  "stop_reason": "有当前报价的候选不足3条；查询扩展未成功取得正文；至少3条路线的多日期有效覆盖尚未满足",
+  "metrics": {
+    "model_operations": 3,
+    "community_calls": 4,
+    "socai_commands": 14,
+    "date_calls": 4,
+    "verification_calls": 1,
+    "quote_reuses": 1,
+    "elapsed_seconds": 382.487,
+    "execution_seconds": 382.502,
+    "evidence_count": 4,
+    "verified_routes": 1,
+    "stage_browser_connection_seconds": 0.0,
+    "stage_community_search_seconds": 225.485,
+    "stage_social_read_seconds": 49.156,
+    "stage_fare_seconds": 1.276,
+    "stage_social_scan_seconds": 133.039,
+    "stage_social_preview_seconds": 164.393,
+    "stage_model_seconds": 7.062,
+    "stage_query_expansion_seconds": 136.345,
+    "stage_date_exploration_seconds": 14.193,
+    "stage_date_phase_seconds": 13.592,
+    "unattributed_seconds": 0.018,
+    "independence_groups": 4,
+    "model_requests": 3,
+    "model_input_tokens": 6392,
+    "model_output_tokens": 1650
+  },
+  "grounding_evidence_count": 1,
+  "dual_current_source_routes": 1,
+  "call_count_definition": "community_calls=provider search invocations; socai_commands=actual CLI commands (search/read/status/retries); date_calls=range/coarse/fine invocations; verification_calls=actual final exact provider invocations; quote_reuses=same-turn quote reuse without an API request; model_requests=Pydantic AI recorded requests including retries; stage_*_seconds=request duration sums, parent community stages include read children; date_phase=actual date-stage wall time",
+  "evidence_groups": [
+    {
+      "id": "6170786cb1a31ca1",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6abc6f1e0000000018029233",
+      "title": "大湾区日本航点77折！冲绳东京大阪等都有！",
+      "observed_at": "2026-10-02T02:05:01.672369+00:00",
+      "group": "cb970d4cfcaa65bf",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "",
+      "match_basis": []
+    },
+    {
+      "id": "be96e3c0e2a479a6",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6ab4d8a0000000001a032e79",
+      "title": "香港往返东京/大阪机票¥685",
+      "observed_at": "2026-10-02T02:03:43.479554+00:00",
+      "group": "f9a28882cac8f00e",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "",
+      "match_basis": []
+    },
+    {
+      "id": "2631f2cfd088b1e1",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6a865d6500000000140265f9",
+      "title": "💰1200香港大阪往返机票🥹机票天才在评论区",
+      "observed_at": "2026-10-02T02:04:41.907891+00:00",
+      "group": "7341393db864129d",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "",
+      "match_basis": []
+    },
+    {
+      "id": "c5ffe1f86addd196",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6ab4a8860000000015008f93",
+      "title": "快运｜香港大阪9折最低来回1.5K，跨国庆也有",
+      "observed_at": "2026-10-02T02:05:21.373227+00:00",
+      "group": "17c18946da046710",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "",
+      "match_basis": []
+    }
+  ],
+  "expansions": [
+    {
+      "query": "大湾区 日本 促销 出行日期 2027年1月21日",
+      "evidence_id": "6170786cb1a31ca1",
+      "discovered_term": "大湾区",
+      "reason": "促销帖的适用出行日期到 2027 年 1 月 21 日、销售期到 2026 年 10 月 11 日，需确认 11 月是否仍在可订范围以及是否新增其他日本航点。"
+    }
+  ],
+  "failures": [
+    {
+      "time": "2026-10-02T02:02:31.612970Z",
+      "stage": "source_retry",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "前次未取得可读正文；有界重试：香港 日本 机票",
+      "id": "51926ad579864732",
+      "turn_id": "6ab2d6d1e791611a",
+      "action_id": "",
+      "parent_action_id": "6ab2d6d1e791611a",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "original_query": "香港 日本 机票",
+        "retry_query": "香港 日本 机票"
+      }
+    },
+    {
+      "time": "2026-10-02T02:06:26.524183Z",
+      "stage": "social_preview",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "命令超时",
+      "id": "401171e7e97e06f7",
+      "turn_id": "6ab2d6d1e791611a",
+      "action_id": "",
+      "parent_action_id": "6ab2d6d1e791611a",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 60051,
+      "data": {
+        "query": "大湾区 日本 促销 出行日期 2027年1月21日",
+        "failure_code": "TimeoutError"
+      }
+    },
+    {
+      "time": "2026-10-02T02:06:26.526828Z",
+      "stage": "source_retry",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "逐篇读取未成功；仅回退一次socai完整扫描；有界重试：大湾区 日本 促销 出行日期 2027年1月21日",
+      "id": "b78d2d47f8a49235",
+      "turn_id": "6ab2d6d1e791611a",
+      "action_id": "",
+      "parent_action_id": "6ab2d6d1e791611a",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "original_query": "大湾区 日本 促销 出行日期 2027年1月21日",
+        "retry_query": "大湾区 日本 促销 出行日期 2027年1月21日"
+      }
+    },
+    {
+      "time": "2026-10-02T02:07:27.777078Z",
+      "stage": "query_expansion",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "NO_READABLE_POSTS: 逐篇读取和完整扫描均未取得正文",
+      "id": "3cb004fb72fb0cf3",
+      "turn_id": "6ab2d6d1e791611a",
+      "action_id": "0dde49c095afcd7d",
+      "parent_action_id": "6ab2d6d1e791611a",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 121318,
+      "data": {
+        "query": "大湾区 日本 促销 出行日期 2027年1月21日"
+      }
+    },
+    {
+      "time": "2026-10-02T02:07:42.805364Z",
+      "stage": "query_expansion",
+      "source": "Reddit public",
+      "status": "failed",
+      "detail": "ConnectTimeout: 来源调用失败；未保存可能含凭证的原始异常",
+      "id": "43c4031d95785d3c",
+      "turn_id": "6ab2d6d1e791611a",
+      "action_id": "c3d55f17ffb080af",
+      "parent_action_id": "6ab2d6d1e791611a",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 15027,
+      "data": {
+        "query": "大湾区 日本 促销 出行日期 2027年1月21日"
+      }
+    }
+  ],
+  "sources": [
+    "FlyAI",
+    "Reddit public",
+    "SerpAPI",
+    "model",
+    "小红书 / socai"
+  ],
+  "routes": [
+    {
+      "route": "HKG-KIX",
+      "evidence_ids": [
+        "c5ffe1f86addd196"
+      ],
+      "window": [
+        "2026-11-01",
+        "2026-11-30"
+      ],
+      "precise_requested_dates": [
+        "2026-11-04",
+        "2026-11-29",
+        "2026-11-30"
+      ],
+      "precise_successful_dates": [
+        "2026-11-04",
+        "2026-11-29",
+        "2026-11-30"
+      ],
+      "range_returned_dates": [
+        "2026-11-04"
+      ],
+      "selected_date": "2026-11-30",
+      "fares": [
+        {
+          "id": "607530ff494579f1",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "KIX",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 876.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:07:56.396911Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "KIX",
+              "departure": "2026-11-30 12:45:00",
+              "arrival": "2026-11-30 17:10:00",
+              "airline": "乐桃航空",
+              "flight_number": "MM064"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        },
+        {
+          "id": "892156a808d7f39f",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "KIX",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 910.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:07:56.396993Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "KIX",
+              "departure": "2026-11-30 14:45:00",
+              "arrival": "2026-11-30 19:20:00",
+              "airline": "香港快运",
+              "flight_number": "UO688"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        },
+        {
+          "id": "57a229465c9043d7",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "KIX",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 910.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:07:56.397027Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "KIX",
+              "departure": "2026-11-30 15:45:00",
+              "arrival": "2026-11-30 20:20:00",
+              "airline": "香港快运",
+              "flight_number": "UO862"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        },
+        {
+          "id": "bf137457fe7850ae",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "KIX",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 893.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:07:52.520278Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "KIX",
+              "departure": "2026-11-30 12:45",
+              "arrival": "2026-11-30 17:10",
+              "airline": "Peach Aviation",
+              "flight_number": "MM 64"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              640,
+              1050
+            ],
+            "lowest_price": 893,
+            "price_level": "typical",
+            "comparable": true,
+            "reason": "同一查询最低含税价格",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "0662b1c07d3a6f70",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "KIX",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 952.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:07:52.520332Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "KIX",
+              "departure": "2026-11-30 11:50",
+              "arrival": "2026-11-30 16:25",
+              "airline": "Hong Kong Express",
+              "flight_number": "UO 898"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              640,
+              1050
+            ],
+            "lowest_price": 893,
+            "price_level": "typical",
+            "comparable": false,
+            "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        },
+        {
+          "id": "068cadc935713ec3",
+          "source": "Google Flights / SerpAPI",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "KIX",
+            "outbound_date": "2026-11-30",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 952.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-02T02:07:52.520374Z",
+          "source_url": "https://www.google.com/travel/flights",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "KIX",
+              "departure": "2026-11-30 14:45",
+              "arrival": "2026-11-30 19:20",
+              "airline": "Hong Kong Express",
+              "flight_number": "UO 688"
+            }
+          ],
+          "price_basis": "total_including_taxes",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "航班搜索报价；额外行李/支付方式等费用可能另计",
+            "只读搜索，未进入预订流程"
+          ],
+          "price_insights": {
+            "typical_price_range": [
+              640,
+              1050
+            ],
+            "lowest_price": 893,
+            "price_level": "typical",
+            "comparable": false,
+            "reason": "本地红眼过滤或已选价格与来源最低价不一致；不作折扣比较",
+            "basis": "Google查询价格洞察，不是FareScout完整历史数据库"
+          }
+        }
+      ],
+      "deal": {
+        "level": "typical",
+        "label": "处于 Google 典型区间",
+        "fare_id": "bf137457fe7850ae",
+        "source": "Google Flights / SerpAPI",
+        "current_price": 893.0,
+        "typical_price_range": [
+          640,
+          1050
+        ],
+        "observed_at": "2026-10-02T02:07:52.520278+00:00",
+        "request": {
+          "origin": "HKG",
+          "destination": "KIX",
+          "outbound_date": "2026-11-30",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "reason": "同一搜索条件的 Google 价格洞察；不是 FareScout 自建历史库或可售承诺。"
+      }
+    }
+  ],
+  "not_a_month_minimum": true
+}

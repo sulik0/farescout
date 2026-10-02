@@ -10,6 +10,9 @@
 | [系统概览与产品价值](current/system-overview.md) | 研究流程、技术选择、Agent 行为及产品价值；文中 POC 部分标明为历史状态 |
 | [P1 实现说明](current/implementation.md) | 当前 P1 如何实现、各组件怎样配合、已知风险和暂缓事项 |
 | [P1 真实验收与限制](current/acceptance.md) | 真实运行记录、调用量、日期覆盖、失败来源和 P1 完成情况 |
+| [P1.5 改进计划](current/p15-plan.md) | 社区读取、耗时、日期调用和促销去重怎样改进 |
+| [P1.5 验证与 Chrome 连接诊断](current/p15-acceptance.md) | 改动说明、逐轮真实冷启动、阶段耗时、日期对照及尚未通过的稳定性验收 |
+| [socai 连接复用排查](current/socai-connection-diagnosis.md) | 连续搜索的 daemon、endpoint、TCP连接实测与首次授权等待修正 |
 
 ## 历史记录
 

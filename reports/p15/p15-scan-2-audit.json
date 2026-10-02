@@ -1,0 +1,272 @@
+{
+  "kind": "recorded_live_research_audit",
+  "session_id": "p15-scan-2",
+  "turn_id": "dbeef4777d3042bb",
+  "input": "香港 11 月飞日本哪里便宜？",
+  "started_at": "2026-10-02T02:23:36.233928+00:00",
+  "finished_at": "2026-10-02T02:31:24.211754+00:00",
+  "status": "partial",
+  "stop_reason": "有当前报价的候选不足3条；查询扩展未成功取得正文；成功宽社区查询不足2次；至少3条路线的多日期有效覆盖尚未满足",
+  "metrics": {
+    "model_operations": 3,
+    "community_calls": 5,
+    "socai_commands": 16,
+    "elapsed_seconds": 467.978,
+    "execution_seconds": 467.992,
+    "evidence_count": 2,
+    "verified_routes": 0,
+    "stage_model_seconds": 6.62,
+    "stage_browser_connection_seconds": 0.0,
+    "stage_date_phase_seconds": 0.0,
+    "stage_query_expansion_seconds": 107.351,
+    "stage_social_scan_seconds": 446.13,
+    "stage_community_search_seconds": 354.001,
+    "stage_social_read_result_seconds": 0.0,
+    "unattributed_seconds": 0.02,
+    "independence_groups": 2,
+    "model_requests": 3,
+    "model_input_tokens": 5476,
+    "model_output_tokens": 1412
+  },
+  "grounding_evidence_count": 0,
+  "dual_current_source_routes": 0,
+  "call_count_definition": "community_calls=provider search invocations; socai_commands=actual CLI commands (search/read/status/retries); date_calls=range/coarse/fine invocations; verification_calls=actual final exact provider invocations; quote_reuses=same-turn quote reuse without an API request; model_requests=Pydantic AI recorded requests including retries; stage_*_seconds=request duration sums, parent community stages include read children; date_phase=actual date-stage wall time",
+  "evidence_groups": [
+    {
+      "id": "6170786cb1a31ca1",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6abc6f1e0000000018029233",
+      "title": "大湾区日本航点77折！冲绳东京大阪等都有！",
+      "observed_at": "2026-10-02T02:27:28.427916+00:00",
+      "group": "cb970d4cfcaa65bf",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "",
+      "match_basis": []
+    },
+    {
+      "id": "d8ffb9f6817edd7c",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6a9f11ce000000000b00cf31",
+      "title": "11月底去大阪的机票还会降嘛",
+      "observed_at": "2026-10-02T02:27:28.427965+00:00",
+      "group": "7af35b6d6441b1b2",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "",
+      "match_basis": []
+    }
+  ],
+  "expansions": [
+    {
+      "query": "香港 大阪 11月底 机票 价格",
+      "evidence_id": "d8ffb9f6817edd7c",
+      "discovered_term": "11月底",
+      "reason": "该帖讨论 11 月底大阪机票走势，评论提到广州出发替代方案，可帮助发现香港出发 11 月的相关航线与日期线索。"
+    }
+  ],
+  "failures": [
+    {
+      "time": "2026-10-02T02:24:27.627991Z",
+      "stage": "source_retry",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "Search did not transition to a valid Xiaohongshu result page；有界重试：香港 日本 机票",
+      "id": "bb2895b0ff9289e1",
+      "turn_id": "dbeef4777d3042bb",
+      "action_id": "",
+      "parent_action_id": "dbeef4777d3042bb",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "original_query": "香港 日本 机票",
+        "retry_query": "香港 日本 机票"
+      }
+    },
+    {
+      "time": "2026-10-02T02:25:05.854737Z",
+      "stage": "community_search",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "SEARCH_PAGE_TRANSITION_FAILED: 小红书搜索页未正常打开；浏览器连接状态另行记录",
+      "id": "72f3115f11a1dc1f",
+      "turn_id": "dbeef4777d3042bb",
+      "action_id": "7a26fd8b582e7821",
+      "parent_action_id": "dbeef4777d3042bb",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 87412,
+      "data": {
+        "query": "香港 日本 机票"
+      }
+    },
+    {
+      "time": "2026-10-02T02:25:20.876384Z",
+      "stage": "community_search",
+      "source": "Reddit public",
+      "status": "failed",
+      "detail": "ConnectTimeout: 来源调用失败；未保存可能含凭证的原始异常",
+      "id": "5c2e2e5dbdea1358",
+      "turn_id": "dbeef4777d3042bb",
+      "action_id": "d96f29970b8149c2",
+      "parent_action_id": "dbeef4777d3042bb",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 15021,
+      "data": {
+        "query": "香港 日本 机票"
+      }
+    },
+    {
+      "time": "2026-10-02T02:26:02.254594Z",
+      "stage": "source_retry",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "Search did not transition to a valid Xiaohongshu result page；有界重试：香港 日本 十一月 机票",
+      "id": "6d3db389000049e5",
+      "turn_id": "dbeef4777d3042bb",
+      "action_id": "",
+      "parent_action_id": "dbeef4777d3042bb",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "original_query": "香港飞日本 十一月 机票 便宜",
+        "retry_query": "香港 日本 十一月 机票"
+      }
+    },
+    {
+      "time": "2026-10-02T02:27:28.427989Z",
+      "stage": "social_read_result",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "完整扫描只取得部分正文；搜索卡片后的帖子页面未打开；可能是网页变化或限流，原因尚未确认",
+      "id": "05835911bf86b484",
+      "turn_id": "dbeef4777d3042bb",
+      "action_id": "",
+      "parent_action_id": "dbeef4777d3042bb",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "query": "香港 日本 十一月 机票 便宜",
+        "failure_code": "NOTE_OPEN_FAILED",
+        "retained_bodies": 2
+      }
+    },
+    {
+      "time": "2026-10-02T02:28:27.436854Z",
+      "stage": "source_retry",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "Search did not transition to a valid Xiaohongshu result page；有界重试：香港 日本 机票 捡漏",
+      "id": "3a2c7e9a606f34d4",
+      "turn_id": "dbeef4777d3042bb",
+      "action_id": "",
+      "parent_action_id": "dbeef4777d3042bb",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "original_query": "香港 日本 机票 捡漏",
+        "retry_query": "香港 日本 机票 捡漏"
+      }
+    },
+    {
+      "time": "2026-10-02T02:29:32.442346Z",
+      "stage": "community_search",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "SEARCH_PAGE_TRANSITION_FAILED: 小红书搜索页未正常打开；浏览器连接状态另行记录",
+      "id": "b1e7b35e8bf6db2f",
+      "turn_id": "dbeef4777d3042bb",
+      "action_id": "a26aa317c1442a3b",
+      "parent_action_id": "dbeef4777d3042bb",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 124011,
+      "data": {
+        "query": "香港 日本 机票 捡漏"
+      }
+    },
+    {
+      "time": "2026-10-02T02:30:40.371871Z",
+      "stage": "source_retry",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "Search did not transition to a valid Xiaohongshu result page；有界重试：香港 大阪 11月底 机票 价格",
+      "id": "c0a32970810d06f5",
+      "turn_id": "dbeef4777d3042bb",
+      "action_id": "",
+      "parent_action_id": "dbeef4777d3042bb",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "original_query": "香港 大阪 11月底 机票 价格",
+        "retry_query": "香港 大阪 11月底 机票 价格"
+      }
+    },
+    {
+      "time": "2026-10-02T02:31:24.208359Z",
+      "stage": "query_expansion",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "SEARCH_PAGE_TRANSITION_FAILED: 小红书搜索页未正常打开；浏览器连接状态另行记录",
+      "id": "d2330cbe27a0c3e1",
+      "turn_id": "dbeef4777d3042bb",
+      "action_id": "84a6735b5950710a",
+      "parent_action_id": "dbeef4777d3042bb",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 107351,
+      "data": {
+        "query": "香港 大阪 11月底 机票 价格"
+      }
+    },
+    {
+      "time": "2026-10-02T02:31:24.212659Z",
+      "stage": "conclusion",
+      "source": null,
+      "status": "failed",
+      "detail": "有当前报价的候选不足3条；查询扩展未成功取得正文；成功宽社区查询不足2次；至少3条路线的多日期有效覆盖尚未满足",
+      "id": "5ebac24e4e67d70c",
+      "turn_id": "dbeef4777d3042bb",
+      "action_id": "",
+      "parent_action_id": "dbeef4777d3042bb",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "status": "partial",
+        "metrics": {
+          "model_operations": 3,
+          "community_calls": 5,
+          "socai_commands": 16,
+          "elapsed_seconds": 467.978,
+          "execution_seconds": 467.992,
+          "evidence_count": 2,
+          "verified_routes": 0,
+          "stage_model_seconds": 6.62,
+          "stage_browser_connection_seconds": 0.0,
+          "stage_date_phase_seconds": 0.0,
+          "stage_query_expansion_seconds": 107.351,
+          "stage_social_scan_seconds": 446.13,
+          "stage_community_search_seconds": 354.001,
+          "stage_social_read_result_seconds": 0.0,
+          "unattributed_seconds": 0.02,
+          "independence_groups": 2,
+          "model_requests": 3,
+          "model_input_tokens": 5476,
+          "model_output_tokens": 1412
+        }
+      }
+    }
+  ],
+  "sources": [
+    "Reddit public",
+    "model",
+    "小红书 / socai"
+  ],
+  "routes": [],
+  "not_a_month_minimum": true
+}

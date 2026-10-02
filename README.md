@@ -1,4 +1,6 @@
-# 飞探 FareScout P1
+# 飞探 FareScout P1.5
+
+P1.5 已加入社区读取恢复、阶段耗时、日期调用优化和促销去重，81项自动化测试通过。真实稳定性验收仍未通过：一次中间版跑通，之后重复研究出现partial，最终版本三轮因CDP会话未建立而blocked。日期阶段单次对照从21次调用减到15次。完整结果、失败与限制见[P1.5验收](docs/current/p15-acceptance.md)。以下成功运行描述属于此前POC / P1的历史结果。
 
 从模糊机票需求出发，读取社区正文/评论，依据已读线索扩展查询，再调用实时机票来源验证。输出 Markdown 报告和可恢复的 JSON 会话。产品唯一基准是 [完整需求](docs/current/product-requirements.md)。
 
@@ -77,13 +79,19 @@ farescout resume --session demo
 | `FARESCOUT_MAX_DATE_CALLS` | 范围粗筛/粗查/邻近精查合计预算，默认 25，上限 40；与最终验价预算分开 |
 | `FARESCOUT_COARSE_DATES` | 每条路线代表日期数，默认 3（首/中/尾），范围低价或证据日期可替换中间日 |
 | `FARESCOUT_FINE_DATES` | 每条路线低价日期附近追加样本，默认 1；仍受总日期预算限制 |
-| `FARESCOUT_SOCAI_NOTES` | 每次正文读取数，默认 3；失败最多重试一次短查询，不强制最新排序 |
+| `FARESCOUT_SOCAI_NOTES` | 每次最多读取3篇正文；先看搜索结果第一页，不为凑卡片数量滚动；卡片本身不算证据 |
+| `FARESCOUT_SOCAI_MODE` | 默认 `selective`，先搜卡片再读正文；可选 `scan` 使用socai完整扫描。逐篇模式无正文时只回退扫描一次 |
+| `FARESCOUT_SOCAI_COMMENTS` | 每篇最多读取评论数，默认1；范围0–3 |
+| `FARESCOUT_SOCAI_CONNECT_TIMEOUT` | 首次Chrome连接等待，默认180秒；已连接时卡片搜索最多60秒、单篇读取最多40秒，仍受来源及总时间预算限制 |
+| `FARESCOUT_FARE_CONCURRENCY` | SerpAPI精确日期查询并发数，默认2；FlyAI CLI及社区浏览器仍串行 |
+| `FARESCOUT_QUOTE_REUSE_SECONDS` | 同一轮、同来源、同条件报价最多复用120秒；不会更改原抓取时间 |
+| `FARESCOUT_DATE_HINT_SOURCE` | 默认 `explore`，优先Google Travel Explore，失败或无有效日期时回退FlyAI range；可选 `flyai` |
 | `FARESCOUT_EVIDENCE_QUALITY` | 默认 1，正文质量/商业信号/同文关联标签；0 禁用 |
 | `FARESCOUT_DEAL_STRENGTH` | 默认 1，使用当次 Google Price Insights；缺少可比基线就明确未知，0 禁用 |
 | `FARESCOUT_WEB_FALLBACK` | 默认 1；允许 Reddit 公共正文备用来源，需网络 |
 | `NODE_EXTRA_CA_CERTS` | 可选受信任公共 CA PEM 路径，用于企业代理等环境；不要关闭 TLS 校验 |
 
-模型负责整理研究条件、提出候选路线和扩展查询；程序不会把模型生成的价格当作当前票价。“最近”默认明日起未来 60 天；“日期无所谓”探索未来 180 天；“11 月”解释为下一次 11 月并显示年份。验价默认 1 成人经济舱单程。日期范围较宽时，系统先用 FlyAI 找日期线索，再抽查少数具体日期，并补查较低报价日期附近的日期，最后用两个来源复验选定日期。没有遍历全部日期，不声称全月最低。
+模型负责整理研究条件、提出候选路线和扩展查询；程序不会把模型生成的价格当作当前票价。“最近”默认明日起未来 60 天；“日期无所谓”探索未来 180 天；“11 月”解释为下一次 11 月并显示年份。验价默认 1 成人经济舱单程。日期范围较宽时，系统优先用 Google Travel Explore 找日期线索，失败或没有合适日期时尝试 FlyAI range，再抽查少数具体日期，并补查较低报价日期附近的日期，最后向两个来源核对选定日期；本轮刚取得的同条件报价可以复用。没有遍历全部日期，不声称全月最低。
 
 ## 浏览器与登录态
 
@@ -97,7 +105,7 @@ socai xhs search '香港 日本 机票' --num-notes 3 --num-comments 3 --pretty
 
 `doctor` 是瞬时状态：本机在空闲时曾显示 `DAEMON_UNAVAILABLE` / `BROWSER_ENDPOINT_UNREACHABLE`，再次执行只读搜索后自动连接成功，随后 `status` 显示 `browser_connected=true`。是否可用以实际正文读取为准。
 
-必须能返回正文和评论；只有搜索卡片不算通过。本机使用 socai v0.6.1 直接读取 12 篇正文，适配器兼容其 `entity` / `top_comments` 结构。当前适配器只调用只读 `xhs search`，不调用评论、点赞、私信等命令。遇登录、验证码或访问限制时停止该来源并保留原因，不能绕过。FareScout 不读取 Cookie 数据库、不导出浏览器 profile、不迁移登录态。
+必须能返回正文和评论；只有搜索卡片不算通过。本机使用 socai v0.6.1 直接读取 12 篇正文，适配器兼容其 `entity` / `top_comments` 结构。适配器只调用只读 `status`、`xhs search` 和 `xhs get-notes`，不调用评论、点赞、私信等命令。首次 Chrome 连接等待默认180秒；已经连接时继续复用同一daemon。实测及配置见 [连接复用排查](docs/current/socai-connection-diagnosis.md)。遇登录、验证码或访问限制时停止该来源并保留原因，不能绕过。FareScout 不读取 Cookie 数据库、不导出浏览器 profile、不迁移登录态。
 
 ### 已登录宿主浏览器：早期验证路径
 
