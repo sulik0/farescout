@@ -20,6 +20,7 @@ class Application:
         self.lock = threading.Lock()
         self.active = None
         self.error = None
+        self.error_session = None
 
     def start(self, session_id, message):
         self.store.path(session_id)
@@ -28,12 +29,13 @@ class Application:
         with self.lock:
             if self.active:
                 raise RuntimeError("已有研究进行中，请等待完成再继续")
-            self.active, self.error = session_id, None
+            self.active, self.error, self.error_session = session_id, None, None
         def work():
             try:
                 asyncio.run(self.factory(self.settings).run(clean_text(message, 3000), self.store.load(session_id), session_id))
             except Exception as error:
                 self.error = str(source_error("research", error))
+                self.error_session = session_id
             finally:
                 with self.lock:
                     self.active = None
@@ -70,6 +72,13 @@ def create_server(settings, port=8765, researcher_factory=Researcher):
             try:
                 if path == "/":
                     return self.respond(Path(__file__).with_name("ui.html").read_text(), content_type="text/html; charset=utf-8")
+                assets = {"/assets/ui.css": ("ui.css", "text/css"),
+                          "/assets/ui.mjs": ("ui.mjs", "text/javascript"),
+                          "/assets/ui-state.mjs": ("ui-state.mjs", "text/javascript")}
+                if path in assets:
+                    filename, content_type = assets[path]
+                    return self.respond(Path(__file__).with_name(filename).read_text(),
+                                        content_type=content_type + "; charset=utf-8")
                 if path == "/api/sessions":
                     sessions = []
                     for file in sorted(app.store.root.glob("*.json"), key=lambda p: p.stat().st_mtime, reverse=True):
@@ -91,7 +100,8 @@ def create_server(settings, port=8765, researcher_factory=Researcher):
                     return self.events(session_id)
                 session = app.store.load(session_id)
                 if session is None:
-                    return self.respond({"error": app.error or "会话尚未创建", "active": app.active}, 404)
+                    return self.respond({"error": (app.error if app.error_session == session_id else None) or "会话尚未创建",
+                                         "active": app.active}, 404)
                 if len(parts) == 4 and parts[3] == "report":
                     if not session.turns:
                         return self.respond({"error": "会话尚无研究轮次"}, 404)
@@ -102,7 +112,8 @@ def create_server(settings, port=8765, researcher_factory=Researcher):
                     return self.respond(render_report(session, turn), content_type="text/markdown; charset=utf-8")
                 if len(parts) == 4:
                     return self.respond({"error": "未找到"}, 404)
-                return self.respond({"session": session.model_dump(mode="json"), "active": app.active, "error": app.error})
+                return self.respond({"session": session.model_dump(mode="json"), "active": app.active,
+                                     "error": app.error if app.error_session == session_id else None})
             except (ValueError, OSError):
                 return self.respond({"error": "会话无效或无法读取"}, 400)
 

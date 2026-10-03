@@ -23,7 +23,7 @@ farescout = "farescout.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-farescout = ["ui.html"]
+farescout = ["ui.html", "ui.css", "ui.mjs", "ui-state.mjs"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

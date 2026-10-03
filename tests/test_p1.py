@@ -175,3 +175,48 @@ def test_live_api_sse_history_and_cross_origin_rejection(tmp_path):
     finally:
         server.shutdown()
         server.server_close()
+
+
+def test_frontend_assets_are_served_with_explicit_types_and_no_arbitrary_files(tmp_path):
+    from urllib.error import HTTPError
+    server = create_server(Settings(data_dir=tmp_path), 0)
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    base = f'http://127.0.0.1:{server.server_port}'
+    try:
+        for filename, expected in [('ui.css', 'text/css'), ('ui.mjs', 'text/javascript'), ('ui-state.mjs', 'text/javascript')]:
+            with urlopen(base + '/assets/' + filename) as response:
+                assert response.headers.get_content_type() == expected
+                assert response.headers['X-Content-Type-Options'] == 'nosniff'
+                assert response.read()
+        assert b'/assets/ui.mjs' in urlopen(base).read()
+        for path in ['/assets/config.py', '/assets/../config.py', '/assets/.env']:
+            with pytest.raises(HTTPError) as error:
+                urlopen(base + path)
+            assert error.value.code == 404
+    finally:
+        server.shutdown()
+        server.server_close()
+
+
+def test_a_failed_research_does_not_show_its_error_in_another_session(tmp_path):
+    import time
+    from farescout.models import Goal
+    class Failure:
+        def __init__(self, _):
+            pass
+        async def run(self, *_):
+            raise TimeoutError('test source failure')
+    server = create_server(Settings(data_dir=tmp_path), 0, Failure)
+    server.app.store.save(Session(id='historical', goal=Goal(date_from=date(2026, 11, 1), date_to=date(2026, 11, 30))))
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    base = f'http://127.0.0.1:{server.server_port}'
+    try:
+        server.app.start('failed', 'test research')
+        deadline = time.monotonic() + 5
+        while server.app.active and time.monotonic() < deadline:
+            time.sleep(0.01)
+        assert server.app.error and server.app.error_session == 'failed'
+        assert json.load(urlopen(base + '/api/sessions/historical'))['error'] is None
+    finally:
+        server.shutdown()
+        server.server_close()

@@ -9,6 +9,7 @@
 | [产品需求与验收标准](current/product-requirements.md) | 产品范围、需求和完成标准；唯一需求基准 |
 | [系统概览与产品价值](current/system-overview.md) | 研究流程、技术选择、Agent 行为及产品价值；文中 POC 部分标明为历史状态 |
 | [P1 实现说明](current/implementation.md) | 当前 P1 如何实现、各组件怎样配合、已知风险和暂缓事项 |
+| [前端研究工作台](current/frontend-workspace.md) | 三栏界面、航线结论追溯、会话交互修复与前端验证 |
 | [P1 真实验收与限制](current/acceptance.md) | 真实运行记录、调用量、日期覆盖、失败来源和 P1 完成情况 |
 | [P1.5 改进计划](current/p15-plan.md) | 社区读取、耗时、日期调用和促销去重怎样改进 |
 | [P1.5 验证与 Chrome 连接诊断](current/p15-acceptance.md) | 改动说明、逐轮真实冷启动、阶段耗时、日期对照及尚未通过的稳定性验收 |
