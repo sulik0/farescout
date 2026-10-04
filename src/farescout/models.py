@@ -120,6 +120,11 @@ class SearchPlan(Record):
     queries: list[str] = Field(min_length=2, max_length=3)
 
 
+class ResearchDecision(Record):
+    action: Literal["community", "dates", "promotion", "stop"]
+    reason: str = Field(min_length=5, max_length=800)
+
+
 class FareRequest(Record):
     origin: str
     destination: str
@@ -214,6 +219,7 @@ class Turn(Record):
     status: Literal["running", "complete", "partial", "blocked"] = "running"
     stop_reason: str = ""
     metrics: dict[str, int | float | str] = Field(default_factory=dict)
+    checkpoint: dict = Field(default_factory=dict)
 
 
 class Session(Record):

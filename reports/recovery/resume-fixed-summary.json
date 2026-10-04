@@ -1,0 +1,22 @@
+{
+  "kind": "real_selected_date_recovery_with_community_disabled",
+  "reason": "Chrome authorization pending; not acceptance of restored community connectivity",
+  "same_turn": true,
+  "turns_before": 1,
+  "turns_after": 1,
+  "selected_dates_before": {
+    "HKG-KIX": "2026-11-30",
+    "HKG-NRT": "2026-11-14"
+  },
+  "selected_dates_after": {
+    "HKG-KIX": "2026-11-30",
+    "HKG-NRT": "2026-11-14"
+  },
+  "added_date_calls": 0,
+  "added_community_calls": 0,
+  "added_verification_calls": 4,
+  "active_recovery_seconds": 15.766,
+  "evidence_timestamps_preserved": true,
+  "status_after": "partial",
+  "dual_current_source_routes": 2
+}

@@ -34,6 +34,8 @@ def audit(session):
             "duplicate_of":e.quality.get('duplicate_of'), "campaign_duplicate_of":e.quality.get('campaign_duplicate_of'),
             "match_basis":e.quality.get('campaign_match_basis',[])} for e in session.evidence.values()],
         "expansions": [e.model_dump(mode='json') for e in turn.expansions],
+        "research_trace": [e.model_dump(mode="json") for e in turn.events if e.stage in {"browser_connection", "research_decision", "checkpoint", "result_available", "resume"}],
+        "recovery_required": turn.checkpoint.get("recovery_required"),
         "failures": [e.model_dump(mode='json') for e in turn.events if e.status == 'failed'],
         "sources": sorted({e.source for e in turn.events if e.source}),
         "routes": routes,

@@ -1,0 +1,14 @@
+{
+  "kind": "real_selected_date_recovery_with_community_disabled",
+  "reason": "Chrome authorization pending; not acceptance of restored community connectivity",
+  "same_turn": true,
+  "turns_before": 1,
+  "turns_after": 1,
+  "added_date_calls": 0,
+  "added_community_calls": 0,
+  "added_verification_calls": 4,
+  "active_recovery_seconds": 7.218,
+  "evidence_timestamps_preserved": true,
+  "status_after": "partial",
+  "dual_current_source_routes": 2
+}

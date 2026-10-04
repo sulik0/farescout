@@ -71,3 +71,14 @@ def test_publication_age_is_not_retrieval_age():
     old = recent.model_copy(update={'published_at': '2025-05-16'})
     unknown = recent.model_copy(update={'published_at': None})
     assert publication_time(recent) > publication_time(old) > publication_time(unknown)
+
+
+def test_rejected_promotion_citation_cannot_support_candidate_narration():
+    route = evidence()
+    promo = route.model_copy(update={'id':'promo','title':'日本促销','body':'东京大阪77折促销。'})
+    c = candidate(signals=[candidate().signals[0],Signal(evidence_id='promo',excerpt='东京大阪77折促销')],
+        why='香港飞东京77折促销值得关注')
+    result = grounded(Discovery(candidates=[c]),{'p1':route,'promo':promo},evolve_goal('香港11月日本'))
+    assert len(result.candidates)==1 and len(result.candidates[0].signals)==1
+    assert '77折' not in result.candidates[0].why
+    assert '引用未通过检查' in result.candidates[0].why

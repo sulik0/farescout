@@ -13,6 +13,8 @@
 | [P1 真实验收与限制](current/acceptance.md) | 真实运行记录、调用量、日期覆盖、失败来源和 P1 完成情况 |
 | [P1.5 改进计划](current/p15-plan.md) | 社区读取、耗时、日期调用和促销去重怎样改进 |
 | [P1.5 验证与 Chrome 连接诊断](current/p15-acceptance.md) | 改动说明、逐轮真实冷启动、阶段耗时、日期对照及尚未通过的稳定性验收 |
+| [研究恢复与提前展示结果](current/research-recovery-acceptance.md) | 同一轮恢复、按缺口选择下一步、真实首条结果耗时和睡眠附近的 CDP 断线记录 |
+| [上午授权后，下午为什么又需要确认 Chrome](current/cdp-disconnect-investigation.md) | 排查三小时超时、进程清理和睡眠附近的CDP断线，并给出分阶段解决方案 |
 | [socai 连接复用排查](current/socai-connection-diagnosis.md) | 连续搜索的 daemon、endpoint、TCP连接实测与首次授权等待修正 |
 
 ## 历史记录

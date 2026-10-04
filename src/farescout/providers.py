@@ -16,6 +16,7 @@ from urllib.parse import quote, urlparse, parse_qs
 import httpx
 
 from .config import Settings
+from .connection import connection_observation
 from .models import Comment, DateSample, Evidence, Fare, FareRequest, Goal, Segment, identity
 from .safety import SourceFailure, clean_text, public_url
 
@@ -172,6 +173,8 @@ class Socai:
         self.blocked_code = None
         self.retry_reason = "未取得正文"
         self.timeout_seconds = settings.socai_connect_timeout + settings.source_timeout * 2 + 5
+        self.connection = {}
+        self.known_notes = {}
 
     async def browser_ready(self):
         self.command_calls += 1
@@ -191,15 +194,39 @@ class Socai:
                     raise SourceFailure(self.name, 'DAEMON_IPC_PERMISSION_DENIED',
                         '执行环境无权连接现有socai daemon；请从正常本机终端运行，不要重建daemon') from None
         ready = state.get('browser_connected') is True
+        self.connection = connection_observation(state, self.settings)
+        if state.get('daemon_running') is True and state.get('daemon_compatible') is False:
+            raise SourceFailure(self.name, 'DAEMON_VERSION_MISMATCH', 'CLI与daemon版本或构建不同；停止调用以免socai自动重启现有daemon')
         self.on_trace('browser_connection', 'ok' if ready else 'info',
-            '复用已经连接的Chrome' if ready else f'等待首次Chrome连接授权，最多{self.settings.socai_connect_timeout}秒；本轮不自动重复连接',
-            0, {k:state.get(k) for k in ['browser_connected','browser_state','daemon_running','error_code']})
+            '复用已经连接的Chrome' if ready else 'Chrome当前未连接；授权是否待确认尚未知，只允许本轮一次连接尝试',
+            0, self.connection)
         return ready
 
     async def _command(self, args, stage, data):
         needs_connection = stage in {'social_preview', 'social_scan'} and not await self.browser_ready()
         self.command_calls += 1
         start = monotonic()
+        observer = None
+        if needs_connection:
+            async def observe_attempt():
+                last = self.connection.get('browser_state')
+                while True:
+                    await asyncio.sleep(2)
+                    try:
+                        self.command_calls += 1
+                        state = await command_json(self.settings.socai_bin, ['status', '--json'],
+                            replace(self.settings, source_timeout=5), 'socai')
+                        self.connection = connection_observation(state, self.settings)
+                        current = state.get('browser_state')
+                        if current != last:
+                            self.on_trace('browser_connection', 'ok' if state.get('browser_connected') else 'info',
+                                'Chrome已连接' if state.get('browser_connected') else '连接状态变化；授权弹窗是否出现仍需用户确认',
+                                0, self.connection)
+                            last = current
+                    except Exception:
+                        # Readiness observation cannot kill or retry the active connection attempt.
+                        continue
+            observer = asyncio.create_task(observe_attempt())
         try:
             normal_timeout = min(self.settings.source_timeout, 60 if stage == 'social_preview' else 40) if stage != 'social_scan' else self.settings.source_timeout
             timeout = self.settings.socai_connect_timeout if needs_connection else normal_timeout
@@ -240,8 +267,32 @@ class Socai:
             raise
         except Exception as error:
             from .safety import source_error
-            self.on_trace(stage, "failed", str(source_error(self.name, error)), int((monotonic()-start)*1000), data)
+            failure = source_error(self.name, error)
+            # CLI transport failures may raise before returning a gate payload.
+            # A post-failure status check is observational; it never reconnects.
+            if needs_connection or failure.code == 'BROWSER_OR_LOGIN_REQUIRED':
+                try:
+                    await self.browser_ready()
+                except Exception:
+                    pass
+                if self.connection.get('browser_connected') is False and self.connection.get('browser_state') == 'disconnected':
+                    failure = SourceFailure(self.name, 'BROWSER_DISCONNECTED',
+                        'CDP连接已断开或重连未建立；保留本轮，批准Chrome连接后再恢复')
+            self.on_trace(stage, "failed", str(failure), int((monotonic()-start)*1000),
+                data | {'failure_code':failure.code})
+            if failure is not error and failure.code == 'BROWSER_DISCONNECTED':
+                raise failure from None
             raise
+        finally:
+            if observer:
+                observer.cancel()
+                await asyncio.gather(observer, return_exceptions=True)
+        if needs_connection or socai_gate(payload):
+            # Verify the post-command state without reconnecting or conflating login with transport.
+            await self.browser_ready()
+        if socai_gate(payload) == 'BROWSER_OR_LOGIN_REQUIRED' and self.connection.get('browser_connected') is False:
+            self.blocked_code = 'BROWSER_DISCONNECTED'
+            raise SourceFailure(self.name, 'BROWSER_DISCONNECTED', 'CDP连接未建立；请允许Chrome连接后恢复本轮，不重跑成功步骤')
         self.on_trace(stage, "ok", "命令已返回；是否读到正文另行核对", int((monotonic()-start)*1000), data)
         return payload
 
@@ -286,6 +337,11 @@ class Socai:
                 break
         result, last_error = [], None
         for card in selected:
+            if card['note_id'] in self.known_notes:
+                result.append(self.known_notes[card['note_id']])
+                self.on_trace('checkpoint', 'skipped', '本轮恢复保留这篇已读正文和原读取时间，不再打开帖子',
+                    0, {'note_id':card['note_id'], 'query':query})
+                continue
             try:
                 opened = await self._command(["xhs", "get-notes", "--note",
                     f"{card['note_id']}={card['xsec_token']}", "--num-comments",
@@ -302,7 +358,7 @@ class Socai:
                 self.on_evidence(readable)
             except Exception as error:
                 last_error = error
-                if isinstance(error, SourceFailure) and error.code in {"ACCESS_BLOCKED", "BROWSER_OR_LOGIN_REQUIRED", "NOT_INSTALLED"}:
+                if isinstance(error, SourceFailure) and error.code in {"ACCESS_BLOCKED", "BROWSER_OR_LOGIN_REQUIRED", "BROWSER_DISCONNECTED", "DAEMON_VERSION_MISMATCH", "CONNECTION_APPROVAL_TIMEOUT", "NOT_INSTALLED"}:
                     self.blocked_code = error.code
                     if result:
                         for item in result:

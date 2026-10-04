@@ -10,6 +10,7 @@ from time import monotonic
 from farescout.config import Settings
 from farescout.providers import Socai, command_json, socai_evidence
 from farescout.safety import source_error
+from farescout.models import now
 
 
 async def snapshot(settings):
@@ -36,6 +37,7 @@ async def snapshot(settings):
         state['endpoint_port'] = raw.splitlines()[0]
     except Exception as error:
         state['endpoint_marker'] = type(error).__name__
+    state['observed_at'] = now().isoformat()
     return state
 
 
@@ -64,7 +66,11 @@ async def main(args):
         print('TIMEOUT PROBE',json.dumps(record,ensure_ascii=False),flush=True)
     queries = ['香港 日本 机票','香港 大阪 机票','香港 东京 机票'][:args.calls]
     for index,query in enumerate(queries,1):
+        if index > 1 and args.interval:
+            print('IDLE',args.interval,'seconds; no browser keepalive/search during this gap',flush=True)
+            await asyncio.sleep(args.interval)
         record = {'call':index,'query':query,'before':await snapshot(settings)}
+        record['manual_confirmation_observed'] = 'unknown_requires_user_observation'
         print('CALL',index,'BEFORE',json.dumps(record['before'],ensure_ascii=False),flush=True)
         start = monotonic()
         try:
@@ -95,4 +101,5 @@ if __name__ == '__main__':
     parser.add_argument('--calls',type=int,choices=[1,2,3],default=3)
     parser.add_argument('--timeout-probe',action='store_true')
     parser.add_argument('--output',default='observations.json')
+    parser.add_argument('--interval', type=int, default=0, help='Seconds without browser work between calls')
     asyncio.run(main(parser.parse_args()))

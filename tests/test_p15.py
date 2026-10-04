@@ -58,7 +58,7 @@ async def test_cards_missing_tokens_cannot_count_as_body(monkeypatch):
     source = Socai(Settings())
     with pytest.raises(SourceFailure, match='NO_READABLE_POSTS'):
         await source.search('香港 日本 机票')
-    assert source.command_calls == 4  # status + preview, then status + bounded scan fallback
+    assert source.command_calls == 6  # pre/post connection checks plus each bounded platform command
 
 
 async def test_quote_reuse_preserves_time_and_stale_quote_refreshes(tmp_path):
@@ -135,7 +135,7 @@ async def test_zero_exit_login_payload_is_not_retried(monkeypatch):
     monkeypatch.setattr('farescout.providers.command_json', command)
     with pytest.raises(SourceFailure, match='BROWSER_OR_LOGIN_REQUIRED'):
         await Socai(Settings()).search('香港 日本 机票')
-    assert len(attempts) == 2  # status + one platform command
+    assert len(attempts) == 3  # status + one platform command + status, never a second search
 
 
 async def test_range_hint_reduces_calls_but_requires_two_exact_dates(tmp_path):

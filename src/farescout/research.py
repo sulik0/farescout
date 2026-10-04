@@ -13,7 +13,7 @@ from pydantic_ai.providers.openai import OpenAIProvider
 from pydantic_ai.usage import RunUsage, UsageLimits
 
 from .config import Settings
-from .models import Candidate, Constraint, Discovery, Evidence, Expansion, Goal, GoalPatch, SearchPlan
+from .models import Candidate, Constraint, Discovery, Evidence, Expansion, Goal, GoalPatch, SearchPlan, ResearchDecision
 from .safety import SourceFailure
 
 # Geographic vocabulary only, never a route shortlist or price database.
@@ -235,6 +235,12 @@ def grounded(discovery: Discovery, evidence: dict[str, Evidence], goal: Goal) ->
             valid_signals.append(signal)
         if not valid_signals or candidate.key in seen:
             continue
+        if len(valid_signals) < len(candidate.signals):
+            # A discarded promotion citation cannot continue to support the narration.
+            candidate = candidate.model_copy(update={"why":
+                f"已读原文支持从{AIRPORTS[candidate.origin][0]}出发的这个方向，"
+                f"以{AIRPORTS[candidate.destination][0]}作为验价样本，保留{len(valid_signals)}条原文引用；"
+                "其他活动描述的引用未通过检查，日期、促销条件与当前价格仍需核对。"})
         candidate = candidate.model_copy(update={
             "signals": valid_signals,
             "country": AIRPORTS[candidate.destination][1],
@@ -315,6 +321,8 @@ class Brain:
     async def discover(self, goal: Goal, evidence: dict[str, Evidence]) -> Discovery:
         result = await self.ask(Discovery, """
 从正文/评论提取最多 12 个候选，排序优先近期有效线索、明确出行条件、多篇独立讨论。
+不要因为一条路线讨论最多就只提取它；逐一检查正文明确列出的其他航点。
+没有社区晒价也可以成为候选，只要原文支持出发地和目的地；不能因此生成或猜测价格。
 候选必须同时有出发地和目的地线索；不要把广告、过期活动、路线科普称作仍有效促销。
 不同正文或作者不等于独立来源；本轮没有已确认独立标志，不能称独立佐证或已完成官方核查。
 signals.excerpt 必须是正文或评论的连续逐字摘录，seen_price_text 必须出现在该摘录中。
@@ -325,11 +333,14 @@ date_hint 仅填正文中确切的未来 YYYY-MM-DD 日期，否则 null；日�
 基于已经阅读的正文/评论自主提出 1～2 个新的查询，expansions 必须引用 evidence_id，
 discovered_term 是正文/评论中逐字出现的航司、目的地、促销或限制关键词，并出现在新 query 中。
 query 用3～5个短关键词（空格分隔），discovered_term 放第一项；去掉“是否结束”等长问句。
-新查询应该帮助确认可用日期、失效情况或发现相关航线，不要重复初始搜索。
+新查询应该帮助确认可用日期、失效情况或发现相关航线，不要重复初始搜索或 previous_queries。
+当 accepted_routes 不足3条，优先补充其他航点或 evidence_gaps 中缺少出发地的线索，避免反复查已有航线的同一促销。
+例如活动列出了多个航点但未写出发地，可用正文中的活动/航司词加用户出发地继续搜索；取得原文确认之前不能加入候选。
 why 是选中调查的理由，不能包含伪造的当前价格或已经验证的声明。
 """, {
             "goal": goal.model_dump(mode="json"),
             "geographic_vocabulary": {k: v[:2] for k, v in AIRPORTS.items()},
+            "research_context": getattr(self, "discovery_context", {}),
             "untrusted_community_evidence": [v.model_dump(mode="json") for v in list(evidence.values())[-25:]],
         })
         return grounded(result, evidence, goal)
@@ -343,3 +354,14 @@ why 是选中调查的理由，不能包含伪造的当前价格或已经验证�
                 'untrusted_community_evidence': [e.model_dump(mode='json') for e in list(evidence.values())[-25:]],
             })
         return grounded(Discovery(expansions=[expansion]), evidence, goal).expansions
+
+    async def decide(self, goal, context):
+        return await self.ask(ResearchDecision,
+            "根据当前缺口决定下一步，只能选择 allowed_actions 中的操作。community 补读已有计划中的社区查询；"
+            "dates 对有逐字证据的候选开始日期探索和验价（可与社区读取同时进行）；"
+            "promotion 用已有原文扩展词在原社区核查活动日期/限制，也可发现关联路线；不访问新增来源。"
+            "缺少可核对报价时优先 dates，社区覆盖不足时继续 community，活动条件含糊时 promotion。"
+            "候选无需先有社区晒价才可以查 dates。已经安排日期任务时不要重复安排，也不要反复搜索同一促销。"
+            "所有必要操作已尝试、来源受阻或预算不足时 stop。reason 说明哪个已知缺口支持选择，"
+            "不要编造价格、宣称促销有效或输出私有思维过程。", {
+                "goal": goal.model_dump(mode="json"), "research_context": context})

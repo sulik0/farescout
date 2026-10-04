@@ -67,3 +67,10 @@ PYTHONPATH=src python scripts/probe-socai-reuse.py --mode adapter --calls 2 --ou
 完成连接复用探测及多轮社区读取后，2026-10-02 10:41:37（北京时间）daemon记录 `CDP session is closed`。最终版本新研究在11:34:36才开始，三轮均发生新的WebSocket握手失败（socai内部每次等待20秒、重试3次）。daemon和Chrome进程编号、endpoint文件指纹未变，Chrome仍监听9222，但原TCP连接已经断开。不能将端口存在当作已经连接，也不能将这次断开归因于后来的FareScout请求超时。
 
 目前未确认是谁或什么动作关闭了CDP会话，已请用户核对新的Chrome连接请求。客户端180秒等待不延长socai内部约60秒的连接预算；同一轮连接失败后FareScout停止该来源，但不同的新研究仍各自允许一次首次连接尝试。此后最终验收0/3，详见[P1.5完整记录](p15-acceptance.md)。此前连接持续复用的结论只适用于观测期间，不是永久免确认保证。
+
+
+## 2026-10-04 的进一步验证
+
+本次确认了同一 daemon / endpoint 下仍会丢失 CDP 连接。断开时间与 macOS 空闲睡眠记录相差不足一秒，暂不能把它写成已确认的唯一原因。应用现在记录连接变化，并能恢复同一轮；真实报价恢复保留了原文时间与已完成日期探索。连续和空闲后的完整验收仍未通过，详情见[研究恢复验收](research-recovery-acceptance.md)。
+
+今日对三小时超时、daemon退出、客户端清理及睡眠的逐项判断，见[完整断线排查与解决方案](cdp-disconnect-investigation.md)。

@@ -22,8 +22,13 @@ class Application:
         self.error = None
         self.error_session = None
 
-    def start(self, session_id, message):
+    def start(self, session_id, message, *, resume=False):
         self.store.path(session_id)
+        if resume:
+            saved = self.store.load(session_id)
+            if not saved or not saved.turns or saved.turns[-1].status == 'complete':
+                raise ValueError('只能恢复已有未完成的最后一轮研究')
+            message = saved.turns[-1].user_input
         if not message.strip() or len(message) > 3000:
             raise ValueError("请输入1～3000字的研究需求")
         with self.lock:
@@ -32,7 +37,9 @@ class Application:
             self.active, self.error, self.error_session = session_id, None, None
         def work():
             try:
-                asyncio.run(self.factory(self.settings).run(clean_text(message, 3000), self.store.load(session_id), session_id))
+                researcher = self.factory(self.settings)
+                options = {'resume': True} if resume else {}
+                asyncio.run(researcher.run(clean_text(message, 3000), self.store.load(session_id), session_id, **options))
             except Exception as error:
                 self.error = str(source_error("research", error))
                 self.error_session = session_id
@@ -68,6 +75,14 @@ def create_server(settings, port=8765, researcher_factory=Researcher):
             if not self.trusted():
                 return self.respond({"error": "仅允许本机访问"}, 403)
             parsed = urlparse(self.path)
+            if parsed.path == '/api/browser':
+                from .providers import Socai
+                source = Socai(app.settings)
+                try:
+                    ready = asyncio.run(source.browser_ready())
+                    return self.respond({'ready':ready, 'connection':source.connection})
+                except Exception as error:
+                    return self.respond({'ready':False, 'connection':source.connection, 'error':str(source_error('socai', error))})
             path = parsed.path
             try:
                 if path == "/":
@@ -161,17 +176,17 @@ def create_server(settings, port=8765, researcher_factory=Researcher):
         def do_POST(self):
             if not self.trusted():
                 return self.respond({"error": "仅允许本机同源请求"}, 403)
-            if self.path != "/api/run":
+            if self.path not in {"/api/run", "/api/resume"}:
                 return self.respond({"error": "未找到"}, 404)
             try:
                 length = int(self.headers.get("Content-Length", 0))
                 if not 0 < length <= 20000:
                     raise ValueError()
                 data = json.loads(self.rfile.read(length))
-                session_id, message = data["session_id"], data["message"]
+                session_id, message = data["session_id"], data.get("message", "")
                 if not isinstance(session_id, str) or not isinstance(message, str):
                     raise ValueError()
-                app.start(session_id, message)
+                app.start(session_id, message, resume=self.path == '/api/resume')
                 return self.respond({"session_id": session_id, "status": "started"}, 202)
             except RuntimeError as error:
                 return self.respond({"error": str(error)}, 409)

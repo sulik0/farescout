@@ -71,13 +71,15 @@ def render_report(session: Session, turn: Turn) -> str:
         lines += [f"- socai实际命令 {turn.metrics.get('socai_commands', '未记录')} 次（含状态检查、搜索、正文读取与重试）；模型实际请求 {turn.metrics.get('model_requests', '未记录')} 次（含Pydantic AI重试）。",
                   f"- 本轮报价复用 {turn.metrics.get('quote_reuses', 0)} 次；这些不是新增API调用，保留原抓取时间。",
                   f"- 正文 {turn.metrics.get('evidence_count', 0)} 篇；按已识别的转载/活动分为 {turn.metrics.get('independence_groups', '未记录')} 组，未证明作者相互独立。", ""]
+        lines += [f"- 首条可核对结果：{turn.metrics.get('first_result_seconds', '尚未取得')} 秒；前三条：{turn.metrics.get('third_result_seconds', '尚未取得')} 秒（从本轮开始到结果出现，含恢复前等待）。",
+                  f"- 执行段数：{turn.metrics.get('execution_segments', 1)}；实际执行累计：{turn.metrics.get('execution_seconds', '未记录')} 秒。", ""]
         timings = [(key[6:-8], value) for key, value in turn.metrics.items() if key.startswith('stage_') and key.endswith('_seconds')]
         if timings:
             labels = {'model':'模型', 'community_search':'社区搜索（含读取）', 'query_expansion':'扩展查询（含读取）',
                       'social_preview':'搜索卡片', 'social_read':'单篇正文读取', 'date_exploration':'日期请求', 'fare':'最终验价', 'date_phase':'日期阶段实际用时', 'social_scan':'社区完整扫描'}
             lines += ["各类请求耗时：", "", "| 请求类别 | 累计秒数 |", "|---|---|"]
             lines += [f"| {labels.get(stage, stage)} | {seconds} |" for stage, seconds in sorted(timings)]
-            lines += ["", "社区搜索已包含卡片和正文时间，不能再相加；并发日期请求累计时间可能大于实际阶段用时。", ""]
+            lines += ["", "社区搜索已包含卡片和正文时间，不能再相加；日期任务可能与社区读取重叠，各阶段时间不能相加作为总耗时。", ""]
     if goal.constraints:
         labels = {"explicit":"用户明确", "inferred":"语义解释", "default":"系统默认", "context":"沿用上下文"}
         lines += ["约束解释：", "", "| 字段 | 生效值 | 来源 | 规则 |", "|---|---|---|---|"]

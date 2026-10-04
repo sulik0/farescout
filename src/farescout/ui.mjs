@@ -10,7 +10,7 @@ const el = (tag, text, className) => {
 const state = new ViewState();
 let stream = null, refreshTimer = null, pollTimer = null, historyRevision = 0;
 let selectedRoute = null, panelTab = 'trace', resultSignature = '', inspectorSignature = '', editorGoal = '';
-const stageNames = {browser_connection:'连接浏览器', social_scan:'读取社区内容', model:'模型处理', social_preview:'搜索社区帖子', social_read:'读取帖子正文', social_read_result:'正文读取结果', date_phase:'日期探索完成', discovery:'开始研究', goal:'理解研究条件', plan:'安排社区查询', community_search:'搜索社区', evidence:'取得社区证据', extract:'筛选航线', expansion_plan:'决定继续查什么', query_expansion:'扩展查询', date_plan:'选择抽查日期', date_exploration:'探索日期价格', date_selected:'选择复验日期', fare:'核对实时票价', coverage:'确认日期覆盖', conflict:'核对不同来源', conclusion:'形成结论', context:'沿用研究上下文', stop:'停止研究', resume:'继续研究', quality:'检查证据质量', candidate:'发现候选航线', source_query:'实际搜索词', source_retry:'重试来源', budget:'到达查询预算', deal:'判断价格机会'};
+const stageNames = {research_decision:'决定下一步',checkpoint:'保留成功步骤',result_available:'已有可核对结果',browser_connection:'连接浏览器', social_scan:'读取社区内容', model:'模型处理', social_preview:'搜索社区帖子', social_read:'读取帖子正文', social_read_result:'正文读取结果', date_phase:'日期探索完成', discovery:'开始研究', goal:'理解研究条件', plan:'安排社区查询', community_search:'搜索社区', evidence:'取得社区证据', extract:'筛选航线', expansion_plan:'决定继续查什么', query_expansion:'扩展查询', date_plan:'选择抽查日期', date_exploration:'探索日期价格', date_selected:'选择复验日期', fare:'核对实时票价', coverage:'确认日期覆盖', conflict:'核对不同来源', conclusion:'形成结论', context:'沿用研究上下文', stop:'停止研究', resume:'继续研究', quality:'检查证据质量', candidate:'发现候选航线', source_query:'实际搜索词', source_retry:'重试来源', budget:'到达查询预算', deal:'判断价格机会'};
 const statusNames = {running:'研究进行中', complete:'研究完成', partial:'部分完成', blocked:'来源受阻'};
 const fields = {origins:'出发机场', region:'目的地区', date_from:'开始日期', date_to:'结束日期', date_mode:'日期方式', trip_type:'行程', stay_days:'停留天数', no_red_eye:'红眼航班'};
 const provenance = {explicit:'用户明确要求', inferred:'根据语义理解', default:'系统默认', context:'沿用前文'};
@@ -35,6 +35,7 @@ function syncControls() {
   $('run').disabled = state.locked;
   $('apply').disabled = state.locked || !state.turn;
   $('new').disabled = state.starting;
+  $('resume').disabled = state.locked;
   $('run').firstChild.textContent = state.starting ? '正在开始… ' : state.sid ? '继续研究 ' : '开始研究 ';
   const elsewhere = state.activeSid && state.activeSid !== state.sid;
   $('activeNotice').hidden = !elsewhere;
@@ -88,8 +89,14 @@ function render() {
   $('resultFootnote').hidden = !turn?.opportunities.length;
   const live = turn?.status === 'running' && state.activeSid === state.sid;
   const interrupted = turn?.status === 'running' && !live && !state.starting;
+  const recoverable = turn && turn.id === state.session.turns.at(-1)?.id && !live && (interrupted || ['partial','blocked'].includes(turn.status));
+  $('recoveryPanel').hidden = !recoverable;
+  if (recoverable) {
+    const connection = [...turn.events].reverse().find(e => e.stage === 'browser_connection')?.data;
+    $('browserStatus').textContent = connection ? `上次检查：${connection.browser_connected ? 'Chrome已连接' : 'Chrome未连接，授权状态未知'} · ${stamp(connection.observed_at)}` : '尚未取得浏览器连接状态，可先检查再恢复';
+  }
   $('outcomeNotice').hidden = !turn || (!interrupted && !['partial','blocked'].includes(turn.status));
-  $('outcomeNotice').textContent = interrupted ? '这份记录尚未完成，当前服务没有运行这项任务。已保存的内容仍可查看；继续提问会开启新一轮研究。' : turn?.stop_reason || '';
+  $('outcomeNotice').textContent = interrupted ? '这轮研究尚未完成，当前服务没有运行它。可从左侧恢复这轮；继续提问会开启新一轮。' : turn?.stop_reason || '';
   $('status').className = 'status ' + (interrupted ? 'partial' : turn?.status || '');
   $('status').textContent = interrupted ? '研究未完成' : turn ? statusNames[turn.status] || turn.status : state.sid ? '正在载入' : '等待开始';
   $('traceState').className = 'trace-state' + (live ? ' live' : '');
@@ -148,6 +155,8 @@ function updateStay() { $('stayLabel').hidden = $('trip').value !== 'round_trip'
 function renderMetrics(turn) {
   const m = turn.metrics || {};
   const values = [`社区正文：${m.evidence_count ?? turn.evidence_ids.length} 篇`, `归并后的线索：${m.independence_groups ?? '未知'} 组（不等于独立来源）`, `社区查询：${m.community_calls || 0} 次`, `日期探索：${m.date_calls || 0} 次调用`, `最终验价：${m.verification_calls || 0} 次调用`, `复用本轮报价：${m.quote_reuses || 0} 次`, `总耗时：${m.elapsed_seconds != null ? Number(m.elapsed_seconds).toFixed(1) + ' 秒' : '进行中'}`];
+  for (const [key,label] of [['first_result_seconds','首条可核对结果'],['third_result_seconds','前三条可核对结果']]) values.push(`${label}：${m[key] != null ? Number(m[key]).toFixed(1) + ' 秒' : '尚未取得'}`);
+  if (m.execution_segments > 1) values.push(`恢复/执行 ${m.execution_segments} 段，实际执行累计 ${Number(m.execution_seconds).toFixed(1)} 秒；总耗时包含中间等待`);
   for (const [stage,label] of [['community_search','社区搜索'],['query_expansion','扩展查询'],['date_phase','日期探索与验价'],['model','模型处理']]) if (m[`stage_${stage}_seconds`] != null) values.push(`${label}耗时：${Number(m[`stage_${stage}_seconds`]).toFixed(1)} 秒`);
   $('metrics').replaceChildren(...values.map(value => el('div', value)));
 }
@@ -321,13 +330,13 @@ async function openSession(id) {
   for (const button of $('history').querySelectorAll('button')) button.classList.toggle('active', button.dataset.sessionId === id);
   await refresh();
 }
-async function run(message) {
-  if (!validMessage(message)) { showError('请输入 1～3000 字的研究需求。'); return; }
+async function run(message, {resume = false} = {}) {
+  if (!resume && !validMessage(message)) { showError('请输入 1～3000 字的研究需求。'); return; }
   if (state.locked) { showError('已有研究正在进行，请等待完成后再提交。'); return; }
   const id = state.sid || 'web-' + Date.now(), epoch = state.epoch;
   state.starting = true; syncControls(); showError();
   try {
-    await api('/api/run', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:id,message:message.trim()})});
+    await api(resume ? '/api/resume' : '/api/run', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:id,message:message.trim()})});
     disconnect(); state.select(id); state.activeSid = id; resetView(); connect();
     await refresh(); await loadHistory();
   } catch (error) {
@@ -336,6 +345,17 @@ async function run(message) {
   } finally { state.starting = false; syncControls(); }
 }
 $('compose').onsubmit = event => {event.preventDefault(); run($('message').value);};
+$('resume').onclick = () => run('', {resume:true});
+$('checkBrowser').onclick = async () => {
+  const epoch = state.epoch; $('checkBrowser').disabled = true;
+  try {
+    const data = await api('/api/browser');
+    if (state.epoch !== epoch) return;
+    const connection = data.connection || {};
+    $('browserStatus').textContent = data.error || `${data.ready ? 'Chrome已连接，可以恢复' : 'Chrome未连接；恢复时可能需要手动允许连接'} · ${stamp(connection.observed_at)}${connection.endpoint_changed ? ' · 浏览器endpoint已变化' : ''}${connection.last_disconnect ? ' · 最近记录的传输问题：' + ({session_closed:'会话关闭', transport_command_timeout:'连接命令超时',transport_lost_unknown:'原因未确认'}[connection.last_disconnect.category] || '未知') : ''}`;
+  } catch (error) {if (state.epoch === epoch) showError(error.message);}
+  finally {$('checkBrowser').disabled = false;}
+};
 $('new').onclick = () => { if (state.starting) return; disconnect(); state.select(); resetView(); $('message').value = ''; loadHistory(); $('message').focus(); };
 $('returnLive').onclick = () => { if (state.activeSid) openSession(state.activeSid); };
 $('turn').onchange = () => {state.selectedTurn = $('turn').value; selectedRoute = null; editorGoal = ''; $('edit').hidden = true; $('editButton').setAttribute('aria-expanded','false'); resultSignature = ''; inspectorSignature = ''; $('main').scrollTop = 0; render();};

@@ -1,0 +1,7 @@
+{
+  "src/farescout/engine.py": "69f513f7c17eebda73ac647ff786939ffc305e699d5b64bc8f8e57629019eb60",
+  "src/farescout/providers.py": "46bb0df8d7a47c6e2dbbfd4e261e0059aac8182a1a04b3c6d631da151c616a4d",
+  "src/farescout/connection.py": "a28b918a5db0c8dc6af107ce71700dd781e999358cc5dbde2db4f1a5808e5d3a",
+  "src/farescout/dates.py": "e979b0352a61a808618d2ef0725e9baba302c12c4c8770ddfadba8d40bc1f1bf",
+  "src/farescout/research.py": "a67725795bfe2b0452d837675b390bc68f2b419ac26d5347fc837ba3addaf1e6"
+}

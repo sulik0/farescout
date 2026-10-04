@@ -1,0 +1,76 @@
+{
+  "kind": "read_only_socai_connection_diagnosis",
+  "day": "2026-10-04",
+  "local_hour_window": [
+    11,
+    18
+  ],
+  "observed_at": "2026-10-04T09:42:00.793655+00:00",
+  "manual_confirmation_count": "not_observable_by_status",
+  "status": {
+    "cli_version": "0.6.1",
+    "daemon_running": true,
+    "daemon_compatible": true,
+    "browser_connected": false,
+    "browser_state": "disconnected",
+    "profile_mode": "existing",
+    "active_profile_mode": null,
+    "error_code": "BROWSER_ENDPOINT_UNREACHABLE"
+  },
+  "daemon_process": "7976     1 Thu Oct  1 09:43:08 2026",
+  "daemon_cdp_tcp_9222": [],
+  "tcp_note": "Only checks port 9222; absence alone does not identify a disconnect cause.",
+  "chrome_processes": [
+    "46958     1 Sun Oct  4 11:11:23 2026"
+  ],
+  "chrome_version": "154.0.8037.97",
+  "default_chrome_endpoint_fingerprint": "b5eb7c8be2ef259c",
+  "endpoint_note": "Marker is not proof of a live socket or permission.",
+  "daemon_events": [
+    {
+      "time": "2026-10-04T12:48:22.816367+08:00",
+      "category": "cdp_session_closed",
+      "attempt": null
+    },
+    {
+      "time": "2026-10-04T17:07:30.748106+08:00",
+      "category": "connect_inventory_timeout",
+      "attempt": "1"
+    },
+    {
+      "time": "2026-10-04T17:07:51.256559+08:00",
+      "category": "connect_inventory_timeout",
+      "attempt": "2"
+    },
+    {
+      "time": "2026-10-04T17:08:11.761964+08:00",
+      "category": "connect_inventory_timeout",
+      "attempt": "3"
+    }
+  ],
+  "power_events": [
+    {
+      "time": "2026-10-04T12:48:23+08:00",
+      "event": "Sleep",
+      "reason": "idle_sleep"
+    },
+    {
+      "time": "2026-10-04T13:59:00+08:00",
+      "event": "Wake",
+      "reason": "wake"
+    },
+    {
+      "time": "2026-10-04T14:00:19+08:00",
+      "event": "Sleep",
+      "reason": "idle_sleep"
+    },
+    {
+      "time": "2026-10-04T16:58:54+08:00",
+      "event": "Wake",
+      "reason": "wake"
+    }
+  ],
+  "darkwake_count": 61,
+  "maintenance_sleep_count": 61,
+  "causality_note": "Timestamp correlation is not proof that sleep closed the socket."
+}

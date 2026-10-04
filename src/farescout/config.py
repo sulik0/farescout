@@ -33,6 +33,7 @@ class Settings:
     evidence_quality: bool = True
     deal_strength: bool = True
     web_fallback: bool = True
+    max_research_steps: int = 8
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -62,4 +63,5 @@ class Settings:
             evidence_quality=os.getenv("FARESCOUT_EVIDENCE_QUALITY", "1") == "1",
             deal_strength=os.getenv("FARESCOUT_DEAL_STRENGTH", "1") == "1",
             web_fallback=os.getenv("FARESCOUT_WEB_FALLBACK", "1") == "1",
+            max_research_steps=max(3, min(12, int(os.getenv("FARESCOUT_MAX_RESEARCH_STEPS", "8")))),
         )
