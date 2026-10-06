@@ -1,0 +1,49 @@
+{
+  "before": {
+    "browser_connected": true,
+    "browser_state": "connected",
+    "daemon_running": true,
+    "daemon_compatible": true,
+    "error_code": null,
+    "profile_mode": "managed",
+    "active_profile_mode": "managed",
+    "processes": [
+      "7976     1 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/work/socai/socai",
+      "46958     1 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "66670     1 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/outputs/farescout/../../work/socai-diagnostic/socai",
+      "66678 66670 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    ],
+    "endpoint_source": "managed_chrome_marker",
+    "active_daemon_pid": 66670,
+    "cdp_tcp_connections": [
+      "socai   66670 fayefufu   11u  IPv4 0x24bd01a4067f376b      0t0  TCP 127.0.0.1:51990->127.0.0.1:51989 (ESTABLISHED)"
+    ],
+    "endpoint_fingerprint": "e8ef971008f410ba",
+    "endpoint_port": "51989",
+    "observed_at": "2026-10-04T11:11:16.430700+00:00"
+  },
+  "sleep_command_at": "2026-10-04T11:11:16.431042+00:00",
+  "human_confirmation": "not_recorded",
+  "condition": "user_approved_manual_sleep",
+  "after": {
+    "browser_connected": false,
+    "browser_state": "disconnected",
+    "daemon_running": true,
+    "daemon_compatible": true,
+    "error_code": "BROWSER_ENDPOINT_UNREACHABLE",
+    "profile_mode": "managed",
+    "active_profile_mode": null,
+    "processes": [
+      "7976     1 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/work/socai/socai",
+      "46958     1 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "66670     1 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/outputs/farescout/../../work/socai-diagnostic/socai"
+    ],
+    "endpoint_source": "managed_chrome_marker",
+    "active_daemon_pid": 66670,
+    "cdp_tcp_connections": [],
+    "endpoint_fingerprint": "e8ef971008f410ba",
+    "endpoint_port": "51989",
+    "observed_at": "2026-10-04T11:12:17.251185+00:00"
+  },
+  "elapsed_wall_seconds": 60.82
+}

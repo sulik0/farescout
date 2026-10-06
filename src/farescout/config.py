@@ -34,6 +34,8 @@ class Settings:
     deal_strength: bool = True
     web_fallback: bool = True
     max_research_steps: int = 8
+    recovery_wait_seconds: int = 600
+    recovery_poll_seconds: float = 5
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -64,4 +66,5 @@ class Settings:
             deal_strength=os.getenv("FARESCOUT_DEAL_STRENGTH", "1") == "1",
             web_fallback=os.getenv("FARESCOUT_WEB_FALLBACK", "1") == "1",
             max_research_steps=max(3, min(12, int(os.getenv("FARESCOUT_MAX_RESEARCH_STEPS", "8")))),
+            recovery_wait_seconds=max(15, min(1800, int(os.getenv("FARESCOUT_RECOVERY_WAIT_SECONDS", "600")))),
         )

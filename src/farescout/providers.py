@@ -235,31 +235,19 @@ class Socai:
             self.on_trace(stage, "failed", "研究预算到达或任务取消；已读正文保留", int((monotonic()-start)*1000), data)
             raise
         except TimeoutError:
+            observed = False
+            try:
+                await self.browser_ready()
+                observed = True
+            except Exception:
+                pass
             if needs_connection:
-                self.command_calls += 1
-                connected = False
-                try:
-                    state = await command_json(self.settings.socai_bin, ['status','--json'],
-                        replace(self.settings,source_timeout=5),'socai')
-                    connected = state.get('browser_connected') is True
-                except Exception:
-                    pass
+                connected = observed and self.connection.get('browser_connected') is True
                 code = 'SOCIAL_SEARCH_TIMEOUT' if connected else 'CONNECTION_APPROVAL_TIMEOUT'
                 detail = 'Chrome已连接，但首次搜索超时；保留连接' if connected else '首次连接等待超时；停止该来源，避免再次弹出授权请求'
                 self.on_trace(stage, 'failed', detail, int((monotonic()-start)*1000), data | {'failure_code':code})
                 raise SourceFailure(self.name, code, detail) from None
-            # After an actual connection attempt timed out, a cached endpoint failure is actionable.
-            # Before attempting a search, disconnected status alone is not sufficient evidence.
-            code = None
-            if stage == "social_preview":
-                self.command_calls += 1
-                try:
-                    state = await command_json(self.settings.socai_bin, ['status', '--json'],
-                        replace(self.settings, source_timeout=5), self.name)
-                    if state.get('error_code') in {'BROWSER_ENDPOINT_UNREACHABLE', 'BROWSER_DISCONNECTED'}:
-                        code = 'BROWSER_OR_LOGIN_REQUIRED'
-                except Exception:
-                    pass
+            code = 'BROWSER_DISCONNECTED' if observed and self.connection.get('browser_connected') is False and self.connection.get('browser_state') == 'disconnected' else None
             self.on_trace(stage, "failed", "浏览器连接未建立" if code else "命令超时",
                           int((monotonic()-start)*1000), data | {"failure_code": code or "TimeoutError"})
             if code:
@@ -270,12 +258,14 @@ class Socai:
             failure = source_error(self.name, error)
             # CLI transport failures may raise before returning a gate payload.
             # A post-failure status check is observational; it never reconnects.
-            if needs_connection or failure.code == 'BROWSER_OR_LOGIN_REQUIRED':
+            if needs_connection or failure.code in {'BROWSER_OR_LOGIN_REQUIRED', 'CLI_FAILED', 'INVALID_RESPONSE'}:
+                observed = False
                 try:
                     await self.browser_ready()
+                    observed = True
                 except Exception:
                     pass
-                if self.connection.get('browser_connected') is False and self.connection.get('browser_state') == 'disconnected':
+                if observed and self.connection.get('browser_connected') is False and self.connection.get('browser_state') == 'disconnected':
                     failure = SourceFailure(self.name, 'BROWSER_DISCONNECTED',
                         'CDP连接已断开或重连未建立；保留本轮，批准Chrome连接后再恢复')
             self.on_trace(stage, "failed", str(failure), int((monotonic()-start)*1000),

@@ -4,12 +4,14 @@ import asyncio
 import json
 import threading
 import time
+from datetime import timedelta
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse, parse_qs
 
 from .engine import Researcher, Store
 from .report import render_report
+from .models import Event, now
 from .safety import clean_text, source_error
 
 
@@ -17,10 +19,112 @@ class Application:
     def __init__(self, settings, researcher_factory=Researcher):
         self.settings, self.factory = settings, researcher_factory
         self.store = Store(settings.data_dir)
-        self.lock = threading.Lock()
+        self.lock = threading.RLock()
         self.active = None
         self.error = None
         self.error_session = None
+        self.recovery_stop = threading.Event()
+        self.recovery_target = None
+        self.closed = False
+        # A UI reload or service restart must not require starting a new turn.
+        for path in sorted(self.store.root.glob('*.json'), key=lambda p: p.stat().st_mtime, reverse=True):
+            try:
+                saved = self.store.load(path.stem)
+                if saved and saved.turns:
+                    watch = saved.turns[-1].checkpoint.get('browser_recovery', {})
+                    if watch.get('state') == 'waiting':
+                        self.arm_recovery(saved.id, deadline=watch['deadline'])
+                        break
+            except (ValueError, KeyError, OSError):
+                continue
+
+    def recovery_event(self, saved, status, detail):
+        turn = saved.turns[-1]
+        turn.events.append(Event(stage='browser_recovery', status=status, detail=detail, turn_id=turn.id))
+        self.store.save(saved)
+
+    def cancel_recovery(self):
+        self.recovery_stop.set()
+        if self.recovery_target:
+            saved = self.store.load(self.recovery_target[0])
+            if saved and saved.turns[-1].id == self.recovery_target[1]:
+                watch = saved.turns[-1].checkpoint.get('browser_recovery', {})
+                if watch.get('state') == 'waiting':
+                    watch['state'] = 'cancelled'
+                    self.store.save(saved)
+        self.recovery_target = None
+
+    def arm_recovery(self, session_id, *, deadline=None):
+        from .providers import Socai
+        from datetime import datetime
+        with self.lock:
+            if self.active or self.closed:
+                return
+            self.cancel_recovery()
+            saved = self.store.load(session_id)
+            if not saved or not saved.turns or saved.turns[-1].status == 'complete':
+                return
+            turn = saved.turns[-1]
+            end = datetime.fromisoformat(deadline) if deadline else now() + timedelta(seconds=self.settings.recovery_wait_seconds)
+            turn.checkpoint['browser_recovery'] = {'state':'waiting', 'deadline':end.isoformat()}
+            self.recovery_event(saved, 'info', '已保留研究；等待 Chrome 连接，确认后自动继续未完成步骤。状态检查不会反复请求授权。')
+            stop = self.recovery_stop = threading.Event()
+            self.recovery_target = (session_id, turn.id)
+        def watch():
+            source = Socai(self.settings)
+            while not stop.is_set():
+                try:
+                    ready = asyncio.run(source.browser_ready()) if now() < end else False
+                except Exception:
+                    ready = False
+                with self.lock:
+                    if stop.is_set() or self.active or self.recovery_target != (session_id, turn.id):
+                        return
+                    latest = self.store.load(session_id)
+                    if not latest or not latest.turns or latest.turns[-1].id != turn.id or latest.turns[-1].status == 'complete':
+                        self.recovery_target = None
+                        return
+                    state = latest.turns[-1].checkpoint['browser_recovery']
+                    if ready:
+                        state.update(state='resumed', resumed_at=now().isoformat())
+                        self.recovery_event(latest, 'ok', 'Chrome 已重新连接；自动恢复原轮次，保留已读正文、日期覆盖和历史失败。')
+                        self.start(session_id, '', resume=True)
+                        return
+                    if now() >= end:
+                        state['state'] = 'expired'
+                        self.recovery_event(latest, 'failed', '等待连接超时；研究仍保留，可稍后点击重新连接并继续。')
+                        self.recovery_target = None
+                        return
+                stop.wait(self.settings.recovery_poll_seconds)
+        threading.Thread(target=watch, daemon=True).start()
+
+    def reconnect(self, session_id):
+        from .providers import Socai
+        with self.lock:
+            if self.active or self.closed:
+                raise RuntimeError('已有研究或连接请求进行中')
+            saved = self.store.load(session_id)
+            if not saved or not saved.turns or saved.turns[-1].status == 'complete':
+                raise ValueError('没有可恢复的研究')
+            self.cancel_recovery()
+            self.active, self.error, self.error_session = session_id, None, None
+        def connect():
+            async def attempt():
+                source = Socai(self.settings)
+                if not await source.browser_ready():
+                    # One CLI request. No reconnect loop, no daemon stop or profile switch.
+                    query = (saved.turns[-1].checkpoint.get('queries') or ['香港 日本 机票'])[0]
+                    await source._command(['xhs','search',query,'--num-notes','0','--pretty'], 'social_preview', {'recovery':True})
+            try:
+                asyncio.run(attempt())
+            except Exception as error:
+                self.error = str(source_error('socai', error))
+                self.error_session = session_id
+            finally:
+                with self.lock:
+                    self.active = None
+                self.arm_recovery(session_id)
+        threading.Thread(target=connect, daemon=True).start()
 
     def start(self, session_id, message, *, resume=False):
         self.store.path(session_id)
@@ -32,10 +136,12 @@ class Application:
         if not message.strip() or len(message) > 3000:
             raise ValueError("请输入1～3000字的研究需求")
         with self.lock:
-            if self.active:
+            if self.active or self.closed:
                 raise RuntimeError("已有研究进行中，请等待完成再继续")
+            self.cancel_recovery()
             self.active, self.error, self.error_session = session_id, None, None
         def work():
+            researcher = None
             try:
                 researcher = self.factory(self.settings)
                 options = {'resume': True} if resume else {}
@@ -46,6 +152,16 @@ class Application:
             finally:
                 with self.lock:
                     self.active = None
+                saved = self.store.load(session_id)
+                from .providers import Socai
+                sources = [p for p in getattr(researcher, 'social', []) if isinstance(p, Socai)]
+                if sources and saved and saved.turns:
+                    cp = saved.turns[-1].checkpoint
+                    # Login/anti-abuse pages on a healthy transport need user action,
+                    # not an automatic research replay mistaken for reconnecting Chrome.
+                    disconnected = any(p.connection.get('browser_connected') is False for p in sources)
+                    if cp.get('recovery_required') in {'BROWSER_DISCONNECTED','BROWSER_OR_LOGIN_REQUIRED','CONNECTION_APPROVAL_TIMEOUT'} and disconnected:
+                        self.arm_recovery(session_id)
         threading.Thread(target=work, daemon=True).start()
 
 
@@ -162,7 +278,7 @@ def create_server(settings, port=8765, researcher_factory=Researcher):
                             seen.add(event.id)
                             self.wfile.write(f"id: {event.id}\nevent: research\ndata: {event.model_dump_json()}\n\n".encode())
                         self.wfile.flush()
-                    if app.active != session_id:
+                    if app.active != session_id and (not app.recovery_target or app.recovery_target[0] != session_id):
                         self.wfile.write(b"event: done\ndata: {}\n\n")
                         self.wfile.flush()
                         return
@@ -176,7 +292,7 @@ def create_server(settings, port=8765, researcher_factory=Researcher):
         def do_POST(self):
             if not self.trusted():
                 return self.respond({"error": "仅允许本机同源请求"}, 403)
-            if self.path not in {"/api/run", "/api/resume"}:
+            if self.path not in {"/api/run", "/api/resume", "/api/recover"}:
                 return self.respond({"error": "未找到"}, 404)
             try:
                 length = int(self.headers.get("Content-Length", 0))
@@ -186,7 +302,10 @@ def create_server(settings, port=8765, researcher_factory=Researcher):
                 session_id, message = data["session_id"], data.get("message", "")
                 if not isinstance(session_id, str) or not isinstance(message, str):
                     raise ValueError()
-                app.start(session_id, message, resume=self.path == '/api/resume')
+                if self.path == '/api/recover':
+                    app.reconnect(session_id)
+                else:
+                    app.start(session_id, message, resume=self.path == '/api/resume')
                 return self.respond({"session_id": session_id, "status": "started"}, 202)
             except RuntimeError as error:
                 return self.respond({"error": str(error)}, 409)
@@ -195,6 +314,12 @@ def create_server(settings, port=8765, researcher_factory=Researcher):
     server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
     server.daemon_threads = True
     server.app = app
+    close = server.server_close
+    def stop():
+        app.closed = True
+        app.recovery_stop.set()
+        close()
+    server.server_close = stop
     return server
 
 

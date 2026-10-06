@@ -1,0 +1,139 @@
+--- a/core/src/cdp/raw_client.rs
++++ b/core/src/cdp/raw_client.rs
+@@ -1,7 +1,9 @@
+ use std::collections::HashMap;
+-use std::sync::atomic::{AtomicBool, Ordering};
++use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
+ use std::sync::Arc;
+-use std::time::Duration;
++use std::time::{Duration, Instant};
++
++static CONNECTION_SEQUENCE: AtomicU64 = AtomicU64::new(1);
+ 
+ use anyhow::{anyhow, Context, Result};
+ use async_tungstenite::tokio::connect_async_with_config;
+@@ -138,6 +140,9 @@
+ ) where
+     S: futures::AsyncRead + futures::AsyncWrite + Unpin,
+ {
++    let connection_id = CONNECTION_SEQUENCE.fetch_add(1, Ordering::Relaxed);
++    let connected_at = Instant::now();
++    tracing::info!(target: "socai::cdp::raw", connection_id, pid = std::process::id(), "cdp_ws_open");
+     let (mut write, mut read) = ws.split();
+     let mut next_id: u64 = 1;
+     let mut pending: HashMap<u64, oneshot::Sender<std::result::Result<Value, String>>> =
+@@ -158,6 +163,7 @@
+             }
+             command = rx.recv() => {
+                 let Some(command) = command else {
++                    terminal(connection_id, connected_at, "command_channel_closed", "none", None, 0, pending.len());
+                     fail_all(&mut pending, "command channel closed");
+                     break;
+                 };
+@@ -180,6 +186,7 @@
+                 };
+                 pending.insert(id, command.resp);
+                 if let Err(err) = write.send(WsMessage::Text(text)).await {
++                    terminal(connection_id, connected_at, "websocket_send_failed", &error_class(&err), None, 0, pending.len());
+                     fail_one(&mut pending, id, format!("websocket send failed: {err}"));
+                     fail_all(&mut pending, "websocket send failed");
+                     break;
+@@ -194,6 +201,7 @@
+                         }
+                     }
+                     Some(Ok(WsMessage::Close(frame))) => {
++                        terminal(connection_id, connected_at, "close_frame", "none", frame.as_ref().map(|f| u16::from(f.code)), frame.as_ref().map_or(0, |f| f.reason.len()), pending.len());
+                         let detail = frame.map_or_else(
+                             || "websocket closed without a close frame".to_string(),
+                             |frame| {
+@@ -207,12 +215,14 @@
+                         break;
+                     }
+                     None => {
++                        terminal(connection_id, connected_at, "stream_ended", "none", None, 0, pending.len());
+                         fail_all(&mut pending, "websocket stream ended without a close frame");
+                         break;
+                     }
+                     Some(Ok(WsMessage::Ping(_))) | Some(Ok(WsMessage::Pong(_))) => {}
+                     Some(Ok(_)) => {}
+                     Some(Err(err)) => {
++                        terminal(connection_id, connected_at, "websocket_receive_failed", &error_class(&err), None, 0, pending.len());
+                         fail_all(&mut pending, &format!("websocket receive failed: {err}"));
+                         break;
+                     }
+@@ -220,6 +230,26 @@
+             }
+         }
+     }
++}
++
++fn error_class(error: &async_tungstenite::tungstenite::Error) -> String {
++    use async_tungstenite::tungstenite::Error;
++    match error {
++        Error::Io(error) => format!("io_{:?}", error.kind()),
++        Error::Protocol(_) => "protocol".into(),
++        Error::ConnectionClosed => "connection_closed".into(),
++        Error::AlreadyClosed => "already_closed".into(),
++        Error::Tls(_) => "tls".into(),
++        _ => "other".into(),
++    }
++}
++
++fn terminal(connection_id: u64, connected_at: Instant, kind: &str, error_class: &str, close_code: Option<u16>, reason_bytes: usize, pending_commands: usize) {
++    // Emit at the transport boundary, even when no command is awaiting a reply.
++    // Omit raw errors, URLs and close reason text to protect tokens and page data.
++    tracing::warn!(target: "socai::cdp::raw", connection_id, pid = std::process::id(), kind, error_class,
++        close_code, reason_bytes, pending_commands, uptime_ms = connected_at.elapsed().as_millis() as u64,
++        "cdp_ws_terminal");
+ }
+ 
+ fn handle_text_message(
+@@ -265,3 +295,48 @@
+         let _ = resp.send(Err(reason.to_string()));
+     }
+ }
++
++#[cfg(test)]
++mod transport_tests {
++    use super::*;
++    use std::io::Write;
++    use std::sync::Mutex;
++    use async_tungstenite::tungstenite::protocol::{CloseFrame, frame::coding::CloseCode};
++
++    #[derive(Clone)]
++    struct Capture(Arc<Mutex<Vec<u8>>>);
++    impl Write for Capture {
++        fn write(&mut self, bytes: &[u8]) -> std::io::Result<usize> {
++            self.0.lock().unwrap().extend_from_slice(bytes);
++            Ok(bytes.len())
++        }
++        fn flush(&mut self) -> std::io::Result<()> { Ok(()) }
++    }
++
++    #[tokio::test]
++    async fn logs_first_close_with_no_pending_commands_once_without_private_reason() {
++        let output = Arc::new(Mutex::new(Vec::new()));
++        let writer = Capture(output.clone());
++        let subscriber = tracing_subscriber::fmt().without_time().with_ansi(false)
++            .with_writer(move || writer.clone()).finish();
++        tracing::subscriber::set_global_default(subscriber).unwrap();
++        let listener = tokio::net::TcpListener::bind("127.0.0.1:0").await.unwrap();
++        let address = listener.local_addr().unwrap();
++        let peer = tokio::spawn(async move {
++            let (stream, _) = listener.accept().await.unwrap();
++            let mut socket = async_tungstenite::tokio::accept_async(stream).await.unwrap();
++            tokio::time::sleep(Duration::from_millis(50)).await;
++            socket.close(Some(CloseFrame {code: CloseCode::Normal, reason: "ws://private/token".into()})).await.unwrap();
++        });
++        let client = RawCdpClient::connect(&format!("ws://{address}")).await.unwrap();
++        peer.await.unwrap();
++        tokio::time::timeout(Duration::from_secs(2), async {
++            while !client.is_closed() { tokio::time::sleep(Duration::from_millis(5)).await; }
++        }).await.unwrap();
++        let text = String::from_utf8(output.lock().unwrap().clone()).unwrap();
++        assert_eq!(text.matches("cdp_ws_terminal").count(), 1);
++        assert!(text.contains("close_code=1000"), "{text}");
++        assert!(text.contains("pending_commands=0"), "{text}");
++        assert!(!text.contains("private") && !text.contains("token"), "{text}");
++    }
++}

@@ -1,5 +1,7 @@
 # 连接复用、研究恢复与提前展示结果：验收记录
 
+后续的 Chrome 授权自动恢复和睡眠请求对照见[CDP 稳定性与恢复验收](cdp-stability-acceptance.md)。下文保留该阶段的实现与真实验收记录。
+
 更新日期：2026-10-04。本轮继续使用原有 Pydantic AI、socai 0.6.1、FlyAI、SerpAPI、Session 和 Evidence，没有新增数据源。实施范围见[本轮计划](research-recovery-plan.md)。
 
 ## 当前结论

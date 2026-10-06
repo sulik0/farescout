@@ -10,7 +10,7 @@ const el = (tag, text, className) => {
 const state = new ViewState();
 let stream = null, refreshTimer = null, pollTimer = null, historyRevision = 0;
 let selectedRoute = null, panelTab = 'trace', resultSignature = '', inspectorSignature = '', editorGoal = '';
-const stageNames = {research_decision:'决定下一步',checkpoint:'保留成功步骤',result_available:'已有可核对结果',browser_connection:'连接浏览器', social_scan:'读取社区内容', model:'模型处理', social_preview:'搜索社区帖子', social_read:'读取帖子正文', social_read_result:'正文读取结果', date_phase:'日期探索完成', discovery:'开始研究', goal:'理解研究条件', plan:'安排社区查询', community_search:'搜索社区', evidence:'取得社区证据', extract:'筛选航线', expansion_plan:'决定继续查什么', query_expansion:'扩展查询', date_plan:'选择抽查日期', date_exploration:'探索日期价格', date_selected:'选择复验日期', fare:'核对实时票价', coverage:'确认日期覆盖', conflict:'核对不同来源', conclusion:'形成结论', context:'沿用研究上下文', stop:'停止研究', resume:'继续研究', quality:'检查证据质量', candidate:'发现候选航线', source_query:'实际搜索词', source_retry:'重试来源', budget:'到达查询预算', deal:'判断价格机会'};
+const stageNames = {browser_recovery:'等待连接并恢复',research_decision:'决定下一步',checkpoint:'保留成功步骤',result_available:'已有可核对结果',browser_connection:'连接浏览器', social_scan:'读取社区内容', model:'模型处理', social_preview:'搜索社区帖子', social_read:'读取帖子正文', social_read_result:'正文读取结果', date_phase:'日期探索完成', discovery:'开始研究', goal:'理解研究条件', plan:'安排社区查询', community_search:'搜索社区', evidence:'取得社区证据', extract:'筛选航线', expansion_plan:'决定继续查什么', query_expansion:'扩展查询', date_plan:'选择抽查日期', date_exploration:'探索日期价格', date_selected:'选择复验日期', fare:'核对实时票价', coverage:'确认日期覆盖', conflict:'核对不同来源', conclusion:'形成结论', context:'沿用研究上下文', stop:'停止研究', resume:'继续研究', quality:'检查证据质量', candidate:'发现候选航线', source_query:'实际搜索词', source_retry:'重试来源', budget:'到达查询预算', deal:'判断价格机会'};
 const statusNames = {running:'研究进行中', complete:'研究完成', partial:'部分完成', blocked:'来源受阻'};
 const fields = {origins:'出发机场', region:'目的地区', date_from:'开始日期', date_to:'结束日期', date_mode:'日期方式', trip_type:'行程', stay_days:'停留天数', no_red_eye:'红眼航班'};
 const provenance = {explicit:'用户明确要求', inferred:'根据语义理解', default:'系统默认', context:'沿用前文'};
@@ -93,7 +93,9 @@ function render() {
   $('recoveryPanel').hidden = !recoverable;
   if (recoverable) {
     const connection = [...turn.events].reverse().find(e => e.stage === 'browser_connection')?.data;
-    $('browserStatus').textContent = connection ? `上次检查：${connection.browser_connected ? 'Chrome已连接' : 'Chrome未连接，授权状态未知'} · ${stamp(connection.observed_at)}` : '尚未取得浏览器连接状态，可先检查再恢复';
+    const waiting = turn.checkpoint?.browser_recovery?.state === 'waiting';
+    $('resume').textContent = turn.checkpoint?.recovery_required ? '重新连接并继续' : '恢复这轮研究';
+    $('browserStatus').textContent = waiting ? '已保留研究，等待 Chrome 连接；确认后自动继续。也可点击重新连接。' : connection ? `上次检查：${connection.browser_connected ? 'Chrome已连接' : 'Chrome未连接，授权状态未知'} · ${stamp(connection.observed_at)}` : '尚未取得浏览器连接状态，可先检查再恢复';
   }
   $('outcomeNotice').hidden = !turn || (!interrupted && !['partial','blocked'].includes(turn.status));
   $('outcomeNotice').textContent = interrupted ? '这轮研究尚未完成，当前服务没有运行它。可从左侧恢复这轮；继续提问会开启新一轮。' : turn?.stop_reason || '';
@@ -292,7 +294,7 @@ async function refresh() {
     if (!state.accept(token, data)) return;
     render();
     if (data.error && !data.active && state.turn?.status !== 'complete') showError(data.error);
-    if (state.activeSid === state.sid && !stream) connect();
+    if ((state.activeSid === state.sid || state.waitingForBrowser) && !stream) connect();
   } catch (error) {
     if (!state.current(token)) return;
     if (error.status === 404 && error.data?.active === token.sid) { refreshTimer = setTimeout(refresh, 350); return; }
@@ -336,7 +338,7 @@ async function run(message, {resume = false} = {}) {
   const id = state.sid || 'web-' + Date.now(), epoch = state.epoch;
   state.starting = true; syncControls(); showError();
   try {
-    await api(resume ? '/api/resume' : '/api/run', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:id,message:message.trim()})});
+    await api(resume ? (state.turn?.checkpoint?.recovery_required ? '/api/recover' : '/api/resume') : '/api/run', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:id,message:message.trim()})});
     disconnect(); state.select(id); state.activeSid = id; resetView(); connect();
     await refresh(); await loadHistory();
   } catch (error) {
@@ -352,7 +354,10 @@ $('checkBrowser').onclick = async () => {
     const data = await api('/api/browser');
     if (state.epoch !== epoch) return;
     const connection = data.connection || {};
+    const terminal = connection.first_transport_terminal;
+    const terminalLabel = terminal && ({command_channel_closed:'本地命令通道结束',websocket_send_failed:'发送失败',close_frame:'收到关闭帧',stream_ended:'连接流结束',websocket_receive_failed:'接收失败'}[terminal.kind] || '类别未知');
     $('browserStatus').textContent = data.error || `${data.ready ? 'Chrome已连接，可以恢复' : 'Chrome未连接；恢复时可能需要手动允许连接'} · ${stamp(connection.observed_at)}${connection.endpoint_changed ? ' · 浏览器endpoint已变化' : ''}${connection.last_disconnect ? ' · 最近记录的传输问题：' + ({session_closed:'会话关闭', transport_command_timeout:'连接命令超时',transport_lost_unknown:'原因未确认'}[connection.last_disconnect.category] || '未知') : ''}`;
+    if (terminal) $('browserStatus').textContent += ` · 传输日志：${terminalLabel}${terminal.error_class && terminal.error_class !== 'none' ? '（' + terminal.error_class + '）' : ''} · ${stamp(terminal.at)} · 谁触发断线尚未确认`;
   } catch (error) {if (state.epoch === epoch) showError(error.message);}
   finally {$('checkBrowser').disabled = false;}
 };

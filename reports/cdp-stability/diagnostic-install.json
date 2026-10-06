@@ -1,0 +1,19 @@
+{
+  "kind": "planned_diagnostic_binary_install",
+  "reason": "enable_first_websocket_terminal_log_after_tests",
+  "before_pid": 7976,
+  "before_state": {
+    "browser_connected": false,
+    "daemon_running": true,
+    "daemon_compatible": true
+  },
+  "binary_sha256": "d71abe2e7fb4193286be489065608595953ae8451d1d805522b33570b0f9e7f4",
+  "global_stop_called": false,
+  "browser_reconnected": false,
+  "after_pid": 93979,
+  "after_state": {
+    "browser_connected": false,
+    "daemon_running": true,
+    "daemon_compatible": true
+  }
+}

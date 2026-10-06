@@ -3,11 +3,13 @@ import asyncio
 import argparse
 import hashlib
 import json
+import os
 import subprocess
 from pathlib import Path
 from time import monotonic
 
 from farescout.config import Settings
+from farescout.connection import endpoint_marker
 from farescout.providers import Socai, command_json, socai_evidence
 from farescout.safety import source_error
 from farescout.models import now
@@ -23,14 +25,18 @@ async def snapshot(settings):
     try:
         rows = subprocess.check_output(['ps','-axo','pid,ppid,comm'], text=True).splitlines()
         state['processes'] = [r.strip() for r in rows if r.endswith('/socai') or r.endswith('/Google Chrome')]
-        daemon_ids = [r.split()[0] for r in state['processes'] if r.endswith('/socai')]
+        pid_path = Path(os.getenv('SOCAI_HOME', str(Path.home()/'.socai'))) / 'rust-daemon.pid'
+        daemon_ids = [pid_path.read_text().strip()] if pid_path.exists() else []
+        marker, state['endpoint_source'] = endpoint_marker()
+        port = marker.read_text().splitlines()[0] if marker.exists() else '9222'
+        state['active_daemon_pid'] = int(daemon_ids[0]) if daemon_ids and daemon_ids[0].isdigit() else None
         state['cdp_tcp_connections'] = []
         for pid in daemon_ids:
-            connections = subprocess.run(['lsof','-nP','-a','-p',pid,'-iTCP:9222'],capture_output=True,text=True)
+            connections = subprocess.run(['lsof','-nP','-a','-p',pid,f'-iTCP:{port}'],capture_output=True,text=True)
             state['cdp_tcp_connections'].extend(connections.stdout.splitlines()[1:])
     except Exception:
         state['processes'] = 'process inventory unavailable in execution sandbox'
-    marker = Path.home()/'Library/Application Support/Google/Chrome/DevToolsActivePort'
+    marker, state['endpoint_source'] = endpoint_marker()
     try:
         raw = marker.read_text().strip()
         state['endpoint_fingerprint'] = hashlib.sha256(raw.encode()).hexdigest()[:16]

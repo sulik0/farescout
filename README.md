@@ -1,6 +1,8 @@
 # 飞探 FareScout P1.5
 
-P1.5 已加入社区读取恢复、阶段耗时、日期调用优化和促销去重，98项自动化测试通过（包含9个前端回归用例）。真实稳定性验收仍未通过：一次中间版跑通，之后重复研究出现partial，最终版本三轮因CDP会话未建立而blocked。日期阶段单次对照从21次调用减到15次。完整结果、失败与限制见[P1.5验收](docs/current/p15-acceptance.md)。以下成功运行描述属于此前POC / P1的历史结果。 本轮已加入同一轮恢复、提前展示报价与按缺口决定下一步，真实完整验收仍在继续；当前结果和断线记录见[研究恢复验收](docs/current/research-recovery-acceptance.md)。
+P1.5 已加入社区读取恢复、阶段耗时、日期调用优化和促销去重。之后补上同一轮续跑、提前展示报价和按研究缺口决定下一步，见[研究恢复验收](docs/current/research-recovery-acceptance.md)。
+
+最新 CDP 专项增加断线后的自动等待、Chrome 确认后的原轮次续跑，以及 socai 的首次 WebSocket 终止日志。真实授权恢复取得 3 篇社区正文和 5 条有报价的航线，但结果仍为 `partial`；睡眠请求后两种 Chrome 模式都断开，managed 的正文读取也未通过，不能声称连接问题已经全部解决。测试条件、日期覆盖、耗时、调用量与剩余问题见[CDP 稳定性与恢复验收](docs/current/cdp-stability-acceptance.md)。此前 P1.5 的重复冷启动结果见[P1.5 验收](docs/current/p15-acceptance.md)；以下成功运行描述属于 POC / P1 的历史记录。
 
 从模糊机票需求出发，读取社区正文/评论，依据已读线索扩展查询，再调用实时机票来源验证。输出 Markdown 报告和可恢复的 JSON 会话。产品唯一基准是 [完整需求](docs/current/product-requirements.md)。
 
@@ -22,7 +24,7 @@ P1 在原有研究流程中加入明确记录的约束、实时研究轨迹和�
 ./scripts/run-this-machine.sh doctor
 ```
 
-`serve` 启动三栏研究工作台：左侧提问和选择历史记录，中央先展示航线、日期和报价，右侧查看实时研究轨迹。每张航线卡片都可追溯社区原文、日期探索和验价记录。条件和技术统计默认收起；修改条件会在同一会话创建下一轮研究。界面说明及验证见[前端研究工作台](docs/current/frontend-workspace.md)。服务仅监听本机，单个研究任务串行执行以保护 socai 浏览器连接。连接受阻或部分完成时，可先点“检查连接（不重新连接）”，再点“恢复这轮研究”；恢复不会新建提问轮次。不要同时从 CLI 和网页运行研究。`report` 显示原 POC 最后一轮。首轮及追问报告保存在 `reports/`。本机脚本优先使用 `.venv`、已恢复的 `/private/tmp/farescout-p1-venv`，然后尝试旧运行环境；临时目录清理后按下面步骤重新安装。`.env` 凭证仅保留在本机。
+`serve` 启动三栏研究工作台：左侧提问和选择历史记录，中央先展示航线、日期和报价，右侧查看实时研究轨迹。每张航线卡片都可追溯社区原文、日期探索和验价记录。条件和技术统计默认收起；修改条件会在同一会话创建下一轮研究。界面说明及验证见[前端研究工作台](docs/current/frontend-workspace.md)。服务仅监听本机，单个研究任务串行执行以保护 socai 浏览器连接。断线时已完成内容会保留；点“重新连接并继续”，在 Chrome 中确认后会自动续跑原轮次。等待期间只检查状态，默认最多等待 10 分钟，超时后仍可再次恢复。如果只是来源失败而没有确认断线，可用“恢复这轮研究”继续。不要同时从 CLI 和网页运行研究。`report` 显示原 POC 最后一轮。首轮及追问报告保存在 `reports/`。本机脚本优先使用 `.venv`、已恢复的 `/private/tmp/farescout-p1-venv`，然后尝试旧运行环境；临时目录清理后按下面步骤重新安装。`.env` 凭证仅保留在本机。
 
 代码包不包含本机 `.env` 或运行目录。安装后如需回放本次两轮真实验收，可先导入保存的历史 Session（不会调用来源，也不会更新报价时间）：
 
@@ -83,6 +85,7 @@ farescout resume --session demo
 | `FARESCOUT_SOCAI_MODE` | 默认 `selective`，先搜卡片再读正文；可选 `scan` 使用socai完整扫描。逐篇模式无正文时只回退扫描一次 |
 | `FARESCOUT_SOCAI_COMMENTS` | 每篇最多读取评论数，默认1；范围0–3 |
 | `FARESCOUT_SOCAI_CONNECT_TIMEOUT` | 首次Chrome连接等待，默认180秒；已连接时卡片搜索最多60秒、单篇读取最多40秒，仍受来源及总时间预算限制 |
+| `FARESCOUT_RECOVERY_WAIT_SECONDS` | 工作台断线后的状态等待时间，默认 600 秒，范围 15～1800 秒；确认重新连接后自动续跑原轮次 |
 | `FARESCOUT_FARE_CONCURRENCY` | SerpAPI精确日期查询并发数，默认2；FlyAI CLI及社区浏览器仍串行 |
 | `FARESCOUT_QUOTE_REUSE_SECONDS` | 同一轮、同来源、同条件报价最多复用120秒；不会更改原抓取时间 |
 | `FARESCOUT_DATE_HINT_SOURCE` | 默认 `explore`，优先Google Travel Explore，失败或无有效日期时回退FlyAI range；可选 `flyai` |

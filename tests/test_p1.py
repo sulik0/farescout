@@ -108,7 +108,8 @@ async def test_socai_timeout_retries_once_and_counts_real_commands(tmp_path, mon
     retries = []
     socai.on_retry = retries.append
     records = await socai.search('香港 日本 机票 11月 便宜')
-    assert socai.command_calls == 4 and sum(a[0] == 'xhs' for a in attempts) == 2
+    # Two searches, two readiness checks and one fresh post-timeout check.
+    assert socai.command_calls == 5 and sum(a[0] == 'xhs' for a in attempts) == 2
     assert retries == ['香港 日本 机票']
     assert records[0].query == retries[0]
 

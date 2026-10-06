@@ -1,0 +1,42 @@
+{
+  "before": {
+    "browser_connected": true,
+    "browser_state": "connected",
+    "daemon_running": true,
+    "daemon_compatible": true,
+    "error_code": null,
+    "profile_mode": "existing",
+    "active_profile_mode": "existing",
+    "processes": [
+      "7976     1 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/work/socai/socai",
+      "46958     1 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    ],
+    "cdp_tcp_connections": [
+      "socai   7976 fayefufu   11u  IPv4 0x380d74a7cad0bebf      0t0  TCP 127.0.0.1:50308->127.0.0.1:9222 (ESTABLISHED)"
+    ],
+    "endpoint_fingerprint": "b5eb7c8be2ef259c",
+    "endpoint_port": "9222",
+    "observed_at": "2026-10-04T10:25:10.540972+00:00"
+  },
+  "sleep_command_at": "2026-10-04T10:25:10.541384+00:00",
+  "human_confirmation": "not_recorded",
+  "condition": "user_approved_manual_sleep",
+  "after": {
+    "browser_connected": false,
+    "browser_state": "disconnected",
+    "daemon_running": true,
+    "daemon_compatible": true,
+    "error_code": "BROWSER_ENDPOINT_UNREACHABLE",
+    "profile_mode": "existing",
+    "active_profile_mode": null,
+    "processes": [
+      "7976     1 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/work/socai/socai",
+      "46958     1 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    ],
+    "cdp_tcp_connections": [],
+    "endpoint_fingerprint": "b5eb7c8be2ef259c",
+    "endpoint_port": "9222",
+    "observed_at": "2026-10-04T10:26:10.866193+00:00"
+  },
+  "elapsed_wall_seconds": 60.324
+}

@@ -1,0 +1,106 @@
+[
+  {
+    "call": 1,
+    "query": "香港 日本 机票",
+    "before": {
+      "browser_connected": false,
+      "browser_state": "unknown",
+      "daemon_running": false,
+      "daemon_compatible": false,
+      "error_code": "DAEMON_UNAVAILABLE",
+      "profile_mode": "managed",
+      "active_profile_mode": null,
+      "processes": [
+        "7976     1 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/work/socai/socai",
+        "46958     1 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "70440 70409 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/outputs/farescout/../../work/socai/socai"
+      ],
+      "endpoint_source": "managed_chrome_marker",
+      "active_daemon_pid": null,
+      "cdp_tcp_connections": [],
+      "endpoint_fingerprint": "e8ef971008f410ba",
+      "endpoint_port": "51989",
+      "observed_at": "2026-10-04T11:14:58.040075+00:00"
+    },
+    "manual_confirmation_observed": "unknown_requires_user_observation",
+    "result": "BROWSER_OR_LOGIN_REQUIRED: 完整扫描遇登录或访问限制；停止来源",
+    "seconds": 131.9,
+    "after": {
+      "browser_connected": true,
+      "browser_state": "connected",
+      "daemon_running": true,
+      "daemon_compatible": true,
+      "error_code": null,
+      "profile_mode": "managed",
+      "active_profile_mode": "managed",
+      "processes": [
+        "7976     1 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/work/socai/socai",
+        "46958     1 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "70548     1 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/outputs/farescout/../../work/socai-diagnostic/socai",
+        "70567 70548 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "70986 70409 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/outputs/farescout/../../work/socai/socai"
+      ],
+      "endpoint_source": "managed_chrome_marker",
+      "active_daemon_pid": 70548,
+      "cdp_tcp_connections": [
+        "socai   70548 fayefufu   11u  IPv4 0xad261dcbfdba14e2      0t0  TCP 127.0.0.1:59900->127.0.0.1:59899 (ESTABLISHED)"
+      ],
+      "endpoint_fingerprint": "add0ea3920861fe4",
+      "endpoint_port": "59899",
+      "observed_at": "2026-10-04T11:17:10.452605+00:00"
+    }
+  },
+  {
+    "call": 2,
+    "query": "香港 大阪 机票",
+    "before": {
+      "browser_connected": true,
+      "browser_state": "connected",
+      "daemon_running": true,
+      "daemon_compatible": true,
+      "error_code": null,
+      "profile_mode": "managed",
+      "active_profile_mode": "managed",
+      "processes": [
+        "7976     1 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/work/socai/socai",
+        "46958     1 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "70548     1 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/outputs/farescout/../../work/socai-diagnostic/socai",
+        "70567 70548 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+      ],
+      "endpoint_source": "managed_chrome_marker",
+      "active_daemon_pid": 70548,
+      "cdp_tcp_connections": [
+        "socai   70548 fayefufu   11u  IPv4 0xad261dcbfdba14e2      0t0  TCP 127.0.0.1:59900->127.0.0.1:59899 (ESTABLISHED)"
+      ],
+      "endpoint_fingerprint": "add0ea3920861fe4",
+      "endpoint_port": "59899",
+      "observed_at": "2026-10-04T11:18:12.705747+00:00"
+    },
+    "manual_confirmation_observed": "unknown_requires_user_observation",
+    "result": "BROWSER_OR_LOGIN_REQUIRED: 社区页面要求登录或限制访问；停止该来源",
+    "seconds": 20.512,
+    "after": {
+      "browser_connected": true,
+      "browser_state": "connected",
+      "daemon_running": true,
+      "daemon_compatible": true,
+      "error_code": null,
+      "profile_mode": "managed",
+      "active_profile_mode": "managed",
+      "processes": [
+        "7976     1 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/work/socai/socai",
+        "46958     1 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "70548     1 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/outputs/farescout/../../work/socai-diagnostic/socai",
+        "70567 70548 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+      ],
+      "endpoint_source": "managed_chrome_marker",
+      "active_daemon_pid": 70548,
+      "cdp_tcp_connections": [
+        "socai   70548 fayefufu   11u  IPv4 0xad261dcbfdba14e2      0t0  TCP 127.0.0.1:59900->127.0.0.1:59899 (ESTABLISHED)"
+      ],
+      "endpoint_fingerprint": "add0ea3920861fe4",
+      "endpoint_port": "59899",
+      "observed_at": "2026-10-04T11:18:35.269911+00:00"
+    }
+  }
+]

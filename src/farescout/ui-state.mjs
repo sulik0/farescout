@@ -70,6 +70,10 @@ export class ViewState {
     return true;
   }
   get turn() { return this.session?.turns.find(t => t.id === this.selectedTurn) || this.session?.turns.at(-1); }
+  get waitingForBrowser() {
+    const latest = this.session?.turns.at(-1);
+    return ['partial','blocked'].includes(latest?.status) && latest?.checkpoint?.browser_recovery?.state === 'waiting';
+  }
   get locked() { return this.starting || Boolean(this.activeSid); }
   get reportURL() {
     return this.sid && this.turn ? `/api/sessions/${encodeURIComponent(this.sid)}/report?turn=${encodeURIComponent(this.turn.id)}` : null;

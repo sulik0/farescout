@@ -32,7 +32,7 @@ async def test_preview_is_not_evidence_and_one_failed_body_preserves_others(tmp_
     source = Socai(Settings(data_dir=tmp_path))
     source.on_trace = lambda *args: traces.append(args)
     records = await source.search('香港 日本 机票')
-    assert len(records) == 2 and len(calls) == source.command_calls == 5
+    assert len(records) == 2 and len(calls) == source.command_calls == 6  # Includes status after the failed body read.
     assert all(e.body for e in records)
     assert 'SECRET' not in str(traces) + str(records)
     assert any(t[1] == 'failed' for t in traces)

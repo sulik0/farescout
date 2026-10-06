@@ -28,6 +28,21 @@ test('viewing an old round produces the report for that round', () => {
   const state = new ViewState(); state.select('first'); state.accept(state.requestToken(), response('first', [{id:'t1'},{id:'t2'}]));
   assert.ok(state.reportURL.endsWith('turn=t2')); state.selectedTurn = 't1'; assert.ok(state.reportURL.endsWith('turn=t1'));
 });
+test('a reloaded waiting session keeps listening for authorization, even while an older round is viewed', () => {
+  const state = new ViewState(); state.select('saved');
+  const turns = [{id:'old',status:'complete'}, {id:'paused',status:'blocked',checkpoint:{browser_recovery:{state:'waiting'}}}];
+  state.accept(state.requestToken(), response('saved',turns));
+  state.selectedTurn = 'old';
+  assert.equal(state.activeSid, null);
+  assert.equal(state.waitingForBrowser, true);
+  state.accept(state.requestToken(), response('saved',[turns[0],{...turns[1],checkpoint:{browser_recovery:{state:'expired'}}}]));
+  assert.equal(state.waitingForBrowser, false);
+  state.accept(state.requestToken(), response('saved',[turns[0],{...turns[1],status:'running',checkpoint:{browser_recovery:{state:'resumed'}}}], 'saved'));
+  assert.equal(state.waitingForBrowser, false);
+  assert.equal(state.locked, true);
+  state.select('other');
+  assert.equal(state.waitingForBrowser, false);
+});
 test('a cheaper tax-unknown quote never displaces a tax-inclusive headline', () => {
   const taxed = {id:'taxed',amount:850,price_basis:'total_including_taxes',request:{outbound_date:'2026-11-04'}};
   const unknown = {id:'unknown',amount:816,price_basis:'adult_fare_tax_unknown',request:{outbound_date:'2026-11-30'}};

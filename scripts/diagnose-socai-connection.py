@@ -3,12 +3,14 @@ import argparse
 from datetime import date, datetime, timezone
 import hashlib
 import json
+import os
 import plistlib
 from pathlib import Path
 import re
 import subprocess
 
 from farescout.config import Settings
+from farescout.connection import endpoint_marker, connection_observation
 
 
 def command(args, seconds=20):
@@ -26,22 +28,25 @@ def inspect(day, start_hour=0, end_hour=24):
             'daemon_compatible','browser_connected','browser_state','profile_mode','active_profile_mode','error_code']}
     except Exception as error:
         result['status_error'] = type(error).__name__
-    socai_home = Path.home()/'.socai'
+    socai_home = Path(os.getenv('SOCAI_HOME', str(Path.home()/'.socai')))
+    marker, marker_source = endpoint_marker()
+    port = marker.read_text().splitlines()[0] if marker.exists() else '9222'
+    result['connection_observation'] = connection_observation(status if 'status' in locals() else {}, settings)
     try:
         pid = (socai_home/'rust-daemon.pid').read_text().strip()
         if pid.isdigit():
             rows = command(['ps','-p',pid,'-o','pid=,ppid=,lstart=']).stdout.strip()
             result['daemon_process'] = rows
-            tcp = command(['lsof','-nP','-a','-p',pid,'-iTCP:9222']).stdout.splitlines()[1:]
-            result['daemon_cdp_tcp_9222'] = [row.split()[-2:] for row in tcp]
-            result['tcp_note'] = 'Only checks port 9222; absence alone does not identify a disconnect cause.'
+            tcp = command(['lsof','-nP','-a','-p',pid,f'-iTCP:{port}']).stdout.splitlines()[1:]
+            result['daemon_cdp_tcp'] = [row.split()[-2:] for row in tcp]
+            result['tcp_note'] = f'Checks marker port {port}; absence alone does not identify a disconnect cause.'
         chrome = command(['pgrep','-x','Google Chrome']).stdout.split()
         result['chrome_processes'] = [command(['ps','-p',p,'-o','pid=,ppid=,lstart=']).stdout.strip() for p in chrome if p.isdigit()]
         info = plistlib.loads(Path('/Applications/Google Chrome.app/Contents/Info.plist').read_bytes())
         result['chrome_version'] = info.get('CFBundleShortVersionString')
     except Exception as error:
         result['process_error'] = type(error).__name__
-    marker = Path.home()/'Library/Application Support/Google/Chrome/DevToolsActivePort'
+    result['endpoint_source'] = marker_source
     try:
         result['default_chrome_endpoint_fingerprint'] = hashlib.sha256(marker.read_bytes().strip()).hexdigest()[:16]
         result['endpoint_note'] = 'Marker is not proof of a live socket or permission.'
@@ -79,11 +84,11 @@ def inspect(day, start_hour=0, end_hour=24):
             if match[2] == 'DarkWake':
                 result['darkwake_count'] += 1
                 continue
-            if match[2] == 'Sleep' and "'Idle Sleep'" not in match[3]:
+            if match[2] == 'Sleep' and not any(reason in match[3] for reason in ["'Idle Sleep'","'Software Sleep'","'Clamshell Sleep'","'Sleep Now'"]):
                 result['maintenance_sleep_count'] += 1
                 continue
             # Store transition times and coarse reasons, not battery, devices or app activity.
-            detail = 'idle_sleep' if "'Idle Sleep'" in match[3] else 'sleep' if match[2]=='Sleep' else 'wake'
+            detail = 'idle_sleep' if "'Idle Sleep'" in match[3] else 'manual_sleep' if match[2]=='Sleep' else 'wake'
             result['power_events'].append({'time':datetime.strptime(match[1],'%Y-%m-%d %H:%M:%S %z').isoformat(),
                 'event':match[2], 'reason':detail})
     except Exception as error:

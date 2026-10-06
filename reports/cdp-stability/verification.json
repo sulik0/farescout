@@ -1,0 +1,33 @@
+{
+  "checked_on": "2026-10-06",
+  "python_tests": {
+    "passed": 108,
+    "command": "PYTHONPATH=src .venv/bin/python -m pytest -q"
+  },
+  "rust_transport_test": {
+    "passed": 1,
+    "command": "cargo test --locked -p socai-core --lib cdp::raw_client::transport_tests -- --test-threads=1",
+    "result": "logs_first_close_with_no_pending_commands_once_without_private_reason ... ok"
+  },
+  "javascript_syntax": "PASS: node --check src/farescout/ui.mjs",
+  "build_script_syntax": "PASS: sh -n scripts/build-socai-diagnostic.sh",
+  "fresh_upstream_patch_application": "PASS: both patches apply to official v0.6.1 archive",
+  "cargo_locked_metadata": "PASS: cargo metadata --locked --no-deps",
+  "upstream_archive_sha256": "c38fceaede690e00ba4537d07bd501fefe0a2d048fc4eaf4d0d7f77a09d9ead0",
+  "files_sha256": {
+    "patches/socai/diagnostic-Cargo.lock": "3b4f73885a5dc8d9d21d40414d13edfba4396dd43bd82ff5d5b6dcc5b213a264",
+    "patches/socai/v0.6.1-isolated-config.patch": "3ecb41d20acd4ec0d668e47954d92dd2e3829de58536a94f4e9446ef97827907",
+    "patches/socai/v0.6.1-websocket-terminal.patch": "276aa8dc8c1f951ee90aefcdc6e89a4836a59d21707f229c9bc2089a65fa5c23"
+  },
+  "real_research_record_dates": [
+    "2026-10-04"
+  ],
+  "note": "自动化测试不计入真实社区/票价成功率；10 月 6 日没有重新采集报价，也没有再次请求本机睡眠。",
+  "frontend_checks": 10,
+  "local_web_smoke": {
+    "url": "http://127.0.0.1:8768/",
+    "history_rendered_routes": 5,
+    "read_only_browser_check": "daemon compatible; browser disconnected; no reconnect issued",
+    "browser_console_errors": 0
+  }
+}

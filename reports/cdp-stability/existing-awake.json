@@ -1,0 +1,106 @@
+[
+  {
+    "call": 1,
+    "query": "香港 日本 机票",
+    "before": {
+      "browser_connected": true,
+      "browser_state": "connected",
+      "daemon_running": true,
+      "daemon_compatible": true,
+      "error_code": null,
+      "profile_mode": "existing",
+      "active_profile_mode": "existing",
+      "processes": [
+        "7976     1 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/work/socai/socai",
+        "46958     1 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+      ],
+      "cdp_tcp_connections": [
+        "socai   7976 fayefufu   11u  IPv4 0x380d74a7cad0bebf      0t0  TCP 127.0.0.1:50308->127.0.0.1:9222 (ESTABLISHED)"
+      ],
+      "endpoint_fingerprint": "b5eb7c8be2ef259c",
+      "endpoint_port": "9222",
+      "observed_at": "2026-10-04T10:19:28.056805+00:00"
+    },
+    "manual_confirmation_observed": "unknown_requires_user_observation",
+    "body_count": 1,
+    "payload_fields": [
+      "artifact",
+      "notes",
+      "query",
+      "run"
+    ],
+    "result": "ok",
+    "seconds": 48.468,
+    "after": {
+      "browser_connected": true,
+      "browser_state": "connected",
+      "daemon_running": true,
+      "daemon_compatible": true,
+      "error_code": null,
+      "profile_mode": "existing",
+      "active_profile_mode": "existing",
+      "processes": [
+        "7976     1 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/work/socai/socai",
+        "46958     1 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+      ],
+      "cdp_tcp_connections": [
+        "socai   7976 fayefufu   11u  IPv4 0x380d74a7cad0bebf      0t0  TCP 127.0.0.1:50308->127.0.0.1:9222 (ESTABLISHED)"
+      ],
+      "endpoint_fingerprint": "b5eb7c8be2ef259c",
+      "endpoint_port": "9222",
+      "observed_at": "2026-10-04T10:20:16.606569+00:00"
+    }
+  },
+  {
+    "call": 2,
+    "query": "香港 大阪 机票",
+    "before": {
+      "browser_connected": true,
+      "browser_state": "connected",
+      "daemon_running": true,
+      "daemon_compatible": true,
+      "error_code": null,
+      "profile_mode": "existing",
+      "active_profile_mode": "existing",
+      "processes": [
+        "7976     1 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/work/socai/socai",
+        "46958     1 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+      ],
+      "cdp_tcp_connections": [
+        "socai   7976 fayefufu   11u  IPv4 0x380d74a7cad0bebf      0t0  TCP 127.0.0.1:50308->127.0.0.1:9222 (ESTABLISHED)"
+      ],
+      "endpoint_fingerprint": "b5eb7c8be2ef259c",
+      "endpoint_port": "9222",
+      "observed_at": "2026-10-04T10:21:16.784861+00:00"
+    },
+    "manual_confirmation_observed": "unknown_requires_user_observation",
+    "body_count": 1,
+    "payload_fields": [
+      "artifact",
+      "notes",
+      "query",
+      "run"
+    ],
+    "result": "ok",
+    "seconds": 43.955,
+    "after": {
+      "browser_connected": true,
+      "browser_state": "connected",
+      "daemon_running": true,
+      "daemon_compatible": true,
+      "error_code": null,
+      "profile_mode": "existing",
+      "active_profile_mode": "existing",
+      "processes": [
+        "7976     1 /Users/fayefufu/Documents/Codex/2026-09-30/gen-ju/work/socai/socai",
+        "46958     1 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+      ],
+      "cdp_tcp_connections": [
+        "socai   7976 fayefufu   11u  IPv4 0x380d74a7cad0bebf      0t0  TCP 127.0.0.1:50308->127.0.0.1:9222 (ESTABLISHED)"
+      ],
+      "endpoint_fingerprint": "b5eb7c8be2ef259c",
+      "endpoint_port": "9222",
+      "observed_at": "2026-10-04T10:22:01.004383+00:00"
+    }
+  }
+]

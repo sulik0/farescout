@@ -1,0 +1,27 @@
+{
+  "kind": "recorded_transport_terminal_events",
+  "events": [
+    {
+      "at": "2026-10-04T11:11:16.554314Z",
+      "cause_confirmed": false,
+      "connection_id": 1,
+      "pid": 66670,
+      "kind": "websocket_receive_failed",
+      "reason_bytes": 0,
+      "pending_commands": 0,
+      "uptime_ms": 2668539
+    },
+    {
+      "at": "2026-10-04T11:18:41.128685Z",
+      "cause_confirmed": false,
+      "connection_id": 1,
+      "pid": 70548,
+      "kind": "websocket_receive_failed",
+      "error_class": "protocol",
+      "reason_bytes": 0,
+      "pending_commands": 0,
+      "uptime_ms": 219173
+    }
+  ],
+  "note": "仅导出传输类别和数字字段。19:11 的版本尚无 error_class；19:18 的 protocol 类别不证明谁触发了关闭。"
+}

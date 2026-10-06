@@ -1,0 +1,41 @@
+{
+  "kind": "read_only_socai_connection_diagnosis",
+  "day": "2026-10-04",
+  "local_hour_window": [
+    18,
+    19
+  ],
+  "observed_at": "2026-10-04T10:28:49.264660+00:00",
+  "manual_confirmation_count": "not_observable_by_status",
+  "status": {
+    "cli_version": "0.6.1",
+    "daemon_running": true,
+    "daemon_compatible": true,
+    "browser_connected": false,
+    "browser_state": "disconnected",
+    "profile_mode": "existing",
+    "active_profile_mode": null,
+    "error_code": "BROWSER_ENDPOINT_UNREACHABLE"
+  },
+  "daemon_process": "7976     1 Thu Oct  1 09:43:08 2026",
+  "daemon_cdp_tcp_9222": [],
+  "tcp_note": "Only checks port 9222; absence alone does not identify a disconnect cause.",
+  "chrome_processes": [
+    "46958     1 Sun Oct  4 11:11:23 2026",
+    "66678 66670 Sun Oct  4 18:26:44 2026"
+  ],
+  "chrome_version": "154.0.8037.97",
+  "default_chrome_endpoint_fingerprint": "b5eb7c8be2ef259c",
+  "endpoint_note": "Marker is not proof of a live socket or permission.",
+  "daemon_events": [
+    {
+      "time": "2026-10-04T18:25:15.586401+08:00",
+      "category": "cdp_session_closed",
+      "attempt": null
+    }
+  ],
+  "power_events": [],
+  "darkwake_count": 0,
+  "maintenance_sleep_count": 0,
+  "causality_note": "Timestamp correlation is not proof that sleep closed the socket."
+}
