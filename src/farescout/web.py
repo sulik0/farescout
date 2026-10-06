@@ -38,9 +38,9 @@ class Application:
             except (ValueError, KeyError, OSError):
                 continue
 
-    def recovery_event(self, saved, status, detail):
+    def recovery_event(self, saved, status, detail, *, duration_ms=None, data=None):
         turn = saved.turns[-1]
-        turn.events.append(Event(stage='browser_recovery', status=status, detail=detail, turn_id=turn.id))
+        turn.events.append(Event(stage='browser_recovery', status=status, detail=detail, turn_id=turn.id, duration_ms=duration_ms, data=data or {}))
         self.store.save(saved)
 
     def cancel_recovery(self):
@@ -66,8 +66,9 @@ class Application:
                 return
             turn = saved.turns[-1]
             end = datetime.fromisoformat(deadline) if deadline else now() + timedelta(seconds=self.settings.recovery_wait_seconds)
-            turn.checkpoint['browser_recovery'] = {'state':'waiting', 'deadline':end.isoformat()}
-            self.recovery_event(saved, 'info', '已保留研究；等待 Chrome 连接，确认后自动继续未完成步骤。状态检查不会反复请求授权。')
+            managed = self.settings.social_browser == 'managed'
+            turn.checkpoint['browser_recovery'] = {'state':'waiting', 'deadline':end.isoformat(), 'mode':self.settings.social_browser}
+            self.recovery_event(saved, 'info', '已保留研究；专用浏览器断线后自动尝试连接一次，再继续未完成步骤。' if managed else '已保留研究；等待 Chrome 连接，确认后自动继续未完成步骤。状态检查不会反复请求授权。')
             stop = self.recovery_stop = threading.Event()
             self.recovery_target = (session_id, turn.id)
         def watch():
@@ -75,7 +76,80 @@ class Application:
             while not stop.is_set():
                 try:
                     ready = asyncio.run(source.browser_ready()) if now() < end else False
-                except Exception:
+                    # Never try to launch existing Chrome automatically. The managed
+                    # mode is confirmed by daemon status, not just a UI preference.
+                    if not ready and managed and source.connection.get('profile_mode') == 'managed' and now() < end:
+                        with self.lock:
+                            if stop.is_set() or self.active or self.recovery_target != (session_id, turn.id):
+                                return
+                            current = self.store.load(session_id)
+                            if not current or current.turns[-1].id != turn.id:
+                                return
+                            cp = current.turns[-1].checkpoint
+                            attempt = cp.get('managed_reconnect_attempts', 0)
+                            if attempt < 1:
+                                # Persist before dispatch; a service restart cannot
+                                # create an unbounded sequence of new connections.
+                                cp['managed_reconnect_attempts'] = attempt + 1
+                                self.active = session_id
+                                self.recovery_event(current, 'info', '正在重新连接专用 Chrome；不清理 profile，也不重启 socai daemon。')
+                                query = (cp.get('queries') or ['香港 日本 机票'])[0]
+                        if attempt < 1:
+                            from .providers import socai_gate
+                            async def connect_managed():
+                                return await asyncio.wait_for(source._command(
+                                    ['xhs','search',query,'--num-notes','0','--pretty'],
+                                    'social_preview', {'recovery':True}), max(.01, (end-now()).total_seconds()))
+                            began, commands_before = time.monotonic(), source.command_calls
+                            try:
+                                payload = asyncio.run(connect_managed())
+                            finally:
+                                with self.lock:
+                                    if self.active == session_id:
+                                        self.active = None
+                                    if not stop.is_set():
+                                        latest = self.store.load(session_id)
+                                        if latest and latest.turns[-1].id == turn.id:
+                                            metrics = {'connection_attempts':1, 'cli_commands':source.command_calls-commands_before,
+                                                'seconds':round(time.monotonic()-began,3)}
+                                            latest.turns[-1].checkpoint['browser_recovery'].update(metrics)
+                                            self.recovery_event(latest, 'info', '专用浏览器连接尝试结束；接下来核对连接与页面状态。',
+                                                duration_ms=int(metrics['seconds']*1000), data=metrics)
+                            if socai_gate(payload):
+                                with self.lock:
+                                    if stop.is_set():
+                                        return
+                                    latest = self.store.load(session_id)
+                                    if latest and latest.turns[-1].id == turn.id:
+                                        latest.turns[-1].checkpoint['browser_recovery']['state'] = 'needs_user'
+                                        self.recovery_event(latest, 'failed', '专用浏览器页面要求登录或验证；研究已保留，请在专用窗口处理后继续。')
+                                    self.recovery_target = None
+                                return
+                            ready = asyncio.run(source.browser_ready())
+                except Exception as error:
+                    # Config/version failures must not become connection attempts.
+                    failure = source_error('socai', error)
+                    user_action = failure.code == 'ACCESS_BLOCKED' or (
+                        failure.code == 'BROWSER_OR_LOGIN_REQUIRED' and source.connection.get('browser_connected') is True)
+                    if user_action or failure.code in {'BROWSER_CONFIG_UNSUPPORTED','BROWSER_CONFIG_MISMATCH','BROWSER_CONFIG_INVALID','DAEMON_VERSION_MISMATCH'}:
+                        with self.lock:
+                            if stop.is_set():
+                                return
+                            latest = self.store.load(session_id)
+                            if latest and latest.turns[-1].id == turn.id:
+                                latest.turns[-1].checkpoint['browser_recovery']['state'] = 'needs_user'
+                                self.recovery_event(latest, 'failed', str(failure))
+                            self.recovery_target = None
+                        return
+                    if managed:
+                        with self.lock:
+                            if not stop.is_set():
+                                latest = self.store.load(session_id)
+                                if latest and latest.turns[-1].id == turn.id:
+                                    state = latest.turns[-1].checkpoint['browser_recovery']
+                                    if state.get('last_error') != failure.code:
+                                        state['last_error'] = failure.code
+                                        self.recovery_event(latest, 'failed', str(failure))
                     ready = False
                 with self.lock:
                     if stop.is_set() or self.active or self.recovery_target != (session_id, turn.id):

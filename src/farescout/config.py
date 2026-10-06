@@ -15,6 +15,10 @@ class Settings:
     serpapi_key: str = field(default="", repr=False)
     flyai_key: str = field(default="", repr=False)
     socai_bin: str = "socai"
+    social_browser: str = "managed"
+    socai_home: Path | None = None
+    socai_config_path: Path | None = None
+    socai_profile_dir: Path | None = None
     flyai_bin: str = "flyai"
     data_dir: Path = Path("data")
     source_timeout: int = 90
@@ -40,6 +44,15 @@ class Settings:
     @classmethod
     def from_env(cls) -> "Settings":
         load_dotenv(Path.cwd() / ".env", override=False)
+        browser = os.getenv("FARESCOUT_SOCIAL_BROWSER", "managed")
+        if browser not in {"managed", "existing"}:
+            raise ValueError("FARESCOUT_SOCIAL_BROWSER 只支持 managed 或 existing")
+        # Keep browser data outside the project (and iCloud-synced Documents).
+        import sys
+        root = Path(os.getenv("FARESCOUT_BROWSER_ROOT", str(Path.home() / (
+            "Library/Application Support/FareScout" if sys.platform == "darwin" else ".local/share/farescout")))).expanduser()
+        home = Path(os.environ["SOCAI_HOME"]).expanduser() if os.getenv("SOCAI_HOME") else (root / "socai-managed" if browser == "managed" else None)
+        config = Path(os.environ["SOCAI_CONFIG_PATH"]).expanduser() if os.getenv("SOCAI_CONFIG_PATH") else (home / "config.json" if home and browser == "managed" else None)
         return cls(
             model=os.getenv("FARESCOUT_MODEL", "deepseek-chat"),
             base_url=os.getenv("FARESCOUT_MODEL_BASE_URL", "https://api.deepseek.com"),
@@ -47,6 +60,8 @@ class Settings:
             serpapi_key=os.getenv("SERPAPI_API_KEY", ""),
             flyai_key=os.getenv("FLYAI_API_KEY", ""),
             socai_bin=os.getenv("SOCAI_BIN", "socai"),
+            social_browser=browser, socai_home=home, socai_config_path=config,
+            socai_profile_dir=root / "chrome-managed" if browser == "managed" else None,
             flyai_bin=os.getenv("FLYAI_BIN", "flyai"),
             data_dir=Path(os.getenv("FARESCOUT_DATA_DIR", "data")),
             source_timeout=max(5, min(180, int(os.getenv("FARESCOUT_SOURCE_TIMEOUT", "90")))),

@@ -25,6 +25,13 @@ async def command_json(executable: str, args: list[str], settings: Settings, sou
     if not shutil.which(executable):
         raise SourceFailure(source, "NOT_INSTALLED", f"未找到 {source} 可执行文件")
     env = dict(os.environ)
+    if executable == settings.socai_bin:
+        from .social_browser import browser_env
+        env.update(browser_env(settings))
+        if settings.social_browser == 'managed' and settings.socai_config_path is not None:
+            # Explicit endpoints must not override the dedicated managed profile.
+            env.pop('SOCAI_CDP_URL', None)
+            env.pop('SOCAI_CDP_WS', None)
     # Child tools do not need the reasoning or SerpAPI credentials.
     for key in list(env):
         if key.endswith("API_KEY") and key != "FLYAI_API_KEY":
@@ -59,6 +66,8 @@ async def command_json(executable: str, args: list[str], settings: Settings, sou
         else:
             code = "CLI_FAILED"
         raise SourceFailure(source, code, "命令未成功；请使用 doctor 检查本机配置，或切换其他来源")
+    if args == ['config', 'path']:
+        return {'config_path': text.strip()}
     # Parse one complete JSON value, never evaluate output as code.
     try:
         data = json.loads(text)
@@ -175,8 +184,25 @@ class Socai:
         self.timeout_seconds = settings.socai_connect_timeout + settings.source_timeout * 2 + 5
         self.connection = {}
         self.known_notes = {}
+        self.config_verified = False
+
+    async def ensure_browser_config(self):
+        if self.config_verified:
+            return
+        if self.settings.social_browser == 'managed' and self.settings.socai_config_path is not None:
+            from pathlib import Path
+            from .social_browser import prepare_managed
+            prepare_managed(self.settings)
+            self.command_calls += 1
+            actual = await command_json(self.settings.socai_bin, ['config', 'path'],
+                replace(self.settings, source_timeout=5), 'socai')
+            if Path(actual.get('config_path', '')).resolve() != self.settings.socai_config_path.resolve():
+                raise SourceFailure(self.name, 'BROWSER_CONFIG_UNSUPPORTED',
+                    'socai 未采用专用配置；请构建仓库提供的诊断版。已停止调用，避免连接日常 Chrome')
+        self.config_verified = True
 
     async def browser_ready(self):
+        await self.ensure_browser_config()
         self.command_calls += 1
         state = await command_json(self.settings.socai_bin, ['status', '--json'],
             replace(self.settings, source_timeout=5), 'socai')
@@ -184,7 +210,7 @@ class Socai:
         # before a platform command attempts to spawn another daemon.
         if state.get('daemon_running') is False and os.name == 'posix':
             from pathlib import Path
-            home = Path(os.getenv('SOCAI_HOME', str(Path.home() / '.socai')))
+            home = self.settings.socai_home or Path(os.getenv('SOCAI_HOME', str(Path.home() / '.socai')))
             try:
                 with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as client:
                     client.settimeout(.2)
@@ -197,8 +223,10 @@ class Socai:
         self.connection = connection_observation(state, self.settings)
         if state.get('daemon_running') is True and state.get('daemon_compatible') is False:
             raise SourceFailure(self.name, 'DAEMON_VERSION_MISMATCH', 'CLI与daemon版本或构建不同；停止调用以免socai自动重启现有daemon')
+        if self.settings.socai_config_path is not None and self.settings.social_browser == 'managed' and state.get('profile_mode') != 'managed':
+            raise SourceFailure(self.name, 'BROWSER_CONFIG_MISMATCH', 'daemon 未报告 managed 模式；停止调用，不切换或重启其他浏览器')
         self.on_trace('browser_connection', 'ok' if ready else 'info',
-            '复用已经连接的Chrome' if ready else 'Chrome当前未连接；授权是否待确认尚未知，只允许本轮一次连接尝试',
+            '复用已经连接的Chrome' if ready else '专用 Chrome 当前未连接；下一次只读搜索会尝试启动同一 profile' if state.get('profile_mode') == 'managed' else 'Chrome当前未连接；授权是否待确认尚未知，只允许本轮一次连接尝试',
             0, self.connection)
         return ready
 

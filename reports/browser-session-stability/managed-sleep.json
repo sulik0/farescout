@@ -1,0 +1,37 @@
+{
+  "before": {
+    "browser_connected": true,
+    "browser_state": "connected",
+    "daemon_running": true,
+    "daemon_compatible": true,
+    "error_code": null,
+    "profile_mode": "managed",
+    "active_profile_mode": "managed",
+    "endpoint_source": "managed_chrome_marker",
+    "active_daemon_pid": 95945,
+    "cdp_tcp_connection_count": 1,
+    "endpoint_fingerprint": "900d60deed8eacdd",
+    "endpoint_port": "52028",
+    "observed_at": "2026-10-06T03:04:39.926313+00:00"
+  },
+  "sleep_command_at": "2026-10-06T03:04:39.926783+00:00",
+  "human_confirmation": "not_recorded",
+  "condition": "user_approved_manual_sleep",
+  "after": {
+    "browser_connected": false,
+    "browser_state": "disconnected",
+    "daemon_running": true,
+    "daemon_compatible": true,
+    "error_code": "BROWSER_ENDPOINT_UNREACHABLE",
+    "profile_mode": "managed",
+    "active_profile_mode": null,
+    "endpoint_source": "managed_chrome_marker",
+    "active_daemon_pid": 95945,
+    "cdp_tcp_connection_count": 0,
+    "endpoint_fingerprint": "900d60deed8eacdd",
+    "endpoint_port": "52028",
+    "observed_at": "2026-10-06T03:05:40.684221+00:00"
+  },
+  "elapsed_wall_seconds": 60.757,
+  "publication_note": "Raw process inventory, local usernames, absolute personal paths and TCP rows omitted. Aggregate timings/counts and public note references retained."
+}

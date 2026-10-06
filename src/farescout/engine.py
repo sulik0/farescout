@@ -33,6 +33,8 @@ class Store:
         if not path.exists():
             return None
         data = json.loads(path.read_text())
+        if not isinstance(data, dict):
+            raise ValueError('该 JSON 不是研究会话对象')
         for turn in data.get("turns", []):
             for index, event in enumerate(turn.get("events", [])):
                 event.setdefault("id", identity(session_id, turn.get("id"), index, event.get("time")))
@@ -166,7 +168,7 @@ class Researcher:
                     self.emit(turn, 'budget', 'info', '社区阶段时间预算到达；已读正文保留，接着提取候选和验价',
                               provider.name, data={'query':query, 'reserved_seconds':reserve})
                 failure = source_error(provider.name, error)
-                if isinstance(provider, RedditCommunity) or failure.code in {"ACCESS_BLOCKED", "BROWSER_OR_LOGIN_REQUIRED", "BROWSER_DISCONNECTED", "DAEMON_VERSION_MISMATCH", "NOT_INSTALLED", "CONNECTION_APPROVAL_TIMEOUT", "DAEMON_IPC_PERMISSION_DENIED"}:
+                if isinstance(provider, RedditCommunity) or failure.code in {"ACCESS_BLOCKED", "BROWSER_OR_LOGIN_REQUIRED", "BROWSER_DISCONNECTED", "DAEMON_VERSION_MISMATCH", "NOT_INSTALLED", "CONNECTION_APPROVAL_TIMEOUT", "DAEMON_IPC_PERMISSION_DENIED", "BROWSER_CONFIG_UNSUPPORTED", "BROWSER_CONFIG_MISMATCH", "BROWSER_CONFIG_INVALID"}:
                     self._blocked_social.add(provider.name)
                 self.emit(turn, stage, "failed", str(source_error(provider.name, error)), provider.name,
                           action_id=action, phase="completed", duration_ms=int((monotonic()-started)*1000), data={"query": query})

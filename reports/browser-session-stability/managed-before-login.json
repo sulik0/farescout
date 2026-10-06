@@ -1,0 +1,19 @@
+{
+  "kind": "managed_first_connection_before_login",
+  "started_at": "2026-10-06T02:35:25.572680+00:00",
+  "source_duration_ms": 48713,
+  "cdp_connection_log": {
+    "at": "2026-10-06T02:35:25.027221Z",
+    "connection_id": 1,
+    "daemon_pid": 95945
+  },
+  "result": "no_search_cards",
+  "body_count": 0,
+  "source_reason": "Search did not transition to a valid Xiaohongshu result page",
+  "ui_login_observation": "visible_logged_out: 登录后查看搜索结果",
+  "browser_connected": true,
+  "manual_reauthorization": "unknown_pending_user_observation",
+  "counts_as_post_login_acceptance": false,
+  "scope": "Fresh local profile; no copied cookies; not the iCloud profile used on 2026-10-04.",
+  "publication_note": "Raw process inventory, local usernames, absolute personal paths and TCP rows omitted. Aggregate timings/counts and public note references retained."
+}

@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-06T03:24:15.873804+00:00",
+  "port": 8768,
+  "data_dir": "data/recovery-live",
+  "ready": true,
+  "profile_mode": "managed",
+  "daemon_pid": 95945,
+  "retained_session_count": 3,
+  "preserved_session_id": "recovery-final-2",
+  "preserved_turn_id": "9a5c50a34c54ebc3",
+  "preserved_opportunities": 5,
+  "active": null,
+  "regression_tests_passed": 119,
+  "publication_note": "Raw process inventory, local usernames, absolute personal paths and TCP rows omitted. Aggregate timings/counts and public note references retained."
+}

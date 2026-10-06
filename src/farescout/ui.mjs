@@ -94,8 +94,9 @@ function render() {
   if (recoverable) {
     const connection = [...turn.events].reverse().find(e => e.stage === 'browser_connection')?.data;
     const waiting = turn.checkpoint?.browser_recovery?.state === 'waiting';
+    const managed = turn.checkpoint?.browser_recovery?.mode === 'managed' || connection?.profile_mode === 'managed';
     $('resume').textContent = turn.checkpoint?.recovery_required ? '重新连接并继续' : '恢复这轮研究';
-    $('browserStatus').textContent = waiting ? '已保留研究，等待 Chrome 连接；确认后自动继续。也可点击重新连接。' : connection ? `上次检查：${connection.browser_connected ? 'Chrome已连接' : 'Chrome未连接，授权状态未知'} · ${stamp(connection.observed_at)}` : '尚未取得浏览器连接状态，可先检查再恢复';
+    $('browserStatus').textContent = waiting ? managed ? '已保留研究，正在恢复专用 Chrome；连接后自动继续。' : '已保留研究，等待 Chrome 连接；确认后自动继续。也可点击重新连接。' : connection ? `上次检查：${connection.browser_connected ? 'Chrome已连接' : managed ? '专用 Chrome 未连接，可重新连接并继续' : 'Chrome未连接，授权状态未知'} · ${stamp(connection.observed_at)}` : '尚未取得浏览器连接状态，可先检查再恢复';
   }
   $('outcomeNotice').hidden = !turn || (!interrupted && !['partial','blocked'].includes(turn.status));
   $('outcomeNotice').textContent = interrupted ? '这轮研究尚未完成，当前服务没有运行它。可从左侧恢复这轮；继续提问会开启新一轮。' : turn?.stop_reason || '';
@@ -356,7 +357,7 @@ $('checkBrowser').onclick = async () => {
     const connection = data.connection || {};
     const terminal = connection.first_transport_terminal;
     const terminalLabel = terminal && ({command_channel_closed:'本地命令通道结束',websocket_send_failed:'发送失败',close_frame:'收到关闭帧',stream_ended:'连接流结束',websocket_receive_failed:'接收失败'}[terminal.kind] || '类别未知');
-    $('browserStatus').textContent = data.error || `${data.ready ? 'Chrome已连接，可以恢复' : 'Chrome未连接；恢复时可能需要手动允许连接'} · ${stamp(connection.observed_at)}${connection.endpoint_changed ? ' · 浏览器endpoint已变化' : ''}${connection.last_disconnect ? ' · 最近记录的传输问题：' + ({session_closed:'会话关闭', transport_command_timeout:'连接命令超时',transport_lost_unknown:'原因未确认'}[connection.last_disconnect.category] || '未知') : ''}`;
+    $('browserStatus').textContent = data.error || `${data.ready ? 'Chrome已连接，可以恢复' : connection.profile_mode === 'managed' ? '专用 Chrome 未连接；可重新连接，登录失效时需在专用窗口处理' : 'Chrome未连接；恢复时可能需要手动允许连接'} · ${stamp(connection.observed_at)}${connection.endpoint_changed ? ' · 浏览器连接地址已变化' : ''}${connection.last_disconnect ? ' · 最近记录的传输问题：' + ({session_closed:'会话关闭', transport_command_timeout:'连接命令超时',transport_lost_unknown:'原因未确认'}[connection.last_disconnect.category] || '未知') : ''}`;
     if (terminal) $('browserStatus').textContent += ` · 传输日志：${terminalLabel}${terminal.error_class && terminal.error_class !== 'none' ? '（' + terminal.error_class + '）' : ''} · ${stamp(terminal.at)} · 谁触发断线尚未确认`;
   } catch (error) {if (state.epoch === epoch) showError(error.message);}
   finally {$('checkBrowser').disabled = false;}

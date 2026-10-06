@@ -15,6 +15,7 @@
 | [P1.5 验证与 Chrome 连接诊断](current/p15-acceptance.md) | 改动说明、逐轮真实冷启动、阶段耗时、日期对照及尚未通过的稳定性验收 |
 | [研究恢复与提前展示结果](current/research-recovery-acceptance.md) | 同一轮恢复、按缺口选择下一步、真实首条结果耗时和睡眠附近的 CDP 断线记录 |
 | [CDP 稳定性与恢复验收](current/cdp-stability-acceptance.md) | 睡眠与不睡眠对照、首次 WebSocket 日志、确认后自动续跑、managed Chrome 的实际结果及尚未通过的检查 |
+| [社区浏览器会话稳定性专项](current/browser-session-stability.md) | 固定本地 managed profile 的 8 次正文实测、默认启动配置、重启 / 睡眠恢复及尚未确认的条件 |
 | [上午授权后，下午为什么又需要确认 Chrome](current/cdp-disconnect-investigation.md) | 排查三小时超时、进程清理和睡眠附近的CDP断线，并给出分阶段解决方案 |
 | [socai 连接复用排查](current/socai-connection-diagnosis.md) | 连续搜索的 daemon、endpoint、TCP连接实测与首次授权等待修正 |
 

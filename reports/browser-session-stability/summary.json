@@ -1,0 +1,91 @@
+{
+  "kind": "browser_stability_acceptance_not_flight_research",
+  "scenarios": [
+    {
+      "file": "managed-continuous.json",
+      "scenario": "managed-continuous",
+      "reads": 3,
+      "successful_body_reads": 3,
+      "manual_reauthorization": "none",
+      "seconds": [
+        22.199,
+        56.77,
+        13.838
+      ],
+      "recovery_seconds": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "managed-service-restart-read.json",
+      "scenario": "managed-after-farescout-restart",
+      "reads": 1,
+      "successful_body_reads": 1,
+      "manual_reauthorization": "none",
+      "seconds": [
+        9.536
+      ],
+      "recovery_seconds": [
+        0
+      ]
+    },
+    {
+      "file": "managed-chrome-restart-read.json",
+      "scenario": "managed-after-chrome-restart",
+      "reads": 2,
+      "successful_body_reads": 2,
+      "manual_reauthorization": "none",
+      "seconds": [
+        22.691,
+        10.179
+      ],
+      "recovery_seconds": [
+        4.049,
+        0
+      ]
+    },
+    {
+      "file": "managed-sleep-read.json",
+      "scenario": "managed-after-sleep",
+      "reads": 2,
+      "successful_body_reads": 2,
+      "manual_reauthorization": "unknown",
+      "seconds": [
+        35.928,
+        9.188
+      ],
+      "recovery_seconds": [
+        10.547,
+        0
+      ]
+    },
+    {
+      "file": "managed-default-read.json",
+      "scenario": "managed-default-configuration",
+      "reads": 1,
+      "successful_body_reads": 1,
+      "manual_reauthorization": "unknown",
+      "seconds": [
+        16.63
+      ],
+      "recovery_seconds": [
+        0
+      ]
+    }
+  ],
+  "successful_body_reads": 9,
+  "reads": 9,
+  "provider_cli_commands": 55,
+  "snapshot_status_commands": 18,
+  "model_api_calls": 0,
+  "fare_api_calls": 0,
+  "limits": [
+    "Sleep-after prompts/login human observation still pending",
+    "Not a long-term availability guarantee",
+    "Read count is not unique post count",
+    "Same-turn recovery verified by regression tests; these real probes did not interrupt a fare research turn"
+  ],
+  "publication_note": "Raw process inventory, local usernames, absolute personal paths and TCP rows omitted. Aggregate timings/counts and public note references retained."
+}

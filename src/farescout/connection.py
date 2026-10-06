@@ -11,8 +11,8 @@ from pathlib import Path
 from .models import now
 
 
-def endpoint_marker():
-    config_path = Path(os.getenv('SOCAI_CONFIG_PATH', str(Path.home()/'.socai/config.json')))
+def endpoint_marker(settings=None):
+    config_path = getattr(settings, 'socai_config_path', None) or Path(os.getenv('SOCAI_CONFIG_PATH', str(Path.home()/'.socai/config.json')))
     try:
         config = json.loads(config_path.read_text())['chrome']
         if config.get('profile') == 'managed':
@@ -24,7 +24,7 @@ def endpoint_marker():
 
 
 def connection_observation(state, settings):
-    home = Path(os.getenv("SOCAI_HOME", str(Path.home() / ".socai")))
+    home = settings.socai_home or Path(os.getenv("SOCAI_HOME", str(Path.home() / ".socai")))
     result = {key: state.get(key) for key in ["browser_connected", "browser_state", "daemon_running",
         "daemon_compatible", "cli_version", "error_code", "profile_mode", "active_profile_mode"]}
     result["observed_at"] = now().isoformat()
@@ -35,11 +35,12 @@ def connection_observation(state, settings):
         result["daemon_pid"] = int(pid) if pid.isdigit() else None
     except OSError:
         result["daemon_pid"] = None
-    marker, marker_source = endpoint_marker()
+    marker, marker_source = endpoint_marker(settings)
     try:
-        raw = os.getenv("SOCAI_CDP_WS") or os.getenv("SOCAI_CDP_URL") or marker.read_text().strip()
+        explicit = None if settings.social_browser == 'managed' and settings.socai_config_path else (os.getenv("SOCAI_CDP_WS") or os.getenv("SOCAI_CDP_URL"))
+        raw = explicit or marker.read_text().strip()
         result["endpoint_fingerprint"] = hashlib.sha256(raw.encode()).hexdigest()[:16]
-        result["endpoint_source"] = "explicit" if os.getenv("SOCAI_CDP_WS") or os.getenv("SOCAI_CDP_URL") else marker_source
+        result["endpoint_source"] = "explicit" if explicit else marker_source
     except OSError:
         result["endpoint_fingerprint"] = None
     # Keep only recognized failure categories and timestamps, never raw log text/URLs.

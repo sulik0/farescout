@@ -1,0 +1,23 @@
+{
+  "kind": "browser_strategy_source_review",
+  "observed_on": "2026-10-06",
+  "tested_binary": "socai 0.6.1 diagnostic",
+  "upstream_checked": "v0.6.3",
+  "references": [
+    "https://github.com/socai-io/socai/releases/tag/v0.6.3",
+    "https://github.com/socai-io/socai/blob/v0.6.3/core/src/cdp/launch.rs",
+    "https://github.com/socai-io/socai/blob/v0.6.3/core/src/cdp/lifecycle.rs"
+  ],
+  "findings": [
+    "ChromeProcess::drop calls child.start_kill; launcher sets kill_on_drop(true).",
+    "on_connection_lost releases BrowserOwner::Local after publishing a disconnected state.",
+    "An already-running reachable managed endpoint is reused with BrowserOwner::None, so socai does not own or kill that Chrome.",
+    "v0.6.3 retains these lifecycle rules; an upgrade alone does not remove connection-owned process teardown."
+  ],
+  "causal_limit": "Code explains why a socai-owned browser can disappear after a transport loss; it does not establish the original cause of the transport loss.",
+  "source_hashes": {
+    "farescout-socai-v063-launch.rs": "fc62976150934b7b7d0752e293ae9c4f0f4f6be420ea96cb4ab2de6d80d1c8fe",
+    "farescout-socai-v063-lifecycle.rs": "7c3907962d9f9762896d17878d96b3a3b095fd19345cb86ed81c52f1c66e56f4"
+  },
+  "publication_note": "Raw process inventory, local usernames, absolute personal paths and TCP rows omitted. Aggregate timings/counts and public note references retained."
+}

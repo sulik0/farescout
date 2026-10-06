@@ -1,0 +1,40 @@
+{
+  "scenario": "controlled_managed_chrome_restart",
+  "at": "2026-10-06T03:02:39.362404+00:00",
+  "old_chrome_pid": 95958,
+  "signal": "SIGTERM",
+  "exact_profile_verified": true,
+  "profile_files_deleted": false,
+  "daemon_signalled": false,
+  "before": {
+    "browser_connected": true,
+    "browser_state": "connected",
+    "daemon_running": true,
+    "daemon_compatible": true,
+    "error_code": null,
+    "profile_mode": "managed",
+    "active_profile_mode": "managed",
+    "endpoint_source": "managed_chrome_marker",
+    "active_daemon_pid": 95945,
+    "cdp_tcp_connection_count": 1,
+    "endpoint_fingerprint": "7db22315552e7f45",
+    "endpoint_port": "51034",
+    "observed_at": "2026-10-06T03:02:39.362021+00:00"
+  },
+  "after_stop": {
+    "browser_connected": false,
+    "browser_state": "disconnected",
+    "daemon_running": true,
+    "daemon_compatible": true,
+    "error_code": "BROWSER_ENDPOINT_UNREACHABLE",
+    "profile_mode": "managed",
+    "active_profile_mode": null,
+    "endpoint_source": "managed_chrome_marker",
+    "active_daemon_pid": 95945,
+    "cdp_tcp_connection_count": 0,
+    "endpoint_fingerprint": "7db22315552e7f45",
+    "endpoint_port": "51034",
+    "observed_at": "2026-10-06T03:02:45.577724+00:00"
+  },
+  "publication_note": "Raw process inventory, local usernames, absolute personal paths and TCP rows omitted. Aggregate timings/counts and public note references retained."
+}

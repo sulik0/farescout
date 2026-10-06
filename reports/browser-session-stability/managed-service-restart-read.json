@@ -1,0 +1,76 @@
+{
+  "kind": "real_social_browser_stability_probe",
+  "scenario": "managed-after-farescout-restart",
+  "started_at": "2026-10-06T03:01:30.041992+00:00",
+  "manual_reauthorization": "none",
+  "login_observation": "user_reported",
+  "calls": [
+    {
+      "query": "香港 日本 机票",
+      "before": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "endpoint_source": "managed_chrome_marker",
+        "active_daemon_pid": 95945,
+        "cdp_tcp_connection_count": 1,
+        "endpoint_fingerprint": "7db22315552e7f45",
+        "endpoint_port": "51034",
+        "observed_at": "2026-10-06T03:01:30.147122+00:00"
+      },
+      "body_count": 1,
+      "evidence": [
+        {
+          "id": "468ed91dd243cc05",
+          "url": "https://www.xiaohongshu.com/explore/6ac39453000000001a0215ab",
+          "title": "快运大促！香港往返日本全线1K2东京大阪",
+          "body_chars": 321,
+          "observed_at": "2026-10-06T03:01:39.682357+00:00"
+        }
+      ],
+      "result": "ok",
+      "blocked_code": null,
+      "seconds": 9.536,
+      "provider_cli_commands": 3,
+      "status_observation_commands": 2,
+      "connection_transitions": [
+        {
+          "seconds": 0.011,
+          "connected": true,
+          "state": "connected"
+        }
+      ],
+      "after": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "endpoint_source": "managed_chrome_marker",
+        "active_daemon_pid": 95945,
+        "cdp_tcp_connection_count": 1,
+        "endpoint_fingerprint": "7db22315552e7f45",
+        "endpoint_port": "51034",
+        "observed_at": "2026-10-06T03:01:39.739155+00:00"
+      },
+      "connection_recovery_seconds": 0
+    }
+  ],
+  "count_note": "provider_cli_commands includes search/read/readiness/retries; each before/after snapshot adds one separate status command. No model or fare API is called.",
+  "browser_control_note": "This probe never kills or launches Chrome itself and never calls socai stop. A read-only socai search may reconnect or launch its configured browser.",
+  "successes": 1,
+  "read_success_rate": 1.0,
+  "finished_at": "2026-10-06T03:01:39.739208+00:00",
+  "repeated_login": "none",
+  "human_observation": {
+    "source": "user_reply",
+    "scope": "No repeated remote-debug authorization or login through the controlled Chrome restart test"
+  },
+  "publication_note": "Raw process inventory, local usernames, absolute personal paths and TCP rows omitted. Aggregate timings/counts and public note references retained."
+}

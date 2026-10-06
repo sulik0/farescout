@@ -1,0 +1,188 @@
+{
+  "kind": "real_social_browser_stability_probe",
+  "scenario": "managed-continuous",
+  "started_at": "2026-10-06T02:58:01.427564+00:00",
+  "manual_reauthorization": "none",
+  "login_observation": "user_reported",
+  "calls": [
+    {
+      "query": "香港 日本 机票",
+      "before": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "endpoint_source": "managed_chrome_marker",
+        "active_daemon_pid": 95945,
+        "cdp_tcp_connection_count": 1,
+        "endpoint_fingerprint": "7db22315552e7f45",
+        "endpoint_port": "51034",
+        "observed_at": "2026-10-06T02:58:01.528918+00:00"
+      },
+      "body_count": 1,
+      "evidence": [
+        {
+          "id": "468ed91dd243cc05",
+          "url": "https://www.xiaohongshu.com/explore/6ac39453000000001a0215ab",
+          "title": "快运大促！香港往返日本全线1K2东京大阪",
+          "body_chars": 321,
+          "observed_at": "2026-10-06T02:58:23.725769+00:00"
+        }
+      ],
+      "result": "ok",
+      "blocked_code": null,
+      "seconds": 22.199,
+      "provider_cli_commands": 3,
+      "status_observation_commands": 2,
+      "connection_transitions": [
+        {
+          "seconds": 0.011,
+          "connected": true,
+          "state": "connected"
+        }
+      ],
+      "after": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "endpoint_source": "managed_chrome_marker",
+        "active_daemon_pid": 95945,
+        "cdp_tcp_connection_count": 1,
+        "endpoint_fingerprint": "7db22315552e7f45",
+        "endpoint_port": "51034",
+        "observed_at": "2026-10-06T02:58:23.798341+00:00"
+      },
+      "connection_recovery_seconds": 0
+    },
+    {
+      "query": "香港 大阪 机票",
+      "before": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "endpoint_source": "managed_chrome_marker",
+        "active_daemon_pid": 95945,
+        "cdp_tcp_connection_count": 1,
+        "endpoint_fingerprint": "7db22315552e7f45",
+        "endpoint_port": "51034",
+        "observed_at": "2026-10-06T02:58:53.961030+00:00"
+      },
+      "body_count": 1,
+      "evidence": [
+        {
+          "id": "a66a690996ccc9f1",
+          "url": "https://www.xiaohongshu.com/explore/6aafd1fb000000002a02fb65",
+          "title": "10月香港大阪往返机票，2 人共 2400 拿下！",
+          "body_chars": 65,
+          "observed_at": "2026-10-06T02:59:50.729266+00:00"
+        }
+      ],
+      "result": "ok",
+      "blocked_code": null,
+      "seconds": 56.77,
+      "provider_cli_commands": 3,
+      "status_observation_commands": 2,
+      "connection_transitions": [
+        {
+          "seconds": 0.012,
+          "connected": true,
+          "state": "connected"
+        }
+      ],
+      "after": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "endpoint_source": "managed_chrome_marker",
+        "active_daemon_pid": 95945,
+        "cdp_tcp_connection_count": 1,
+        "endpoint_fingerprint": "7db22315552e7f45",
+        "endpoint_port": "51034",
+        "observed_at": "2026-10-06T02:59:50.795536+00:00"
+      },
+      "connection_recovery_seconds": 0
+    },
+    {
+      "query": "香港 东京 机票",
+      "before": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "endpoint_source": "managed_chrome_marker",
+        "active_daemon_pid": 95945,
+        "cdp_tcp_connection_count": 1,
+        "endpoint_fingerprint": "7db22315552e7f45",
+        "endpoint_port": "51034",
+        "observed_at": "2026-10-06T03:00:21.063890+00:00"
+      },
+      "body_count": 1,
+      "evidence": [
+        {
+          "id": "25f1705e69f224f6",
+          "url": "https://www.xiaohongshu.com/explore/6ab4d8a0000000001a032e79",
+          "title": "香港往返东京/大阪机票¥685",
+          "body_chars": 138,
+          "observed_at": "2026-10-06T03:00:34.901742+00:00"
+        }
+      ],
+      "result": "ok",
+      "blocked_code": null,
+      "seconds": 13.838,
+      "provider_cli_commands": 3,
+      "status_observation_commands": 2,
+      "connection_transitions": [
+        {
+          "seconds": 0.014,
+          "connected": true,
+          "state": "connected"
+        }
+      ],
+      "after": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "endpoint_source": "managed_chrome_marker",
+        "active_daemon_pid": 95945,
+        "cdp_tcp_connection_count": 1,
+        "endpoint_fingerprint": "7db22315552e7f45",
+        "endpoint_port": "51034",
+        "observed_at": "2026-10-06T03:00:35.040948+00:00"
+      },
+      "connection_recovery_seconds": 0
+    }
+  ],
+  "count_note": "provider_cli_commands includes search/read/readiness/retries; each before/after snapshot adds one separate status command. No model or fare API is called.",
+  "browser_control_note": "This probe never kills or launches Chrome itself and never calls socai stop. A read-only socai search may reconnect or launch its configured browser.",
+  "successes": 3,
+  "read_success_rate": 1.0,
+  "finished_at": "2026-10-06T03:00:35.041081+00:00",
+  "repeated_login": "none",
+  "human_observation": {
+    "source": "user_reply",
+    "scope": "No repeated remote-debug authorization or login through the controlled Chrome restart test"
+  },
+  "publication_note": "Raw process inventory, local usernames, absolute personal paths and TCP rows omitted. Aggregate timings/counts and public note references retained."
+}

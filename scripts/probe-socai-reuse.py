@@ -25,9 +25,9 @@ async def snapshot(settings):
     try:
         rows = subprocess.check_output(['ps','-axo','pid,ppid,comm'], text=True).splitlines()
         state['processes'] = [r.strip() for r in rows if r.endswith('/socai') or r.endswith('/Google Chrome')]
-        pid_path = Path(os.getenv('SOCAI_HOME', str(Path.home()/'.socai'))) / 'rust-daemon.pid'
+        pid_path = (settings.socai_home or Path(os.getenv('SOCAI_HOME', str(Path.home()/'.socai')))) / 'rust-daemon.pid'
         daemon_ids = [pid_path.read_text().strip()] if pid_path.exists() else []
-        marker, state['endpoint_source'] = endpoint_marker()
+        marker, state['endpoint_source'] = endpoint_marker(settings)
         port = marker.read_text().splitlines()[0] if marker.exists() else '9222'
         state['active_daemon_pid'] = int(daemon_ids[0]) if daemon_ids and daemon_ids[0].isdigit() else None
         state['cdp_tcp_connections'] = []
@@ -36,7 +36,7 @@ async def snapshot(settings):
             state['cdp_tcp_connections'].extend(connections.stdout.splitlines()[1:])
     except Exception:
         state['processes'] = 'process inventory unavailable in execution sandbox'
-    marker, state['endpoint_source'] = endpoint_marker()
+    marker, state['endpoint_source'] = endpoint_marker(settings)
     try:
         raw = marker.read_text().strip()
         state['endpoint_fingerprint'] = hashlib.sha256(raw.encode()).hexdigest()[:16]

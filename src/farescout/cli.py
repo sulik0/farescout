@@ -33,7 +33,9 @@ async def doctor(settings: Settings) -> dict:
     }
     if result["socai_installed"]:
         try:
-            state = await command_json(settings.socai_bin, ["status", "--json"], settings, "socai")
+            source = Socai(settings)
+            await source.browser_ready()
+            state = source.connection
             result["browser"] = {
                 k: state.get(k) for k in ["cli_version", "browser_connected", "browser_state", "profile_mode", "error_code"]
             }

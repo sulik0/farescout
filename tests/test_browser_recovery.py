@@ -35,7 +35,7 @@ def setup(tmp_path):
             await super().search(query)
             return [self.record]
     source = Preserved()
-    settings = Settings(data_dir=tmp_path, recovery_poll_seconds=.01)
+    settings = Settings(data_dir=tmp_path, recovery_poll_seconds=.01, social_browser='existing')
     def factory(config):
         return Researcher(config, brain=TestBrain(), social=[source], fares=[CalendarFare()])
     asyncio.run(factory(settings).run('香港11月日本',None,'saved'))
@@ -185,3 +185,128 @@ async def test_read_failure_checks_transport_and_retains_previously_read_body(tm
     assert len(records)==1 and records==saved
     assert source.blocked_code=='BROWSER_DISCONNECTED'
     assert source.connection['browser_connected'] is False
+
+
+def test_managed_reconnects_then_resumes_original_turn_once(tmp_path, monkeypatch):
+    settings, source, factory = setup(tmp_path)
+    settings.social_browser = 'managed'
+    connected = threading.Event()
+    calls = []
+    async def ready(self):
+        self.connection = {'profile_mode':'managed', 'browser_connected':connected.is_set()}
+        return connected.is_set()
+    async def request(self, args, stage, data):
+        calls.append(args)
+        source.ready = True
+        connected.set()
+        return {}
+    monkeypatch.setattr(Socai, 'browser_ready', ready)
+    monkeypatch.setattr(Socai, '_command', request)
+    app = Application(settings, factory)
+    before = app.store.load('saved')
+    app.arm_recovery('saved')
+    wait_for(lambda: not app.active and app.store.load('saved').turns[-1].metrics['execution_segments'] == 2)
+    after = app.store.load('saved')
+    assert len(calls) == 1 and len(after.turns) == 1
+    assert after.turns[0].id == before.turns[0].id
+    assert after.evidence['p1'].observed_at == before.evidence['p1'].observed_at
+    assert source.calls.count('香港 便宜机票') == 1
+    assert after.turns[0].checkpoint['managed_reconnect_attempts'] == 1
+    assert after.turns[0].checkpoint['browser_recovery']['state'] == 'resumed'
+    app.recovery_stop.set()
+
+
+def test_managed_failed_attempt_is_not_repeated_after_service_restart(tmp_path, monkeypatch):
+    settings, source, factory = setup(tmp_path)
+    settings.social_browser = 'managed'
+    calls = []
+    async def ready(self):
+        self.connection = {'profile_mode':'managed','browser_connected':False}
+        return False
+    async def request(self, *args):
+        calls.append(args)
+        raise TimeoutError()
+    monkeypatch.setattr(Socai, 'browser_ready', ready)
+    monkeypatch.setattr(Socai, '_command', request)
+    first = Application(settings, factory)
+    first.arm_recovery('saved')
+    wait_for(lambda: len(calls) == 1)
+    first.recovery_stop.set()
+    second = Application(settings, factory)
+    time.sleep(.08)
+    assert len(calls) == 1
+    assert second.store.load('saved').turns[0].checkpoint['managed_reconnect_attempts'] == 1
+    second.recovery_stop.set()
+
+
+@pytest.mark.parametrize('as_exception', [False, True])
+def test_managed_login_gate_during_reconnect_requires_user_without_resume(tmp_path, monkeypatch, as_exception):
+    settings, source, factory = setup(tmp_path)
+    settings.social_browser = 'managed'
+    async def ready(self):
+        self.connection = {'profile_mode':'managed','browser_connected':False}
+        return False
+    async def request(self, *args):
+        if as_exception:
+            self.connection['browser_connected'] = True
+            raise SourceFailure('socai','BROWSER_OR_LOGIN_REQUIRED','页面要求重新登录')
+        return {'reason':'login_required'}
+    monkeypatch.setattr(Socai, 'browser_ready', ready)
+    monkeypatch.setattr(Socai, '_command', request)
+    app = Application(settings, factory)
+    app.arm_recovery('saved')
+    wait_for(lambda: app.store.load('saved').turns[0].checkpoint['browser_recovery']['state'] == 'needs_user')
+    assert app.store.load('saved').turns[0].metrics['execution_segments'] == 1
+    assert not app.active
+
+
+def test_managed_does_not_reconnect_a_daemon_in_existing_mode(tmp_path, monkeypatch):
+    settings, source, factory = setup(tmp_path)
+    settings.social_browser = 'managed'
+    async def ready(self):
+        self.connection = {'profile_mode':'existing','browser_connected':False}
+        return False
+    async def forbidden(self, *args):
+        raise AssertionError('must not initiate authorization on existing Chrome')
+    monkeypatch.setattr(Socai, 'browser_ready', ready)
+    monkeypatch.setattr(Socai, '_command', forbidden)
+    app = Application(settings, factory)
+    app.arm_recovery('saved')
+    time.sleep(.08)
+    assert app.store.load('saved').turns[0].checkpoint.get('managed_reconnect_attempts', 0) == 0
+    app.recovery_stop.set()
+
+
+def test_managed_connection_attempt_serializes_new_research(tmp_path, monkeypatch):
+    settings, source, factory = setup(tmp_path)
+    settings.social_browser = 'managed'
+    entered, release = threading.Event(), threading.Event()
+    async def ready(self):
+        self.connection = {'profile_mode':'managed','browser_connected':False}
+        return False
+    async def request(self, *args):
+        entered.set()
+        while not release.is_set():
+            await asyncio.sleep(.01)
+        return {'reason':'login_required'}
+    monkeypatch.setattr(Socai, 'browser_ready', ready)
+    monkeypatch.setattr(Socai, '_command', request)
+    app = Application(settings, factory)
+    app.arm_recovery('saved')
+    assert entered.wait(2)
+    try:
+        with pytest.raises(RuntimeError):
+            app.start('new', '香港 日本')
+    finally:
+        release.set()
+    wait_for(lambda: not app.active)
+    app.recovery_stop.set()
+
+
+def test_service_restart_ignores_probe_array_and_retains_session(tmp_path):
+    settings, source, factory = setup(tmp_path)
+    (tmp_path/'probe-log.json').write_text('[{"browser_connected":false}]')
+    app = Application(settings, factory)
+    assert app.store.load('saved').evidence['p1'].body == source.record.body
+    with pytest.raises(ValueError):
+        app.store.load('probe-log')

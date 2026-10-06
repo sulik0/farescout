@@ -2,7 +2,7 @@
 
 P1.5 已加入社区读取恢复、阶段耗时、日期调用优化和促销去重。之后补上同一轮续跑、提前展示报价和按研究缺口决定下一步，见[研究恢复验收](docs/current/research-recovery-acceptance.md)。
 
-最新 CDP 专项增加断线后的自动等待、Chrome 确认后的原轮次续跑，以及 socai 的首次 WebSocket 终止日志。真实授权恢复取得 3 篇社区正文和 5 条有报价的航线，但结果仍为 `partial`；睡眠请求后两种 Chrome 模式都断开，managed 的正文读取也未通过，不能声称连接问题已经全部解决。测试条件、日期覆盖、耗时、调用量与剩余问题见[CDP 稳定性与恢复验收](docs/current/cdp-stability-acceptance.md)。此前 P1.5 的重复冷启动结果见[P1.5 验收](docs/current/p15-acceptance.md)；以下成功运行描述属于 POC / P1 的历史记录。
+浏览器专项已完成固定本地 managed profile 的连续调用、FareScout 重启、专用 Chrome 重启和睡眠后的实际读取，共 8 / 8 次取得正文。用户已确认前三组没有重复调试授权或小红书登录；睡眠后的弹窗观察仍待确认。标准启动默认使用 managed，断线时会保留研究并自动尝试连接一次。日常 Chrome 改为显式的开发 / 备用选择，详见[浏览器会话稳定性](docs/current/browser-session-stability.md)。此前 daily Chrome 授权恢复得到 3 篇正文和 5 条有报价的航线，仍为 `partial`；[旧 CDP 验收](docs/current/cdp-stability-acceptance.md)保留历史条件与失败记录。
 
 从模糊机票需求出发，读取社区正文/评论，依据已读线索扩展查询，再调用实时机票来源验证。输出 Markdown 报告和可恢复的 JSON 会话。产品唯一基准是 [完整需求](docs/current/product-requirements.md)。
 
@@ -24,7 +24,7 @@ P1 在原有研究流程中加入明确记录的约束、实时研究轨迹和�
 ./scripts/run-this-machine.sh doctor
 ```
 
-`serve` 启动三栏研究工作台：左侧提问和选择历史记录，中央先展示航线、日期和报价，右侧查看实时研究轨迹。每张航线卡片都可追溯社区原文、日期探索和验价记录。条件和技术统计默认收起；修改条件会在同一会话创建下一轮研究。界面说明及验证见[前端研究工作台](docs/current/frontend-workspace.md)。服务仅监听本机，单个研究任务串行执行以保护 socai 浏览器连接。断线时已完成内容会保留；点“重新连接并继续”，在 Chrome 中确认后会自动续跑原轮次。等待期间只检查状态，默认最多等待 10 分钟，超时后仍可再次恢复。如果只是来源失败而没有确认断线，可用“恢复这轮研究”继续。不要同时从 CLI 和网页运行研究。`report` 显示原 POC 最后一轮。首轮及追问报告保存在 `reports/`。本机脚本优先使用 `.venv`、已恢复的 `/private/tmp/farescout-p1-venv`，然后尝试旧运行环境；临时目录清理后按下面步骤重新安装。`.env` 凭证仅保留在本机。
+`serve` 启动三栏研究工作台：左侧提问和选择历史记录，中央先展示航线、日期和报价，右侧查看实时研究轨迹。每张航线卡片都可追溯社区原文、日期探索和验价记录。条件和技术统计默认收起；修改条件会在同一会话创建下一轮研究。界面说明及验证见[前端研究工作台](docs/current/frontend-workspace.md)。服务仅监听本机，单个研究任务串行执行以保护 socai 浏览器连接。断线时已完成内容会保留。默认的专用 Chrome 会自动尝试连接一次，成功后续跑原轮次；页面要求登录或验证时，需要在专用窗口处理。日常 Chrome 备用模式需要点击“重新连接并继续”，可能再次出现授权确认。默认最多等待 10 分钟，超时后仍可手动恢复。如果只是来源失败而没有确认断线，可用“恢复这轮研究”继续。不要同时从 CLI 和网页运行研究。`report` 显示原 POC 最后一轮。首轮及追问报告保存在 `reports/`。本机脚本优先使用 `.venv`、已恢复的 `/private/tmp/farescout-p1-venv`，然后尝试旧运行环境；临时目录清理后按下面步骤重新安装。`.env` 凭证仅保留在本机。
 
 代码包不包含本机 `.env` 或运行目录。安装后如需回放本次两轮真实验收，可先导入保存的历史 Session（不会调用来源，也不会更新报价时间）：
 
@@ -46,7 +46,14 @@ npm install -g @fly-ai/flyai-cli@1.0.16
 cp .env.example .env
 ```
 
-已有 `.env` 时跳过最后一行，避免覆盖凭证。socai 从[官方发布页](https://github.com/socai-io/socai/releases/tag/v0.6.1)安装；本次实测版本为 0.6.1。可执行文件不在 PATH 时将绝对路径填入 `SOCAI_BIN` / `FLYAI_BIN`。升级 socai 后应重新运行 spike；主分支文档与已发布 CLI 的命令可能不同。
+已有 `.env` 时跳过最后一行，避免覆盖凭证。默认 managed 需要带独立配置补丁的 socai 0.6.1。本仓库不包含预编译二进制；需要 Rust / Cargo、curl、patch，然后在新的构建目录执行：
+
+```sh
+./scripts/build-socai-diagnostic.sh "$HOME/Library/Application Support/FareScout/socai-build"
+# 将输出的 source/target/debug/socai 的绝对路径填入 .env 的 SOCAI_BIN
+```
+
+脚本核对官方源码归档校验值，应用首次传输日志与独立配置两个小补丁，使用锁定依赖构建并运行传输测试。它不替换或停止现有 daemon。构建目录已有 source 时需要另选目录；不要删除浏览器 profile。普通[官方 0.6.1 CLI](https://github.com/socai-io/socai/releases/tag/v0.6.1)可用于明确选择的 `existing` 备用模式，但不支持这里的独立配置路径。可执行文件不在 PATH 时填写绝对路径；升级后重新验证配置隔离和实际正文读取。
 
 ```sh
 farescout doctor
@@ -74,6 +81,9 @@ farescout resume --session demo
 | `SERPAPI_API_KEY` | 可选 Google Flights 第二验价渠道；未配置会明确记录失败 |
 | `FLYAI_API_KEY` | 可选 FlyAI 凭证；本次基础查询使用官方体验模式 |
 | `SOCAI_BIN` / `FLYAI_BIN` | 可执行文件路径，不能填任意 shell 命令 |
+| `FARESCOUT_SOCIAL_BROWSER` | 默认 `managed`，使用专用 Chrome；`existing` 为日常 Chrome 开发 / 备用模式 |
+| `FARESCOUT_BROWSER_ROOT` | 可选专用浏览器数据目录；macOS 默认 `~/Library/Application Support/FareScout`，请勿放在 iCloud 或项目目录 |
+| `SOCAI_HOME` / `SOCAI_CONFIG_PATH` | 可选显式指定 daemon / 配置路径；managed 会检查配置文件与预期 profile 一致，通常无需设置 |
 | `FARESCOUT_DATA_DIR` | 会话、报告、研究回执目录，默认 `data` |
 | `FARESCOUT_SOURCE_TIMEOUT` | 单次来源超时秒数，默认 90，5–180 |
 | `FARESCOUT_MAX_SECONDS` | 每次研究/续跑时间预算，默认 480，上限 900 |
@@ -85,7 +95,7 @@ farescout resume --session demo
 | `FARESCOUT_SOCAI_MODE` | 默认 `selective`，先搜卡片再读正文；可选 `scan` 使用socai完整扫描。逐篇模式无正文时只回退扫描一次 |
 | `FARESCOUT_SOCAI_COMMENTS` | 每篇最多读取评论数，默认1；范围0–3 |
 | `FARESCOUT_SOCAI_CONNECT_TIMEOUT` | 首次Chrome连接等待，默认180秒；已连接时卡片搜索最多60秒、单篇读取最多40秒，仍受来源及总时间预算限制 |
-| `FARESCOUT_RECOVERY_WAIT_SECONDS` | 工作台断线后的状态等待时间，默认 600 秒，范围 15～1800 秒；确认重新连接后自动续跑原轮次 |
+| `FARESCOUT_RECOVERY_WAIT_SECONDS` | 工作台断线后的恢复等待时间，默认 600 秒，范围 15～1800 秒；managed 每轮自动连接最多一次，existing 只检查状态 |
 | `FARESCOUT_FARE_CONCURRENCY` | SerpAPI精确日期查询并发数，默认2；FlyAI CLI及社区浏览器仍串行 |
 | `FARESCOUT_QUOTE_REUSE_SECONDS` | 同一轮、同来源、同条件报价最多复用120秒；不会更改原抓取时间 |
 | `FARESCOUT_DATE_HINT_SOURCE` | 默认 `explore`，优先Google Travel Explore，失败或无有效日期时回退FlyAI range；可选 `flyai` |
@@ -98,17 +108,25 @@ farescout resume --session demo
 
 ## 浏览器与登录态
 
-### 独立终端：socai
+### 默认：专用 managed Chrome
 
-按 [socai 官方 Chrome 连接指南](https://socai.io/connect)连接属于你的 Chrome，并在该浏览器中手动登录小红书。登录在侧边栏内置浏览器不等于 Chrome 已连接 socai。用 `socai status --json` 检查，再运行：
+`FARESCOUT_SOCIAL_BROWSER=managed` 时，FareScout 把 daemon 配置放在本地 `socai-managed`，把小红书登录保存在相邻的 `chrome-managed` profile。两者与日常 Chrome 分开，不同步到 iCloud。先配置带上述补丁的 `SOCAI_BIN`，再运行 `./scripts/run-this-machine.sh doctor`。诊断只检查状态，不会启动 Chrome；第一次研究或来源探测才按需启动专用窗口。
+
+第一次使用时，在这个窗口手动登录小红书。侧边栏浏览器或日常 Chrome 的登录不会自动复制到这里。可用下面的来源探测确认能读正文；不需要模型或票价 Key：
 
 ```sh
-socai xhs search '香港 日本 机票' --num-notes 3 --num-comments 3 --pretty
+PYTHONPATH=src .venv/bin/python scripts/browser-stability-probe.py \
+  --scenario managed-first-login --calls 1 \
+  --output data/managed-first-login.json
 ```
 
-`doctor` 是瞬时状态：本机在空闲时曾显示 `DAEMON_UNAVAILABLE` / `BROWSER_ENDPOINT_UNREACHABLE`，再次执行只读搜索后自动连接成功，随后 `status` 显示 `browser_connected=true`。是否可用以实际正文读取为准。
+未登录时可能只有卡片或空结果，不能算来源可用；登录后重新执行。现有 profile 不会被重建或清理，后续连接和浏览器重启继续使用同一目录。原版 socai 若忽略独立配置路径，会明确停止，不会自动连接日常 Chrome。
 
-必须能返回正文和评论；只有搜索卡片不算通过。本机使用 socai v0.6.1 直接读取 12 篇正文，适配器兼容其 `entity` / `top_comments` 结构。适配器只调用只读 `status`、`xhs search` 和 `xhs get-notes`，不调用评论、点赞、私信等命令。首次 Chrome 连接等待默认180秒；已经连接时继续复用同一daemon。实测及配置见 [连接复用排查](docs/current/socai-connection-diagnosis.md)。遇登录、验证码或访问限制时停止该来源并保留原因，不能绕过。FareScout 不读取 Cookie 数据库、不导出浏览器 profile、不迁移登录态。
+### 开发 / 备用：existing Chrome
+
+显式设置 `FARESCOUT_SOCIAL_BROWSER=existing`，清除 shell 中的独立 `SOCAI_HOME` / `SOCAI_CONFIG_PATH`，按 [socai 官方指南](https://socai.io/connect)连接日常 Chrome 并手动登录小红书。这个模式可能在 CDP 断线后再次要求调试授权，因此不作为无人值守默认路径，也不会在 managed 失败后自动切换过去。
+
+两种模式都以实际正文读取判断来源是否可用，`browser_connected=true` 不能证明登录有效。适配器只调用只读状态、搜索和正文读取；遇登录、验证码或访问限制时保留进度，提示处理。FareScout 不读取 Cookie 数据库、不导出 profile、不迁移登录态。历史连接复用调查见[排查记录](docs/current/socai-connection-diagnosis.md)，本轮重启、睡眠与恢复时长见[专项验收](docs/current/browser-session-stability.md)。
 
 ### 已登录宿主浏览器：早期验证路径
 
