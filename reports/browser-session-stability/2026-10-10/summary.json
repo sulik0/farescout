@@ -250,8 +250,9 @@
   "first_recovery_reauthorization": "user_confirmed_none",
   "later_recovery_prompt_observations": "not_individually_confirmed",
   "regression_tests": {
-    "passed": 131,
-    "skipped": 1,
-    "mock_results_used_as_live_acceptance": false
+    "passed": 132,
+    "skipped": 0,
+    "mock_results_used_as_live_acceptance": false,
+    "execution_note": "整套测试131通过、1项因Node缺失跳过；随后使用已配置本机Node单独补跑前端检查，1通过。合计132项通过。"
   }
 }
