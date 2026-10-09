@@ -8,7 +8,20 @@ export function bestFare(opportunity) {
 }
 
 export function coverageDates(coverage) {
-  return [...new Set((coverage?.samples || []).filter(s => s.stage !== 'range').map(s => s.date))].sort();
+  return dateResearchState(coverage).attempted_dates;
+}
+
+export function dateResearchState(coverage) {
+  if (coverage?.research_state) return coverage.research_state;
+  const samples = coverage?.samples || [];
+  const reused = s => s.reused === true || (s.reused === undefined && (s.detail || '').includes('复用本轮'));
+  const precise = samples.filter(s => s.stage !== 'range' && s.request_issued !== false && !reused(s));
+  const dates = rows => [...new Set(rows.map(s => s.date))].sort();
+  const successful = precise.filter(s => s.status === 'ok' && Number.isFinite(s.amount) && s.amount > 0);
+  return {attempted_dates: dates(precise), precise_successful_dates: dates(successful),
+    precise_successful_date_count: dates(successful).length, failed_dates: dates(precise.filter(s => s.status === 'failed')),
+    range_hint_dates: [...new Set([...dates(samples.filter(s => s.stage === 'range' && s.status === 'ok')), ...(coverage?.returned_dates || [])])].sort(),
+    reused_quote_dates: dates(samples.filter(reused)), quote_reuse_count: samples.filter(reused).length};
 }
 
 export function eventRoute(event) {
@@ -20,7 +33,7 @@ export function eventRoute(event) {
 export function matchesRoute(event, opportunity, evidence = {}) {
   const route = eventRoute(event);
   if (route) return route === routeKey(opportunity);
-  if (['goal', 'context', 'conclusion', 'stop', 'resume'].includes(event.stage)) return true;
+  if (['goal', 'context', 'conclusion', 'stop', 'resume', 'source_availability'].includes(event.stage)) return true;
   const ids = new Set((opportunity.candidate.signals || []).map(s => s.evidence_id));
   if ((event.evidence_ids || []).some(id => ids.has(id))) return true;
   const queries = new Set([...ids].map(id => evidence[id]?.query).filter(Boolean));

@@ -4,7 +4,7 @@ from datetime import date, datetime, timezone
 from hashlib import sha256
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, computed_field, model_validator
 
 
 def now() -> datetime:
@@ -186,6 +186,15 @@ class DateSample(Record):
     price_basis: str | None = None
     detail: str = ""
     observed_at: datetime | None = Field(default_factory=now)
+    reused: bool = False
+    request_issued: bool = True
+
+    @model_validator(mode='before')
+    @classmethod
+    def legacy_reuse(cls, data):
+        if isinstance(data, dict) and 'reused' not in data and '复用本轮' in data.get('detail', ''):
+            return {**data, 'reused':True, 'request_issued':False}
+        return data
 
 
 class DateCoverage(Record):
@@ -195,6 +204,31 @@ class DateCoverage(Record):
     returned_dates: list[date] = Field(default_factory=list)
     selected_date: date | None = None
     notes: list[str] = Field(default_factory=list)
+
+    @model_validator(mode='before')
+    @classmethod
+    def rebuild_state(cls, data):
+        # Derived state is persisted for readers, but never trusted on loading.
+        if isinstance(data, dict):
+            return {k:v for k,v in data.items() if k != 'research_state'}
+        return data
+
+    @computed_field
+    @property
+    def research_state(self) -> dict:
+        import math
+        precise = [s for s in self.samples if s.stage != 'range' and s.request_issued and not s.reused]
+        successful = [s for s in precise if s.status == 'ok' and s.amount is not None and math.isfinite(s.amount) and s.amount > 0]
+        dates = lambda rows: sorted({str(s.date) for s in rows})
+        reuse = [s for s in self.samples if s.reused]
+        return {'attempted_dates':dates(precise), 'exact_attempt_count':len(precise),
+            'precise_successful_dates':dates(successful), 'precise_successful_date_count':len(dates(successful)),
+            'failed_dates':dates([s for s in precise if s.status == 'failed']),
+            'range_hint_dates':sorted({str(s.date) for s in self.samples if s.stage=='range' and s.status=='ok'} | {str(d) for d in self.returned_dates}),
+            'reused_quote_dates':dates(reuse), 'quote_reuse_count':len(reuse),
+            'reused_quotes':[{'date':str(s.date),'source':s.source,'amount':s.amount,
+                'observed_at':s.observed_at.isoformat() if s.observed_at else None} for s in reuse],
+            'coverage_rule':'只按不同日期的精确成功报价判断覆盖；范围线索、失败与复用不增加成功日期数'}
 
 
 class Opportunity(Record):

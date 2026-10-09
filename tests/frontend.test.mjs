@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {ViewState, bestFare, coverageDates, scopedEvents, validMessage} from '../src/farescout/ui-state.mjs';
+import {ViewState, bestFare, coverageDates, dateResearchState, scopedEvents, validMessage} from '../src/farescout/ui-state.mjs';
 
 const opportunity = {candidate:{origin:'HKG',destination:'KIX',signals:[{evidence_id:'e1'}]},fares:[]};
 const response = (id, turns = [{id:'t1',events:[]}], active = null) => ({session:{id,turns,evidence:{}},active});
@@ -65,4 +65,18 @@ test('follow-ups can trace inherited evidence without showing old fares as curre
 });
 test('empty or oversized messages cannot create a session', () => {
   assert.equal(validMessage('  '), false); assert.equal(validMessage('a'.repeat(3001)), false); assert.equal(validMessage('香港11月日本'), true);
+});
+
+test('date state keeps attempts, success, failure, range and reuse separate', () => {
+  const sample = (date, changes = {}) => ({date, stage:'coarse', status:'ok', amount:800, ...changes});
+  const coverage = {samples:[sample('2026-11-04'), sample('2026-11-04', {source:'other'}),
+    sample('2026-11-05', {status:'failed', amount:null}), sample('2026-11-06', {stage:'range'}),
+    sample('2026-11-07', {reused:true, request_issued:false}), sample('2026-11-08', {detail:'复用本轮同条件报价'})]};
+  const state = dateResearchState(coverage);
+  assert.deepEqual(coverageDates(coverage), ['2026-11-04','2026-11-05']);
+  assert.deepEqual(state.precise_successful_dates, ['2026-11-04']);
+  assert.deepEqual(state.failed_dates, ['2026-11-05']);
+  assert.deepEqual(state.range_hint_dates, ['2026-11-06']);
+  assert.deepEqual(state.reused_quote_dates, ['2026-11-07','2026-11-08']);
+  assert.equal(state.quote_reuse_count, 2);
 });

@@ -10,13 +10,28 @@ def audit(session):
     routes = []
     for opportunity in turn.opportunities:
         coverage = opportunity.date_coverage
+        # Preserve a verifiable itinerary for every successful exact day, not
+        # only the selected day. Range samples and reuse never supply quotes.
+        exact = {}
+        successful = coverage.research_state['precise_successful_dates'] if coverage else []
+        for rows in turn.checkpoint.get('quotes', {}).values():
+            for fare in rows:
+                req = fare['request']
+                if (req['origin'] != opportunity.candidate.origin or req['destination'] != opportunity.candidate.destination
+                        or req['outbound_date'] not in successful):
+                    continue
+                key = (fare['source'], req['outbound_date'], fare['price_basis'], fare['currency'])
+                if key not in exact or fare['amount'] < exact[key]['amount']:
+                    exact[key] = fare
         routes.append({
             "route": opportunity.candidate.key,
             "evidence_ids": list(dict.fromkeys(s.evidence_id for s in opportunity.candidate.signals)),
             "window": [str(turn.goal.date_from), str(turn.goal.date_to)],
-            "precise_requested_dates": sorted({str(s.date) for s in coverage.samples if s.stage != 'range'}) if coverage else [],
-            "precise_successful_dates": sorted({str(s.date) for s in coverage.samples if s.stage != 'range' and s.status == 'ok'}) if coverage else [],
+            "precise_requested_dates": coverage.research_state['attempted_dates'] if coverage else [],
+            "precise_successful_dates": coverage.research_state['precise_successful_dates'] if coverage else [],
             "range_returned_dates": list(map(str, coverage.returned_dates)) if coverage else [],
+            "date_research_state": coverage.research_state if coverage else None,
+            "precise_success_quotes": list(exact.values()),
             "selected_date": str(coverage.selected_date) if coverage else None,
             "fares": [f.model_dump(mode='json') for f in opportunity.fares],
             "deal": opportunity.deal,
@@ -34,11 +49,12 @@ def audit(session):
             "duplicate_of":e.quality.get('duplicate_of'), "campaign_duplicate_of":e.quality.get('campaign_duplicate_of'),
             "match_basis":e.quality.get('campaign_match_basis',[])} for e in session.evidence.values()],
         "expansions": [e.model_dump(mode='json') for e in turn.expansions],
-        "research_trace": [e.model_dump(mode="json") for e in turn.events if e.stage in {"browser_connection", "browser_recovery", "research_decision", "checkpoint", "result_available", "resume"}],
+        "research_trace": [e.model_dump(mode="json") for e in turn.events if e.stage in {"browser_connection", "browser_recovery", "research_decision", "checkpoint", "result_available", "resume", "source_availability", "date_plan", "date_selected", "coverage"}],
         "browser_recovery": turn.checkpoint.get("browser_recovery"),
         "recovery_required": turn.checkpoint.get("recovery_required"),
         "failures": [e.model_dump(mode='json') for e in turn.events if e.status == 'failed'],
         "sources": sorted({e.source for e in turn.events if e.source}),
+        "source_availability": turn.checkpoint.get("source_availability", {}),
         "routes": routes,
         "not_a_month_minimum": True,
     }

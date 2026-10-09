@@ -43,8 +43,66 @@ class DateExplorer:
         self.http_slots = asyncio.Semaphore(researcher.settings.fare_concurrency)
         self.cli_slot = asyncio.Semaphore(1)
         self.disabled = set()
+        self.sources_prepared = False
+
+    async def prepare_sources(self):
+        if self.sources_prepared:
+            return
+        self.sources_prepared = True
+        states = self.turn.checkpoint.setdefault('source_availability', {})
+        for provider in self.r.fares:
+            if not hasattr(provider, 'availability'):
+                continue
+            try:
+                state = await provider.availability()
+            except Exception as error:
+                state = {'state': 'unknown', 'reason': str(source_error(provider.name, error))}
+            states[provider.name] = state
+            unavailable = state['state'] in {'quota_exhausted', 'unconfigured', 'auth_unavailable'}
+            if unavailable:
+                self.disabled.add(provider.name)
+            self.turn.metrics['fare_availability_checks'] = self.turn.metrics.get('fare_availability_checks', 0) + provider.availability_checks
+            self.r.emit(self.turn, 'source_availability', 'skipped' if unavailable else 'info',
+                state.get('reason', '来源可用性检查完成') + ('；本轮降级，不再调用此票价来源' if unavailable else ''),
+                provider.name, data=state)
+
+    def saved_quotes(self, opportunity):
+        candidate = opportunity.candidate
+        return [f for rows in self.turn.checkpoint.get('quotes', {}).values()
+                for f in [Fare.model_validate(row) for row in rows]
+                if f.request.origin == candidate.origin and f.request.destination == candidate.destination
+                and f.request.no_red_eye == self.turn.goal.no_red_eye
+                and self.turn.goal.date_from <= f.request.outbound_date <= self.turn.goal.date_to]
+
+    def supplement_dates(self, opportunity):
+        coverage, goal = opportunity.date_coverage, self.turn.goal
+        if not coverage or goal.date_mode != 'flexible':
+            return []
+        checked = set(coverage.research_state['attempted_dates'])
+        hints = sorted((s for s in coverage.samples if s.stage == 'range' and s.status == 'ok' and s.amount is not None),
+                       key=lambda s: s.amount)
+        selected = coverage.selected_date or goal.date_from
+        candidates = [s.date for s in hints] + [selected + timedelta(days=d) for d in [-1, 1]] + representative_dates(goal)
+        return list(dict.fromkeys(d for d in candidates if goal.date_from <= d <= goal.date_to
+                    and d >= today_local() and str(d) not in checked))
+
+    def can_supplement(self, opportunity):
+        return (self.date_calls < self.r.settings.max_date_calls and any(p.name not in self.disabled for p in self.r.fares)
+                and bool(self.supplement_dates(opportunity)))
+
+    async def supplement(self, opportunity):
+        for outbound in self.supplement_dates(opportunity)[:max(1, self.r.settings.fine_dates)]:
+            for provider in sorted(self.r.fares, key=lambda p: p.name != 'SerpAPI'):
+                if provider.name not in self.disabled and await self.quote(provider, opportunity, outbound, 'fine'):
+                    break
+        quotes = self.saved_quotes(opportunity)
+        comparable = comparable_quotes(quotes)
+        if comparable:
+            opportunity.date_coverage.selected_date = min(comparable, key=lambda f: f.amount).request.outbound_date
+        await self.finish(opportunity, quotes, refine=False)
 
     async def quote(self, provider, opportunity, outbound, stage):
+        await self.prepare_sources()
         goal = self.turn.goal
         request = FareRequest(origin=opportunity.candidate.origin, destination=opportunity.candidate.destination,
                               outbound_date=outbound,
@@ -70,7 +128,7 @@ class DateExplorer:
             self.turn.metrics["quote_reuses"] = self.turn.metrics.get("quote_reuses", 0) + 1
             opportunity.date_coverage.samples.append(DateSample(date=outbound, source=provider.name, stage=stage,
                 status="ok", amount=cheapest.amount, price_basis=cheapest.price_basis, observed_at=cheapest.observed_at,
-                detail="复用本轮同条件报价；未增加API调用，抓取时间不变"))
+                reused=True, request_issued=False, detail="复用本轮同条件报价；未增加API调用，抓取时间不变"))
             self.r.emit(self.turn, "fare" if stage == "verification" else "date_exploration", "ok",
                 "复用本轮刚取得的同条件报价；保留原抓取时间", provider.name, phase="completed", duration_ms=0,
                 data={"route": opportunity.candidate.key, "request": request.model_dump(mode="json"),
@@ -96,6 +154,8 @@ class DateExplorer:
         try:
             async with asyncio.timeout(self.r.settings.source_timeout + 5):
                 async with self.http_slots if provider.name == "SerpAPI" else self.cli_slot:
+                    if provider.name in self.disabled:
+                        return []
                     issued = True
                     self.turn.metrics[category] = self.turn.metrics.get(category, 0) + 1
                     fares = await provider.verify(request)
@@ -110,7 +170,7 @@ class DateExplorer:
                 sources = {f.source for f in fares}
                 opportunity.fares = [f for f in opportunity.fares if f.source not in sources] + fares
             opportunity.date_coverage.samples.append(DateSample(date=outbound, source=provider.name, stage=stage,
-                status="ok", amount=cheapest.amount, price_basis=cheapest.price_basis))
+                status="ok", amount=cheapest.amount, price_basis=cheapest.price_basis, observed_at=cheapest.observed_at))
             self.r.emit(self.turn, trace_stage, "ok", f"{opportunity.candidate.key} {outbound}：{len(fares)} 条匹配报价",
                         provider.name, action_id=action, phase="completed", duration_ms=int((monotonic()-start)*1000),
                       data=data | {"fare_ids": [f.id for f in fares], "amount": cheapest.amount, "price_basis": cheapest.price_basis})
@@ -126,8 +186,14 @@ class DateExplorer:
             raise
         except Exception as error:
             failure = source_error(provider.name, error)
-            if failure.code in {"AUTH_OR_QUOTA", "MISSING_KEY", "NOT_INSTALLED", "NODE_NOT_INSTALLED", "ROUND_TRIP_INCOMPLETE"}:
+            if failure.code in {"AUTH_OR_QUOTA", "QUOTA_EXHAUSTED", "AUTH_FAILED", "RATE_LIMITED", "MISSING_KEY", "NOT_INSTALLED", "NODE_NOT_INSTALLED", "ROUND_TRIP_INCOMPLETE"}:
                 self.disabled.add(provider.name)
+            if failure.code == 'QUOTA_EXHAUSTED':
+                state = {'state': 'quota_exhausted', 'searches_left': 0, 'reason': '票价来源额度已用完'}
+                self.turn.checkpoint.setdefault('source_availability', {})[provider.name] = state
+                self.r.emit(self.turn, trace_stage, 'skipped', '额度已用完；保留结果并使用其他来源', provider.name,
+                    action_id=action, phase='completed', duration_ms=int((monotonic()-start)*1000), data=data | state)
+                return []
             detail = str(failure)
             if issued:
                 opportunity.date_coverage.samples.append(DateSample(date=outbound, source=provider.name, stage=stage,
@@ -139,6 +205,7 @@ class DateExplorer:
             return []
 
     async def run(self, opportunities, *, progressive=False):
+        await self.prepare_sources()
         goal = self.turn.goal
         for opportunity in opportunities:
             if opportunity.date_coverage is None:
@@ -149,12 +216,16 @@ class DateExplorer:
         for opportunity in opportunities:
             candidate = opportunity.candidate
             coverage = opportunity.date_coverage
-            completed = candidate.key in self.turn.checkpoint.get('completed_routes', [])
+            completed = (candidate.key in self.turn.checkpoint.get('completed_routes', [])
+                         and (goal.date_mode == 'fixed' or coverage.research_state['precise_successful_date_count'] >= 2))
             if completed:
                 # Keep successful date exploration; only refresh/recover selected-day verification.
                 await self.finish(opportunity, [f for rows in self.turn.checkpoint.get('quotes', {}).values()
                     for f in [Fare.model_validate(row) for row in rows]
                     if f.request.origin == candidate.origin and f.request.destination == candidate.destination], refine=False)
+                continue
+            if candidate.key in self.turn.checkpoint.get('initialized_date_routes', []) or candidate.key in self.turn.checkpoint.get('date_plans', {}):
+                await self.supplement(opportunity)
                 continue
             returned = []
             plans = self.turn.checkpoint.setdefault('date_plans', {})
@@ -184,9 +255,12 @@ class DateExplorer:
                             break
                     except Exception as error:
                         failure = source_error(provider.name, error)
-                        if failure.code in {"AUTH_OR_QUOTA", "MISSING_KEY", "NOT_INSTALLED", "NODE_NOT_INSTALLED"}:
+                        if failure.code in {"AUTH_OR_QUOTA", "QUOTA_EXHAUSTED", "AUTH_FAILED", "RATE_LIMITED", "MISSING_KEY", "NOT_INSTALLED", "NODE_NOT_INSTALLED"}:
                             self.disabled.add(provider.name)
-                        self.r.emit(self.turn, "date_exploration", "failed", str(source_error(provider.name, error)), provider.name,
+                        if failure.code == 'QUOTA_EXHAUSTED':
+                            self.turn.checkpoint.setdefault('source_availability', {})[provider.name] = {
+                                'state':'quota_exhausted', 'searches_left':0, 'reason':'票价来源额度已用完'}
+                        self.r.emit(self.turn, "date_exploration", "skipped" if failure.code == 'QUOTA_EXHAUSTED' else "failed", str(failure), provider.name,
                                     action_id=action, phase="completed", duration_ms=int((monotonic()-started)*1000), data=data)
             coarse = representative_dates(goal, self.r.settings.coarse_dates, candidate.date_hint)
             # A provider-returned date is a lead; exact quotes still establish valid coverage.
@@ -227,6 +301,7 @@ class DateExplorer:
             for result in await asyncio.gather(*(coarse_quote(outbound) for outbound in coarse)):
                 quotes.extend(result)
             shortlist[candidate.key] = quotes
+            self.turn.checkpoint.setdefault('initialized_date_routes', []).append(candidate.key)
             if progressive:
                 await self.finish(opportunity, quotes)
         if progressive:
@@ -255,25 +330,35 @@ class DateExplorer:
             neighbors = [d for d in neighbors if goal.date_from <= d <= goal.date_to and d >= today_local() and d not in checked]
             midpoint = goal.date_from + (goal.date_to - goal.date_from) / 2
             neighbors.sort(key=lambda d: abs((d-midpoint).days))
+            if coverage.research_state['precise_successful_date_count'] == 1:
+                # Returned range prices guide the next request but never establish coverage.
+                neighbors = self.supplement_dates(opportunity)
             for outbound in neighbors[:self.r.settings.fine_dates]:
-                provider = next((p for p in self.r.fares if p.name == "SerpAPI"), self.r.fares[0] if self.r.fares else None)
-                if provider:
-                    quotes.extend(await self.quote(provider, opportunity, outbound, "fine"))
+                for provider in sorted(self.r.fares, key=lambda p: p.name != 'SerpAPI'):
+                    if provider.name in self.disabled:
+                        continue
+                    fares = await self.quote(provider, opportunity, outbound, 'fine')
+                    if fares:
+                        quotes.extend(fares)
+                        break
             comparable = comparable_quotes(quotes)
             selected = min(comparable, key=lambda f: f.amount).request.outbound_date
         coverage.selected_date = selected
         # Preserve valid sampled quotes if the final refresh fails, keeping their timestamps.
         opportunity.fares = [f for f in quotes if f.request.outbound_date == selected]
         self.r.emit(self.turn, "date_selected", "ok", f"{candidate.key} 选 {selected} 精确复验；仅为已查样本中的选择",
-                    data={"route": candidate.key, "selected_date": str(selected), "attempted_dates": sorted({str(s.date) for s in coverage.samples if s.stage != "range"})})
+                    data={"route": candidate.key, "selected_date": str(selected), **coverage.research_state})
         for provider in self.r.fares:
             fares = await self.quote(provider, opportunity, selected, "verification")
             if fares:
                 sources = {f.source for f in fares}
                 opportunity.fares = [f for f in opportunity.fares if f.source not in sources] + fares
-        self.r.emit(self.turn, "coverage", "info", f"{candidate.key} 日期探索结束；未覆盖部分保持未知",
+        self.r.emit(self.turn, "coverage", "info", f"{candidate.key} 已取得 {coverage.research_state['precise_successful_date_count']} 个不同日期的精确报价；未覆盖部分保持未知",
                     data={"route": candidate.key, "coverage": coverage.model_dump(mode="json")})
-        if candidate.key not in self.turn.checkpoint.setdefault('completed_routes', []):
+        completed = self.turn.checkpoint.setdefault('completed_routes', [])
+        if candidate.key in completed and goal.date_mode != 'fixed' and coverage.research_state['precise_successful_date_count'] < 2:
+            completed.remove(candidate.key)
+        if (goal.date_mode == 'fixed' or coverage.research_state['precise_successful_date_count'] >= 2) and candidate.key not in completed:
             self.turn.checkpoint['completed_routes'].append(candidate.key)
         if hasattr(self.r, 'publish_results'):
             self.r.publish_results(self.turn)

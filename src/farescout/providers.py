@@ -716,6 +716,70 @@ class SerpAPI:
 
     def __init__(self, settings: Settings):
         self.settings = settings
+        self._availability = None
+        self._availability_lock = asyncio.Lock()
+        self.availability_checks = 0
+        self.search_requests = 0
+
+    def begin_execution(self):
+        # A long-lived CLI can start a new turn after the account was refilled.
+        # Share quota state within this execution, not forever across turns.
+        self._availability = None
+        self.availability_checks = 0
+        self.search_requests = 0
+
+    async def availability(self):
+        async with self._availability_lock:
+            if self._availability is not None:
+                return self._availability
+            if not self.settings.serpapi_key:
+                self._availability = {'state':'unconfigured', 'reason':'未配置 SerpAPI；使用其他票价来源'}
+                return self._availability
+            self.availability_checks += 1
+            try:
+                async with httpx.AsyncClient(timeout=min(15, self.settings.source_timeout)) as client:
+                    response = await client.get('https://serpapi.com/account.json', params={'api_key':self.settings.serpapi_key})
+                    if response.status_code in {401,403}:
+                        self._availability = {'state':'auth_unavailable', 'reason':'SerpAPI 凭证不可用；使用其他票价来源'}
+                        return self._availability
+                    response.raise_for_status()
+                    payload = response.json()
+            except (httpx.HTTPError, ValueError):
+                self._availability = {'state':'unknown', 'reason':'账户额度检查未返回有效结果；由实际搜索确认，本轮不重复检查账户'}
+                return self._availability
+            if not isinstance(payload, dict):
+                payload = {}
+            left = payload.get('total_searches_left')
+            if isinstance(left, (int,float)) and not isinstance(left,bool) and left >= 0:
+                self._availability = {'state':'quota_exhausted' if left==0 else 'available',
+                    'searches_left':left, 'reason':'SerpAPI 额度为 0；本轮不请求 Google 票价，继续使用其他来源' if left==0 else 'SerpAPI 有可用额度'}
+            else:
+                self._availability = {'state':'unknown', 'reason':'账户响应未给出有效剩余额度；由实际搜索结果确认'}
+            return self._availability
+
+    async def _search(self, params):
+        available = await self.availability()
+        if available['state']=='quota_exhausted':
+            raise SourceFailure(self.name, 'QUOTA_EXHAUSTED', 'SerpAPI 额度耗尽；正常降级，不重试搜索')
+        if available['state'] in {'unconfigured','auth_unavailable'}:
+            raise SourceFailure(self.name, 'MISSING_KEY' if available['state']=='unconfigured' else 'AUTH_FAILED', available['reason'])
+        self.search_requests += 1
+        async with httpx.AsyncClient(timeout=self.settings.source_timeout) as client:
+            response = await client.get('https://serpapi.com/search.json', params=params)
+            try:
+                payload = response.json()
+            except ValueError:
+                payload = {}
+            message = str(payload.get('error', '')).lower()
+            if 'run out of searches' in message or 'quota exhausted' in message:
+                self._availability = {'state':'quota_exhausted','searches_left':0,
+                    'reason':'SerpAPI 搜索额度已用完；本轮停止该来源，继续其他票价渠道'}
+                raise SourceFailure(self.name, 'QUOTA_EXHAUSTED', self._availability['reason'])
+            if response.status_code in {401,403,429}:
+                raise SourceFailure(self.name, 'AUTH_FAILED' if response.status_code in {401,403} else 'RATE_LIMITED',
+                    'SerpAPI 认证或访问频率受限；停止本轮调用，与额度为零分别记录')
+            response.raise_for_status()
+            return payload
 
     async def explore(self, origin: str, destination: str, goal: Goal) -> list[DateSample]:
         if not self.settings.serpapi_key:
@@ -726,12 +790,7 @@ class SerpAPI:
         params = dict(engine="google_travel_explore", departure_id=origin, arrival_id=destination,
             month=month, type=2, currency="CNY", hl="en", adults=1, travel_class=1, no_cache="true",
             api_key=self.settings.serpapi_key)
-        async with httpx.AsyncClient(timeout=self.settings.source_timeout) as client:
-            response = await client.get("https://serpapi.com/search.json", params=params)
-            if response.status_code in {401,403,429}:
-                raise SourceFailure(self.name, "AUTH_OR_QUOTA", "Explore鉴权或配额不可用")
-            response.raise_for_status()
-            samples = explore_dates(response.json(), origin, destination, goal)
+        samples = explore_dates(await self._search(params), origin, destination, goal)
         if not samples:
             raise SourceFailure(self.name, "NO_RANGE_HINT", "Explore未返回窗口内同路线单程日期线索；回退FlyAI")
         return samples
@@ -746,12 +805,7 @@ class SerpAPI:
             "outbound_date": str(request.outbound_date), "type": "2", "currency": "CNY", "hl": "en",
             "adults": "1", "travel_class": "1", "no_cache": "true", "api_key": self.settings.serpapi_key,
         }
-        async with httpx.AsyncClient(timeout=self.settings.source_timeout) as client:
-            response = await client.get("https://serpapi.com/search.json", params=params)
-            if response.status_code in {401, 403, 429}:
-                raise SourceFailure(self.name, "AUTH_OR_QUOTA", "鉴权/配额/访问受限，已停止该来源")
-            response.raise_for_status()
-            fares = serpapi_fares(response.json(), request)
+        fares = serpapi_fares(await self._search(params), request)
         if not fares:
             raise SourceFailure(self.name, "NO_MATCHING_FARE", "没有满足全部条件且可核对的报价")
         return fares

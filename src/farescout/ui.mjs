@@ -1,4 +1,4 @@
-import {ViewState, bestFare, coverageDates, routeKey, scopedEvents, validMessage} from './ui-state.mjs';
+import {ViewState, bestFare, coverageDates, dateResearchState, routeKey, scopedEvents, validMessage} from './ui-state.mjs';
 
 const $ = id => document.getElementById(id);
 const el = (tag, text, className) => {
@@ -10,11 +10,11 @@ const el = (tag, text, className) => {
 const state = new ViewState();
 let stream = null, refreshTimer = null, pollTimer = null, historyRevision = 0;
 let selectedRoute = null, panelTab = 'trace', resultSignature = '', inspectorSignature = '', editorGoal = '';
-const stageNames = {browser_recovery:'等待连接并恢复',research_decision:'决定下一步',checkpoint:'保留成功步骤',result_available:'已有可核对结果',browser_connection:'连接浏览器', social_scan:'读取社区内容', model:'模型处理', social_preview:'搜索社区帖子', social_read:'读取帖子正文', social_read_result:'正文读取结果', date_phase:'日期探索完成', discovery:'开始研究', goal:'理解研究条件', plan:'安排社区查询', community_search:'搜索社区', evidence:'取得社区证据', extract:'筛选航线', expansion_plan:'决定继续查什么', query_expansion:'扩展查询', date_plan:'选择抽查日期', date_exploration:'探索日期价格', date_selected:'选择复验日期', fare:'核对实时票价', coverage:'确认日期覆盖', conflict:'核对不同来源', conclusion:'形成结论', context:'沿用研究上下文', stop:'停止研究', resume:'继续研究', quality:'检查证据质量', candidate:'发现候选航线', source_query:'实际搜索词', source_retry:'重试来源', budget:'到达查询预算', deal:'判断价格机会'};
+const stageNames = {source_availability:'检查票价来源额度',browser_recovery:'等待连接并恢复',research_decision:'决定下一步',checkpoint:'保留成功步骤',result_available:'已有可核对结果',browser_connection:'连接浏览器', social_scan:'读取社区内容', model:'模型处理', social_preview:'搜索社区帖子', social_read:'读取帖子正文', social_read_result:'正文读取结果', date_phase:'日期探索完成', discovery:'开始研究', goal:'理解研究条件', plan:'安排社区查询', community_search:'搜索社区', evidence:'取得社区证据', extract:'筛选航线', expansion_plan:'决定继续查什么', query_expansion:'扩展查询', date_plan:'选择抽查日期', date_exploration:'探索日期价格', date_selected:'选择复验日期', fare:'核对实时票价', coverage:'确认日期覆盖', conflict:'核对不同来源', conclusion:'形成结论', context:'沿用研究上下文', stop:'停止研究', resume:'继续研究', quality:'检查证据质量', candidate:'发现候选航线', source_query:'实际搜索词', source_retry:'重试来源', budget:'到达查询预算', deal:'判断价格机会'};
 const statusNames = {running:'研究进行中', complete:'研究完成', partial:'部分完成', blocked:'来源受阻'};
 const fields = {origins:'出发机场', region:'目的地区', date_from:'开始日期', date_to:'结束日期', date_mode:'日期方式', trip_type:'行程', stay_days:'停留天数', no_red_eye:'红眼航班'};
 const provenance = {explicit:'用户明确要求', inferred:'根据语义理解', default:'系统默认', context:'沿用前文'};
-const groups = {community:['community_search','social_scan','social_preview','social_read','social_read_result','evidence','quality','extract','expansion_plan','query_expansion','source_query','source_retry','candidate'], dates:['date_plan','date_exploration','date_selected','coverage','date_phase'], fares:['fare','conflict','deal','conclusion']};
+const groups = {community:['community_search','social_scan','social_preview','social_read','social_read_result','evidence','quality','extract','expansion_plan','query_expansion','source_query','source_retry','candidate'], dates:['date_plan','date_exploration','date_selected','coverage','date_phase'], fares:['source_availability','fare','conflict','deal','conclusion']};
 const shortDate = value => value ? `${Number(value.slice(5,7))} 月 ${Number(value.slice(8,10))} 日` : '未选定';
 const stamp = value => value ? new Date(value).toLocaleString('zh-CN', {month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}) : '时间未知';
 const money = value => Number(value).toLocaleString('zh-CN', {maximumFractionDigits:2});
@@ -259,9 +259,11 @@ function renderInspector(opportunity) {
   if (!coverage) dates.append(el('p', '尚未完成日期探索。'));
   else {
     dates.append(el('p', `${coverage.date_from} 至 ${coverage.date_to}；复验日期 ${coverage.selected_date || '尚未选定'}。`));
+    const dateState = dateResearchState(coverage);
     const chips = el('div', undefined, 'date-list');
-    for (const date of coverageDates(coverage)) { const samples = coverage.samples.filter(s => s.date === date && s.stage !== 'range'), ok = samples.some(s => s.status === 'ok'); const chip = el('span', date.slice(5), 'date-chip' + (date === coverage.selected_date ? ' selected' : !ok ? ' failed' : '')); chip.title = samples.map(s => `${s.source}：${s.status === 'ok' ? s.amount != null ? '¥' + s.amount : '取得结果' : '失败'} · ${s.detail || s.stage}`).join('\n'); chips.append(chip); }
-    dates.append(chips, el('p', `发出精确请求的日期有 ${coverageDates(coverage).length} 个，其中 ${new Set(coverage.samples.filter(s => s.stage !== 'range' && s.status === 'ok').map(s => s.date)).size} 个取得报价。范围查询返回 ${(coverage.returned_dates || []).length} 个日期，不算逐日验价。`, 'evidence-meta'), el('p', '未查日期保持未知；这里没有声称全月最低。', 'warning'));
+    for (const date of coverageDates(coverage)) { const samples = coverage.samples.filter(s => s.date === date && s.stage !== 'range'), ok = dateState.precise_successful_dates.includes(date); const chip = el('span', date.slice(5), 'date-chip' + (date === coverage.selected_date ? ' selected' : !ok ? ' failed' : '')); chip.title = samples.map(s => `${s.source}：${s.status === 'ok' ? s.amount != null ? '¥' + s.amount : '取得结果' : '失败'} · ${s.detail || s.stage}`).join('\n'); chips.append(chip); }
+    dates.append(chips, el('p', `尝试日期 ${dateState.attempted_dates.length} 个；精确成功 ${dateState.precise_successful_dates.length} 个：${dateState.precise_successful_dates.join('、') || '无'}。只按不同日期的精确成功报价判断覆盖。`, 'evidence-meta'));
+    dates.append(el('p', `失败日期：${dateState.failed_dates.join('、') || '无'}。范围线索：${dateState.range_hint_dates.join('、') || '无'}。复用报价：${dateState.reused_quote_dates.join('、') || '无'}（${dateState.quote_reuse_count} 次，未发出新请求）。`, 'evidence-meta'), el('p', '范围线索、失败与复用不增加成功日期数；未查日期保持未知，不声称全月最低。', 'warning'));
     for (const note of coverage.notes || []) dates.append(el('p', note, 'evidence-meta'));
   }
   inspector.append(dates);

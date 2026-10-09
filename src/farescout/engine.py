@@ -179,6 +179,9 @@ class Researcher:
         self.emit(turn, stage, "info", "所有本轮社区来源失败；保留并尝试使用已有社区证据")
 
     async def run(self, message: str, session: Session | None, session_id: str, *, resume: bool = False) -> Session:
+        for provider in self.fares:
+            if hasattr(provider, 'begin_execution'):
+                provider.begin_execution()
         execution_started = monotonic()
         self._execution_started = execution_started
         self._research_deadline = execution_started + self.settings.max_seconds
@@ -242,8 +245,10 @@ class Researcher:
             history = [e for t in session.turns for e in t.events]
             searches = [e for e in history if e.stage == "community_search" and e.status == "ok" and e.evidence_ids and e.data.get('complete', True)]
             expanded = any(e.stage == "query_expansion" and e.status == "ok" and e.evidence_ids and e.data.get('complete', True) for e in history)
-            covered = sum(bool(o.date_coverage and len({s.date for s in o.date_coverage.samples
-                          if s.stage != "range" and s.status == "ok"}) >= 2) for o in turn.opportunities if o.fares)
+            covered = sum(bool(o.date_coverage and o.date_coverage.research_state['precise_successful_date_count'] >= 2)
+                          for o in turn.opportunities if o.fares)
+            turn.metrics['routes_with_two_precise_dates'] = covered
+            turn.metrics['serpapi_search_requests'] = turn.metrics.get('serpapi_search_requests', 0) + sum(getattr(p, 'search_requests', 0) for p in self.fares)
             date_ok = turn.goal.date_mode == "fixed" or covered >= 3
             turn.status = "complete" if verified >= 3 and expanded and len(searches) >= 2 and date_ok else (
                 "partial" if turn.opportunities or turn.evidence_ids else "blocked")
@@ -336,7 +341,14 @@ class Researcher:
                 expansion = next((e for e in expansions if ('query_expansion', e.query) not in succeeded
                                   and ('query_expansion', e.query) not in attempted and e.query not in queries), None)
                 available_social = any(p.name not in self._blocked_social for p in self.social)
-                waiting_routes = [o for o in turn.opportunities if o.candidate.key not in scheduled]
+                date_target_met = goal.date_mode == 'fixed' or sum(bool(o.fares and o.date_coverage
+                    and o.date_coverage.research_state['precise_successful_date_count'] >= 2) for o in turn.opportunities) >= 3
+                gaps = [o for o in turn.opportunities if o.date_coverage
+                        and o.date_coverage.research_state['precise_successful_date_count'] < 2
+                        and explorer.can_supplement(o)] if not date_target_met else []
+                one_date_gaps = [o for o in gaps if o.date_coverage.research_state['precise_successful_date_count'] == 1]
+                waiting_routes = one_date_gaps + [o for o in turn.opportunities if o.candidate.key not in scheduled and o not in one_date_gaps]
+                waiting_routes += [o for o in gaps if o not in waiting_routes]
                 remaining = self._research_deadline - monotonic()
                 allowed = []
                 if pending and available_social and remaining > min(120, self.settings.max_seconds/4):
@@ -353,15 +365,20 @@ class Researcher:
                 if not allowed:
                     allowed = ['stop']
                 # A successful bounded discovery may stop before exhausting every optional query.
-                if 'stop' not in allowed and len([o for o in turn.opportunities if o.fares]) >= 3 and any(s == 'query_expansion' for s,q in succeeded) and len([s for s,q in succeeded if s == 'community_search']) >= 2:
+                if 'stop' not in allowed and date_target_met and len([o for o in turn.opportunities if o.fares]) >= 3 and any(s == 'query_expansion' for s,q in succeeded) and len([s for s,q in succeeded if s == 'community_search']) >= 2:
                     allowed.append('stop')
+                if one_date_gaps and task is None:
+                    allowed = ['dates']
                 fallback = 'dates' if 'dates' in allowed else 'community' if 'community' in allowed else allowed[0]
                 context = {'allowed_actions':allowed, 'remaining_seconds':round(remaining, 1),
                     'pending_community_queries':pending, 'promotion_query':expansion.model_dump(mode='json') if expansion else None,
                     'community_bodies':len(session.evidence), 'evidence_gaps':cp.get('evidence_gaps', []), 'date_calls':turn.metrics.get('date_calls', 0),
                     'routes':[{'route':o.candidate.key, 'evidence_ids':[s.evidence_id for s in o.candidate.signals],
-                               'has_exact_price':bool(o.fares), 'checked_dates':len(o.date_coverage.samples) if o.date_coverage else 0,
+                               'has_exact_price':bool(o.fares), 'date_research_state':o.date_coverage.research_state if o.date_coverage else None,
                                'date_work_running':o.candidate.key in scheduled and task is not None} for o in turn.opportunities],
+                    'date_coverage_target':{'routes_required':3, 'precise_dates_per_route':2, 'met':date_target_met},
+                    'remaining_date_calls':max(0, self.settings.max_date_calls-explorer.date_calls),
+                    'source_availability':cp.get('source_availability', {}),
                     'blocked_sources':sorted(self._blocked_social), 'recovery_required':cp.get('recovery_required')}
                 decision = ResearchDecision(action=fallback, reason='先补足当前缺少的报价或正文；已完成操作不重复执行')
                 if hasattr(self.brain, 'decide') and len(allowed) > 1:

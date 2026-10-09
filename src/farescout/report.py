@@ -64,6 +64,8 @@ def render_report(session: Session, turn: Turn) -> str:
              f"研究开始：{turn.started_at.isoformat()}；结束：{turn.finished_at.isoformat() if turn.finished_at else '进行中'}。", ""]
     if goal.assumptions:
         lines += ["研究假设：", "", *[f"- {plain(s)}" for s in dict.fromkeys(goal.assumptions)], ""]
+    for source, state in turn.checkpoint.get('source_availability', {}).items():
+        lines += [f"票价来源 {plain(source)}：{plain(state.get('reason', state.get('state', '未知')))}。", ""]
     if turn.metrics:
         lines += ["调用统计（工具调用，不把范围请求展开成虚构的逐日调用）：", "",
                   f"- 社区 {turn.metrics.get('community_calls', 0)} 次；日期探索 {turn.metrics.get('date_calls', 0)} 次；最终精确验价 {turn.metrics.get('verification_calls', 0)} 次；模型操作 {turn.metrics.get('model_operations', 0)} 次。",
@@ -128,13 +130,16 @@ def render_report(session: Session, turn: Turn) -> str:
         lines += ["", "**当前验证价格**", ""]
         if opportunity.date_coverage:
             c = opportunity.date_coverage
-            attempted = sorted({str(s.date) for s in c.samples if s.stage != "range"})
-            failed = sorted({str(s.date) for s in c.samples if s.status == "failed"})
+            state = c.research_state
+            attempted = state["attempted_dates"]
+            failed = state["failed_dates"]
             lines += [f"日期窗：{c.date_from}～{c.date_to}；最终选定：{c.selected_date or '未选定'}。", "",
-                      f"实际精确请求日期（含失败）：{', '.join(attempted) or '无'}；范围响应返回日期：{', '.join(map(str, c.returned_dates)) or '无'}。", "",
+                      f"实际精确请求日期（含失败）：{', '.join(attempted) or '无'}。", "",
+                      f"精确成功日期：{', '.join(state['precise_successful_dates']) or '无'}；仅按这组日期判断覆盖。", "",
+                      f"范围线索日期：{', '.join(state['range_hint_dates']) or '无'}；复用报价日期：{', '.join(state['reused_quote_dates']) or '无'}。范围线索与复用均不增加成功覆盖。", "",
                       f"失败日期：{', '.join(failed) or '无'}。未覆盖日期保持未知，不声称全月最低。", "",
                       "| 日期 | 来源 | 阶段 | 状态 | 探索/验证价及口径 |", "|---|---|---|---|---|"]
-            lines += [f"| {s.date} | {plain(s.source)} | {s.stage} | {s.status} | {str(s.amount) if s.amount is not None else '未取得'} / {s.price_basis or '未知'} |" for s in c.samples]
+            lines += [f"| {s.date} | {plain(s.source)} | {s.stage + ('（复用，未请求）' if s.reused else '')} | {s.status} | {str(s.amount) if s.amount is not None else '未取得'} / {s.price_basis or '未知'} |" for s in c.samples]
             lines.append("")
         if not opportunity.fares:
             lines += ["未验证，不能作为当前低价推荐。", ""]
