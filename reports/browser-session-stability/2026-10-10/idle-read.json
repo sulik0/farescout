@@ -1,0 +1,138 @@
+{
+  "kind": "real_social_browser_stability_probe",
+  "scenario": "managed-after-20261010-idle",
+  "started_at": "2026-10-09T20:52:46.473275+00:00",
+  "manual_reauthorization": "none",
+  "login_observation": "user_confirmed_no_relogin",
+  "calls": [
+    {
+      "query": "香港 日本 机票",
+      "before": {
+        "browser_connected": false,
+        "browser_state": "unknown",
+        "daemon_running": false,
+        "daemon_compatible": false,
+        "error_code": "DAEMON_UNAVAILABLE",
+        "profile_mode": "managed",
+        "active_profile_mode": null,
+        "endpoint_source": "managed_chrome_marker",
+        "active_daemon_pid": null,
+        "endpoint_fingerprint": "e3ba38372a8851df",
+        "endpoint_port": "52398",
+        "observed_at": "2026-10-09T20:52:46.604413+00:00"
+      },
+      "body_count": 1,
+      "evidence": [
+        {
+          "id": "3248888f7e2fbcc4",
+          "url": "https://www.xiaohongshu.com/explore/6ac74455000000000a02197e",
+          "title": "1k7拿下香港东京往返机票",
+          "body_chars": 83,
+          "observed_at": "2026-10-09T20:53:13.017884+00:00"
+        }
+      ],
+      "result": "ok",
+      "blocked_code": null,
+      "seconds": 26.415,
+      "provider_cli_commands": 15,
+      "status_observation_commands": 2,
+      "connection_transitions": [
+        {
+          "seconds": 0.024,
+          "connected": false,
+          "state": "unknown"
+        },
+        {
+          "seconds": 2.057,
+          "connected": false,
+          "state": "connecting"
+        },
+        {
+          "seconds": 4.198,
+          "connected": true,
+          "state": "connected"
+        },
+        {
+          "seconds": 22.458,
+          "connected": true,
+          "state": "connected"
+        }
+      ],
+      "after": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "endpoint_source": "managed_chrome_marker",
+        "active_daemon_pid": 11617,
+        "endpoint_fingerprint": "9e5bf21068b94afe",
+        "endpoint_port": "51723",
+        "observed_at": "2026-10-09T20:53:13.084893+00:00"
+      },
+      "connection_recovery_seconds": 4.198
+    },
+    {
+      "query": "香港 大阪 机票",
+      "before": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "endpoint_source": "managed_chrome_marker",
+        "active_daemon_pid": 11617,
+        "endpoint_fingerprint": "9e5bf21068b94afe",
+        "endpoint_port": "51723",
+        "observed_at": "2026-10-09T20:53:43.132738+00:00"
+      },
+      "body_count": 1,
+      "evidence": [
+        {
+          "id": "5a9db61677bda751",
+          "url": "https://www.xiaohongshu.com/explore/6ac738b6000000000200c9f3",
+          "title": "求助！香港大阪往返这样买怎么样！",
+          "body_chars": 63,
+          "observed_at": "2026-10-09T20:53:55.986873+00:00"
+        }
+      ],
+      "result": "ok",
+      "blocked_code": null,
+      "seconds": 12.855,
+      "provider_cli_commands": 4,
+      "status_observation_commands": 2,
+      "connection_transitions": [
+        {
+          "seconds": 0.017,
+          "connected": true,
+          "state": "connected"
+        }
+      ],
+      "after": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "endpoint_source": "managed_chrome_marker",
+        "active_daemon_pid": 11617,
+        "endpoint_fingerprint": "9e5bf21068b94afe",
+        "endpoint_port": "51723",
+        "observed_at": "2026-10-09T20:53:56.061561+00:00"
+      },
+      "connection_recovery_seconds": 0
+    }
+  ],
+  "count_note": "provider_cli_commands includes search/read/readiness/retries; each before/after snapshot adds one separate status command. No model or fare API is called.",
+  "browser_control_note": "This probe never kills or launches Chrome itself and never calls socai stop. A read-only socai search may reconnect or launch its configured browser.",
+  "successes": 2,
+  "read_success_rate": 1.0,
+  "finished_at": "2026-10-09T20:53:56.061632+00:00",
+  "observation_basis": "用户在当前会话明确回复两项都没有；仅适用于此次空闲后两次读取"
+}

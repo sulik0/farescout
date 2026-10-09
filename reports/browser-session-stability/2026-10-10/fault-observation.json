@@ -1,0 +1,127 @@
+{
+  "kind": "real_managed_research_acceptance",
+  "started_at": "2026-10-09T20:57:20.518554+00:00",
+  "session_id": "managed-fault-20261010",
+  "manual_reauthorization": "unknown",
+  "repeated_login": "unknown",
+  "research_input": "香港 11 月飞日本哪里便宜？",
+  "controlled_disconnect": {
+    "chrome_pid": 11636,
+    "signal": "SIGTERM",
+    "exact_profile_verified": true,
+    "daemon_signalled": false,
+    "profile_deleted": false,
+    "at": "2026-10-09T20:57:50.522224+00:00",
+    "daemon_pid_before": 11617
+  },
+  "observations": [
+    {
+      "at": "2026-10-09T20:57:21.035605+00:00",
+      "status": "running",
+      "active": "managed-fault-20261010",
+      "evidence_count": 0,
+      "quoted_routes": 0,
+      "last_stage": "discovery",
+      "recovery_state": null,
+      "execution_segments": null
+    },
+    {
+      "at": "2026-10-09T20:57:46.341441+00:00",
+      "status": "running",
+      "active": "managed-fault-20261010",
+      "evidence_count": 3,
+      "quoted_routes": 0,
+      "last_stage": "extract",
+      "recovery_state": null,
+      "execution_segments": null
+    },
+    {
+      "at": "2026-10-09T20:57:56.202485+00:00",
+      "status": "partial",
+      "active": null,
+      "evidence_count": 3,
+      "quoted_routes": 0,
+      "last_stage": "conclusion",
+      "recovery_state": null,
+      "execution_segments": 1
+    }
+  ],
+  "before_fault": {
+    "session_id": "managed-fault-20261010",
+    "turn_id": "d0058b77ffdaff40",
+    "turn_count": 1,
+    "evidence": {
+      "3248888f7e2fbcc4": {
+        "observed_at": "2026-10-09T20:57:33.344063Z",
+        "body_sha256": "d1ebd29a42d9615489d0ac2094dea8e7d32b8a7e97a79bf961b64faf4c2458c4"
+      },
+      "468ed91dd243cc05": {
+        "observed_at": "2026-10-09T20:57:37.558241Z",
+        "body_sha256": "28231d3b64d1c6d33c76b7d7391495496c463e0d1d82317009d9962b83dd9c09"
+      },
+      "9504a89f4c04c019": {
+        "observed_at": "2026-10-09T20:57:41.223474Z",
+        "body_sha256": "ead61cb1d9de930369925a05685a500f34075ebe2869377c1a4ed3cfe41ef8f7"
+      }
+    },
+    "completed_searches": [
+      {
+        "stage": "community_search",
+        "query": "香港 日本 机票",
+        "event_id": "3b9e8950557056d9"
+      }
+    ],
+    "successful_dates": []
+  },
+  "finished_at": "2026-10-09T20:57:56.202508+00:00",
+  "status": "partial",
+  "stop_reason": "有当前报价的候选不足3条；查询扩展未成功取得正文；成功宽社区查询不足2次；至少3条路线的多日期有效覆盖尚未满足",
+  "metrics": {
+    "model_operations": 6,
+    "community_calls": 5,
+    "socai_commands": 23,
+    "date_calls": 21,
+    "verification_calls": 5,
+    "elapsed_seconds": 32.059,
+    "execution_seconds": 32.071,
+    "execution_segments": 1,
+    "evidence_count": 3,
+    "verified_routes": 0,
+    "stage_query_expansion_seconds": 2.173,
+    "stage_community_search_seconds": 18.701,
+    "stage_date_exploration_seconds": 0.794,
+    "stage_social_preview_seconds": 6.126,
+    "stage_model_seconds": 11.125,
+    "stage_social_read_seconds": 14.036,
+    "stage_fare_seconds": 0.02,
+    "stage_date_phase_seconds": 0.853,
+    "stage_social_scan_seconds": 0.066,
+    "stage_browser_connection_seconds": 0.0,
+    "unattributed_seconds": 0,
+    "overlapped_stage_seconds": 0.781,
+    "independence_groups": 3,
+    "model_requests": 6,
+    "model_input_tokens": 10713,
+    "model_output_tokens": 1789
+  },
+  "browser_recovery": null,
+  "recovery_required": null,
+  "preservation": {
+    "checks": {
+      "same_session": true,
+      "same_turn": true,
+      "same_turn_count": true,
+      "evidence_unchanged": true,
+      "successful_date_records_retained": true,
+      "completed_searches_not_repeated": true
+    },
+    "repeated_completed_searches": [],
+    "resume_events": 0,
+    "execution_segments": 1,
+    "browser_recovery": null
+  },
+  "validation_scope": {
+    "successful_date_records_at_fault": 0,
+    "date_retention_at_fault": "not_exercised; legacy subset check is vacuously true"
+  }
+}

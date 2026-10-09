@@ -59,6 +59,9 @@ async def command_json(executable: str, args: list[str], settings: Settings, sou
     text = out.decode("utf-8", errors="replace")
     if process.returncode:
         message = (text + err.decode("utf-8", errors="replace")).lower()
+        if source == 'FlyAI' and process.returncode == 127 and 'node' in message and 'no such file' in message:
+            raise SourceFailure(source, 'NODE_NOT_INSTALLED',
+                'FlyAI 启动环境找不到 Node；请安装 Node 并加入 PATH，或在本机启动脚本中配置 FARESCOUT_NODE_BIN')
         if any(x in message for x in ["captcha", "验证码", "access denied", "forbidden"]):
             code = "ACCESS_BLOCKED"
         elif any(x in message for x in ["login", "sign in", "登录", "remote debugging", "devtools", "chrome"]):
@@ -219,14 +222,14 @@ class Socai:
                 if error.errno in {errno.EPERM, errno.EACCES}:
                     raise SourceFailure(self.name, 'DAEMON_IPC_PERMISSION_DENIED',
                         '执行环境无权连接现有socai daemon；请从正常本机终端运行，不要重建daemon') from None
-        ready = state.get('browser_connected') is True
         self.connection = connection_observation(state, self.settings)
+        ready = self.connection.get('browser_connected') is True
         if state.get('daemon_running') is True and state.get('daemon_compatible') is False:
             raise SourceFailure(self.name, 'DAEMON_VERSION_MISMATCH', 'CLI与daemon版本或构建不同；停止调用以免socai自动重启现有daemon')
         if self.settings.socai_config_path is not None and self.settings.social_browser == 'managed' and state.get('profile_mode') != 'managed':
             raise SourceFailure(self.name, 'BROWSER_CONFIG_MISMATCH', 'daemon 未报告 managed 模式；停止调用，不切换或重启其他浏览器')
         self.on_trace('browser_connection', 'ok' if ready else 'info',
-            '复用已经连接的Chrome' if ready else '专用 Chrome 当前未连接；下一次只读搜索会尝试启动同一 profile' if state.get('profile_mode') == 'managed' else 'Chrome当前未连接；授权是否待确认尚未知，只允许本轮一次连接尝试',
+            '复用已经连接的Chrome' if ready else 'WebSocket 已断开；等待 daemon 更新连接状态，再恢复研究' if self.connection.get('transport_pending_disconnect') else '专用 Chrome 当前未连接；下一次只读搜索会尝试启动同一 profile' if state.get('profile_mode') == 'managed' else 'Chrome当前未连接；授权是否待确认尚未知，只允许本轮一次连接尝试',
             0, self.connection)
         return ready
 
@@ -245,10 +248,10 @@ class Socai:
                         state = await command_json(self.settings.socai_bin, ['status', '--json'],
                             replace(self.settings, source_timeout=5), 'socai')
                         self.connection = connection_observation(state, self.settings)
-                        current = state.get('browser_state')
+                        current = self.connection.get('browser_state')
                         if current != last:
-                            self.on_trace('browser_connection', 'ok' if state.get('browser_connected') else 'info',
-                                'Chrome已连接' if state.get('browser_connected') else '连接状态变化；授权弹窗是否出现仍需用户确认',
+                            self.on_trace('browser_connection', 'ok' if self.connection.get('browser_connected') else 'info',
+                                'Chrome已连接' if self.connection.get('browser_connected') else '连接状态变化；授权弹窗是否出现仍需用户确认',
                                 0, self.connection)
                             last = current
                     except Exception:

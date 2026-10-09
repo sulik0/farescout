@@ -78,7 +78,8 @@ class Application:
                     ready = asyncio.run(source.browser_ready()) if now() < end else False
                     # Never try to launch existing Chrome automatically. The managed
                     # mode is confirmed by daemon status, not just a UI preference.
-                    if not ready and managed and source.connection.get('profile_mode') == 'managed' and now() < end:
+                    if (not ready and managed and source.connection.get('profile_mode') == 'managed'
+                            and source.connection.get('reported_browser_connected') is not True and now() < end):
                         with self.lock:
                             if stop.is_set() or self.active or self.recovery_target != (session_id, turn.id):
                                 return

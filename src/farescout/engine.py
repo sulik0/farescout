@@ -240,8 +240,8 @@ class Researcher:
                     self.emit(turn, "deal", "info", opportunity.deal["label"], data={"route": opportunity.candidate.key, **opportunity.deal})
             verified = sum(bool(o.fares) for o in turn.opportunities)
             history = [e for t in session.turns for e in t.events]
-            searches = [e for e in history if e.stage == "community_search" and e.status == "ok" and e.evidence_ids]
-            expanded = any(e.stage == "query_expansion" and e.status == "ok" and e.evidence_ids for e in history)
+            searches = [e for e in history if e.stage == "community_search" and e.status == "ok" and e.evidence_ids and e.data.get('complete', True)]
+            expanded = any(e.stage == "query_expansion" and e.status == "ok" and e.evidence_ids and e.data.get('complete', True) for e in history)
             covered = sum(bool(o.date_coverage and len({s.date for s in o.date_coverage.samples
                           if s.stage != "range" and s.status == "ok"}) >= 2) for o in turn.opportunities if o.fares)
             date_ok = turn.goal.date_mode == "fixed" or covered >= 3

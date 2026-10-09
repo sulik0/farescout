@@ -1,0 +1,2341 @@
+{
+  "kind": "recorded_live_research_audit",
+  "session_id": "managed-fault-20261010",
+  "turn_id": "d0058b77ffdaff40",
+  "input": "香港 11 月飞日本哪里便宜？",
+  "started_at": "2026-10-09T20:57:20.547265+00:00",
+  "finished_at": "2026-10-09T20:57:52.605871+00:00",
+  "status": "partial",
+  "stop_reason": "有当前报价的候选不足3条；查询扩展未成功取得正文；成功宽社区查询不足2次；至少3条路线的多日期有效覆盖尚未满足",
+  "metrics": {
+    "model_operations": 6,
+    "community_calls": 5,
+    "socai_commands": 23,
+    "date_calls": 21,
+    "verification_calls": 5,
+    "elapsed_seconds": 32.059,
+    "execution_seconds": 32.071,
+    "execution_segments": 1,
+    "evidence_count": 3,
+    "verified_routes": 0,
+    "stage_query_expansion_seconds": 2.173,
+    "stage_community_search_seconds": 18.701,
+    "stage_date_exploration_seconds": 0.794,
+    "stage_social_preview_seconds": 6.126,
+    "stage_model_seconds": 11.125,
+    "stage_social_read_seconds": 14.036,
+    "stage_fare_seconds": 0.02,
+    "stage_date_phase_seconds": 0.853,
+    "stage_social_scan_seconds": 0.066,
+    "stage_browser_connection_seconds": 0.0,
+    "unattributed_seconds": 0,
+    "overlapped_stage_seconds": 0.781,
+    "independence_groups": 3,
+    "model_requests": 6,
+    "model_input_tokens": 10713,
+    "model_output_tokens": 1789
+  },
+  "grounding_evidence_count": 2,
+  "dual_current_source_routes": 0,
+  "call_count_definition": "community_calls=provider search invocations; socai_commands=actual CLI commands (search/read/status/retries); date_calls=range/coarse/fine invocations; verification_calls=actual final exact provider invocations; quote_reuses=same-turn quote reuse without an API request; model_requests=Pydantic AI recorded requests including retries; stage_*_seconds=request duration sums, parent community stages include read children; date_phase=actual date-stage wall time",
+  "evidence_groups": [
+    {
+      "id": "3248888f7e2fbcc4",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6ac74455000000000a02197e",
+      "title": "1k7拿下香港东京往返机票",
+      "observed_at": "2026-10-09T20:57:33.344063+00:00",
+      "group": "8b0a8a60043295c2",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "",
+      "match_basis": []
+    },
+    {
+      "id": "468ed91dd243cc05",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6ac39453000000001a0215ab",
+      "title": "快运大促！香港往返日本全线1K2东京大阪",
+      "observed_at": "2026-10-09T20:57:37.558241+00:00",
+      "group": "ce7d15d59dcd6958",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "",
+      "match_basis": []
+    },
+    {
+      "id": "9504a89f4c04c019",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6ac739d70000000015000d64",
+      "title": "香港快运还会有大促吗",
+      "observed_at": "2026-10-09T20:57:41.223474+00:00",
+      "group": "8ec7428e105a58a3",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "",
+      "match_basis": []
+    }
+  ],
+  "expansions": [
+    {
+      "query": "香港快运 香港 名古屋 11月",
+      "evidence_id": "468ed91dd243cc05",
+      "discovered_term": "香港快运",
+      "reason": "促销正文由香港快运发起且列出多个日本航点，但未给出各航点的具体可用日期；用航司名加用户出发地与一个航点继续搜索，确认11月是否仍有可订日期及促销是否已结束。"
+    },
+    {
+      "query": "香港快运 冲绳 促销 出行日期",
+      "evidence_id": "468ed91dd243cc05",
+      "discovered_term": "出行日期",
+      "reason": "正文只写“出行日期：10月21日至27年1月31日”这一宽泛窗口，需确认该窗口内11月的具体可订日期与限制条件，避免把过期活动当作仍有效促销。"
+    }
+  ],
+  "research_trace": [
+    {
+      "time": "2026-10-09T20:57:22.592445Z",
+      "stage": "research_decision",
+      "source": null,
+      "status": "info",
+      "detail": "先补足当前缺少的报价或正文；已完成操作不重复执行",
+      "id": "5ec152a75852c69c",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "action": "community",
+        "allowed_actions": [
+          "community"
+        ],
+        "step": 1,
+        "context": {
+          "allowed_actions": [
+            "community"
+          ],
+          "remaining_seconds": 478.0,
+          "pending_community_queries": [
+            "香港 日本 机票",
+            "香港飞日本 十一月 便宜机票"
+          ],
+          "promotion_query": null,
+          "community_bodies": 0,
+          "evidence_gaps": [],
+          "date_calls": 0,
+          "routes": [],
+          "blocked_sources": [],
+          "recovery_required": null
+        }
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:22.648209Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "ok",
+      "detail": "复用已经连接的Chrome",
+      "id": "77d705d804950a63",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T20:57:22.644021+00:00",
+        "authorization": "active_connection",
+        "authorization_note": "已有有效连接；本次状态检查没有发起连接",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "9e5bf21068b94afe",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-06T05:10:36.893135Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-06T05:10:31.130654Z",
+          "connection_id": "3",
+          "pid": "95945",
+          "reason_bytes": "0",
+          "pending_commands": "0",
+          "uptime_ms": "7313075",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "previous_observed_at": "2026-10-09T20:56:05.767166+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": false
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:47.447770Z",
+      "stage": "research_decision",
+      "source": null,
+      "status": "info",
+      "detail": "已有 5 条 HKG→日本候选路线（NRT/KIX/OKA/NGO/FUK），但全部 has_exact_price=false 且 checked_dates=0，缺少可核对报价。按规则缺报价时优先 dates：对已有逐字证据的候选在 2026-11 窗口内采样单程日期并验价，以比较哪里便宜。社区查询与促销核查已分别排入 pending_community_queries 与 promotion_query，不重复安排。",
+      "id": "fbf1c476c14d1d42",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "action": "dates",
+        "allowed_actions": [
+          "community",
+          "dates",
+          "promotion"
+        ],
+        "step": 2,
+        "context": {
+          "allowed_actions": [
+            "community",
+            "dates",
+            "promotion"
+          ],
+          "remaining_seconds": 454.4,
+          "pending_community_queries": [
+            "香港飞日本 十一月 便宜机票"
+          ],
+          "promotion_query": {
+            "query": "香港快运 香港 名古屋 11月",
+            "evidence_id": "468ed91dd243cc05",
+            "discovered_term": "香港快运",
+            "reason": "促销正文由香港快运发起且列出多个日本航点，但未给出各航点的具体可用日期；用航司名加用户出发地与一个航点继续搜索，确认11月是否仍有可订日期及促销是否已结束。"
+          },
+          "community_bodies": 3,
+          "evidence_gaps": [],
+          "date_calls": 0,
+          "routes": [
+            {
+              "route": "HKG-NRT",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "9504a89f4c04c019"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-KIX",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-OKA",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-NGO",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-FUK",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": false
+            }
+          ],
+          "blocked_sources": [],
+          "recovery_required": null
+        }
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:49.011575Z",
+      "stage": "research_decision",
+      "source": null,
+      "status": "info",
+      "detail": "已有促销原文（468ed91dd243cc05）由香港快运发起并列出多个日本航点，但未给出各航点具体可用日期，活动是否覆盖11月、是否已结束均不明确；这是当前主要缺口。按计划用航司名+出发地+航点（香港快运 香港 名古屋 11月）在原社区核查活动日期与限制，并可发现关联路线。日期任务已在运行中，不重复安排。",
+      "id": "41ee4b5f4d32113c",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "action": "promotion",
+        "allowed_actions": [
+          "community",
+          "promotion"
+        ],
+        "step": 3,
+        "context": {
+          "allowed_actions": [
+            "community",
+            "promotion"
+          ],
+          "remaining_seconds": 453.1,
+          "pending_community_queries": [
+            "香港飞日本 十一月 便宜机票"
+          ],
+          "promotion_query": {
+            "query": "香港快运 香港 名古屋 11月",
+            "evidence_id": "468ed91dd243cc05",
+            "discovered_term": "香港快运",
+            "reason": "促销正文由香港快运发起且列出多个日本航点，但未给出各航点的具体可用日期；用航司名加用户出发地与一个航点继续搜索，确认11月是否仍有可订日期及促销是否已结束。"
+          },
+          "community_bodies": 3,
+          "evidence_gaps": [],
+          "date_calls": 0,
+          "routes": [
+            {
+              "route": "HKG-NRT",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "9504a89f4c04c019"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": true
+            },
+            {
+              "route": "HKG-KIX",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": true
+            },
+            {
+              "route": "HKG-OKA",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": true
+            },
+            {
+              "route": "HKG-NGO",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": true
+            },
+            {
+              "route": "HKG-FUK",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": true
+            }
+          ],
+          "blocked_sources": [],
+          "recovery_required": null
+        }
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:49.044658Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "ok",
+      "detail": "复用已经连接的Chrome",
+      "id": "9c753c7327e83f3b",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T20:57:49.042196+00:00",
+        "authorization": "active_connection",
+        "authorization_note": "已有有效连接；本次状态检查没有发起连接",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "9e5bf21068b94afe",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-06T05:10:36.893135Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-06T05:10:31.130654Z",
+          "connection_id": "3",
+          "pid": "95945",
+          "reason_bytes": "0",
+          "pending_commands": "0",
+          "uptime_ms": "7313075",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "previous_observed_at": "2026-10-09T20:57:22.644021+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": false
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:50.631929Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "ok",
+      "detail": "复用已经连接的Chrome",
+      "id": "806dd0d421d1d20a",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T20:57:50.629645+00:00",
+        "authorization": "active_connection",
+        "authorization_note": "已有有效连接；本次状态检查没有发起连接",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "9e5bf21068b94afe",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-06T05:10:36.893135Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-09T20:57:50.564274Z",
+          "connection_id": "1",
+          "pid": "11617",
+          "reason_bytes": "0",
+          "pending_commands": "1",
+          "uptime_ms": "300145",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "previous_observed_at": "2026-10-09T20:57:50.470729+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": false
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:50.660821Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "ok",
+      "detail": "复用已经连接的Chrome",
+      "id": "00672f3174d12ce9",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T20:57:50.659607+00:00",
+        "authorization": "active_connection",
+        "authorization_note": "已有有效连接；本次状态检查没有发起连接",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "9e5bf21068b94afe",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-06T05:10:36.893135Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-09T20:57:50.564274Z",
+          "connection_id": "1",
+          "pid": "11617",
+          "reason_bytes": "0",
+          "pending_commands": "1",
+          "uptime_ms": "300145",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "previous_observed_at": "2026-10-09T20:57:50.629645+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": false
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:51.108362Z",
+      "stage": "checkpoint",
+      "source": null,
+      "status": "skipped",
+      "detail": "正文和条件没有变化，保留已筛选候选，不重复模型提取",
+      "id": "b5964079b5879915",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {}
+    },
+    {
+      "time": "2026-10-09T20:57:52.429271Z",
+      "stage": "research_decision",
+      "source": null,
+      "status": "info",
+      "detail": "已有促销原文（evidence 468ed91dd243cc05）只给出“出行日期：10月21日至27年1月31日”的宽泛窗口，未确认11月具体可订日期与限制条件；而所有候选路线（HKG-NRT/KIX/OKA/NGO/FUK）均无逐字精确报价，日期探索已各跑4次。按规则，活动条件含糊时优先 promotion：用已有原文扩展词在原社区核查该促销的11月适用日期与限制，避免把过期或受限活动当作有效促销。",
+      "id": "19e5e93cbac32eb3",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "action": "promotion",
+        "allowed_actions": [
+          "community",
+          "promotion"
+        ],
+        "step": 4,
+        "context": {
+          "allowed_actions": [
+            "community",
+            "promotion"
+          ],
+          "remaining_seconds": 449.4,
+          "pending_community_queries": [
+            "香港飞日本 十一月 便宜机票"
+          ],
+          "promotion_query": {
+            "query": "香港快运 冲绳 促销 出行日期",
+            "evidence_id": "468ed91dd243cc05",
+            "discovered_term": "出行日期",
+            "reason": "正文只写“出行日期：10月21日至27年1月31日”这一宽泛窗口，需确认该窗口内11月的具体可订日期与限制条件，避免把过期活动当作仍有效促销。"
+          },
+          "community_bodies": 3,
+          "evidence_gaps": [],
+          "date_calls": 21,
+          "routes": [
+            {
+              "route": "HKG-NRT",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "9504a89f4c04c019"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 4,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-KIX",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 4,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-OKA",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 4,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-NGO",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 4,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-FUK",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 4,
+              "date_work_running": false
+            }
+          ],
+          "blocked_sources": [
+            "Reddit public"
+          ],
+          "recovery_required": null
+        }
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.455592Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "ok",
+      "detail": "复用已经连接的Chrome",
+      "id": "2aa3f61bec063020",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T20:57:52.453929+00:00",
+        "authorization": "active_connection",
+        "authorization_note": "已有有效连接；本次状态检查没有发起连接",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "9e5bf21068b94afe",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-06T05:10:36.893135Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-09T20:57:50.564274Z",
+          "connection_id": "1",
+          "pid": "11617",
+          "reason_bytes": "0",
+          "pending_commands": "1",
+          "uptime_ms": "300145",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "previous_observed_at": "2026-10-09T20:57:50.659607+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": false
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.484652Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "ok",
+      "detail": "复用已经连接的Chrome",
+      "id": "86e0e0cd68965d18",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T20:57:52.483505+00:00",
+        "authorization": "active_connection",
+        "authorization_note": "已有有效连接；本次状态检查没有发起连接",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "9e5bf21068b94afe",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-06T05:10:36.893135Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-09T20:57:50.564274Z",
+          "connection_id": "1",
+          "pid": "11617",
+          "reason_bytes": "0",
+          "pending_commands": "1",
+          "uptime_ms": "300145",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "previous_observed_at": "2026-10-09T20:57:52.453929+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": false
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.502382Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "ok",
+      "detail": "复用已经连接的Chrome",
+      "id": "c07a5bfc4d1f3dbc",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T20:57:52.500316+00:00",
+        "authorization": "active_connection",
+        "authorization_note": "已有有效连接；本次状态检查没有发起连接",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "9e5bf21068b94afe",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-06T05:10:36.893135Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-09T20:57:50.564274Z",
+          "connection_id": "1",
+          "pid": "11617",
+          "reason_bytes": "0",
+          "pending_commands": "1",
+          "uptime_ms": "300145",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "previous_observed_at": "2026-10-09T20:57:52.483505+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": false
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.521803Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "ok",
+      "detail": "复用已经连接的Chrome",
+      "id": "c6faa38add215f66",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T20:57:52.520873+00:00",
+        "authorization": "active_connection",
+        "authorization_note": "已有有效连接；本次状态检查没有发起连接",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "9e5bf21068b94afe",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-06T05:10:36.893135Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-09T20:57:50.564274Z",
+          "connection_id": "1",
+          "pid": "11617",
+          "reason_bytes": "0",
+          "pending_commands": "1",
+          "uptime_ms": "300145",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "previous_observed_at": "2026-10-09T20:57:52.500316+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": false
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.528108Z",
+      "stage": "checkpoint",
+      "source": null,
+      "status": "skipped",
+      "detail": "正文和条件没有变化，保留已筛选候选，不重复模型提取",
+      "id": "04e4250c47e9989b",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {}
+    },
+    {
+      "time": "2026-10-09T20:57:52.529204Z",
+      "stage": "research_decision",
+      "source": null,
+      "status": "info",
+      "detail": "先补足当前缺少的报价或正文；已完成操作不重复执行",
+      "id": "4ab67f645a929e78",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "action": "community",
+        "allowed_actions": [
+          "community"
+        ],
+        "step": 5,
+        "context": {
+          "allowed_actions": [
+            "community"
+          ],
+          "remaining_seconds": 448.0,
+          "pending_community_queries": [
+            "香港飞日本 十一月 便宜机票"
+          ],
+          "promotion_query": null,
+          "community_bodies": 3,
+          "evidence_gaps": [],
+          "date_calls": 21,
+          "routes": [
+            {
+              "route": "HKG-NRT",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "9504a89f4c04c019"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 4,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-KIX",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 4,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-OKA",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 4,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-NGO",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 4,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-FUK",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 4,
+              "date_work_running": false
+            }
+          ],
+          "blocked_sources": [
+            "Reddit public"
+          ],
+          "recovery_required": null
+        }
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.541376Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "ok",
+      "detail": "复用已经连接的Chrome",
+      "id": "3905e28872a95ea1",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T20:57:52.540410+00:00",
+        "authorization": "active_connection",
+        "authorization_note": "已有有效连接；本次状态检查没有发起连接",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "9e5bf21068b94afe",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-06T05:10:36.893135Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-09T20:57:50.564274Z",
+          "connection_id": "1",
+          "pid": "11617",
+          "reason_bytes": "0",
+          "pending_commands": "1",
+          "uptime_ms": "300145",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "previous_observed_at": "2026-10-09T20:57:52.520873+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": false
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.559846Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "ok",
+      "detail": "复用已经连接的Chrome",
+      "id": "b3bf06d2e6921a41",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T20:57:52.558875+00:00",
+        "authorization": "active_connection",
+        "authorization_note": "已有有效连接；本次状态检查没有发起连接",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "9e5bf21068b94afe",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-06T05:10:36.893135Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-09T20:57:50.564274Z",
+          "connection_id": "1",
+          "pid": "11617",
+          "reason_bytes": "0",
+          "pending_commands": "1",
+          "uptime_ms": "300145",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "previous_observed_at": "2026-10-09T20:57:52.540410+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": false
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.577955Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "ok",
+      "detail": "复用已经连接的Chrome",
+      "id": "9fc60e44bc9cf566",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T20:57:52.572765+00:00",
+        "authorization": "active_connection",
+        "authorization_note": "已有有效连接；本次状态检查没有发起连接",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "9e5bf21068b94afe",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-06T05:10:36.893135Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-09T20:57:50.564274Z",
+          "connection_id": "1",
+          "pid": "11617",
+          "reason_bytes": "0",
+          "pending_commands": "1",
+          "uptime_ms": "300145",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "previous_observed_at": "2026-10-09T20:57:52.558875+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": false
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.596565Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "ok",
+      "detail": "复用已经连接的Chrome",
+      "id": "78e0d802645aa14d",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T20:57:52.595668+00:00",
+        "authorization": "active_connection",
+        "authorization_note": "已有有效连接；本次状态检查没有发起连接",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "9e5bf21068b94afe",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-06T05:10:36.893135Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-09T20:57:50.564274Z",
+          "connection_id": "1",
+          "pid": "11617",
+          "reason_bytes": "0",
+          "pending_commands": "1",
+          "uptime_ms": "300145",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "previous_observed_at": "2026-10-09T20:57:52.572765+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": false
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.602327Z",
+      "stage": "checkpoint",
+      "source": null,
+      "status": "skipped",
+      "detail": "正文和条件没有变化，保留已筛选候选，不重复模型提取",
+      "id": "a490495d40af6198",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {}
+    },
+    {
+      "time": "2026-10-09T20:57:52.603694Z",
+      "stage": "research_decision",
+      "source": null,
+      "status": "info",
+      "detail": "先补足当前缺少的报价或正文；已完成操作不重复执行",
+      "id": "27d51b8384e62403",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "action": "stop",
+        "allowed_actions": [
+          "stop"
+        ],
+        "step": 6,
+        "context": {
+          "allowed_actions": [
+            "stop"
+          ],
+          "remaining_seconds": 447.9,
+          "pending_community_queries": [],
+          "promotion_query": null,
+          "community_bodies": 3,
+          "evidence_gaps": [],
+          "date_calls": 21,
+          "routes": [
+            {
+              "route": "HKG-NRT",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "9504a89f4c04c019"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 4,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-KIX",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 4,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-OKA",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 4,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-NGO",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 4,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-FUK",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 4,
+              "date_work_running": false
+            }
+          ],
+          "blocked_sources": [
+            "Reddit public"
+          ],
+          "recovery_required": null
+        }
+      }
+    }
+  ],
+  "browser_recovery": null,
+  "recovery_required": null,
+  "failures": [
+    {
+      "time": "2026-10-09T20:57:47.953868Z",
+      "stage": "date_exploration",
+      "source": "SerpAPI",
+      "status": "failed",
+      "detail": "AUTH_OR_QUOTA: Explore鉴权或配额不可用",
+      "id": "5928ba6b536588b7",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "b8424283555c085e",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 501,
+      "data": {
+        "route": "HKG-NRT",
+        "date_from": "2026-11-01",
+        "date_to": "2026-11-30",
+        "date_stage": "range"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:47.973850Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "bff5d619c0c795b4",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "146c0a8592e6c53f",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 19,
+      "data": {
+        "route": "HKG-NRT",
+        "date_from": "2026-11-01",
+        "date_to": "2026-11-30",
+        "date_stage": "range"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:47.984015Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "c7cbfa1098abaa9e",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "fe740d8364b57095",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 7,
+      "data": {
+        "route": "HKG-NRT",
+        "request": {
+          "origin": "HKG",
+          "destination": "NRT",
+          "outbound_date": "2026-11-01",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:47.988992Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "9182229980c2b81a",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "5eef4846f357453b",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 7,
+      "data": {
+        "route": "HKG-NRT",
+        "request": {
+          "origin": "HKG",
+          "destination": "NRT",
+          "outbound_date": "2026-11-15",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:47.994122Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "01c1d8b8e4317f1e",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "135c5ea940bd5a28",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 10,
+      "data": {
+        "route": "HKG-NRT",
+        "request": {
+          "origin": "HKG",
+          "destination": "NRT",
+          "outbound_date": "2026-11-30",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.001207Z",
+      "stage": "fare",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "4a1ddf27848f90ea",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "e57796f27c0170d1",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 4,
+      "data": {
+        "route": "HKG-NRT",
+        "request": {
+          "origin": "HKG",
+          "destination": "NRT",
+          "outbound_date": "2026-11-15",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "verification",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.009759Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "a461ee9061a64a2f",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "db53cb996ac9d3c0",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 4,
+      "data": {
+        "route": "HKG-KIX",
+        "date_from": "2026-11-01",
+        "date_to": "2026-11-30",
+        "date_stage": "range"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.019475Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "842d68f8922ccaf4",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "189ca17643685399",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 6,
+      "data": {
+        "route": "HKG-KIX",
+        "request": {
+          "origin": "HKG",
+          "destination": "KIX",
+          "outbound_date": "2026-11-01",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.024014Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "d678d2c9d4c862d0",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "690318f77c796292",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 6,
+      "data": {
+        "route": "HKG-KIX",
+        "request": {
+          "origin": "HKG",
+          "destination": "KIX",
+          "outbound_date": "2026-11-15",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.028598Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "760bc8e40afbe8e8",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "8d9350805bf5260a",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 9,
+      "data": {
+        "route": "HKG-KIX",
+        "request": {
+          "origin": "HKG",
+          "destination": "KIX",
+          "outbound_date": "2026-11-30",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.034781Z",
+      "stage": "fare",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "6831edfb588d5b03",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "a4c1a534a81192ee",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 3,
+      "data": {
+        "route": "HKG-KIX",
+        "request": {
+          "origin": "HKG",
+          "destination": "KIX",
+          "outbound_date": "2026-11-15",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "verification",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.042638Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "2b40d70d4f329fba",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "700a1b3ee0716243",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 4,
+      "data": {
+        "route": "HKG-OKA",
+        "date_from": "2026-11-01",
+        "date_to": "2026-11-30",
+        "date_stage": "range"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.054864Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "0805abe596336311",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "aeca05e76c1a78f8",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 8,
+      "data": {
+        "route": "HKG-OKA",
+        "request": {
+          "origin": "HKG",
+          "destination": "OKA",
+          "outbound_date": "2026-11-01",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.062253Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "ae0aea8554896e24",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "f5a480c3115ee3ae",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 10,
+      "data": {
+        "route": "HKG-OKA",
+        "request": {
+          "origin": "HKG",
+          "destination": "OKA",
+          "outbound_date": "2026-11-15",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.067062Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "bb450f90758cc462",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "e093d7d5a4ed5c7d",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 12,
+      "data": {
+        "route": "HKG-OKA",
+        "request": {
+          "origin": "HKG",
+          "destination": "OKA",
+          "outbound_date": "2026-11-30",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.073695Z",
+      "stage": "fare",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "0e271b345bc02393",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "d42eed82d5d025d9",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 3,
+      "data": {
+        "route": "HKG-OKA",
+        "request": {
+          "origin": "HKG",
+          "destination": "OKA",
+          "outbound_date": "2026-11-15",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "verification",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.081594Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "b7882bf4e1d61c5c",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "0d9546c3648200f5",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 4,
+      "data": {
+        "route": "HKG-NGO",
+        "date_from": "2026-11-01",
+        "date_to": "2026-11-30",
+        "date_stage": "range"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.093475Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "5ce5db24cf415273",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "8cb511824fd15c6f",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 6,
+      "data": {
+        "route": "HKG-NGO",
+        "request": {
+          "origin": "HKG",
+          "destination": "NGO",
+          "outbound_date": "2026-11-01",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.101761Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "93124c41fa883bc7",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "24f4a0fea17e4334",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 10,
+      "data": {
+        "route": "HKG-NGO",
+        "request": {
+          "origin": "HKG",
+          "destination": "NGO",
+          "outbound_date": "2026-11-15",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.110300Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "2d836b292ef0f70c",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "81cfe2b2a3ff0e35",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 16,
+      "data": {
+        "route": "HKG-NGO",
+        "request": {
+          "origin": "HKG",
+          "destination": "NGO",
+          "outbound_date": "2026-11-30",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.123088Z",
+      "stage": "fare",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "1475cd9eca4c38b5",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "4600fd457f26b56d",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 7,
+      "data": {
+        "route": "HKG-NGO",
+        "request": {
+          "origin": "HKG",
+          "destination": "NGO",
+          "outbound_date": "2026-11-15",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "verification",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.248642Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "b67512c09bfce75c",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "17968b93886fd6e3",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 96,
+      "data": {
+        "route": "HKG-FUK",
+        "date_from": "2026-11-01",
+        "date_to": "2026-11-30",
+        "date_stage": "range"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.272491Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "69a0a603f8dfbb56",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "76bdd3729d96215b",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 14,
+      "data": {
+        "route": "HKG-FUK",
+        "request": {
+          "origin": "HKG",
+          "destination": "FUK",
+          "outbound_date": "2026-11-01",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.288440Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "cb36053d2067627c",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "2b5bd63a51f7651a",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 22,
+      "data": {
+        "route": "HKG-FUK",
+        "request": {
+          "origin": "HKG",
+          "destination": "FUK",
+          "outbound_date": "2026-11-15",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.294491Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "b70edc9b423a77b2",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "5548bf775111666f",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 23,
+      "data": {
+        "route": "HKG-FUK",
+        "request": {
+          "origin": "HKG",
+          "destination": "FUK",
+          "outbound_date": "2026-11-30",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:48.301580Z",
+      "stage": "fare",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "119608e63200e52a",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "16f94a8003198118",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 3,
+      "data": {
+        "route": "HKG-FUK",
+        "request": {
+          "origin": "HKG",
+          "destination": "FUK",
+          "outbound_date": "2026-11-15",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "verification",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:50.611490Z",
+      "stage": "source_retry",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "前次未取得可读正文；有界重试：香港快运 香港 名古屋",
+      "id": "08afbc41fbf0cbbd",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "original_query": "香港快运 香港 名古屋 11月",
+        "retry_query": "香港快运 香港 名古屋"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:50.662888Z",
+      "stage": "social_scan",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "117d4e548f4d96ba",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 29,
+      "data": {
+        "query": "香港快运 香港 名古屋",
+        "fallback_from": "selective",
+        "failure_code": "CLI_FAILED"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:50.667111Z",
+      "stage": "query_expansion",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "bb8ee3306f92d0bb",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "dcbb1ce6e19f8e64",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 1650,
+      "data": {
+        "query": "香港快运 香港 名古屋 11月"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:51.102329Z",
+      "stage": "query_expansion",
+      "source": "Reddit public",
+      "status": "failed",
+      "detail": "ACCESS_BLOCKED: 公共社区访问受限；不绕过访问控制",
+      "id": "1945e75765cd68e7",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "bcd9e73b7a1ee0a3",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 433,
+      "data": {
+        "query": "香港快运 香港 名古屋 11月"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.486476Z",
+      "stage": "social_preview",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "1006151ab967f159",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 27,
+      "data": {
+        "query": "香港快运 冲绳 促销 出行日期",
+        "failure_code": "CLI_FAILED"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.488130Z",
+      "stage": "source_retry",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "逐篇读取未成功；仅回退一次socai完整扫描；有界重试：香港快运 冲绳 促销 出行日期",
+      "id": "a467743506a6ade9",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "original_query": "香港快运 冲绳 促销 出行日期",
+        "retry_query": "香港快运 冲绳 促销 出行日期"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.523199Z",
+      "stage": "social_scan",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "da6e610064e3215f",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 19,
+      "data": {
+        "query": "香港快运 冲绳 促销 出行日期",
+        "fallback_from": "selective",
+        "failure_code": "CLI_FAILED"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.524353Z",
+      "stage": "query_expansion",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "352b0d1ae5cae4c2",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "964563fb3c2bb534",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 90,
+      "data": {
+        "query": "香港快运 冲绳 促销 出行日期"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.561553Z",
+      "stage": "social_preview",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "16cc895ebff7e725",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 18,
+      "data": {
+        "query": "香港 日本 十一月 便宜 机票",
+        "failure_code": "CLI_FAILED"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.562817Z",
+      "stage": "source_retry",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "逐篇读取未成功；仅回退一次socai完整扫描；有界重试：香港 日本 十一月 机票",
+      "id": "871e4f6c5e4305a7",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "original_query": "香港飞日本 十一月 便宜机票",
+        "retry_query": "香港 日本 十一月 机票"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.597962Z",
+      "stage": "social_scan",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "d577f28322cdf037",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 18,
+      "data": {
+        "query": "香港 日本 十一月 机票",
+        "fallback_from": "selective",
+        "failure_code": "CLI_FAILED"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.599061Z",
+      "stage": "community_search",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "CLI_FAILED: 命令未成功；请使用 doctor 检查本机配置，或切换其他来源",
+      "id": "22dda17731be5b79",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "3ad0d777282ff23c",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 68,
+      "data": {
+        "query": "香港飞日本 十一月 便宜机票"
+      }
+    },
+    {
+      "time": "2026-10-09T20:57:52.617209Z",
+      "stage": "conclusion",
+      "source": null,
+      "status": "failed",
+      "detail": "有当前报价的候选不足3条；查询扩展未成功取得正文；成功宽社区查询不足2次；至少3条路线的多日期有效覆盖尚未满足",
+      "id": "971520010155ca0f",
+      "turn_id": "d0058b77ffdaff40",
+      "action_id": "",
+      "parent_action_id": "d0058b77ffdaff40",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "status": "partial",
+        "metrics": {
+          "model_operations": 6,
+          "community_calls": 5,
+          "socai_commands": 23,
+          "date_calls": 21,
+          "verification_calls": 5,
+          "elapsed_seconds": 32.059,
+          "execution_seconds": 32.071,
+          "execution_segments": 1,
+          "evidence_count": 3,
+          "verified_routes": 0,
+          "stage_query_expansion_seconds": 2.173,
+          "stage_community_search_seconds": 18.701,
+          "stage_date_exploration_seconds": 0.794,
+          "stage_social_preview_seconds": 6.126,
+          "stage_model_seconds": 11.125,
+          "stage_social_read_seconds": 14.036,
+          "stage_fare_seconds": 0.02,
+          "stage_date_phase_seconds": 0.853,
+          "stage_social_scan_seconds": 0.066,
+          "stage_browser_connection_seconds": 0.0,
+          "unattributed_seconds": 0,
+          "overlapped_stage_seconds": 0.781,
+          "independence_groups": 3,
+          "model_requests": 6,
+          "model_input_tokens": 10713,
+          "model_output_tokens": 1789
+        }
+      }
+    }
+  ],
+  "sources": [
+    "FlyAI",
+    "Reddit public",
+    "SerpAPI",
+    "model",
+    "小红书 / socai"
+  ],
+  "routes": [
+    {
+      "route": "HKG-NRT",
+      "evidence_ids": [
+        "468ed91dd243cc05",
+        "9504a89f4c04c019"
+      ],
+      "window": [
+        "2026-11-01",
+        "2026-11-30"
+      ],
+      "precise_requested_dates": [
+        "2026-11-01",
+        "2026-11-15",
+        "2026-11-30"
+      ],
+      "precise_successful_dates": [],
+      "range_returned_dates": [],
+      "selected_date": "2026-11-15",
+      "fares": [],
+      "deal": {
+        "level": "unverified",
+        "label": "当前未验证",
+        "reason": "只有社区线索，不能判断当前Deal。"
+      }
+    },
+    {
+      "route": "HKG-KIX",
+      "evidence_ids": [
+        "468ed91dd243cc05"
+      ],
+      "window": [
+        "2026-11-01",
+        "2026-11-30"
+      ],
+      "precise_requested_dates": [
+        "2026-11-01",
+        "2026-11-15",
+        "2026-11-30"
+      ],
+      "precise_successful_dates": [],
+      "range_returned_dates": [],
+      "selected_date": "2026-11-15",
+      "fares": [],
+      "deal": {
+        "level": "unverified",
+        "label": "当前未验证",
+        "reason": "只有社区线索，不能判断当前Deal。"
+      }
+    },
+    {
+      "route": "HKG-OKA",
+      "evidence_ids": [
+        "468ed91dd243cc05"
+      ],
+      "window": [
+        "2026-11-01",
+        "2026-11-30"
+      ],
+      "precise_requested_dates": [
+        "2026-11-01",
+        "2026-11-15",
+        "2026-11-30"
+      ],
+      "precise_successful_dates": [],
+      "range_returned_dates": [],
+      "selected_date": "2026-11-15",
+      "fares": [],
+      "deal": {
+        "level": "unverified",
+        "label": "当前未验证",
+        "reason": "只有社区线索，不能判断当前Deal。"
+      }
+    },
+    {
+      "route": "HKG-NGO",
+      "evidence_ids": [
+        "468ed91dd243cc05"
+      ],
+      "window": [
+        "2026-11-01",
+        "2026-11-30"
+      ],
+      "precise_requested_dates": [
+        "2026-11-01",
+        "2026-11-15",
+        "2026-11-30"
+      ],
+      "precise_successful_dates": [],
+      "range_returned_dates": [],
+      "selected_date": "2026-11-15",
+      "fares": [],
+      "deal": {
+        "level": "unverified",
+        "label": "当前未验证",
+        "reason": "只有社区线索，不能判断当前Deal。"
+      }
+    },
+    {
+      "route": "HKG-FUK",
+      "evidence_ids": [
+        "468ed91dd243cc05"
+      ],
+      "window": [
+        "2026-11-01",
+        "2026-11-30"
+      ],
+      "precise_requested_dates": [
+        "2026-11-01",
+        "2026-11-15",
+        "2026-11-30"
+      ],
+      "precise_successful_dates": [],
+      "range_returned_dates": [],
+      "selected_date": "2026-11-15",
+      "fares": [],
+      "deal": {
+        "level": "unverified",
+        "label": "当前未验证",
+        "reason": "只有社区线索，不能判断当前Deal。"
+      }
+    }
+  ],
+  "not_a_month_minimum": true
+}

@@ -1,0 +1,56 @@
+{
+  "ready": true,
+  "connection": {
+    "browser_connected": true,
+    "browser_state": "connected",
+    "daemon_running": true,
+    "daemon_compatible": true,
+    "cli_version": "0.6.1",
+    "error_code": null,
+    "profile_mode": "managed",
+    "active_profile_mode": "managed",
+    "observed_at": "2026-10-09T21:23:08.403979+00:00",
+    "reported_browser_connected": true,
+    "authorization": "active_connection",
+    "authorization_note": "已有有效连接；本次状态检查没有发起连接",
+    "daemon_pid": 11617,
+    "endpoint_fingerprint": "fe1924ec9c97106d",
+    "endpoint_source": "managed_chrome_marker",
+    "last_disconnect": {
+      "at": "2026-10-09T21:17:00.267083Z",
+      "category": "session_closed",
+      "cause_confirmed": false,
+      "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+    },
+    "first_transport_terminal": {
+      "at": "2026-10-09T21:16:56.238239Z",
+      "connection_id": "5",
+      "pid": "11617",
+      "reason_bytes": "0",
+      "pending_commands": "1",
+      "uptime_ms": "208522",
+      "kind": "websocket_receive_failed",
+      "error_class": "protocol",
+      "cause_confirmed": false,
+      "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+    },
+    "last_transport_open": {
+      "at": "2026-10-06T03:08:38.124182Z",
+      "connection_id": "3",
+      "pid": "95945"
+    },
+    "acknowledged_terminal": {
+      "pid": "11617",
+      "connection_id": "5",
+      "at": "2026-10-09T21:16:56.238239Z"
+    },
+    "transport_pending_disconnect": false,
+    "previous_observed_at": "2026-10-09T21:17:48.573686+00:00",
+    "daemon_changed": false,
+    "endpoint_changed": false,
+    "connection_lost_since_check": false
+  },
+  "active": null,
+  "latest_status": "partial",
+  "latest_turn_count": 1
+}

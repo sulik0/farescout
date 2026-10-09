@@ -1,0 +1,583 @@
+{
+  "kind": "real_managed_research_acceptance",
+  "started_at": "2026-10-09T21:12:28.935173+00:00",
+  "session_id": "managed-priced-fault-20261010",
+  "manual_reauthorization": "unknown",
+  "repeated_login": "unknown",
+  "research_input": "香港 11 月飞日本哪里便宜？",
+  "controlled_disconnect": {
+    "chrome_pid": 13235,
+    "signal": "SIGTERM",
+    "exact_profile_verified": true,
+    "daemon_signalled": false,
+    "profile_deleted": false,
+    "at": "2026-10-09T21:13:03.743574+00:00",
+    "daemon_pid_before": 11617
+  },
+  "observations": [
+    {
+      "at": "2026-10-09T21:12:29.471258+00:00",
+      "status": "running",
+      "active": "managed-priced-fault-20261010",
+      "evidence_count": 0,
+      "quoted_routes": 0,
+      "last_stage": "discovery",
+      "recovery_state": null,
+      "execution_segments": null
+    },
+    {
+      "at": "2026-10-09T21:12:54.973569+00:00",
+      "status": "running",
+      "active": "managed-priced-fault-20261010",
+      "evidence_count": 3,
+      "quoted_routes": 0,
+      "last_stage": "community_search",
+      "recovery_state": null,
+      "execution_segments": null
+    },
+    {
+      "at": "2026-10-09T21:13:20.409282+00:00",
+      "status": "running",
+      "active": "managed-priced-fault-20261010",
+      "evidence_count": 3,
+      "quoted_routes": 3,
+      "last_stage": "date_exploration",
+      "recovery_state": null,
+      "execution_segments": null
+    },
+    {
+      "at": "2026-10-09T21:13:45.456200+00:00",
+      "status": "running",
+      "active": "managed-priced-fault-20261010",
+      "evidence_count": 3,
+      "quoted_routes": 5,
+      "last_stage": "browser_connection",
+      "recovery_state": "resumed",
+      "execution_segments": 1
+    },
+    {
+      "at": "2026-10-09T21:14:10.564162+00:00",
+      "status": "running",
+      "active": "managed-priced-fault-20261010",
+      "evidence_count": 5,
+      "quoted_routes": 5,
+      "last_stage": "community_search",
+      "recovery_state": "resumed",
+      "execution_segments": 1
+    },
+    {
+      "at": "2026-10-09T21:14:18.492760+00:00",
+      "status": "partial",
+      "active": null,
+      "evidence_count": 5,
+      "quoted_routes": 5,
+      "last_stage": "conclusion",
+      "recovery_state": "resumed",
+      "execution_segments": 2
+    }
+  ],
+  "before_fault": {
+    "session_id": "managed-priced-fault-20261010",
+    "turn_id": "0dcb972d3bf216c0",
+    "turn_count": 1,
+    "evidence": {
+      "3248888f7e2fbcc4": {
+        "observed_at": "2026-10-09T21:12:41.999984Z",
+        "body_sha256": "d1ebd29a42d9615489d0ac2094dea8e7d32b8a7e97a79bf961b64faf4c2458c4"
+      },
+      "468ed91dd243cc05": {
+        "observed_at": "2026-10-09T21:12:49.157243Z",
+        "body_sha256": "28231d3b64d1c6d33c76b7d7391495496c463e0d1d82317009d9962b83dd9c09"
+      },
+      "9504a89f4c04c019": {
+        "observed_at": "2026-10-09T21:12:52.345417Z",
+        "body_sha256": "ead61cb1d9de930369925a05685a500f34075ebe2869377c1a4ed3cfe41ef8f7"
+      }
+    },
+    "completed_searches": [
+      {
+        "stage": "community_search",
+        "query": "香港 日本 机票",
+        "event_id": "fe91a19e308dff5d"
+      }
+    ],
+    "successful_dates": [
+      [
+        "HKG",
+        "NRT",
+        "FlyAI",
+        "2026-11-09",
+        "range",
+        "2026-10-09T21:13:02.412249Z"
+      ],
+      [
+        "HKG",
+        "NRT",
+        "FlyAI",
+        "2026-11-25",
+        "range",
+        "2026-10-09T21:13:02.412291Z"
+      ],
+      [
+        "HKG",
+        "NRT",
+        "FlyAI",
+        "2026-11-04",
+        "range",
+        "2026-10-09T21:13:02.412322Z"
+      ],
+      [
+        "HKG",
+        "NRT",
+        "FlyAI",
+        "2026-11-05",
+        "range",
+        "2026-10-09T21:13:02.412351Z"
+      ]
+    ]
+  },
+  "before_resume": {
+    "session_id": "managed-priced-fault-20261010",
+    "turn_id": "0dcb972d3bf216c0",
+    "turn_count": 1,
+    "evidence": {
+      "3248888f7e2fbcc4": {
+        "observed_at": "2026-10-09T21:12:41.999984Z",
+        "body_sha256": "d1ebd29a42d9615489d0ac2094dea8e7d32b8a7e97a79bf961b64faf4c2458c4"
+      },
+      "468ed91dd243cc05": {
+        "observed_at": "2026-10-09T21:12:49.157243Z",
+        "body_sha256": "28231d3b64d1c6d33c76b7d7391495496c463e0d1d82317009d9962b83dd9c09"
+      },
+      "9504a89f4c04c019": {
+        "observed_at": "2026-10-09T21:12:52.345417Z",
+        "body_sha256": "ead61cb1d9de930369925a05685a500f34075ebe2869377c1a4ed3cfe41ef8f7"
+      }
+    },
+    "completed_searches": [
+      {
+        "stage": "community_search",
+        "query": "香港 日本 机票",
+        "event_id": "fe91a19e308dff5d"
+      }
+    ],
+    "successful_dates": [
+      [
+        "HKG",
+        "NRT",
+        "FlyAI",
+        "2026-11-09",
+        "range",
+        "2026-10-09T21:13:02.412249Z"
+      ],
+      [
+        "HKG",
+        "NRT",
+        "FlyAI",
+        "2026-11-25",
+        "range",
+        "2026-10-09T21:13:02.412291Z"
+      ],
+      [
+        "HKG",
+        "NRT",
+        "FlyAI",
+        "2026-11-04",
+        "range",
+        "2026-10-09T21:13:02.412322Z"
+      ],
+      [
+        "HKG",
+        "NRT",
+        "FlyAI",
+        "2026-11-05",
+        "range",
+        "2026-10-09T21:13:02.412351Z"
+      ],
+      [
+        "HKG",
+        "NRT",
+        "FlyAI",
+        "2026-11-09",
+        "coarse",
+        "2026-10-09T21:13:04.049899Z"
+      ],
+      [
+        "HKG",
+        "NRT",
+        "FlyAI",
+        "2026-11-09",
+        "verification",
+        "2026-10-09T21:13:04.049676Z"
+      ],
+      [
+        "HKG",
+        "KIX",
+        "FlyAI",
+        "2026-11-01",
+        "range",
+        "2026-10-09T21:13:09.151437Z"
+      ],
+      [
+        "HKG",
+        "KIX",
+        "FlyAI",
+        "2026-11-11",
+        "range",
+        "2026-10-09T21:13:09.151392Z"
+      ],
+      [
+        "HKG",
+        "KIX",
+        "FlyAI",
+        "2026-11-02",
+        "range",
+        "2026-10-09T21:13:09.151469Z"
+      ],
+      [
+        "HKG",
+        "KIX",
+        "FlyAI",
+        "2026-11-09",
+        "range",
+        "2026-10-09T21:13:09.151615Z"
+      ],
+      [
+        "HKG",
+        "KIX",
+        "FlyAI",
+        "2026-11-04",
+        "range",
+        "2026-10-09T21:13:09.151651Z"
+      ],
+      [
+        "HKG",
+        "KIX",
+        "FlyAI",
+        "2026-11-01",
+        "coarse",
+        "2026-10-09T21:13:10.441659Z"
+      ],
+      [
+        "HKG",
+        "KIX",
+        "FlyAI",
+        "2026-11-01",
+        "verification",
+        "2026-10-09T21:13:10.441422Z"
+      ],
+      [
+        "HKG",
+        "OKA",
+        "FlyAI",
+        "2026-11-09",
+        "range",
+        "2026-10-09T21:13:14.002525Z"
+      ],
+      [
+        "HKG",
+        "OKA",
+        "FlyAI",
+        "2026-11-18",
+        "range",
+        "2026-10-09T21:13:14.002569Z"
+      ],
+      [
+        "HKG",
+        "OKA",
+        "FlyAI",
+        "2026-11-24",
+        "range",
+        "2026-10-09T21:13:14.002601Z"
+      ],
+      [
+        "HKG",
+        "OKA",
+        "FlyAI",
+        "2026-11-04",
+        "range",
+        "2026-10-09T21:13:14.002629Z"
+      ],
+      [
+        "HKG",
+        "OKA",
+        "FlyAI",
+        "2026-11-10",
+        "range",
+        "2026-10-09T21:13:14.002682Z"
+      ],
+      [
+        "HKG",
+        "OKA",
+        "FlyAI",
+        "2026-11-09",
+        "coarse",
+        "2026-10-09T21:13:15.966813Z"
+      ],
+      [
+        "HKG",
+        "OKA",
+        "FlyAI",
+        "2026-11-09",
+        "verification",
+        "2026-10-09T21:13:15.966566Z"
+      ],
+      [
+        "HKG",
+        "NGO",
+        "FlyAI",
+        "2026-11-08",
+        "range",
+        "2026-10-09T21:13:19.308813Z"
+      ],
+      [
+        "HKG",
+        "NGO",
+        "FlyAI",
+        "2026-11-10",
+        "range",
+        "2026-10-09T21:13:19.308856Z"
+      ],
+      [
+        "HKG",
+        "NGO",
+        "FlyAI",
+        "2026-11-04",
+        "range",
+        "2026-10-09T21:13:19.308886Z"
+      ],
+      [
+        "HKG",
+        "NGO",
+        "FlyAI",
+        "2026-11-06",
+        "range",
+        "2026-10-09T21:13:19.308940Z"
+      ],
+      [
+        "HKG",
+        "NGO",
+        "FlyAI",
+        "2026-11-07",
+        "range",
+        "2026-10-09T21:13:19.308966Z"
+      ],
+      [
+        "HKG",
+        "NGO",
+        "FlyAI",
+        "2026-11-08",
+        "coarse",
+        "2026-10-09T21:13:20.956374Z"
+      ],
+      [
+        "HKG",
+        "NGO",
+        "FlyAI",
+        "2026-11-08",
+        "verification",
+        "2026-10-09T21:13:20.956062Z"
+      ],
+      [
+        "HKG",
+        "FUK",
+        "FlyAI",
+        "2026-11-05",
+        "range",
+        "2026-10-09T21:13:24.353180Z"
+      ],
+      [
+        "HKG",
+        "FUK",
+        "FlyAI",
+        "2026-11-10",
+        "range",
+        "2026-10-09T21:13:24.353224Z"
+      ],
+      [
+        "HKG",
+        "FUK",
+        "FlyAI",
+        "2026-11-06",
+        "range",
+        "2026-10-09T21:13:24.353256Z"
+      ],
+      [
+        "HKG",
+        "FUK",
+        "FlyAI",
+        "2026-11-05",
+        "coarse",
+        "2026-10-09T21:13:25.925365Z"
+      ],
+      [
+        "HKG",
+        "FUK",
+        "FlyAI",
+        "2026-11-05",
+        "verification",
+        "2026-10-09T21:13:25.925060Z"
+      ]
+    ]
+  },
+  "before_resume_metrics": {
+    "model_operations": 5,
+    "community_calls": 3,
+    "socai_commands": 11,
+    "date_calls": 16,
+    "first_result_seconds": 35.077,
+    "first_result_execution_seconds": 35.079,
+    "quote_reuses": 5,
+    "third_result_seconds": 46.993,
+    "third_result_execution_seconds": 46.995,
+    "elapsed_seconds": 57.806,
+    "execution_seconds": 57.823,
+    "execution_segments": 1,
+    "evidence_count": 3,
+    "verified_routes": 5,
+    "stage_date_exploration_seconds": 35.618,
+    "stage_query_expansion_seconds": 3.715,
+    "stage_date_phase_seconds": 27.646,
+    "stage_social_read_seconds": 15.531,
+    "stage_social_preview_seconds": 8.975,
+    "stage_community_search_seconds": 21.531,
+    "stage_browser_connection_seconds": 0.0,
+    "stage_social_scan_seconds": 0.096,
+    "stage_fare_seconds": 0.0,
+    "stage_model_seconds": 10.212,
+    "unattributed_seconds": 0,
+    "overlapped_stage_seconds": 5.281,
+    "independence_groups": 3,
+    "model_requests": 5,
+    "model_input_tokens": 9188,
+    "model_output_tokens": 1830
+  },
+  "finished_at": "2026-10-09T21:14:18.492773+00:00",
+  "status": "partial",
+  "stop_reason": "至少3条路线的多日期有效覆盖尚未满足",
+  "metrics": {
+    "model_operations": 10,
+    "community_calls": 5,
+    "socai_commands": 18,
+    "date_calls": 16,
+    "first_result_seconds": 35.077,
+    "first_result_execution_seconds": 35.079,
+    "quote_reuses": 5,
+    "third_result_seconds": 46.993,
+    "third_result_execution_seconds": 46.995,
+    "elapsed_seconds": 105.812,
+    "execution_seconds": 93.705,
+    "execution_segments": 2,
+    "evidence_count": 5,
+    "verified_routes": 5,
+    "stage_date_exploration_seconds": 35.618,
+    "stage_query_expansion_seconds": 12.594,
+    "stage_date_phase_seconds": 27.646,
+    "stage_social_read_seconds": 27.607,
+    "stage_social_preview_seconds": 18.912,
+    "stage_community_search_seconds": 34.76,
+    "stage_browser_connection_seconds": 0.0,
+    "stage_social_scan_seconds": 0.096,
+    "stage_fare_seconds": 0.0,
+    "stage_model_seconds": 23.857,
+    "unattributed_seconds": 0,
+    "overlapped_stage_seconds": 5.152,
+    "independence_groups": 5,
+    "model_requests": 10,
+    "model_input_tokens": 22482,
+    "model_output_tokens": 4512,
+    "stage_checkpoint_seconds": 0.0,
+    "stage_browser_recovery_seconds": 12.047
+  },
+  "browser_recovery": {
+    "state": "resumed",
+    "deadline": "2026-10-09T21:23:26.806157+00:00",
+    "mode": "managed",
+    "connection_attempts": 1,
+    "cli_commands": 8,
+    "seconds": 12.047,
+    "resumed_at": "2026-10-09T21:13:38.898820+00:00"
+  },
+  "recovery_required": null,
+  "preservation": {
+    "checks": {
+      "same_session": true,
+      "same_turn": true,
+      "same_turn_count": true,
+      "evidence_unchanged": true,
+      "successful_date_records_retained": true,
+      "completed_searches_not_repeated": true
+    },
+    "successful_date_records_checked": 4,
+    "date_check_note": "按路线、来源、日期、阶段和原观察时间比较",
+    "repeated_completed_searches": [],
+    "resume_events": 1,
+    "execution_segments": 2,
+    "browser_recovery": {
+      "state": "resumed",
+      "deadline": "2026-10-09T21:23:26.806157+00:00",
+      "mode": "managed",
+      "connection_attempts": 1,
+      "cli_commands": 8,
+      "seconds": 12.047,
+      "resumed_at": "2026-10-09T21:13:38.898820+00:00"
+    }
+  },
+  "pause_checkpoint_preservation": {
+    "checks": {
+      "same_session": true,
+      "same_turn": true,
+      "same_turn_count": true,
+      "evidence_unchanged": true,
+      "successful_date_records_retained": true,
+      "completed_searches_not_repeated": true
+    },
+    "successful_date_records_checked": 32,
+    "date_check_note": "按路线、来源、日期、阶段和原观察时间比较",
+    "repeated_completed_searches": [],
+    "resume_events": 1,
+    "execution_segments": 2,
+    "browser_recovery": {
+      "state": "resumed",
+      "deadline": "2026-10-09T21:23:26.806157+00:00",
+      "mode": "managed",
+      "connection_attempts": 1,
+      "cli_commands": 8,
+      "seconds": 12.047,
+      "resumed_at": "2026-10-09T21:13:38.898820+00:00"
+    }
+  },
+  "fault_not_injected": false,
+  "price_retention_from_trace": {
+    "basis": "实际完成的验价事件中 fare_ids 与最终报价核对；事件早于 resume",
+    "prior_fare_ids": [
+      "3f3bfa2d688b1c41",
+      "4ebf62633c6c6989",
+      "577d0ad3d2b2bb18",
+      "59a5a0a26f121551",
+      "6273d66e62ceb65a",
+      "76c56cb46870ce3d",
+      "7c20b18c4a2f7e15",
+      "90d80f02449b1c5e",
+      "92932cd4876be1dc",
+      "a31532551e678cd6",
+      "a39bb1527e08bb13",
+      "ca64766ac3cce308",
+      "f27e6198173bbae8",
+      "f662448258115ec7",
+      "f964d71f67fce566"
+    ],
+    "prior_ids_retained": true,
+    "final_fares_observed_before_resume": true,
+    "fare_count": 15,
+    "date_calls_at_pause": 16,
+    "date_calls_at_finish": 16,
+    "new_fare_or_date_requests_after_resume": 0
+  },
+  "validation_scope": {
+    "range_date_records_at_fault": 4,
+    "precise_date_records_at_fault": 0,
+    "precise_records_at_pause": 10,
+    "fault_gate_used": "旧版参数只要求至少一个日期记录，包含范围线索；不能称为精确验价之后断线。独立日期工作在断线后完成，再验证暂停到续跑的保留。"
+  }
+}

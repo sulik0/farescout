@@ -63,3 +63,10 @@ def test_default_startup_selects_managed_without_creating_browser_data(tmp_path,
     monkeypatch.setenv('FARESCOUT_SOCIAL_BROWSER','existing')
     alternate = Settings.from_env()
     assert alternate.socai_home is None and alternate.socai_config_path is None
+
+
+async def test_missing_flyai_node_has_actionable_failure(tmp_path):
+    tool=tmp_path/'flyai'; tool.write_text('#!/bin/sh\necho "env: node: No such file or directory" >&2\nexit 127\n')
+    tool.chmod(0o700)
+    with pytest.raises(SourceFailure,match='NODE_NOT_INSTALLED'):
+        await command_json(str(tool), [], Settings(data_dir=tmp_path), 'FlyAI')

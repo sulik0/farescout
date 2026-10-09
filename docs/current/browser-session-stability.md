@@ -1,6 +1,18 @@
 # Social Research 浏览器会话稳定性专项
 
-2026-10-06 开始。本专项只解决社区研究使用哪个浏览器、登录是否保留，以及断线后怎样恢复。先验证 socai managed Chrome；日常 existing Chrome 只保留为开发和备用路径，不再把“日常 Chrome 的 CDP 永不断开”作为主要目标。
+2026-10-06 开始，2026-10-10 更新。本专项只解决社区研究使用哪个浏览器、登录是否保留，以及断线后怎样恢复。先验证 socai managed Chrome；日常 existing Chrome 只保留为开发和备用路径，不再把“日常 Chrome 的 CDP 永不断开”作为主要目标。
+
+## 10 月 10 日最新结果
+
+空闲后两次真实正文读取成功，耗时 26.415 / 12.855 秒。首次连接不可用时，socai 自动启动同一 profile，约 4.198 秒后观测到连接；再空闲 30 秒后复用连接。用户确认没有调试授权弹窗，也没有重新登录。首次请求之前的空闲时长没有受控记录，不能当作三小时 idle 对照。
+
+完整研究中故意关闭专用 Chrome，发现 WebSocket 已终止后，daemon 仍会短暂报告已连接，约 4.9 秒后才更新。原实现因此把错误当普通 CLI 失败，没有恢复。现已核对当前 daemon PID 与首次终止日志，提前识别断线，并等待 daemon 更新后再发起本轮一次自动重连。旧终止日志和新连接不会误触发恢复。
+
+修复后四次真实受控断线均自动续跑原 Session / Turn，重连请求耗时 8.018～14.392 秒。正文和观察时间保留，已完成查询不重复。最后一次在已有一个精确日期和 3 个报价后关闭 Chrome，直接核对了精确日期、报价 ID、金额和原观察时间保留；暂停到续跑也未重复日期调用。首次修复后的重连由用户确认没有授权或登录；后续没有逐次补问，不能仅凭 CLI 状态认定没有弹窗。
+
+最后一轮 117.982 秒，40.460 秒出现首条结果、51.955 秒出现前三条，最终 6 篇正文和 5 条有报价路线。六个新研究会话全部为 `partial`：SerpAPI 额度耗尽，补齐 Node 后 FlyAI 能返回报价，但每条路线只有一个精确日期成功、税费口径未知。用户明确同意先交付稳定性结果，完整票价验收暂留 FAIL。
+
+逐轮 `complete / partial / blocked`、调用量、阶段耗时、失败、日期覆盖和脱敏证据统一放在 [10 月 10 日验收记录](../../reports/browser-session-stability/2026-10-10/acceptance.md)。最终回归 131 项通过、1 项跳过。仍未验证精确三小时 idle、长睡眠、机器重启或长期登录过期。本轮没有新增睡眠操作；下面保留 10 月 6 日的首次验证记录，不覆盖当时失败和未确认条件。
 
 ## 怎样决定默认浏览器
 
@@ -8,7 +20,7 @@ managed 首次登录后，至少要通过连续正文读取、FareScout 服务�
 
 如果 managed 在这些条件下都能恢复，且不再要求手动批准远程调试，就让 FareScout 默认使用它。如果失败，先区分小红书页面限制、登录未保留、CDP 断线和浏览器进程退出；再验证 FareScout 单独维护 Chrome 进程、socai 只连接该进程的方案。不同时新建多个方案让用户重复登录。
 
-## 当前配置与已确认的行为
+## 10 月 6 日配置与已确认的行为
 
 新 managed profile 放在 `~/Library/Application Support/FareScout/chrome-managed`，daemon 与配置放在相邻的 `socai-managed` 目录。它们不经过 iCloud 同步，与日常 Chrome、10 月 4 日的实验 profile 分开。没有复制 Cookie 或读取 Cookie 数据库；用户在新窗口首次登录。
 
@@ -75,7 +87,7 @@ PYTHONPATH=src .venv/bin/python scripts/browser-stability-probe.py \
 本轮没有验证保持唤醒三小时、多次长时间睡眠、机器重启或小红书长期登录过期，8 / 8 不能代表长期可用率。首次登录、验证码和平台限流仍可能需要人工处理；独立 profile 不能绕过平台限制。当前数据支持先采用 managed，而不再另建一套 FareScout Chrome 进程管理。如果后续重复出现 managed 进程退出后无法自动恢复，再验证 FareScout 维护专用 Chrome、socai 复用其 endpoint 的方案。
 
 
-## 本轮交付检查
+## 10 月 6 日首次交付检查
 
 - 连续读取、服务重启、Chrome 重启、睡眠后读取：PASS，四组 8 / 8 次取得正文。
 - 普通默认配置真实读取：PASS，另一次请求 16.630 秒取得正文，沿用 daemon 95945，未依赖实验 shell 环境。见[默认配置实测](../../reports/browser-session-stability/managed-default-read.json)。全部真实检查合计 9 / 9，来源 CLI 55 次，前后取样 `status` 18 次，模型 / 票价 API 均为 0。

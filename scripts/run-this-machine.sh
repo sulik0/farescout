@@ -19,6 +19,18 @@ if [ ! -x "$FARESCOUT_PYTHON_BIN" ]; then
   echo '本机临时虚拟环境已不存在，请按 README 创建 .venv 并设置 FARESCOUT_PYTHON。' >&2
   exit 2
 fi
+# FlyAI uses /usr/bin/env node. Desktop-launched shells may have a different
+# PATH from the terminal; allow an explicit runtime without hardcoding it.
+FARESCOUT_NODE_RUNTIME=${FARESCOUT_NODE_BIN:-$(
+  "$FARESCOUT_PYTHON_BIN" -c 'from dotenv import dotenv_values; print(dotenv_values(".env").get("FARESCOUT_NODE_BIN", ""))'
+)}
+if [ -n "$FARESCOUT_NODE_RUNTIME" ]; then
+  if [ ! -x "$FARESCOUT_NODE_RUNTIME" ]; then
+    echo 'FARESCOUT_NODE_BIN 必须指向可执行的 Node 文件，请检查本机 .env。' >&2
+    exit 2
+  fi
+  export PATH="$(dirname -- "$FARESCOUT_NODE_RUNTIME"):$PATH"
+fi
 if [ -z "${SOCAI_BIN:-}" ]; then
   FARESCOUT_SOCBIN_CONFIG=$(
     "$FARESCOUT_PYTHON_BIN" -c 'from dotenv import dotenv_values; print(dotenv_values(".env").get("SOCAI_BIN", ""))'

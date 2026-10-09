@@ -1,0 +1,186 @@
+{
+  "kind": "real_managed_research_acceptance",
+  "started_at": "2026-10-09T21:04:11.950626+00:00",
+  "session_id": "managed-fault-fixed-20261010",
+  "manual_reauthorization": "none",
+  "repeated_login": "none",
+  "research_input": "香港 11 月飞日本哪里便宜？",
+  "controlled_disconnect": {
+    "chrome_pid": 12541,
+    "signal": "SIGTERM",
+    "exact_profile_verified": true,
+    "daemon_signalled": false,
+    "profile_deleted": false,
+    "at": "2026-10-09T21:04:58.379212+00:00",
+    "daemon_pid_before": 11617
+  },
+  "observations": [
+    {
+      "at": "2026-10-09T21:04:12.464475+00:00",
+      "status": "running",
+      "active": "managed-fault-fixed-20261010",
+      "evidence_count": 0,
+      "quoted_routes": 0,
+      "last_stage": "discovery",
+      "recovery_state": null,
+      "execution_segments": null
+    },
+    {
+      "at": "2026-10-09T21:04:37.882563+00:00",
+      "status": "running",
+      "active": "managed-fault-fixed-20261010",
+      "evidence_count": 1,
+      "quoted_routes": 0,
+      "last_stage": "quality",
+      "recovery_state": null,
+      "execution_segments": null
+    },
+    {
+      "at": "2026-10-09T21:05:03.089852+00:00",
+      "status": "partial",
+      "active": null,
+      "evidence_count": 3,
+      "quoted_routes": 0,
+      "last_stage": "browser_recovery",
+      "recovery_state": "waiting",
+      "execution_segments": 1
+    },
+    {
+      "at": "2026-10-09T21:05:28.510299+00:00",
+      "status": "running",
+      "active": "managed-fault-fixed-20261010",
+      "evidence_count": 3,
+      "quoted_routes": 0,
+      "last_stage": "browser_connection",
+      "recovery_state": "resumed",
+      "execution_segments": 1
+    },
+    {
+      "at": "2026-10-09T21:05:54.019234+00:00",
+      "status": "running",
+      "active": "managed-fault-fixed-20261010",
+      "evidence_count": 5,
+      "quoted_routes": 0,
+      "last_stage": "quality",
+      "recovery_state": "resumed",
+      "execution_segments": 1
+    },
+    {
+      "at": "2026-10-09T21:06:19.134064+00:00",
+      "status": "partial",
+      "active": null,
+      "evidence_count": 7,
+      "quoted_routes": 0,
+      "last_stage": "conclusion",
+      "recovery_state": "resumed",
+      "execution_segments": 2
+    },
+    {
+      "at": "2026-10-09T21:06:20.199620+00:00",
+      "status": "partial",
+      "active": null,
+      "evidence_count": 7,
+      "quoted_routes": 0,
+      "last_stage": "conclusion",
+      "recovery_state": "resumed",
+      "execution_segments": 2
+    }
+  ],
+  "before_fault": {
+    "session_id": "managed-fault-fixed-20261010",
+    "turn_id": "3ca0e4c37f48dfbf",
+    "turn_count": 1,
+    "evidence": {
+      "3248888f7e2fbcc4": {
+        "observed_at": "2026-10-09T21:04:35.239704Z",
+        "body_sha256": "d1ebd29a42d9615489d0ac2094dea8e7d32b8a7e97a79bf961b64faf4c2458c4"
+      },
+      "468ed91dd243cc05": {
+        "observed_at": "2026-10-09T21:04:40.663294Z",
+        "body_sha256": "28231d3b64d1c6d33c76b7d7391495496c463e0d1d82317009d9962b83dd9c09"
+      },
+      "9504a89f4c04c019": {
+        "observed_at": "2026-10-09T21:04:49.583191Z",
+        "body_sha256": "ead61cb1d9de930369925a05685a500f34075ebe2869377c1a4ed3cfe41ef8f7"
+      }
+    },
+    "completed_searches": [
+      {
+        "stage": "community_search",
+        "query": "香港 日本 机票",
+        "event_id": "c5de9160dda812f1"
+      }
+    ],
+    "successful_dates": []
+  },
+  "finished_at": "2026-10-09T21:06:20.199650+00:00",
+  "status": "partial",
+  "stop_reason": "有当前报价的候选不足3条；至少3条路线的多日期有效覆盖尚未满足",
+  "metrics": {
+    "model_operations": 10,
+    "community_calls": 6,
+    "socai_commands": 30,
+    "date_calls": 21,
+    "verification_calls": 11,
+    "elapsed_seconds": 124.644,
+    "execution_seconds": 105.148,
+    "execution_segments": 2,
+    "evidence_count": 7,
+    "verified_routes": 0,
+    "stage_social_read_seconds": 36.373,
+    "stage_query_expansion_seconds": 30.657,
+    "stage_date_exploration_seconds": 0.625,
+    "stage_fare_seconds": 0.641,
+    "stage_browser_connection_seconds": 0.0,
+    "stage_social_scan_seconds": 0.05,
+    "stage_social_preview_seconds": 39.906,
+    "stage_date_phase_seconds": 1.447,
+    "stage_community_search_seconds": 46.446,
+    "stage_model_seconds": 27.803,
+    "unattributed_seconds": 0,
+    "overlapped_stage_seconds": 1.205,
+    "independence_groups": 7,
+    "model_requests": 10,
+    "model_input_tokens": 26352,
+    "model_output_tokens": 5952,
+    "stage_browser_recovery_seconds": 14.392,
+    "stage_checkpoint_seconds": 0.0
+  },
+  "browser_recovery": {
+    "state": "resumed",
+    "deadline": "2026-10-09T21:14:59.076173+00:00",
+    "mode": "managed",
+    "connection_attempts": 1,
+    "cli_commands": 10,
+    "seconds": 14.392,
+    "resumed_at": "2026-10-09T21:05:18.555388+00:00"
+  },
+  "recovery_required": null,
+  "preservation": {
+    "checks": {
+      "same_session": true,
+      "same_turn": true,
+      "same_turn_count": true,
+      "evidence_unchanged": true,
+      "successful_date_records_retained": true,
+      "completed_searches_not_repeated": true
+    },
+    "repeated_completed_searches": [],
+    "resume_events": 1,
+    "execution_segments": 2,
+    "browser_recovery": {
+      "state": "resumed",
+      "deadline": "2026-10-09T21:14:59.076173+00:00",
+      "mode": "managed",
+      "connection_attempts": 1,
+      "cli_commands": 10,
+      "seconds": 14.392,
+      "resumed_at": "2026-10-09T21:05:18.555388+00:00"
+    }
+  },
+  "validation_scope": {
+    "successful_date_records_at_fault": 0,
+    "date_retention_at_fault": "not_exercised; legacy subset check is vacuously true"
+  },
+  "user_observation_basis": "用户对首次修复后的重连问题明确回复：两项都没有。"
+}

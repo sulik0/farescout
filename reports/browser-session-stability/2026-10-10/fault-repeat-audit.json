@@ -1,0 +1,2310 @@
+{
+  "kind": "recorded_live_research_audit",
+  "session_id": "managed-fault-repeat-20261010",
+  "turn_id": "fb1f251a89a06670",
+  "input": "香港 11 月飞日本哪里便宜？",
+  "started_at": "2026-10-09T21:08:37.267472+00:00",
+  "finished_at": "2026-10-09T21:10:36.067709+00:00",
+  "status": "partial",
+  "stop_reason": "至少3条路线的多日期有效覆盖尚未满足",
+  "metrics": {
+    "model_operations": 10,
+    "community_calls": 5,
+    "socai_commands": 19,
+    "date_calls": 16,
+    "first_result_seconds": 36.276,
+    "first_result_execution_seconds": 36.278,
+    "quote_reuses": 5,
+    "third_result_seconds": 49.431,
+    "third_result_execution_seconds": 49.434,
+    "elapsed_seconds": 118.8,
+    "execution_seconds": 106.416,
+    "execution_segments": 2,
+    "evidence_count": 6,
+    "verified_routes": 5,
+    "stage_date_exploration_seconds": 36.489,
+    "stage_date_phase_seconds": 29.235,
+    "stage_social_read_seconds": 30.376,
+    "stage_social_preview_seconds": 26.754,
+    "stage_community_search_seconds": 40.033,
+    "stage_browser_connection_seconds": 0.0,
+    "stage_social_scan_seconds": 0.074,
+    "stage_fare_seconds": 0.0,
+    "stage_model_seconds": 22.474,
+    "unattributed_seconds": 0,
+    "overlapped_stage_seconds": 3.254,
+    "independence_groups": 6,
+    "model_requests": 10,
+    "model_input_tokens": 22804,
+    "model_output_tokens": 4647,
+    "stage_checkpoint_seconds": 0.0,
+    "stage_query_expansion_seconds": 17.928,
+    "stage_browser_recovery_seconds": 12.341
+  },
+  "grounding_evidence_count": 3,
+  "dual_current_source_routes": 0,
+  "call_count_definition": "community_calls=provider search invocations; socai_commands=actual CLI commands (search/read/status/retries); date_calls=range/coarse/fine invocations; verification_calls=actual final exact provider invocations; quote_reuses=same-turn quote reuse without an API request; model_requests=Pydantic AI recorded requests including retries; stage_*_seconds=request duration sums, parent community stages include read children; date_phase=actual date-stage wall time",
+  "evidence_groups": [
+    {
+      "id": "3248888f7e2fbcc4",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6ac74455000000000a02197e",
+      "title": "1k7拿下香港东京往返机票",
+      "observed_at": "2026-10-09T21:08:51.257313+00:00",
+      "group": "8b0a8a60043295c2",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "",
+      "match_basis": []
+    },
+    {
+      "id": "468ed91dd243cc05",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6ac39453000000001a0215ab",
+      "title": "快运大促！香港往返日本全线1K2东京大阪",
+      "observed_at": "2026-10-09T21:08:56.580533+00:00",
+      "group": "ce7d15d59dcd6958",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "",
+      "match_basis": []
+    },
+    {
+      "id": "9504a89f4c04c019",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6ac739d70000000015000d64",
+      "title": "香港快运还会有大促吗",
+      "observed_at": "2026-10-09T21:09:00.289399+00:00",
+      "group": "8ec7428e105a58a3",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "",
+      "match_basis": []
+    },
+    {
+      "id": "f5e0b3552cbc6ec5",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6ac655710000000015002af2",
+      "title": "香港快运十月底还会降价吗",
+      "observed_at": "2026-10-09T21:10:06.596788+00:00",
+      "group": "0c6b16c01af4fa43",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "",
+      "match_basis": []
+    },
+    {
+      "id": "e2974ed7bb5398d2",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6ac469cd000000001b02328f",
+      "title": "香港快运促销活动",
+      "observed_at": "2026-10-09T21:10:25.234335+00:00",
+      "group": "9b4539b6be1ac9f5",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "",
+      "match_basis": []
+    },
+    {
+      "id": "2b33838a27719fe3",
+      "source": "小红书 / socai",
+      "url": "https://www.xiaohongshu.com/explore/6aa768b000000000290143a1",
+      "title": "冲绳促销！国庆请二香港往返冲绳1.3k",
+      "observed_at": "2026-10-09T21:10:30.434838+00:00",
+      "group": "48b1f2943d80a0c1",
+      "duplicate_of": "",
+      "campaign_duplicate_of": "",
+      "match_basis": []
+    }
+  ],
+  "expansions": [
+    {
+      "query": "香港快运 促销 出行日期 11月",
+      "evidence_id": "468ed91dd243cc05",
+      "discovered_term": "香港快运",
+      "reason": "促销正文只给出出行日期区间至27年1月31日，未确认11月具体可用日期与促销是否仍有效，需用航司与促销词继续查证。"
+    }
+  ],
+  "research_trace": [
+    {
+      "time": "2026-10-09T21:08:39.224481Z",
+      "stage": "research_decision",
+      "source": null,
+      "status": "info",
+      "detail": "先补足当前缺少的报价或正文；已完成操作不重复执行",
+      "id": "1a32c3b10d4a0802",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "action": "community",
+        "allowed_actions": [
+          "community"
+        ],
+        "step": 1,
+        "context": {
+          "allowed_actions": [
+            "community"
+          ],
+          "remaining_seconds": 478.0,
+          "pending_community_queries": [
+            "香港 日本 机票",
+            "香港飞日本 机票 便宜"
+          ],
+          "promotion_query": null,
+          "community_bodies": 0,
+          "evidence_gaps": [],
+          "date_calls": 0,
+          "routes": [],
+          "blocked_sources": [],
+          "recovery_required": null
+        }
+      }
+    },
+    {
+      "time": "2026-10-09T21:08:39.298227Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "ok",
+      "detail": "复用已经连接的Chrome",
+      "id": "5bfa1caa46ec1fb8",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T21:08:39.295345+00:00",
+        "reported_browser_connected": true,
+        "authorization": "active_connection",
+        "authorization_note": "已有有效连接；本次状态检查没有发起连接",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "805f27be6772fcd1",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-09T21:05:04.125148Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-09T21:04:58.434039Z",
+          "connection_id": "2",
+          "pid": "11617",
+          "reason_bytes": "0",
+          "pending_commands": "1",
+          "uptime_ms": "42611",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "last_transport_open": {
+          "at": "2026-10-06T03:08:38.124182Z",
+          "connection_id": "3",
+          "pid": "95945"
+        },
+        "acknowledged_terminal": {
+          "pid": "11617",
+          "connection_id": "2",
+          "at": "2026-10-09T21:04:58.434039Z"
+        },
+        "transport_pending_disconnect": false,
+        "previous_observed_at": "2026-10-09T21:05:59.598398+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": false
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:06.596153Z",
+      "stage": "research_decision",
+      "source": null,
+      "status": "info",
+      "detail": "已有 5 条 HKG→日本航点候选（NRT/KIX/OKA/NGO/FUK），但全部 has_exact_price=false 且 checked_dates=0，缺少可核对报价。按规则缺报价时优先 dates：对 2026-11 月窗口内的样本日期开始日期探索与验价，覆盖这些候选航点。社区侧已有待办查询与促销核查，不重复安排。",
+      "id": "f9fd1b2ecd8a7253",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "action": "dates",
+        "allowed_actions": [
+          "community",
+          "dates",
+          "promotion"
+        ],
+        "step": 2,
+        "context": {
+          "allowed_actions": [
+            "community",
+            "dates",
+            "promotion"
+          ],
+          "remaining_seconds": 451.8,
+          "pending_community_queries": [
+            "香港飞日本 机票 便宜"
+          ],
+          "promotion_query": {
+            "query": "香港快运 香港 名古屋 11月",
+            "evidence_id": "468ed91dd243cc05",
+            "discovered_term": "香港快运",
+            "reason": "促销正文由香港快运发起且列出多个日本航点，用航司词加用户出发地与一个航点，确认 2026 年 11 月是否仍有可用日期与舱位。"
+          },
+          "community_bodies": 3,
+          "evidence_gaps": [],
+          "date_calls": 0,
+          "routes": [
+            {
+              "route": "HKG-NRT",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05",
+                "9504a89f4c04c019"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-KIX",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-OKA",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-NGO",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-FUK",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": false
+            }
+          ],
+          "blocked_sources": [],
+          "recovery_required": null
+        }
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:07.777685Z",
+      "stage": "research_decision",
+      "source": null,
+      "status": "info",
+      "detail": "缺口：所有候选路线（HKG-NRT/KIX/OKA/NGO/FUK）均无逐字晒价，社区证据仅 3 条正文且集中在同一促销来源，覆盖不足。allowed_actions 含 community，且存在待办社区查询「香港飞日本 机票 便宜」，应先补读该查询以获取带原文的社区晒价，再决定是否进入日期探索。",
+      "id": "6cc1e39ab8756d8b",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "action": "community",
+        "allowed_actions": [
+          "community",
+          "promotion"
+        ],
+        "step": 3,
+        "context": {
+          "allowed_actions": [
+            "community",
+            "promotion"
+          ],
+          "remaining_seconds": 450.7,
+          "pending_community_queries": [
+            "香港飞日本 机票 便宜"
+          ],
+          "promotion_query": {
+            "query": "香港快运 香港 名古屋 11月",
+            "evidence_id": "468ed91dd243cc05",
+            "discovered_term": "香港快运",
+            "reason": "促销正文由香港快运发起且列出多个日本航点，用航司词加用户出发地与一个航点，确认 2026 年 11 月是否仍有可用日期与舱位。"
+          },
+          "community_bodies": 3,
+          "evidence_gaps": [],
+          "date_calls": 0,
+          "routes": [
+            {
+              "route": "HKG-NRT",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05",
+                "9504a89f4c04c019"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": true
+            },
+            {
+              "route": "HKG-KIX",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": true
+            },
+            {
+              "route": "HKG-OKA",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": true
+            },
+            {
+              "route": "HKG-NGO",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": true
+            },
+            {
+              "route": "HKG-FUK",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": false,
+              "checked_dates": 0,
+              "date_work_running": true
+            }
+          ],
+          "blocked_sources": [],
+          "recovery_required": null
+        }
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:07.805438Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "ok",
+      "detail": "复用已经连接的Chrome",
+      "id": "dfc7769404ab5da9",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T21:09:07.802994+00:00",
+        "reported_browser_connected": true,
+        "authorization": "active_connection",
+        "authorization_note": "已有有效连接；本次状态检查没有发起连接",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "805f27be6772fcd1",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-09T21:05:04.125148Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-09T21:04:58.434039Z",
+          "connection_id": "2",
+          "pid": "11617",
+          "reason_bytes": "0",
+          "pending_commands": "1",
+          "uptime_ms": "42611",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "last_transport_open": {
+          "at": "2026-10-06T03:08:38.124182Z",
+          "connection_id": "3",
+          "pid": "95945"
+        },
+        "acknowledged_terminal": {
+          "pid": "11617",
+          "connection_id": "2",
+          "at": "2026-10-09T21:04:58.434039Z"
+        },
+        "transport_pending_disconnect": false,
+        "previous_observed_at": "2026-10-09T21:08:39.295345+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": false
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:09.529400Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "info",
+      "detail": "专用 Chrome 当前未连接；下一次只读搜索会尝试启动同一 profile",
+      "id": "bf11f6054bd96cb9",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": false,
+        "browser_state": "disconnected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T21:09:09.524795+00:00",
+        "reported_browser_connected": true,
+        "authorization": "unknown",
+        "authorization_note": "WebSocket 已终止；daemon 的连接状态尚未更新。等待其确认断线后再连接。",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "805f27be6772fcd1",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-09T21:05:04.125148Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-09T21:09:09.356553Z",
+          "connection_id": "3",
+          "pid": "11617",
+          "reason_bytes": "0",
+          "pending_commands": "0",
+          "uptime_ms": "244458",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "last_transport_open": {
+          "at": "2026-10-06T03:08:38.124182Z",
+          "connection_id": "3",
+          "pid": "95945"
+        },
+        "acknowledged_terminal": {
+          "pid": "11617",
+          "connection_id": "2",
+          "at": "2026-10-09T21:04:58.434039Z"
+        },
+        "transport_pending_disconnect": true,
+        "previous_observed_at": "2026-10-09T21:09:09.289002+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": true
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:09.605441Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "info",
+      "detail": "专用 Chrome 当前未连接；下一次只读搜索会尝试启动同一 profile",
+      "id": "49b7bdb79d252272",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": false,
+        "browser_state": "disconnected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T21:09:09.604318+00:00",
+        "reported_browser_connected": true,
+        "authorization": "unknown",
+        "authorization_note": "WebSocket 已终止；daemon 的连接状态尚未更新。等待其确认断线后再连接。",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "805f27be6772fcd1",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-09T21:05:04.125148Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-09T21:09:09.356553Z",
+          "connection_id": "3",
+          "pid": "11617",
+          "reason_bytes": "0",
+          "pending_commands": "0",
+          "uptime_ms": "244458",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "last_transport_open": {
+          "at": "2026-10-06T03:08:38.124182Z",
+          "connection_id": "3",
+          "pid": "95945"
+        },
+        "acknowledged_terminal": {
+          "pid": "11617",
+          "connection_id": "2",
+          "at": "2026-10-09T21:04:58.434039Z"
+        },
+        "transport_pending_disconnect": true,
+        "previous_observed_at": "2026-10-09T21:09:09.524795+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": false
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:10.047217Z",
+      "stage": "checkpoint",
+      "source": null,
+      "status": "skipped",
+      "detail": "正文和条件没有变化，保留已筛选候选，不重复模型提取",
+      "id": "75f43b573421d70c",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {}
+    },
+    {
+      "time": "2026-10-09T21:09:13.543254Z",
+      "stage": "result_available",
+      "source": null,
+      "status": "ok",
+      "detail": "已有1条有社区引用、具体日期和精确报价的结果；研究可能仍在继续",
+      "id": "96a0493377aec8d4",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "milestone": "first_result",
+        "count": 1,
+        "seconds": 36.276
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:26.698777Z",
+      "stage": "result_available",
+      "source": null,
+      "status": "ok",
+      "detail": "已有3条有社区引用、具体日期和精确报价的结果；研究可能仍在继续",
+      "id": "019fb3e6a1e7ef63",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "milestone": "third_result",
+        "count": 3,
+        "seconds": 49.431
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:35.836938Z",
+      "stage": "research_decision",
+      "source": null,
+      "status": "info",
+      "detail": "先补足当前缺少的报价或正文；已完成操作不重复执行",
+      "id": "07fb3c27e0a200f3",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "action": "stop",
+        "allowed_actions": [
+          "stop"
+        ],
+        "step": 5,
+        "context": {
+          "allowed_actions": [
+            "stop"
+          ],
+          "remaining_seconds": 421.4,
+          "pending_community_queries": [],
+          "promotion_query": {
+            "query": "香港快运 香港 名古屋 11月",
+            "evidence_id": "468ed91dd243cc05",
+            "discovered_term": "香港快运",
+            "reason": "促销正文由香港快运发起且列出多个日本航点，用航司词加用户出发地与一个航点，确认 2026 年 11 月是否仍有可用日期与舱位。"
+          },
+          "community_bodies": 3,
+          "evidence_gaps": [],
+          "date_calls": 16,
+          "routes": [
+            {
+              "route": "HKG-NRT",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05",
+                "9504a89f4c04c019"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 7,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-KIX",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 7,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-OKA",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 8,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-NGO",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 7,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-FUK",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 6,
+              "date_work_running": false
+            }
+          ],
+          "blocked_sources": [
+            "Reddit public",
+            "小红书 / socai"
+          ],
+          "recovery_required": "BROWSER_DISCONNECTED"
+        }
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:35.868216Z",
+      "stage": "browser_recovery",
+      "source": null,
+      "status": "info",
+      "detail": "已保留研究；专用浏览器断线后自动尝试连接一次，再继续未完成步骤。",
+      "id": "efbf88d26cbdb1c3",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": null,
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {}
+    },
+    {
+      "time": "2026-10-09T21:09:35.892787Z",
+      "stage": "browser_recovery",
+      "source": null,
+      "status": "info",
+      "detail": "正在重新连接专用 Chrome；不清理 profile，也不重启 socai daemon。",
+      "id": "b780f5c02a43f5bc",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": null,
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {}
+    },
+    {
+      "time": "2026-10-09T21:09:48.235955Z",
+      "stage": "browser_recovery",
+      "source": null,
+      "status": "info",
+      "detail": "专用浏览器连接尝试结束；接下来核对连接与页面状态。",
+      "id": "b1cecd41e94548d1",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": null,
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": 12341,
+      "data": {
+        "connection_attempts": 1,
+        "cli_commands": 9,
+        "seconds": 12.341
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:48.251740Z",
+      "stage": "browser_recovery",
+      "source": null,
+      "status": "ok",
+      "detail": "Chrome 已重新连接；自动恢复原轮次，保留已读正文、日期覆盖和历史失败。",
+      "id": "8e07e86d1f96e9da",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": null,
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {}
+    },
+    {
+      "time": "2026-10-09T21:09:48.279684Z",
+      "stage": "resume",
+      "source": null,
+      "status": "info",
+      "detail": "从已有证据继续；历史失败记录保留，本段重新计时",
+      "id": "abb9896da0e5d337",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {}
+    },
+    {
+      "time": "2026-10-09T21:09:48.283796Z",
+      "stage": "checkpoint",
+      "source": null,
+      "status": "skipped",
+      "detail": "正文和条件没有变化，保留已筛选候选，不重复模型提取",
+      "id": "4567a9fbb5896f38",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {}
+    },
+    {
+      "time": "2026-10-09T21:09:49.896562Z",
+      "stage": "research_decision",
+      "source": null,
+      "status": "info",
+      "detail": "五条候选路线（NRT/KIX/OKA/NGO/FUK）均已有逐字晒价证据且各完成 6–8 个样本日期探索，日期侧覆盖较充分；但社区正文仅 3 条，pending_community_queries 中「香港飞日本 机票 便宜」尚未补读，社区覆盖不足，需先补读该查询以确认是否有其他日本航点或更低价晒价，再决定是否继续 dates 或 promotion。",
+      "id": "818e7c38f29e3765",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "action": "community",
+        "allowed_actions": [
+          "community",
+          "dates",
+          "promotion"
+        ],
+        "step": 1,
+        "context": {
+          "allowed_actions": [
+            "community",
+            "dates",
+            "promotion"
+          ],
+          "remaining_seconds": 480.0,
+          "pending_community_queries": [
+            "香港飞日本 机票 便宜"
+          ],
+          "promotion_query": {
+            "query": "香港快运 香港 名古屋 11月",
+            "evidence_id": "468ed91dd243cc05",
+            "discovered_term": "香港快运",
+            "reason": "促销正文由香港快运发起且列出多个日本航点，用航司词加用户出发地与一个航点，确认 2026 年 11 月是否仍有可用日期与舱位。"
+          },
+          "community_bodies": 3,
+          "evidence_gaps": [],
+          "date_calls": 16,
+          "routes": [
+            {
+              "route": "HKG-NRT",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05",
+                "9504a89f4c04c019"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 7,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-KIX",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 7,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-OKA",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 8,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-NGO",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 7,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-FUK",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 6,
+              "date_work_running": false
+            }
+          ],
+          "blocked_sources": [],
+          "recovery_required": null
+        }
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:49.936153Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "ok",
+      "detail": "复用已经连接的Chrome",
+      "id": "848c2f4e463af029",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T21:09:49.934908+00:00",
+        "reported_browser_connected": true,
+        "authorization": "active_connection",
+        "authorization_note": "已有有效连接；本次状态检查没有发起连接",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "0f862d8e312a8c49",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-09T21:09:13.553287Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-09T21:09:09.356553Z",
+          "connection_id": "3",
+          "pid": "11617",
+          "reason_bytes": "0",
+          "pending_commands": "0",
+          "uptime_ms": "244458",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "last_transport_open": {
+          "at": "2026-10-06T03:08:38.124182Z",
+          "connection_id": "3",
+          "pid": "95945"
+        },
+        "acknowledged_terminal": {
+          "pid": "11617",
+          "connection_id": "3",
+          "at": "2026-10-09T21:09:09.356553Z"
+        },
+        "transport_pending_disconnect": false,
+        "previous_observed_at": "2026-10-09T21:09:48.247234+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": false
+      }
+    },
+    {
+      "time": "2026-10-09T21:10:02.421336Z",
+      "stage": "checkpoint",
+      "source": "小红书 / socai",
+      "status": "skipped",
+      "detail": "本轮恢复保留这篇已读正文和原读取时间，不再打开帖子",
+      "id": "9fb9e0413fd13e06",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "note_id": "6ac39453000000001a0215ab",
+        "query": "香港 日本 机票 便宜"
+      }
+    },
+    {
+      "time": "2026-10-09T21:10:02.422722Z",
+      "stage": "checkpoint",
+      "source": "小红书 / socai",
+      "status": "skipped",
+      "detail": "本轮恢复保留这篇已读正文和原读取时间，不再打开帖子",
+      "id": "cb6d3017626d747d",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "note_id": "6ac74455000000000a02197e",
+        "query": "香港 日本 机票 便宜"
+      }
+    },
+    {
+      "time": "2026-10-09T21:10:12.506331Z",
+      "stage": "research_decision",
+      "source": null,
+      "status": "info",
+      "detail": "五条候选路线（NRT/KIX/OKA/NGO/FUK）均已有逐字晒价证据且已完成 6–8 个样本日期的验价，日期缺口已覆盖；当前唯一未闭合的缺口是促销条件：证据 468ed91dd243cc05 的促销正文只给出出行区间至 27-01-31，未确认 11 月具体可用日期与活动是否仍有效。按规则活动条件含糊时优先 promotion，用已有原文词「香港快运」在原社区核查活动日期与限制，不新增来源。",
+      "id": "832ab43fc899d1d0",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "action": "promotion",
+        "allowed_actions": [
+          "dates",
+          "promotion"
+        ],
+        "step": 2,
+        "context": {
+          "allowed_actions": [
+            "dates",
+            "promotion"
+          ],
+          "remaining_seconds": 457.2,
+          "pending_community_queries": [],
+          "promotion_query": {
+            "query": "香港快运 促销 出行日期 11月",
+            "evidence_id": "468ed91dd243cc05",
+            "discovered_term": "香港快运",
+            "reason": "促销正文只给出出行日期区间至27年1月31日，未确认11月具体可用日期与促销是否仍有效，需用航司与促销词继续查证。"
+          },
+          "community_bodies": 4,
+          "evidence_gaps": [],
+          "date_calls": 16,
+          "routes": [
+            {
+              "route": "HKG-NRT",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05",
+                "9504a89f4c04c019"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 7,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-KIX",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 7,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-OKA",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 8,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-NGO",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 7,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-FUK",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 6,
+              "date_work_running": false
+            }
+          ],
+          "blocked_sources": [],
+          "recovery_required": null
+        }
+      }
+    },
+    {
+      "time": "2026-10-09T21:10:12.543031Z",
+      "stage": "browser_connection",
+      "source": "小红书 / socai",
+      "status": "ok",
+      "detail": "复用已经连接的Chrome",
+      "id": "3b032a47c346ded3",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "browser_connected": true,
+        "browser_state": "connected",
+        "daemon_running": true,
+        "daemon_compatible": true,
+        "cli_version": "0.6.1",
+        "error_code": null,
+        "profile_mode": "managed",
+        "active_profile_mode": "managed",
+        "observed_at": "2026-10-09T21:10:12.540877+00:00",
+        "reported_browser_connected": true,
+        "authorization": "active_connection",
+        "authorization_note": "已有有效连接；本次状态检查没有发起连接",
+        "daemon_pid": 11617,
+        "endpoint_fingerprint": "0f862d8e312a8c49",
+        "endpoint_source": "managed_chrome_marker",
+        "last_disconnect": {
+          "at": "2026-10-09T21:09:13.553287Z",
+          "category": "session_closed",
+          "cause_confirmed": false,
+          "note": "这是daemon观测到的传输错误，不能据此判断谁关闭了连接"
+        },
+        "first_transport_terminal": {
+          "at": "2026-10-09T21:09:09.356553Z",
+          "connection_id": "3",
+          "pid": "11617",
+          "reason_bytes": "0",
+          "pending_commands": "0",
+          "uptime_ms": "244458",
+          "kind": "websocket_receive_failed",
+          "error_class": "protocol",
+          "cause_confirmed": false,
+          "note": "WebSocket 终止时记录；关闭原因文字未保存。事件说明连接如何结束，不证明谁触发了断线。"
+        },
+        "last_transport_open": {
+          "at": "2026-10-06T03:08:38.124182Z",
+          "connection_id": "3",
+          "pid": "95945"
+        },
+        "acknowledged_terminal": {
+          "pid": "11617",
+          "connection_id": "3",
+          "at": "2026-10-09T21:09:09.356553Z"
+        },
+        "transport_pending_disconnect": false,
+        "previous_observed_at": "2026-10-09T21:09:49.934908+00:00",
+        "daemon_changed": false,
+        "endpoint_changed": false,
+        "connection_lost_since_check": false
+      }
+    },
+    {
+      "time": "2026-10-09T21:10:25.239291Z",
+      "stage": "checkpoint",
+      "source": "小红书 / socai",
+      "status": "skipped",
+      "detail": "本轮恢复保留这篇已读正文和原读取时间，不再打开帖子",
+      "id": "c42036b9485af411",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 0,
+      "data": {
+        "note_id": "6ac739d70000000015000d64",
+        "query": "香港快运 促销 出行日期 11月"
+      }
+    },
+    {
+      "time": "2026-10-09T21:10:36.059707Z",
+      "stage": "research_decision",
+      "source": null,
+      "status": "info",
+      "detail": "五条候选路线（HKG-NRT/KIX/OKA/NGO/FUK）均已有逐字证据与精确报价，且各已完成 6–8 个样本日期的验价，无 date_work_running、无待办社区查询、无证据缺口、无受阻来源。促销查询（香港快运大促 出行日期 11月）已执行且当前 allowed_actions 仅剩 dates/stop，无新增可核查缺口，故停止。",
+      "id": "c75974f87c3df72c",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "action": "stop",
+        "allowed_actions": [
+          "dates",
+          "stop"
+        ],
+        "step": 3,
+        "context": {
+          "allowed_actions": [
+            "dates",
+            "stop"
+          ],
+          "remaining_seconds": 433.3,
+          "pending_community_queries": [],
+          "promotion_query": {
+            "query": "香港快运 大促 出行日期 11月",
+            "evidence_id": "468ed91dd243cc05",
+            "discovered_term": "出行日期",
+            "reason": "促销正文只给出出行日期区间与促销截止日，需确认11月具体可用日期及促销是否仍有效。"
+          },
+          "community_bodies": 6,
+          "evidence_gaps": [],
+          "date_calls": 16,
+          "routes": [
+            {
+              "route": "HKG-NRT",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "9504a89f4c04c019"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 7,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-KIX",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 7,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-OKA",
+              "evidence_ids": [
+                "468ed91dd243cc05",
+                "2b33838a27719fe3"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 8,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-NGO",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 7,
+              "date_work_running": false
+            },
+            {
+              "route": "HKG-FUK",
+              "evidence_ids": [
+                "468ed91dd243cc05"
+              ],
+              "has_exact_price": true,
+              "checked_dates": 6,
+              "date_work_running": false
+            }
+          ],
+          "blocked_sources": [],
+          "recovery_required": null
+        }
+      }
+    }
+  ],
+  "browser_recovery": {
+    "state": "resumed",
+    "deadline": "2026-10-09T21:19:35.868198+00:00",
+    "mode": "managed",
+    "connection_attempts": 1,
+    "cli_commands": 9,
+    "seconds": 12.341,
+    "resumed_at": "2026-10-09T21:09:48.251724+00:00"
+  },
+  "recovery_required": null,
+  "failures": [
+    {
+      "time": "2026-10-09T21:09:07.149474Z",
+      "stage": "date_exploration",
+      "source": "SerpAPI",
+      "status": "failed",
+      "detail": "AUTH_OR_QUOTA: Explore鉴权或配额不可用",
+      "id": "b51a50e25daf0f6c",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "8bad86d9b8babdd5",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 548,
+      "data": {
+        "route": "HKG-NRT",
+        "date_from": "2026-11-01",
+        "date_to": "2026-11-30",
+        "date_stage": "range"
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:09.452719Z",
+      "stage": "source_retry",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "前次未取得可读正文；有界重试：香港 日本 机票",
+      "id": "3fcecbf317100acf",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "progress",
+      "evidence_ids": [],
+      "duration_ms": null,
+      "data": {
+        "original_query": "香港飞日本 机票 便宜",
+        "retry_query": "香港 日本 机票"
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:09.606424Z",
+      "stage": "social_scan",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "BROWSER_DISCONNECTED: CDP连接已断开或重连未建立；保留本轮，批准Chrome连接后再恢复",
+      "id": "a3d6dce85386dedd",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 74,
+      "data": {
+        "query": "香港 日本 机票",
+        "fallback_from": "selective",
+        "failure_code": "BROWSER_DISCONNECTED"
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:09.607660Z",
+      "stage": "community_search",
+      "source": "小红书 / socai",
+      "status": "failed",
+      "detail": "BROWSER_DISCONNECTED: CDP连接已断开或重连未建立；保留本轮，批准Chrome连接后再恢复",
+      "id": "13d26318780bd834",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "a4f0cfaa66681135",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 1828,
+      "data": {
+        "query": "香港飞日本 机票 便宜"
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:10.044115Z",
+      "stage": "community_search",
+      "source": "Reddit public",
+      "status": "failed",
+      "detail": "ACCESS_BLOCKED: 公共社区访问受限；不绕过访问控制",
+      "id": "bc889b7edd496a2a",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "946608ea9956afbb",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 435,
+      "data": {
+        "query": "香港飞日本 机票 便宜"
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:14.435579Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "API_ERROR: FlyAI 未返回成功状态",
+      "id": "556ede2f2ede3466",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "5c9f5962ad9ce04a",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 2488,
+      "data": {
+        "route": "HKG-NRT",
+        "request": {
+          "origin": "HKG",
+          "destination": "NRT",
+          "outbound_date": "2026-11-30",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:22.395274Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "API_ERROR: FlyAI 未返回成功状态",
+      "id": "987a1bde82835842",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "7f4203d1365f7a95",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 2228,
+      "data": {
+        "route": "HKG-KIX",
+        "request": {
+          "origin": "HKG",
+          "destination": "KIX",
+          "outbound_date": "2026-11-30",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:27.516448Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "API_ERROR: FlyAI 未返回成功状态",
+      "id": "ff6bea28eba690a0",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "5aae28d623c1cece",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 2483,
+      "data": {
+        "route": "HKG-OKA",
+        "request": {
+          "origin": "HKG",
+          "destination": "OKA",
+          "outbound_date": "2026-11-30",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:31.716898Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "API_ERROR: FlyAI 未返回成功状态",
+      "id": "6b9865d0a6be42b3",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "498d282f6f8bc2dd",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 2160,
+      "data": {
+        "route": "HKG-NGO",
+        "request": {
+          "origin": "HKG",
+          "destination": "NGO",
+          "outbound_date": "2026-11-30",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    },
+    {
+      "time": "2026-10-09T21:09:35.822928Z",
+      "stage": "date_exploration",
+      "source": "FlyAI",
+      "status": "failed",
+      "detail": "API_ERROR: FlyAI 未返回成功状态",
+      "id": "e3ee42e09df0700b",
+      "turn_id": "fb1f251a89a06670",
+      "action_id": "01d0f97295888211",
+      "parent_action_id": "fb1f251a89a06670",
+      "phase": "completed",
+      "evidence_ids": [],
+      "duration_ms": 2118,
+      "data": {
+        "route": "HKG-FUK",
+        "request": {
+          "origin": "HKG",
+          "destination": "FUK",
+          "outbound_date": "2026-11-30",
+          "return_date": null,
+          "currency": "CNY",
+          "adults": 1,
+          "cabin": "economy",
+          "no_red_eye": false
+        },
+        "date_stage": "coarse",
+        "request_issued": true
+      }
+    }
+  ],
+  "sources": [
+    "FlyAI",
+    "Reddit public",
+    "SerpAPI",
+    "model",
+    "小红书 / socai"
+  ],
+  "routes": [
+    {
+      "route": "HKG-NRT",
+      "evidence_ids": [
+        "468ed91dd243cc05",
+        "9504a89f4c04c019"
+      ],
+      "window": [
+        "2026-11-01",
+        "2026-11-30"
+      ],
+      "precise_requested_dates": [
+        "2026-11-09",
+        "2026-11-30"
+      ],
+      "precise_successful_dates": [
+        "2026-11-09"
+      ],
+      "range_returned_dates": [
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-09",
+        "2026-11-25"
+      ],
+      "selected_date": "2026-11-09",
+      "fares": [
+        {
+          "id": "3f3bfa2d688b1c41",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "NRT",
+            "outbound_date": "2026-11-09",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 857.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-09T21:09:13.541634Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "NRT",
+              "departure": "2026-11-09 13:00:00",
+              "arrival": "2026-11-09 18:05:00",
+              "airline": "香港快运",
+              "flight_number": "UO646"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        },
+        {
+          "id": "4ebf62633c6c6989",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "NRT",
+            "outbound_date": "2026-11-09",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 857.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-09T21:09:13.541669Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "NRT",
+              "departure": "2026-11-09 14:00:00",
+              "arrival": "2026-11-09 19:05:00",
+              "airline": "香港快运",
+              "flight_number": "UO650"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        },
+        {
+          "id": "ca64766ac3cce308",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "NRT",
+            "outbound_date": "2026-11-09",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 857.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-09T21:09:13.541692Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "NRT",
+              "departure": "2026-11-09 09:20:00",
+              "arrival": "2026-11-09 14:25:00",
+              "airline": "香港快运",
+              "flight_number": "UO848"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        }
+      ],
+      "deal": {
+        "level": "unknown",
+        "label": "已验价，廉价程度未知",
+        "reason": "未取得与本轮条件一致的可靠典型区间；不估算折扣。"
+      }
+    },
+    {
+      "route": "HKG-KIX",
+      "evidence_ids": [
+        "468ed91dd243cc05"
+      ],
+      "window": [
+        "2026-11-01",
+        "2026-11-30"
+      ],
+      "precise_requested_dates": [
+        "2026-11-01",
+        "2026-11-30"
+      ],
+      "precise_successful_dates": [
+        "2026-11-01"
+      ],
+      "range_returned_dates": [
+        "2026-11-01",
+        "2026-11-02",
+        "2026-11-04",
+        "2026-11-11"
+      ],
+      "selected_date": "2026-11-01",
+      "fares": [
+        {
+          "id": "6273d66e62ceb65a",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "KIX",
+            "outbound_date": "2026-11-01",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 884.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-09T21:09:21.631459Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "KIX",
+              "departure": "2026-11-01 14:35:00",
+              "arrival": "2026-11-01 19:05:00",
+              "airline": "大湾区航空",
+              "flight_number": "HB2356"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        },
+        {
+          "id": "f27e6198173bbae8",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "KIX",
+            "outbound_date": "2026-11-01",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 907.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-09T21:09:21.631497Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "KIX",
+              "departure": "2026-11-01 14:45:00",
+              "arrival": "2026-11-01 19:20:00",
+              "airline": "香港快运",
+              "flight_number": "UO688"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        },
+        {
+          "id": "f662448258115ec7",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "KIX",
+            "outbound_date": "2026-11-01",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 943.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-09T21:09:21.631522Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "KIX",
+              "departure": "2026-11-01 08:30:00",
+              "arrival": "2026-11-01 13:05:00",
+              "airline": "香港快运",
+              "flight_number": "UO686"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        }
+      ],
+      "deal": {
+        "level": "unknown",
+        "label": "已验价，廉价程度未知",
+        "reason": "未取得与本轮条件一致的可靠典型区间；不估算折扣。"
+      }
+    },
+    {
+      "route": "HKG-OKA",
+      "evidence_ids": [
+        "468ed91dd243cc05",
+        "2b33838a27719fe3"
+      ],
+      "window": [
+        "2026-11-01",
+        "2026-11-30"
+      ],
+      "precise_requested_dates": [
+        "2026-11-09",
+        "2026-11-30"
+      ],
+      "precise_successful_dates": [
+        "2026-11-09"
+      ],
+      "range_returned_dates": [
+        "2026-11-04",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-18",
+        "2026-11-24"
+      ],
+      "selected_date": "2026-11-09",
+      "fares": [
+        {
+          "id": "90d80f02449b1c5e",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "OKA",
+            "outbound_date": "2026-11-09",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 698.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-09T21:09:26.696929Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "OKA",
+              "departure": "2026-11-09 07:30:00",
+              "arrival": "2026-11-09 11:00:00",
+              "airline": "香港快运",
+              "flight_number": "UO820"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        },
+        {
+          "id": "f964d71f67fce566",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "OKA",
+            "outbound_date": "2026-11-09",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 698.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-09T21:09:26.696963Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "OKA",
+              "departure": "2026-11-09 15:50:00",
+              "arrival": "2026-11-09 19:20:00",
+              "airline": "香港快运",
+              "flight_number": "UO824"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        },
+        {
+          "id": "7c20b18c4a2f7e15",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "OKA",
+            "outbound_date": "2026-11-09",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 1169.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-09T21:09:26.697023Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "NRT",
+              "departure": "2026-11-09 10:50:00",
+              "arrival": "2026-11-09 15:55:00",
+              "airline": "香港快运",
+              "flight_number": "UO870"
+            },
+            {
+              "origin": "NRT",
+              "destination": "OKA",
+              "departure": "2026-11-09 18:45:00",
+              "arrival": "2026-11-09 22:20:00",
+              "airline": "日本捷星",
+              "flight_number": "GK339"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        }
+      ],
+      "deal": {
+        "level": "unknown",
+        "label": "已验价，廉价程度未知",
+        "reason": "未取得与本轮条件一致的可靠典型区间；不估算折扣。"
+      }
+    },
+    {
+      "route": "HKG-NGO",
+      "evidence_ids": [
+        "468ed91dd243cc05"
+      ],
+      "window": [
+        "2026-11-01",
+        "2026-11-30"
+      ],
+      "precise_requested_dates": [
+        "2026-11-08",
+        "2026-11-30"
+      ],
+      "precise_successful_dates": [
+        "2026-11-08"
+      ],
+      "range_returned_dates": [
+        "2026-11-04",
+        "2026-11-06",
+        "2026-11-08",
+        "2026-11-10"
+      ],
+      "selected_date": "2026-11-08",
+      "fares": [
+        {
+          "id": "92932cd4876be1dc",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "NGO",
+            "outbound_date": "2026-11-08",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 913.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-09T21:09:30.868037Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "NGO",
+              "departure": "2026-11-08 15:15:00",
+              "arrival": "2026-11-08 19:45:00",
+              "airline": "香港快运",
+              "flight_number": "UO684"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        },
+        {
+          "id": "a39bb1527e08bb13",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "NGO",
+            "outbound_date": "2026-11-08",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 1121.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-09T21:09:30.868216Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "NRT",
+              "departure": "2026-11-08 13:00:00",
+              "arrival": "2026-11-08 18:05:00",
+              "airline": "香港快运",
+              "flight_number": "UO646"
+            },
+            {
+              "origin": "NRT",
+              "destination": "NGO",
+              "departure": "2026-11-09 10:30:00",
+              "arrival": "2026-11-09 11:40:00",
+              "airline": "日本航空",
+              "flight_number": "JL3083"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        },
+        {
+          "id": "577d0ad3d2b2bb18",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "NGO",
+            "outbound_date": "2026-11-08",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 1121.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-09T21:09:30.868246Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "NRT",
+              "departure": "2026-11-08 10:50:00",
+              "arrival": "2026-11-08 15:55:00",
+              "airline": "香港快运",
+              "flight_number": "UO870"
+            },
+            {
+              "origin": "NRT",
+              "destination": "NGO",
+              "departure": "2026-11-09 10:30:00",
+              "arrival": "2026-11-09 11:40:00",
+              "airline": "日本航空",
+              "flight_number": "JL3083"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        }
+      ],
+      "deal": {
+        "level": "unknown",
+        "label": "已验价，廉价程度未知",
+        "reason": "未取得与本轮条件一致的可靠典型区间；不估算折扣。"
+      }
+    },
+    {
+      "route": "HKG-FUK",
+      "evidence_ids": [
+        "468ed91dd243cc05"
+      ],
+      "window": [
+        "2026-11-01",
+        "2026-11-30"
+      ],
+      "precise_requested_dates": [
+        "2026-11-05",
+        "2026-11-30"
+      ],
+      "precise_successful_dates": [
+        "2026-11-05"
+      ],
+      "range_returned_dates": [
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-10"
+      ],
+      "selected_date": "2026-11-05",
+      "fares": [
+        {
+          "id": "76c56cb46870ce3d",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "FUK",
+            "outbound_date": "2026-11-05",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 813.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-09T21:09:35.004205Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "FUK",
+              "departure": "2026-11-05 12:55:00",
+              "arrival": "2026-11-05 17:00:00",
+              "airline": "香港快运",
+              "flight_number": "UO638"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        },
+        {
+          "id": "a31532551e678cd6",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "FUK",
+            "outbound_date": "2026-11-05",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 971.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-09T21:09:35.004245Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "FUK",
+              "departure": "2026-11-05 11:05:00",
+              "arrival": "2026-11-05 15:10:00",
+              "airline": "香港快运",
+              "flight_number": "UO668"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        },
+        {
+          "id": "59a5a0a26f121551",
+          "source": "FlyAI / 飞猪",
+          "kind": "current_verified",
+          "request": {
+            "origin": "HKG",
+            "destination": "FUK",
+            "outbound_date": "2026-11-05",
+            "return_date": null,
+            "currency": "CNY",
+            "adults": 1,
+            "cabin": "economy",
+            "no_red_eye": false
+          },
+          "amount": 1089.0,
+          "currency": "CNY",
+          "observed_at": "2026-10-09T21:09:35.004270Z",
+          "source_url": "https://flyai.open.fliggy.com/",
+          "segments": [
+            {
+              "origin": "HKG",
+              "destination": "FUK",
+              "departure": "2026-11-05 07:50:00",
+              "arrival": "2026-11-05 11:55:00",
+              "airline": "香港快运",
+              "flight_number": "UO600"
+            }
+          ],
+          "price_basis": "adult_fare_tax_unknown",
+          "baggage": "未确认，不能假定包含托运行李",
+          "restrictions": [
+            "FlyAI adultPrice/ticketPrice 报价；税费总额未确认，不能等同于含税总价",
+            "未访问 jumpUrl 或任何预订页",
+            "FlyAI 体验模式：部分结果受限"
+          ],
+          "price_insights": {}
+        }
+      ],
+      "deal": {
+        "level": "unknown",
+        "label": "已验价，廉价程度未知",
+        "reason": "未取得与本轮条件一致的可靠典型区间；不估算折扣。"
+      }
+    }
+  ],
+  "not_a_month_minimum": true
+}

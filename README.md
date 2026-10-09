@@ -2,7 +2,9 @@
 
 P1.5 已加入社区读取恢复、阶段耗时、日期调用优化和促销去重。之后补上同一轮续跑、提前展示报价和按研究缺口决定下一步，见[研究恢复验收](docs/current/research-recovery-acceptance.md)。
 
-浏览器专项已完成固定本地 managed profile 的连续调用、FareScout 重启、专用 Chrome 重启和睡眠后的实际读取，共 8 / 8 次取得正文。用户已确认前三组没有重复调试授权或小红书登录；睡眠后的弹窗观察仍待确认。标准启动默认使用 managed，断线时会保留研究并自动尝试连接一次。日常 Chrome 改为显式的开发 / 备用选择，详见[浏览器会话稳定性](docs/current/browser-session-stability.md)。此前 daily Chrome 授权恢复得到 3 篇正文和 5 条有报价的航线，仍为 `partial`；[旧 CDP 验收](docs/current/cdp-stability-acceptance.md)保留历史条件与失败记录。
+默认使用专用 managed Chrome。10 月 10 日新增空闲后真实读取 2 / 2，并修复了 WebSocket 已断开、daemon 仍短暂报告已连接时错过恢复的问题。修复后四次真实受控断线均在原轮次续跑；最后一次保留了断线前的精确日期和 3 个报价。用户确认此次空闲读取及首次修复后的重连没有再次要求授权或登录。日常 Chrome 只作为显式开发 / 备用选择。
+
+最后一轮 118 秒取得 6 篇正文和 5 条有报价路线，但月度日期覆盖不足、SerpAPI 无额度，仍为 `partial`。按用户决定，先交付稳定性结果，完整票价验收暂留未通过。详见[最新实测与调用量](reports/browser-session-stability/2026-10-10/acceptance.md)、[浏览器会话稳定性](docs/current/browser-session-stability.md)。此前睡眠后的弹窗观察仍未补齐，三小时空闲和长期无人值守尚未验证。
 
 从模糊机票需求出发，读取社区正文/评论，依据已读线索扩展查询，再调用实时机票来源验证。输出 Markdown 报告和可恢复的 JSON 会话。产品唯一基准是 [完整需求](docs/current/product-requirements.md)。
 
@@ -81,6 +83,7 @@ farescout resume --session demo
 | `SERPAPI_API_KEY` | 可选 Google Flights 第二验价渠道；未配置会明确记录失败 |
 | `FLYAI_API_KEY` | 可选 FlyAI 凭证；本次基础查询使用官方体验模式 |
 | `SOCAI_BIN` / `FLYAI_BIN` | 可执行文件路径，不能填任意 shell 命令 |
+| `FARESCOUT_NODE_BIN` | 可选 Node 可执行文件路径；本机启动脚本将其目录加入 PATH，解决桌面启动时 FlyAI 找不到 Node 的问题。直接运行 `farescout` 时仍需自行配置 PATH |
 | `FARESCOUT_SOCIAL_BROWSER` | 默认 `managed`，使用专用 Chrome；`existing` 为日常 Chrome 开发 / 备用模式 |
 | `FARESCOUT_BROWSER_ROOT` | 可选专用浏览器数据目录；macOS 默认 `~/Library/Application Support/FareScout`，请勿放在 iCloud 或项目目录 |
 | `SOCAI_HOME` / `SOCAI_CONFIG_PATH` | 可选显式指定 daemon / 配置路径；managed 会检查配置文件与预期 profile 一致，通常无需设置 |

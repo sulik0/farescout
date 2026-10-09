@@ -126,7 +126,7 @@ class DateExplorer:
             raise
         except Exception as error:
             failure = source_error(provider.name, error)
-            if failure.code in {"AUTH_OR_QUOTA", "MISSING_KEY", "NOT_INSTALLED", "ROUND_TRIP_INCOMPLETE"}:
+            if failure.code in {"AUTH_OR_QUOTA", "MISSING_KEY", "NOT_INSTALLED", "NODE_NOT_INSTALLED", "ROUND_TRIP_INCOMPLETE"}:
                 self.disabled.add(provider.name)
             detail = str(failure)
             if issued:
@@ -184,7 +184,7 @@ class DateExplorer:
                             break
                     except Exception as error:
                         failure = source_error(provider.name, error)
-                        if failure.code in {"AUTH_OR_QUOTA", "MISSING_KEY", "NOT_INSTALLED"}:
+                        if failure.code in {"AUTH_OR_QUOTA", "MISSING_KEY", "NOT_INSTALLED", "NODE_NOT_INSTALLED"}:
                             self.disabled.add(provider.name)
                         self.r.emit(self.turn, "date_exploration", "failed", str(source_error(provider.name, error)), provider.name,
                                     action_id=action, phase="completed", duration_ms=int((monotonic()-started)*1000), data=data)

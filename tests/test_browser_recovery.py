@@ -310,3 +310,72 @@ def test_service_restart_ignores_probe_array_and_retains_session(tmp_path):
     assert app.store.load('saved').evidence['p1'].body == source.record.body
     with pytest.raises(ValueError):
         app.store.load('probe-log')
+
+
+def test_terminal_detects_stale_status_then_releases_after_daemon_acknowledges(tmp_path):
+    home = tmp_path/'daemon'; home.mkdir()
+    (home/'rust-daemon.pid').write_text('12')
+    settings = Settings(data_dir=tmp_path/'data', socai_home=home)
+    state = {'browser_connected':True, 'browser_state':'connected'}
+    connection_observation(state, settings)
+    # INFO logging can be disabled, so no ws_open line is required when a
+    # healthy observation precedes the current daemon's first terminal log.
+    (home/'rust-daemon.log').write_text(f'{now().isoformat()} WARN cdp_ws_terminal connection_id=1 pid=12 kind="stream_ended"\n')
+    first = connection_observation(state, settings)
+    assert first['reported_browser_connected'] is True and first['browser_connected'] is False
+    assert first['transport_pending_disconnect'] and first['authorization']=='unknown'
+    assert connection_observation(state, settings)['browser_connected'] is False
+    connection_observation({'browser_connected':False}, settings)
+    assert connection_observation(state, settings)['browser_connected'] is True
+
+
+@pytest.mark.parametrize('suffix', [
+    '2026-10-10T10:00:02Z INFO cdp_ws_open connection_id=2 pid=12\n',
+    '2026-10-10T10:00:02Z WARN cdp_ws_terminal connection_id=1 pid=99 kind="stream_ended"\n',
+])
+def test_old_terminal_does_not_invalidate_new_connection(tmp_path, suffix):
+    home = tmp_path/'daemon'; home.mkdir()
+    (home/'rust-daemon.pid').write_text('12')
+    (home/'rust-daemon.log').write_text('2026-10-10T10:00:00Z INFO cdp_ws_open connection_id=1 pid=12\n'
+        '2026-10-10T10:00:01Z WARN cdp_ws_terminal connection_id=1 pid=12 kind="stream_ended"\n'+suffix)
+    result = connection_observation({'browser_connected':True}, Settings(data_dir=tmp_path/'data', socai_home=home))
+    assert result['browser_connected'] is True
+
+
+async def test_cli_failure_during_stale_daemon_status_is_disconnected(tmp_path, monkeypatch):
+    home=tmp_path/'daemon'; home.mkdir(); (home/'rust-daemon.pid').write_text('12')
+    settings=Settings(data_dir=tmp_path/'data', socai_home=home)
+    async def command(executable, args, settings, name):
+        if args[0]=='status':
+            return {'browser_connected':True, 'browser_state':'connected'}
+        (home/'rust-daemon.log').write_text(f'{now().isoformat()} WARN cdp_ws_terminal connection_id=1 pid=12 kind="stream_ended"\n')
+        raise SourceFailure('socai','CLI_FAILED','连接关闭')
+    monkeypatch.setattr('farescout.providers.command_json',command)
+    source=Socai(settings)
+    with pytest.raises(SourceFailure,match='BROWSER_DISCONNECTED'):
+        await source._command(['xhs','search','香港'], 'social_preview', {})
+    assert source.connection['reported_browser_connected'] is True
+    assert source.connection['browser_connected'] is False
+
+
+def test_managed_waits_for_daemon_before_spending_reconnect_attempt(tmp_path, monkeypatch):
+    settings, source, factory=setup(tmp_path); settings.social_browser='managed'
+    acknowledged, connected=threading.Event(),threading.Event(); calls=[]; checks=[]
+    async def ready(self):
+        checks.append(True)
+        self.connection={'profile_mode':'managed', 'browser_connected':connected.is_set(),
+            'reported_browser_connected':not acknowledged.is_set() or connected.is_set()}
+        return connected.is_set()
+    async def request(self,*args):
+        assert acknowledged.is_set()
+        calls.append(args); connected.set(); source.ready=True
+        return {}
+    monkeypatch.setattr(Socai,'browser_ready',ready)
+    monkeypatch.setattr(Socai,'_command',request)
+    app=Application(settings,factory); app.arm_recovery('saved')
+    wait_for(lambda:len(checks)>2)
+    assert not calls and not app.store.load('saved').turns[0].checkpoint.get('managed_reconnect_attempts')
+    acknowledged.set()
+    wait_for(lambda:not app.active and app.store.load('saved').turns[0].metrics['execution_segments']==2)
+    assert len(calls)==1 and len(app.store.load('saved').turns)==1
+    app.recovery_stop.set()
